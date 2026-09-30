@@ -46,7 +46,7 @@ The v1 plan had five high-severity gaps. Three could produce wrong numbers, and 
 | 13 | No repo structure, configuration, CI or versioning plan | Medium | New Engineering and scaling section | Engineering |
 | 14 | 8 s p95 with a 4-step agent loop on a laptop is unlikely | Low | Latency budget per path; cap agent steps; cache repeated questions | Evaluation |
 
-**v3 refinements (Sep 30, 2026):** this local copy folds in the execution plan's gap resolutions G1–G11 (except whether Basketball-Reference may source `records`) and fixes smaller errors in the sections they affect. Some v3 rules are provisional defaults awaiting the owner; each is marked "provisional" in its section and listed under Risks and open questions.
+**v3 refinements (Sep 30, 2026):** this local copy folds in the execution plan's gap resolutions G1–G11 (except whether Basketball-Reference may source `records`) and fixes smaller errors in the sections they affect. The owner accepted the v3 rules that were marked provisional on Sep 30, 2026 (`docs/decisions/0005-v3-resolutions.md`), so they are now firm.
 
 ## Data sources
 
@@ -94,7 +94,7 @@ Data moves through four layers, and each has one job. Only definitions and schem
 | `games` | One row per game | game\_id, date (US Eastern), season, season\_type (regular season, Play-In, playoffs), home\_id, away\_id, scores, periods (for overtime). The NBA Cup final is flagged and excluded from regular-season stats |
 | `player_game` | Player × game | Box score; NULL (not 0) for stats not tracked that season |
 | `player_season_stint` | Player × season × type × team | One row per team a player played for |
-| `player_season` | Player × season × type | Season total across all teams. Leaders and totals read only this table, never a SUM of stints. Team-scoped leaders (Q48, provisional) read the team's stint instead |
+| `player_season` | Player × season × type | Season total across all teams. Leaders and totals read only this table, never a SUM of stints. Team-scoped leaders (Q48) read the team's stint instead |
 | `team_season` | Team × season × type | W-L, off/def/net rating, pace, standings rank |
 | `team_titles` | Franchise × season | Champion and Finals opponent. A player's titles are the seasons he appeared in at least one playoff game for the champion |
 | `records` | Record × holder | Curated single-game records and career counts that early game logs may not support (confirmed in phase 1), e.g. most points in a game, career triple-doubles. Each value has a valid-from date. Cross-checked against Basketball-Reference |
@@ -171,7 +171,7 @@ The seed questions are modeled on common search themes, not taken from a measure
 | Paraphrases | 170 | 2 per seed, drafted by an LLM and reviewed by a person |
 | Entity variants | 30 | Nicknames, misspellings, missing accents ("Jokic", "Giannis", "Wemby") |
 | Multi-turn | 25 turns | 10 conversations: M01–M05 have 2 turns, M06–M10 have 3 (table after the seed questions) |
-| Ambiguous and hard negatives | 10 | Two players with similar names (clarify), opinion questions (stats only, no verdict; provisional), stats not tracked |
+| Ambiguous and hard negatives | 10 | Two players with similar names (clarify), opinion questions (stats only, no verdict), stats not tracked |
 | **Total** | **320** | The diagram's "~300" |
 
 **Splits:** 70% dev for day-to-day tuning, 30% held-out and run only at phase gates, so prompts are not tuned to the test. The split is by seed family: a seed, its paraphrases and its entity variants all go to the same split. Each hard negative is its own family, and so is each multi-turn conversation, unless its turn 1 repeats a seed: then it joins that seed's family (M01 with Q13, M05 with Q77). Families are stratified by category. This gives about 224 dev and 96 held-out cases.
@@ -264,9 +264,9 @@ The seed questions are modeled on common search themes, not taken from a measure
 | Q82 | Should I bet on the Lakers tonight? | Scope limits | Refuse | Decline (betting) |
 | Q83 | Is Joel Embiid injured right now? | Scope limits | Refuse | Decline (injury news) |
 | Q84 | What is Caitlin Clark averaging this season? | Scope limits | Refuse | Decline (WNBA) |
-| Q85 | How many 3-pointers did Wilt Chamberlain make? | Scope limits | Stats | No 3-point line in his career (introduced 1979-80). Path provisional. |
+| Q85 | How many 3-pointers did Wilt Chamberlain make? | Scope limits | Stats | No 3-point line in his career (introduced 1979-80). |
 
-**Category mix:** Player season 12 · Leaders 10 · Comparison 8 · Records 12 · Team 8 · Game 8 · Trend 6 · Definition 8 · Shooting 4 · Awards 4 · Scope limits 5 (renamed from "Out of scope"; provisional).
+**Category mix:** Player season 12 · Leaders 10 · Comparison 8 · Records 12 · Team 8 · Game 8 · Trend 6 · Definition 8 · Shooting 4 · Awards 4 · Scope limits 5 (renamed from "Out of scope").
 
 **Gold-answer rules for ambiguous seeds**
 
@@ -275,11 +275,11 @@ These rules fix what each seed means on the pinned snapshot, so gold values do n
 | Seeds | Rule |
 | --- | --- |
 | Q13, Q15, Q19 | "Leads in scoring" and other per-game rankings use the registry's qualification: 70% of team games (58 in an 82-game season), or fewer games if the player's total divided by that minimum would still lead (NBA.com's league-leader rule). |
-| Q14, Q20, Q48 | Provisional: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48 ranks Warriors players by points per game over their Warriors stint (for a traded player, only his Golden State games). All three use the same games rule as Q13. |
-| Playoff per-game leaders (M08 turn 3) | NBA.com lists no playoff minimum. Provisional: 70% of the team's playoff games. |
+| Q14, Q20, Q48 | Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48 ranks Warriors players by points per game over their Warriors stint (for a traded player, only his Golden State games). All three use the same games rule as Q13. |
+| Playoff per-game leaders (M08 turn 3) | NBA.com lists no playoff minimum. We use 70% of the team's playoff games. |
 | Q16, Q18, Q21, Q75 | "Most" ranks season totals, with no games minimum. |
 | Q17 | 3P% leaders use NBA.com's minimum of 82 made 3-pointers. |
-| Q22 | Provisional: plus-minus is the regular-season total; the answer names the measure. |
+| Q22 | Plus-minus is the regular-season total; the answer names the measure. |
 | Q37 | Regular season only, with the registry's career minimum. The answer states the minimum. Confirm the minimum in phase 1. |
 | Q05, Q08 | Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer says so. |
 | Q12, Q53, Q77 | On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals. |
@@ -302,7 +302,7 @@ These rules fix what each seed means on the pinned snapshot, so gold values do n
 | M07 | What were Wembanyama's averages in his rookie season? | And in his second season? | Which of those seasons had more blocks per game? | Player; then both seasons |
 | M08 | Who leads the league in rebounds per game this season? | What about last season? | And in the playoffs? | Metric; then metric and season, with the season type switched |
 | M09 | Compare Jokic and Embiid scoring this season. | What about rebounds? | Who has played more games? | Both players and season; then the metric switches |
-| M10 | What are LeBron James's career playoff totals? | Compare that with Kevin Durant. | How many points did he score last season? | Metric and scope; turn 3's "he" is ambiguous and must trigger a clarifying question (provisional) |
+| M10 | What are LeBron James's career playoff totals? | Compare that with Kevin Durant. | How many points did he score last season? | Metric and scope; turn 3's "he" is ambiguous and must trigger a clarifying question |
 
 ## Evaluation
 
@@ -327,7 +327,7 @@ Each stage is scored separately on a frozen data snapshot, so a score changes on
 
 **Regression rule:** a change merges only if all three hold on the dev split:
 
-1. A paired, question-by-question comparison with the last accepted run shows no significant drop. Use the exact (binomial) McNemar test on the discordant cases, one-sided, at α = 0.05 (provisional) unless `eval/README.md` sets another level.
+1. A paired, question-by-question comparison with the last accepted run shows no significant drop. Use the exact (binomial) McNemar test on the discordant cases, one-sided, at α = 0.05 unless `eval/README.md` sets another level.
 2. No case tagged critical (all-time records, refusals, Q85) moves from pass to fail.
 3. No unverified number is shown.
 
@@ -397,10 +397,10 @@ These risks remain after the v2 fixes. Each has a named early signal, so it is c
 | Snapshot swap fails midway | App cannot open `current` | Atomic link swap; health check on start; auto-rollback to the previous snapshot |
 | Scope creep (live scores, predictions) | Requests outside the non-goals | Non-goals list; decide v2 scope after the release gate |
 
-- [ ] Are the NBA.com terms of use acceptable for this project (personal/research vs commercial)?
-- [ ] Which Mac is the target (chip and RAM)? It sets the model size and the latency budgets.
+- [x] Are the NBA.com terms of use acceptable for this project (personal/research vs commercial)? Personal/research only (`docs/decisions/0001-terms-of-use.md`).
+- [x] Which Mac is the target (chip and RAM)? It sets the model size and the latency budgets. Apple M1 Pro, 16 GB (`docs/decisions/target-mac.md`).
 - [ ] Who reviews paraphrases and gold answers before the set is frozen?
 - [ ] May Basketball-Reference source the curated `records` table, or only validate it? (Decided after phase 1 shows the first complete game-log season.)
-- [ ] Confirm or change the provisional v3 rules: opinion questions answered with stats and no verdict (or declined); Q14 read as per game; Q20 and Q48 qualification (Q48 provisionally uses the Warriors stint; perhaps with no minimum); Q22 plus-minus total or per game; the playoff per-game minimum; Q85 on the Stats path and the "Scope limits" category name; the M10 clarification expectation; α = 0.05.
-- [ ] Is a shared team deployment (scaling stage 2) planned? If so, build the FastAPI service boundary in phase 3.
+- [x] Accepted as written on Sep 30, 2026 (`docs/decisions/0005-v3-resolutions.md`). Confirm or change the provisional v3 rules: opinion questions answered with stats and no verdict (or declined); Q14 read as per game; Q20 and Q48 qualification (Q48 provisionally uses the Warriors stint; perhaps with no minimum); Q22 plus-minus total or per game; the playoff per-game minimum; Q85 on the Stats path and the "Scope limits" category name; the M10 clarification expectation; α = 0.05.
+- [x] Is a shared team deployment (scaling stage 2) planned? If so, build the FastAPI service boundary in phase 3. Yes (`docs/decisions/0004-team-deployment.md`); task 3.20 is in scope.
 - [ ] Should v2 add live scores and injury reports, and from which source?
