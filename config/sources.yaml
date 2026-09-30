@@ -1,0 +1,19 @@
+# Data sources and pipeline tunables (spec: Data sources, Pipeline).
+nba_api:
+  min_interval_s: 0.6        # about 1 request every 0.6 s
+  timeout_s: 30
+  max_retries: 5
+  backoff_initial_s: 2.0
+  backoff_max_s: 120.0
+ingest:
+  correction_window_days: 7
+  row_count_tolerance: 0.10  # alert when games per day differ by more than 10%
+paths:
+  raw: data/raw
+  snapshots: data/snapshots
+  checkpoints: data/checkpoints
+  logs: data/logs
+snapshots:
+  keep: 7
+  current_link: data/snapshots/current
+timezone: America/New_York

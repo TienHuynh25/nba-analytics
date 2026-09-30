@@ -1,0 +1,53 @@
+[project]
+name = "nba-analytics"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "dbt-duckdb>=1.11.0",
+    "duckdb>=1.5.6",
+    "jsonschema>=4.26.0",
+    "nba-api==1.11.4",
+    "pydantic>=2",
+    "pyyaml>=6.0.3",
+    "sqlglot>=30.21.0",
+    "tenacity>=9.1.4",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.1",
+    "pre-commit>=4.6.2",
+    "pytest>=9.1.1",
+    "ruff>=0.16.9",
+    "types-jsonschema>=4.26.0.20260518",
+    "types-pyyaml>=6.0.12.20260906",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["transform/target", "transform/dbt_packages"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["app", "ingest", "metrics", "eval", "tests"]
+exclude = ["transform/"]
+
+[[tool.mypy.overrides]]
+module = ["nba_api.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+addopts = "-q"
+markers = [
+    "network: calls stats.nba.com (deselect with -m 'not network')",
+]

@@ -1,7 +1,27 @@
-.DS_Store
-data/
-.venv/
+# Data: raw JSON cache, snapshots, local logs (spec: git-ignored)
+/data/
+!/data/.gitkeep
+
+# Python
 __pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# dbt
+transform/target/
+transform/dbt_packages/
+transform/logs/
+transform/.user.yml
+
+# Local
+.DS_Store
+.claude/settings.local.json
 .env
 *.duckdb
-.claude/settings.local.json
+*.duckdb.wal
+!tests/fixtures/nba_fixture.duckdb
