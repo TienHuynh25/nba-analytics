@@ -1,0 +1,18 @@
+# Model stack (spec: Local model stack). Swapping a model is a config change, not a code change.
+# Target machine: Apple M1 Pro, 16 GB (docs/decisions/target-mac.md). The LLM is chosen in task 3.17.
+llm:
+  backend: ollama            # ollama | llamacpp
+  base_url: http://localhost:11434
+  model: qwen3.5:9b          # placeholder until the 3.17 benchmark
+  temperature: 0.0
+  timeout_s: 60
+sql_fallback_llm: null       # optional larger model for the SQL fallback only (risk mitigation)
+embeddings:
+  model: BAAI/bge-m3
+reranker:
+  model: BAAI/bge-reranker-v2-m3
+  keep: 6
+retrieval:
+  fusion_top_k: 40
+agent:
+  max_tool_calls: 3
