@@ -1,7 +1,9 @@
 # 0007 — Open divergences from the spec (owner to approve)
 
 - Date: 2026-10-08
-- Status: **proposed**. Tolerances stay as they are until the owner decides.
+- Status: **accepted (owner, 2026-10-07)**: all three recommendations approved (1 A, 2 A, 3 B).
+  Only 3 B changes behaviour: the TS% rule in `metrics/registry.yaml` gains the 300-made-field-goals
+  minimum, and Q71's gold value is recomputed (task 3.2).
 
 Three places where real NBA.com data forced a choice the spec did not anticipate. Each lists the
 evidence, the options and a recommendation.
