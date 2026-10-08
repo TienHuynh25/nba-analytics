@@ -7,16 +7,19 @@ contract checks).
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from typing import Any
 
 from nba_api.stats import endpoints as E
 
+_SEASON = re.compile(r"\d{4}-\d{2}")
+
 SEASON_TYPES = ("Regular Season", "Playoffs", "PlayIn", "IST")
 
 FIRST_SEASON = 1946  # 1946-47
 FIRST_ADVANCED_SEASON = 1996  # 1996-97: advanced stats, plus-minus, shot charts
-FIRST_PLAYIN_SEASON = 2020  # 2020-21: first Play-In tournament on NBA.com
+FIRST_PLAYIN_SEASON = 2019  # 2019-20 bubble play-in game; the tournament proper starts in 2020-21
 FIRST_IST_SEASON = 2023  # 2023-24: first NBA Cup
 FIRST_STANDINGS_SEASON = 1970  # earliest season probed for LeagueStandingsV3 (1.3)
 
@@ -44,7 +47,14 @@ class EndpointSpec:
     def params(self, **kwargs: Any) -> dict[str, Any]:
         """The full query parameters ``nba_api`` would send, without sending anything."""
         ep = self.cls(**self.fixed, **kwargs, get_request=False)
-        return dict(ep.parameters)
+        params = dict(ep.parameters)
+        # nba_api fills some parameters (Season) from today's date. Such a default would change
+        # the raw-cache key when the calendar moves into a new season, so callers must pass it.
+        given = {str(v) for v in [*self.fixed.values(), *kwargs.values()]}
+        for k, v in params.items():
+            if isinstance(v, str) and _SEASON.fullmatch(v) and v not in given:
+                raise ValueError(f"{self.key}: pass {k} explicitly (nba_api defaulted it to {v})")
+        return params
 
 
 SPECS: dict[str, EndpointSpec] = {
@@ -103,6 +113,8 @@ SPECS: dict[str, EndpointSpec] = {
             ("LeagueDashPlayerStats",),
         ),
         EndpointSpec("leaguestandingsv3", E.LeagueStandingsV3, {}, ("Standings",)),
+        # League schedule (anomaly check 1.8). Not a resultSets body; see incremental.py.
+        EndpointSpec("scheduleleaguev2", E.ScheduleLeagueV2, {}, ()),
         EndpointSpec(
             "shotchartdetail",
             E.ShotChartDetail,

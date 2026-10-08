@@ -4,7 +4,9 @@ Each endpoint key has a schema in ``ingest/schemas/<key>.json``. The schemas are
 real samples by :func:`generate_schema` and then tightened:
 
 - every result set we rely on must be present, with its ``headers`` equal to the stored list,
-  in order;
+  in order. Where samples legitimately differ (``CommonPlayerInfo`` omits
+  ``SUPPLEMENTAL_STATUS`` for retired players), the headers must instead contain every column
+  the samples share;
 - every row has exactly ``len(headers)`` cells;
 - each cell's JSON type is limited to the types seen in the samples, plus ``null``;
 - key columns (IDs, dates, season) may never be ``null``.
@@ -74,7 +76,8 @@ def generate_schema(
     """Build a tightened schema from one or more sample bodies of the same endpoint."""
     wanted = list(names)
     headers: dict[str, list[str]] = {}
-    types: dict[str, list[set[str]]] = {}
+    varying: dict[str, list[str]] = {}  # result set -> columns shared by all samples
+    types: dict[str, dict[str, set[str]]] = {}
     for body in samples:
         for rs in _sets(body):
             name = rs["name"]
@@ -82,20 +85,44 @@ def generate_schema(
                 continue
             h = list(rs["headers"])
             if name in headers and headers[name] != h:
-                raise ContractError(f"{key}.{name}: headers differ between samples")
-            headers[name] = h
-            cols = types.setdefault(name, [set() for _ in h])
+                prev = varying.get(name, headers[name])
+                varying[name] = [c for c in prev if c in h]
+            headers.setdefault(name, h)
+            cols = types.setdefault(name, {})
             for row in rs["rowSet"]:
-                for i, cell in enumerate(row):
-                    cols[i].add(_json_type(cell))
+                for col, cell in zip(h, row, strict=True):
+                    cols.setdefault(col, set()).add(_json_type(cell))
     missing = [n for n in wanted if n not in headers]
     if missing:
         raise ContractError(f"{key}: samples lack result sets {missing}")
 
-    contains = []
+    contains: list[dict[str, Any]] = []
     for name in wanted:
+        if name in varying:
+            shared = varying[name]
+            contains.append(
+                {
+                    "contains": {
+                        "type": "object",
+                        "required": ["name", "headers", "rowSet"],
+                        "properties": {
+                            "name": {"const": name},
+                            "headers": {
+                                "type": "array",
+                                "allOf": [{"contains": {"const": c}} for c in shared],
+                            },
+                            "rowSet": {
+                                "type": "array",
+                                "items": {"type": "array", "minItems": len(shared)},
+                            },
+                        },
+                    }
+                }
+            )
+            continue
         cells = []
-        for col, seen in zip(headers[name], types[name], strict=True):
+        for col in headers[name]:
+            seen = types[name].get(col, set())
             observed = sorted(seen - {"null"})
             if col in NON_NULL_COLUMNS:
                 allowed = observed or ["string", "number"]

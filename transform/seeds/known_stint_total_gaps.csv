@@ -1,0 +1,11 @@
+player_id,season,season_type,difference,note
+77598,1946-47,Regular Season,gp 56 vs 57 (total vs sum of stints),NBA.com total row disagrees with its team rows
+78355,1947-48,Regular Season,gp 23 vs 33 (total vs sum of stints),NBA.com total row disagrees with its team rows
+76365,1978-79,Regular Season,gp 56 vs 57 (total vs sum of stints),appears for both teams in the replayed 1978 Nets-76ers game; TOT counts it once
+77627,1978-79,Regular Season,gp 69 vs 70 (total vs sum of stints),appears for both teams in the replayed 1978 Nets-76ers game; TOT counts it once
+78157,1978-79,Regular Season,gp 68 vs 69 (total vs sum of stints),appears for both teams in the replayed 1978 Nets-76ers game; TOT counts it once
+689,2003-04,Regular Season,minutes 1016.0 vs 2664.0 (total vs sum of stints),NBA.com total row disagrees with its team rows
+1742,2003-04,Regular Season,minutes 525.0 vs 763.0 (total vs sum of stints),NBA.com total row disagrees with its team rows
+452,2004-05,Regular Season,minutes 191.0 vs 204.0 (total vs sum of stints),NBA.com total row disagrees with its team rows
+922,2004-05,Regular Season,minutes 432.0 vs 390.0 (total vs sum of stints),NBA.com total row disagrees with its team rows
+2306,2004-05,Regular Season,minutes 706.0 vs 1448.0 (total vs sum of stints),NBA.com total row disagrees with its team rows

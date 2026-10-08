@@ -56,12 +56,15 @@ in `leaguegamelog_t`:
 Every game is present in every season probed. Game counts match the schedule: 331 in 1946-47, 697 in 1970-71,
 943 in 1983-84.
 
-**Result: 1996-97 is the first season in which player game logs reconcile exactly with team totals.**
+**Result: 1996-97 is the first season in which player game logs reconcile with team totals.** A full check
+of every season after the backfill (1,217 mismatched team-games in all, after resolving 15 players the source lists under both teams in one game) found one later exception, an NBA.com
+source error: game `0029800661` (NJN @ DET, 1999-04-28), where the Nets' player points sum to 97 but the team
+row says 93.
 Earlier seasons have all their games, but some box scores are partial. Consequences:
 
 1. **Domain check 1.20 (player points sum to team points)** is enforced exactly from 1996-97. Earlier
-   seasons are checked against a stored allowlist of known mismatches (`transform/seeds/known_boxscore_gaps.csv`),
-   so a new mismatch still fails the build. **This differs from the spec, which states the check without a
+   seasons, plus the one 1998-99 source error, are checked against a stored allowlist of known mismatches
+   (`transform/seeds/known_boxscore_gaps.csv`, 1,217 team-games), so any new mismatch still fails the build. **This differs from the spec, which states the check without a
    season bound. Flagged for the owner.**
 2. **Game-level stats before 1973-74 steals/blocks and before 1996-97 in general can be NULL in `player_game`**,
    even when the league tracked the stat that season. Season totals (`playercareerstats`) are complete for tracked

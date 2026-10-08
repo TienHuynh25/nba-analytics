@@ -1,0 +1,23 @@
+version: 2
+sources:
+  - name: landing
+    description: Raw JSON flattened by ingest/land.py (all VARCHAR). Build-only; never published.
+    database: landing
+    schema: main
+    tables:
+      - name: leaguegamelog_t__leaguegamelog
+      - name: leaguegamelog_p__leaguegamelog
+      - name: commonallplayers__commonallplayers
+      - name: commonplayerinfo__commonplayerinfo
+      - name: playercareerstats__seasontotalsregularseason
+      - name: playercareerstats__seasontotalspostseason
+      - name: playercareerstats__careertotalsregularseason
+      - name: playercareerstats__careertotalspostseason
+      - name: playerawards__playerawards
+      - name: franchisehistory__franchisehistory
+      - name: franchisehistory__defunctteams
+      - name: teamyearbyyearstats__teamstats
+      - name: leaguedashteamstats_adv__leaguedashteamstats
+      - name: leaguedashplayerstats_adv__leaguedashplayerstats
+      - name: leaguestandingsv3__standings
+      - name: shotchartdetail__shot_chart_detail

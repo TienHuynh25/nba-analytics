@@ -1,0 +1,155 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "playerawards",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "PlayerAwards"
+       },
+       "headers": {
+        "const": [
+         "PERSON_ID",
+         "FIRST_NAME",
+         "LAST_NAME",
+         "TEAM",
+         "DESCRIPTION",
+         "ALL_NBA_TEAM_NUMBER",
+         "SEASON",
+         "MONTH",
+         "WEEK",
+         "CONFERENCE",
+         "TYPE",
+         "SUBTYPE1",
+         "SUBTYPE2",
+         "SUBTYPE3"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 14,
+         "maxItems": 14,
+         "prefixItems": [
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "PERSON_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "FIRST_NAME"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "LAST_NAME"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "DESCRIPTION"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "ALL_NBA_TEAM_NUMBER"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SEASON"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "MONTH"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "WEEK"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "CONFERENCE"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TYPE"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SUBTYPE1"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SUBTYPE2"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SUBTYPE3"
+          }
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

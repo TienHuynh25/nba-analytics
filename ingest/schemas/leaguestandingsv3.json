@@ -1,0 +1,472 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "leaguestandingsv3",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "Standings"
+       },
+       "headers": {
+        "type": "array",
+        "allOf": [
+         {
+          "contains": {
+           "const": "LeagueID"
+          }
+         },
+         {
+          "contains": {
+           "const": "SeasonID"
+          }
+         },
+         {
+          "contains": {
+           "const": "TeamID"
+          }
+         },
+         {
+          "contains": {
+           "const": "TeamCity"
+          }
+         },
+         {
+          "contains": {
+           "const": "TeamName"
+          }
+         },
+         {
+          "contains": {
+           "const": "TeamSlug"
+          }
+         },
+         {
+          "contains": {
+           "const": "Conference"
+          }
+         },
+         {
+          "contains": {
+           "const": "ConferenceRecord"
+          }
+         },
+         {
+          "contains": {
+           "const": "PlayoffRank"
+          }
+         },
+         {
+          "contains": {
+           "const": "ClinchIndicator"
+          }
+         },
+         {
+          "contains": {
+           "const": "Division"
+          }
+         },
+         {
+          "contains": {
+           "const": "DivisionRecord"
+          }
+         },
+         {
+          "contains": {
+           "const": "DivisionRank"
+          }
+         },
+         {
+          "contains": {
+           "const": "WINS"
+          }
+         },
+         {
+          "contains": {
+           "const": "LOSSES"
+          }
+         },
+         {
+          "contains": {
+           "const": "WinPCT"
+          }
+         },
+         {
+          "contains": {
+           "const": "LeagueRank"
+          }
+         },
+         {
+          "contains": {
+           "const": "Record"
+          }
+         },
+         {
+          "contains": {
+           "const": "HOME"
+          }
+         },
+         {
+          "contains": {
+           "const": "ROAD"
+          }
+         },
+         {
+          "contains": {
+           "const": "L10"
+          }
+         },
+         {
+          "contains": {
+           "const": "Last10Home"
+          }
+         },
+         {
+          "contains": {
+           "const": "Last10Road"
+          }
+         },
+         {
+          "contains": {
+           "const": "OT"
+          }
+         },
+         {
+          "contains": {
+           "const": "ThreePTSOrLess"
+          }
+         },
+         {
+          "contains": {
+           "const": "TenPTSOrMore"
+          }
+         },
+         {
+          "contains": {
+           "const": "LongHomeStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "strLongHomeStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "LongRoadStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "strLongRoadStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "LongWinStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "LongLossStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "CurrentHomeStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "strCurrentHomeStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "CurrentRoadStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "strCurrentRoadStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "CurrentStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "strCurrentStreak"
+          }
+         },
+         {
+          "contains": {
+           "const": "ConferenceGamesBack"
+          }
+         },
+         {
+          "contains": {
+           "const": "DivisionGamesBack"
+          }
+         },
+         {
+          "contains": {
+           "const": "ClinchedConferenceTitle"
+          }
+         },
+         {
+          "contains": {
+           "const": "ClinchedDivisionTitle"
+          }
+         },
+         {
+          "contains": {
+           "const": "ClinchedPlayoffBirth"
+          }
+         },
+         {
+          "contains": {
+           "const": "ClinchedPlayIn"
+          }
+         },
+         {
+          "contains": {
+           "const": "EliminatedConference"
+          }
+         },
+         {
+          "contains": {
+           "const": "EliminatedDivision"
+          }
+         },
+         {
+          "contains": {
+           "const": "AheadAtHalf"
+          }
+         },
+         {
+          "contains": {
+           "const": "BehindAtHalf"
+          }
+         },
+         {
+          "contains": {
+           "const": "TiedAtHalf"
+          }
+         },
+         {
+          "contains": {
+           "const": "AheadAtThird"
+          }
+         },
+         {
+          "contains": {
+           "const": "BehindAtThird"
+          }
+         },
+         {
+          "contains": {
+           "const": "TiedAtThird"
+          }
+         },
+         {
+          "contains": {
+           "const": "Score100PTS"
+          }
+         },
+         {
+          "contains": {
+           "const": "OppScore100PTS"
+          }
+         },
+         {
+          "contains": {
+           "const": "OppOver500"
+          }
+         },
+         {
+          "contains": {
+           "const": "LeadInFGPCT"
+          }
+         },
+         {
+          "contains": {
+           "const": "LeadInReb"
+          }
+         },
+         {
+          "contains": {
+           "const": "FewerTurnovers"
+          }
+         },
+         {
+          "contains": {
+           "const": "PointsPG"
+          }
+         },
+         {
+          "contains": {
+           "const": "OppPointsPG"
+          }
+         },
+         {
+          "contains": {
+           "const": "DiffPointsPG"
+          }
+         },
+         {
+          "contains": {
+           "const": "vsEast"
+          }
+         },
+         {
+          "contains": {
+           "const": "vsAtlantic"
+          }
+         },
+         {
+          "contains": {
+           "const": "vsCentral"
+          }
+         },
+         {
+          "contains": {
+           "const": "vsWest"
+          }
+         },
+         {
+          "contains": {
+           "const": "vsPacific"
+          }
+         },
+         {
+          "contains": {
+           "const": "Jan"
+          }
+         },
+         {
+          "contains": {
+           "const": "Feb"
+          }
+         },
+         {
+          "contains": {
+           "const": "Mar"
+          }
+         },
+         {
+          "contains": {
+           "const": "Apr"
+          }
+         },
+         {
+          "contains": {
+           "const": "May"
+          }
+         },
+         {
+          "contains": {
+           "const": "Jun"
+          }
+         },
+         {
+          "contains": {
+           "const": "Jul"
+          }
+         },
+         {
+          "contains": {
+           "const": "Aug"
+          }
+         },
+         {
+          "contains": {
+           "const": "Sep"
+          }
+         },
+         {
+          "contains": {
+           "const": "Oct"
+          }
+         },
+         {
+          "contains": {
+           "const": "Nov"
+          }
+         },
+         {
+          "contains": {
+           "const": "Dec"
+          }
+         },
+         {
+          "contains": {
+           "const": "Score_80_Plus"
+          }
+         },
+         {
+          "contains": {
+           "const": "Opp_Score_80_Plus"
+          }
+         },
+         {
+          "contains": {
+           "const": "Score_Below_80"
+          }
+         },
+         {
+          "contains": {
+           "const": "Opp_Score_Below_80"
+          }
+         },
+         {
+          "contains": {
+           "const": "LeagueGamesBack"
+          }
+         },
+         {
+          "contains": {
+           "const": "PlayoffSeeding"
+          }
+         },
+         {
+          "contains": {
+           "const": "ClinchedPostSeason"
+          }
+         },
+         {
+          "contains": {
+           "const": "NEUTRAL"
+          }
+         }
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 86
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

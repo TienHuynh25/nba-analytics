@@ -1,0 +1,15 @@
+# No secrets. Paths come from the build (ingest/build.py); defaults are for local dev only.
+nba:
+  target: build
+  outputs:
+    build:
+      type: duckdb
+      path: "{{ env_var('NBA_SNAPSHOT_PATH', '../data/build/dev.duckdb') }}"
+      threads: 4
+      settings:
+        memory_limit: "6GB"
+        preserve_insertion_order: false
+      attach:
+        - path: "{{ env_var('NBA_LANDING_PATH', '../data/build/landing.duckdb') }}"
+          alias: landing
+          read_only: true
