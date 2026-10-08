@@ -1,0 +1,7738 @@
+# Eval test set (phase 2). Validated by eval/schema.py on load.
+# Gold answers are for the pinned snapshot eval_2025_26_rs; see eval/README.md for the
+# relative-time rule. Values (gold.value) are computed in task 2.6; tool calls are added in 2.5.
+# Seeds and multi-turn cases are generated from the spec tables (spec v3); edit here from now on.
+version: 0.1.0
+snapshot: eval_2025_26_rs
+cases:
+- id: Q01
+  seed_id: Q01
+  type: seed
+  category: Player season
+  question: How many points per game is Shai Gilgeous-Alexander averaging this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2025-26
+        metrics:
+        - points_per_game
+    entities:
+      players:
+      - 1628983
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q02
+  seed_id: Q02
+  type: seed
+  category: Player season
+  question: What are Nikola Jokic's averages this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics: &id001
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 203999
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q03
+  seed_id: Q03
+  type: seed
+  category: Player season
+  question: How many triple-doubles does Jokic have this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - triple_doubles
+    entities:
+      players:
+      - 203999
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q04
+  seed_id: Q04
+  type: seed
+  category: Player season
+  question: What is Victor Wembanyama's blocks per game this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1641705
+        season: 2025-26
+        metrics:
+        - blocks_per_game
+    entities:
+      players:
+      - 1641705
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q05
+  seed_id: Q05
+  type: seed
+  category: Player season
+  question: What are Cooper Flagg's rookie stats?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so. stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1642843
+        season: 2025-26
+        metrics: *id001
+    entities:
+      players:
+      - 1642843
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q06
+  seed_id: Q06
+  type: seed
+  category: Player season
+  question: How many 3-pointers has Stephen Curry made this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 201939
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q07
+  seed_id: Q07
+  type: seed
+  category: Player season
+  question: What is LeBron James averaging this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 2544
+        season: 2025-26
+        metrics: *id001
+    entities:
+      players:
+      - 2544
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q08
+  seed_id: Q08
+  type: seed
+  category: Player season
+  question: What is Luka Doncic's field goal percentage with the Lakers?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so.
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - field_goal_pct
+        team_id: 1610612747
+    entities:
+      players:
+      - 1629029
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: heldout
+- id: Q09
+  seed_id: Q09
+  type: seed
+  category: Player season
+  question: How many minutes per game does Anthony Edwards play?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1630162
+        season: 2025-26
+        metrics:
+        - minutes_per_game
+    entities:
+      players:
+      - 1630162
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q10
+  seed_id: Q10
+  type: seed
+  category: Player season
+  question: What is Giannis Antetokounmpo's free throw percentage this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - free_throw_pct
+    entities:
+      players:
+      - 203507
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q11
+  seed_id: Q11
+  type: seed
+  category: Player season
+  question: How many games has Jayson Tatum played this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628369
+        season: 2025-26
+        metrics:
+        - games_played
+    entities:
+      players:
+      - 1628369
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q12
+  seed_id: Q12
+  type: seed
+  category: Player season
+  question: What were Shai Gilgeous-Alexander's playoff stats last season?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+      stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2024-25
+        metrics: *id001
+        season_type: Playoffs
+    entities:
+      players:
+      - 1628983
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q13
+  seed_id: Q13
+  type: seed
+  category: Leaders
+  question: Who leads the NBA in scoring this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q14
+  seed_id: Q14
+  type: seed
+  category: Leaders
+  question: Who are the top 5 rebounders in the NBA this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: rebounds_per_game
+        limit: 5
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q15
+  seed_id: Q15
+  type: seed
+  category: Leaders
+  question: Who leads the league in assists per game?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: assists_per_game
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: heldout
+- id: Q16
+  seed_id: Q16
+  type: seed
+  category: Leaders
+  question: Who has the most blocks this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: blocks
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q17
+  seed_id: Q17
+  type: seed
+  category: Leaders
+  question: Who has the highest 3-point percentage (qualified) this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: 3P% leaders use NBA.com's minimum of 82 made 3-pointers.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: three_point_pct
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q18
+  seed_id: Q18
+  type: seed
+  category: Leaders
+  question: Which player has the most double-doubles this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: double_doubles
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q19
+  seed_id: Q19
+  type: seed
+  category: Leaders
+  question: Who leads the NBA in steals per game?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: steals_per_game
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q20
+  seed_id: Q20
+  type: seed
+  category: Leaders
+  question: Which rookie is scoring the most this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+        rookies_only: true
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q21
+  seed_id: Q21
+  type: seed
+  category: Leaders
+  question: Who has the most 40-point games this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: forty_point_games
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q22
+  seed_id: Q22
+  type: seed
+  category: Leaders
+  question: Who leads the league in plus-minus?
+  gold:
+    path: stats
+    expect: answer
+    rule: Plus-minus is the regular-season total; the answer names the measure.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: plus_minus
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: heldout
+- id: Q23
+  seed_id: Q23
+  type: seed
+  category: Comparison
+  question: 'Who is better statistically this season: Jokic or Gilgeous-Alexander?'
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 203999
+        - 1628983
+        metrics: *id001
+        scope: season
+        season: 2025-26
+    entities:
+      players:
+      - 203999
+      - 1628983
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q24
+  seed_id: Q24
+  type: seed
+  category: Comparison
+  question: Compare LeBron James and Michael Jordan career playoff stats.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 2544
+        - 893
+        metrics: *id001
+        scope: career
+        season_type: Playoffs
+    entities:
+      players:
+      - 2544
+      - 893
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q25
+  seed_id: Q25
+  type: seed
+  category: Comparison
+  question: Compare Curry and Klay Thompson career 3-point percentage.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 201939
+        - 202691
+        metrics:
+        - three_point_pct
+        scope: career
+    entities:
+      players:
+      - 201939
+      - 202691
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q26
+  seed_id: Q26
+  type: seed
+  category: Comparison
+  question: Who has more career rebounds, Wilt Chamberlain or Bill Russell?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 76375
+        - 78049
+        metrics:
+        - rebounds
+        scope: career
+    entities:
+      players:
+      - 76375
+      - 78049
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: heldout
+- id: Q27
+  seed_id: Q27
+  type: seed
+  category: Comparison
+  question: How do Wembanyama's first two seasons compare to Tim Duncan's?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 1641705
+        - 1495
+        metrics: *id001
+        scope: first_n_seasons
+        n_seasons: 2
+    entities:
+      players:
+      - 1641705
+      - 1495
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q28
+  seed_id: Q28
+  type: seed
+  category: Comparison
+  question: Compare Anthony Edwards and Ja Morant scoring this season.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 1630162
+        - 1629630
+        metrics:
+        - points_per_game
+        scope: season
+        season: 2025-26
+    entities:
+      players:
+      - 1630162
+      - 1629630
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q29
+  seed_id: Q29
+  type: seed
+  category: Comparison
+  question: 'Kobe Bryant vs LeBron James: career points and championships'
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 977
+        - 2544
+        metrics:
+        - points
+        - player_championships
+        scope: career
+    entities:
+      players:
+      - 977
+      - 2544
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: heldout
+- id: Q30
+  seed_id: Q30
+  type: seed
+  category: Comparison
+  question: Which team has a better defensive rating, the Celtics or the Thunder?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        team_ids:
+        - 1610612738
+        - 1610612760
+        metrics:
+        - defensive_rating
+        scope: season
+        season: 2025-26
+    entities:
+      teams:
+      - 1610612738
+      - 1610612760
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: heldout
+- id: Q31
+  seed_id: Q31
+  type: seed
+  category: Records
+  question: Who is the NBA's all-time leading scorer?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points
+        limit: 1
+        scope: career
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q32
+  seed_id: Q32
+  type: seed
+  category: Records
+  question: Who has the most career assists in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: assists
+        limit: 1
+        scope: career
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: heldout
+- id: Q33
+  seed_id: Q33
+  type: seed
+  category: Records
+  question: Who has the most 3-pointers made in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: threes_made
+        limit: 1
+        scope: career
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q34
+  seed_id: Q34
+  type: seed
+  category: Records
+  question: What is the most points scored by a player in a single game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_points_game
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q35
+  seed_id: Q35
+  type: seed
+  category: Records
+  question: Who has the most career triple-doubles?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_record
+      args:
+        record: career_triple_doubles
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: heldout
+- id: Q36
+  seed_id: Q36
+  type: seed
+  category: Records
+  question: How many career points does LeBron James have?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 2544
+        metrics:
+        - points
+    entities:
+      players:
+      - 2544
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q37
+  seed_id: Q37
+  type: seed
+  category: Records
+  question: Who has the highest career points per game?
+  gold:
+    path: stats
+    expect: answer
+    rule: Regular season only, with the registry's career minimum. The answer states the minimum. Confirm
+      the minimum in phase 1.
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        scope: career
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: heldout
+- id: Q38
+  seed_id: Q38
+  type: seed
+  category: Records
+  question: Who has the most career blocks?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: blocks
+        limit: 1
+        scope: career
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: heldout
+- id: Q39
+  seed_id: Q39
+  type: seed
+  category: Records
+  question: Which team has won the most NBA championships?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_championships
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q40
+  seed_id: Q40
+  type: seed
+  category: Records
+  question: What is the best regular-season record of all time?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Team + W-L'
+    tool_call:
+      tool: get_record
+      args:
+        record: best_regular_season_record
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q41
+  seed_id: Q41
+  type: seed
+  category: Records
+  question: Who has played the most games in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: games_played
+        limit: 1
+        scope: career
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q42
+  seed_id: Q42
+  type: seed
+  category: Records
+  question: What is the most 3-pointers made in one game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_threes_game
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: Q43
+  seed_id: Q43
+  type: seed
+  category: Team
+  question: What are the current NBA standings in the Western Conference?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Table'
+    tool_call:
+      tool: get_standings
+      args:
+        season: 2025-26
+        conference: West
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q44
+  seed_id: Q44
+  type: seed
+  category: Team
+  question: Which team has the best record this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Team + W-L'
+    tool_call:
+      tool: get_standings
+      args:
+        season: 2025-26
+        limit: 1
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q45
+  seed_id: Q45
+  type: seed
+  category: Team
+  question: Which team scores the most points per game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: team_points_per_game
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q46
+  seed_id: Q46
+  type: seed
+  category: Team
+  question: What is the Lakers' record at home this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: W-L'
+    tool_call:
+      tool: get_team_stats
+      args:
+        team_ids:
+        - 1610612747
+        season: 2025-26
+        metrics:
+        - home_wins
+        - home_losses
+    entities:
+      teams:
+      - 1610612747
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q47
+  seed_id: Q47
+  type: seed
+  category: Team
+  question: Which team has the best net rating?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: net_rating
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: heldout
+- id: Q48
+  seed_id: Q48
+  type: seed
+  category: Team
+  question: Who is the Warriors' leading scorer this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+        team_id: 1610612744
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q49
+  seed_id: Q49
+  type: seed
+  category: Team
+  question: Which team plays at the fastest pace?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: pace
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q50
+  seed_id: Q50
+  type: seed
+  category: Team
+  question: What is the Knicks' longest winning streak this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        team_ids:
+        - 1610612752
+        season: 2025-26
+        streak: win
+    entities:
+      teams:
+      - 1610612752
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q51
+  seed_id: Q51
+  type: seed
+  category: Game
+  question: Who won the last game between the Celtics and the Knicks?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Score'
+    tool_call:
+      tool: get_games
+      args:
+        team_ids:
+        - 1610612738
+        - 1610612752
+        last_n: 1
+        season_types:
+        - Regular Season
+        - PlayIn
+        - Playoffs
+    entities:
+      teams:
+      - 1610612738
+      - 1610612752
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q52
+  seed_id: Q52
+  type: seed
+  category: Game
+  question: How many points did Jokic score in his last game?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        player_ids:
+        - 203999
+        last_n: 1
+    entities:
+      players:
+      - 203999
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q53
+  seed_id: Q53
+  type: seed
+  category: Game
+  question: What was the final score of the last NBA Finals game?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+    note: 'answer type: Score'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2024-25
+        season_types:
+        - Playoffs
+        finals_only: true
+        last_n: 1
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q54
+  seed_id: Q54
+  type: seed
+  category: Game
+  question: Who had the highest-scoring game this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        sort: player_points_desc
+        limit: 1
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q55
+  seed_id: Q55
+  type: seed
+  category: Game
+  question: What were the box score leaders in last night's games?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Table'
+    tool_call:
+      tool: get_games
+      args:
+        date: '2026-04-12'
+        box_leaders: true
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q56
+  seed_id: Q56
+  type: seed
+  category: Game
+  question: How many points did Curry score in his last 5 games?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: List'
+    tool_call:
+      tool: get_games
+      args:
+        player_ids:
+        - 201939
+        last_n: 5
+    entities:
+      players:
+      - 201939
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q57
+  seed_id: Q57
+  type: seed
+  category: Game
+  question: Which games this season went to overtime?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: List'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        overtime_only: true
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q58
+  seed_id: Q58
+  type: seed
+  category: Game
+  question: What was the largest margin of victory this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Game + margin'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        sort: margin_desc
+        limit: 1
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q59
+  seed_id: Q59
+  type: seed
+  category: Trend
+  question: How has the league-average 3-point attempt rate changed since 2010?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Since 2010" means 2010-11 onward. "The 1990s" means 1990-91 to 1999-00. "Now" means the snapshot''s
+      season.'
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: league
+        metric: league_three_point_attempt_rate
+        season_from: 2010-11
+        season_to: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: heldout
+- id: Q60
+  seed_id: Q60
+  type: seed
+  category: Trend
+  question: How has Wembanyama's 3-point percentage changed each season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 1641705
+        metric: three_point_pct
+    entities:
+      players:
+      - 1641705
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q61
+  seed_id: Q61
+  type: seed
+  category: Trend
+  question: How has LeBron's scoring changed over his career?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 2544
+        metric: points_per_game
+    entities:
+      players:
+      - 2544
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: heldout
+- id: Q62
+  seed_id: Q62
+  type: seed
+  category: Trend
+  question: Is league-wide scoring higher now than in the 1990s?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Since 2010" means 2010-11 onward. "The 1990s" means 1990-91 to 1999-00. "Now" means the snapshot''s
+      season.'
+    note: 'answer type: Comparison + series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: league
+        metric: league_points_per_game
+        season_from: 1990-91
+        season_to: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q63
+  seed_id: Q63
+  type: seed
+  category: Trend
+  question: How have the Thunder's wins changed over the last 5 seasons?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: team
+        team_ids:
+        - 1610612760
+        metric: wins
+        season_from: 2021-22
+        season_to: 2025-26
+    entities:
+      teams:
+      - 1610612760
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: dev
+- id: Q64
+  seed_id: Q64
+  type: seed
+  category: Trend
+  question: Has Jokic's assist average gone up every season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Yes/no + series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 203999
+        metric: assists_per_game
+    entities:
+      players:
+      - 203999
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q65
+  seed_id: Q65
+  type: seed
+  category: Definition
+  question: What is true shooting percentage and how is it calculated?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text + formula'
+    chunks:
+    - true_shooting_pct
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q66
+  seed_id: Q66
+  type: seed
+  category: Definition
+  question: What is PER in basketball?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - player_efficiency_rating
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q67
+  seed_id: Q67
+  type: seed
+  category: Definition
+  question: What does usage rate mean?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - usage_rate
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q68
+  seed_id: Q68
+  type: seed
+  category: Definition
+  question: What is net rating?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - net_rating
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q69
+  seed_id: Q69
+  type: seed
+  category: Definition
+  question: What counts as a triple-double?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - triple_doubles
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q70
+  seed_id: Q70
+  type: seed
+  category: Definition
+  question: What is the minimum number of games to qualify for scoring leader?
+  gold:
+    path: knowledge
+    expect: answer
+    rule: The gold answer is the league-leader minimum above, not the 65-game minimum for awards.
+    note: 'answer type: Text + number'
+    chunks:
+    - per_game_leader
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: heldout
+- id: Q71
+  seed_id: Q71
+  type: seed
+  category: Definition
+  question: Who has the highest true shooting percentage this season, and what does it mean?
+  gold:
+    path: mixed
+    expect: answer
+    note: 'answer type: Ranked list + text'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: true_shooting_pct
+        limit: 1
+        season: 2025-26
+    chunks:
+    - true_shooting_pct
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q72
+  seed_id: Q72
+  type: seed
+  category: Definition
+  question: Is Jokic's usage rate high for a center, and what is usage rate?
+  gold:
+    path: mixed
+    expect: answer
+    note: 'answer type: Number + text'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - usage_rate
+    entities:
+      players:
+      - 203999
+    chunks:
+    - usage_rate
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q73
+  seed_id: Q73
+  type: seed
+  category: Shooting
+  question: Where does Curry take most of his shots from?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Zone breakdown'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - shot_attempts
+        breakdown: zone
+    entities:
+      players:
+      - 201939
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q74
+  seed_id: Q74
+  type: seed
+  category: Shooting
+  question: What is Giannis's field goal percentage in the restricted area?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - restricted_area_fg_pct
+    entities:
+      players:
+      - 203507
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q75
+  seed_id: Q75
+  type: seed
+  category: Shooting
+  question: Which player makes the most corner 3s?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: corner_threes_made
+        limit: 1
+        season: 2025-26
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: dev
+- id: Q76
+  seed_id: Q76
+  type: seed
+  category: Shooting
+  question: What is Luka's percentage on step-back 3s?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent, or "not tracked" (set in phase 1 from the shot data)'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - step_back_three_pct
+    entities:
+      players:
+      - 1629029
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  - default-season
+  split: heldout
+- id: Q77
+  seed_id: Q77
+  type: seed
+  category: Awards
+  question: Who won MVP last season, and what were his stats?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+    note: 'answer type: Name + stat line'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Most Valuable Player
+        season: 2024-25
+        include_stats: true
+  source: spec v3 seed table
+  critical: false
+  tags:
+  - relative-time
+  split: heldout
+- id: Q78
+  seed_id: Q78
+  type: seed
+  category: Awards
+  question: Who has won the most MVP awards?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Most Valuable Player
+        mode: count_by_player
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q79
+  seed_id: Q79
+  type: seed
+  category: Awards
+  question: Who won Rookie of the Year in 2024?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"In 2024" means the award for the season that ended in 2024 (2023-24). The answer names the
+      season it used.'
+    note: 'answer type: Name'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Rookie of the Year
+        season: 2023-24
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q80
+  seed_id: Q80
+  type: seed
+  category: Awards
+  question: How many All-Star selections does LeBron James have?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 2544
+        metrics:
+        - all_star_selections
+    entities:
+      players:
+      - 2544
+  source: spec v3 seed table
+  critical: false
+  tags: []
+  split: dev
+- id: Q81
+  seed_id: Q81
+  type: seed
+  category: Scope limits
+  question: Who will win the NBA championship this year?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (prediction)'
+  source: spec v3 seed table
+  critical: true
+  tags:
+  - relative-time
+  split: heldout
+- id: Q82
+  seed_id: Q82
+  type: seed
+  category: Scope limits
+  question: Should I bet on the Lakers tonight?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (betting)'
+  source: spec v3 seed table
+  critical: true
+  tags:
+  - relative-time
+  split: dev
+- id: Q83
+  seed_id: Q83
+  type: seed
+  category: Scope limits
+  question: Is Joel Embiid injured right now?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (injury news)'
+  source: spec v3 seed table
+  critical: true
+  tags:
+  - relative-time
+  split: dev
+- id: Q84
+  seed_id: Q84
+  type: seed
+  category: Scope limits
+  question: What is Caitlin Clark averaging this season?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (WNBA)'
+  source: spec v3 seed table
+  critical: true
+  tags:
+  - relative-time
+  split: dev
+- id: Q85
+  seed_id: Q85
+  type: seed
+  category: Scope limits
+  question: How many 3-pointers did Wilt Chamberlain make?
+  gold:
+    path: stats
+    expect: not_tracked
+    note: 'answer type: No 3-point line in his career (introduced 1979-80).'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 76375
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 76375
+  source: spec v3 seed table
+  critical: true
+  tags: []
+  split: dev
+- id: M01
+  seed_id: Q13
+  type: multi_turn
+  category: Leaders
+  turns:
+  - question: Who leads the NBA in scoring this season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_leaders
+        args:
+          metric: points_per_game
+          limit: 1
+          season: 2025-26
+    reuses: []
+  - question: What about assists?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_leaders
+        args:
+          metric: assists_per_game
+          limit: 1
+          season: 2025-26
+    reuses:
+    - Season, leader metric type
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  split: dev
+- id: M02
+  seed_id: M02
+  type: multi_turn
+  category: Player season
+  turns:
+  - question: What were Jokic's averages last season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_player_stats
+        args:
+          player_ids:
+          - 203999
+          season: 2024-25
+          metrics: *id001
+      entities:
+        players:
+        - 203999
+      rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    reuses: []
+  - question: And in the playoffs?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_player_stats
+        args:
+          player_ids:
+          - 203999
+          season: 2024-25
+          metrics: *id001
+          season_type: Playoffs
+      entities:
+        players:
+        - 203999
+      rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    reuses:
+    - Player, season (the eval snapshot has no 2025-26 playoffs)
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  split: dev
+- id: M03
+  seed_id: M03
+  type: multi_turn
+  category: Comparison
+  turns:
+  - question: Compare Curry and Klay's career 3P%
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: compare
+        args:
+          player_ids:
+          - 201939
+          - 202691
+          metrics:
+          - three_point_pct
+          scope: career
+      entities:
+        players:
+        - 201939
+        - 202691
+    reuses: []
+  - question: Over their last 3 seasons only
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: compare
+        args:
+          player_ids:
+          - 201939
+          - 202691
+          metrics:
+          - three_point_pct
+          scope: last_n_seasons
+          n_seasons: 3
+      entities:
+        players:
+        - 201939
+        - 202691
+    reuses:
+    - Both players, metric
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  split: dev
+- id: M04
+  seed_id: M04
+  type: multi_turn
+  category: Team
+  turns:
+  - question: Who has the best record in the West?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_standings
+        args:
+          season: 2025-26
+          conference: West
+          limit: 1
+    reuses: []
+  - question: What's their net rating?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_team_stats
+        args:
+          team_ids:
+          - 1610612760
+          season: 2025-26
+          metrics:
+          - net_rating
+      entities:
+        teams:
+        - 1610612760
+    reuses:
+    - Team from the turn-1 result
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  - default-season
+  split: dev
+- id: M05
+  seed_id: Q77
+  type: multi_turn
+  category: Awards
+  turns:
+  - question: Who won MVP last season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_awards
+        args:
+          award: NBA Most Valuable Player
+          season: 2024-25
+    reuses: []
+  - question: How many has he won in total?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_awards
+        args:
+          award: NBA Most Valuable Player
+          mode: count_by_player
+          player_ids:
+          - 1628983
+      entities:
+        players:
+        - 1628983
+      note: player id is the 2024-25 MVP; confirm from awards after backfill (2.6)
+    reuses:
+    - Player from the turn-1 result
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  split: heldout
+- id: M06
+  seed_id: M06
+  type: multi_turn
+  category: Team
+  turns:
+  - question: How many points per game are the Celtics scoring this season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_team_stats
+        args:
+          team_ids:
+          - 1610612738
+          season: 2025-26
+          metrics:
+          - team_points_per_game
+      entities:
+        teams:
+        - 1610612738
+    reuses: []
+  - question: And their defensive rating?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_team_stats
+        args:
+          team_ids:
+          - 1610612738
+          season: 2025-26
+          metrics:
+          - defensive_rating
+      entities:
+        teams:
+        - 1610612738
+    reuses:
+    - Team; then team and metric, with the season switched
+  - question: How does that compare to last season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_team_stats
+        args:
+          team_ids:
+          - 1610612738
+          season: 2024-25
+          metrics:
+          - defensive_rating
+      entities:
+        teams:
+        - 1610612738
+    reuses:
+    - Team; then team and metric, with the season switched
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  split: heldout
+- id: M07
+  seed_id: M07
+  type: multi_turn
+  category: Player season
+  turns:
+  - question: What were Wembanyama's averages in his rookie season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_player_stats
+        args:
+          player_ids:
+          - 1641705
+          season: 2023-24
+          metrics: *id001
+      entities:
+        players:
+        - 1641705
+      rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    reuses: []
+  - question: And in his second season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_player_stats
+        args:
+          player_ids:
+          - 1641705
+          season: 2024-25
+          metrics: *id001
+      entities:
+        players:
+        - 1641705
+      rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    reuses:
+    - Player; then both seasons
+  - question: Which of those seasons had more blocks per game?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_trend
+        args:
+          entity: player
+          player_ids:
+          - 1641705
+          metric: blocks_per_game
+          season_from: 2023-24
+          season_to: 2024-25
+      entities:
+        players:
+        - 1641705
+      rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    reuses:
+    - Player; then both seasons
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  split: heldout
+- id: M08
+  seed_id: M08
+  type: multi_turn
+  category: Leaders
+  turns:
+  - question: Who leads the league in rebounds per game this season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_leaders
+        args:
+          metric: rebounds_per_game
+          limit: 1
+          season: 2025-26
+    reuses: []
+  - question: What about last season?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_leaders
+        args:
+          metric: rebounds_per_game
+          limit: 1
+          season: 2024-25
+    reuses:
+    - Metric; then metric and season, with the season type switched
+  - question: And in the playoffs?
+    gold:
+      path: stats
+      expect: answer
+      rule: Playoff per-game leaders need 70% of the team's playoff games.
+      tool_call:
+        tool: get_leaders
+        args:
+          metric: rebounds_per_game
+          limit: 1
+          season: 2024-25
+          season_type: Playoffs
+    reuses:
+    - Metric; then metric and season, with the season type switched
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  split: dev
+- id: M09
+  seed_id: M09
+  type: multi_turn
+  category: Comparison
+  turns:
+  - question: Compare Jokic and Embiid scoring this season.
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: compare
+        args:
+          player_ids:
+          - 203999
+          - 203954
+          metrics:
+          - points_per_game
+          scope: season
+          season: 2025-26
+      entities:
+        players:
+        - 203999
+        - 203954
+    reuses: []
+  - question: What about rebounds?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: compare
+        args:
+          player_ids:
+          - 203999
+          - 203954
+          metrics:
+          - rebounds_per_game
+          scope: season
+          season: 2025-26
+      entities:
+        players:
+        - 203999
+        - 203954
+    reuses:
+    - Both players and season; then the metric switches
+  - question: Who has played more games?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: compare
+        args:
+          player_ids:
+          - 203999
+          - 203954
+          metrics:
+          - games_played
+          scope: season
+          season: 2025-26
+      entities:
+        players:
+        - 203999
+        - 203954
+    reuses:
+    - Both players and season; then the metric switches
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  split: dev
+- id: M10
+  seed_id: M10
+  type: multi_turn
+  category: Comparison
+  turns:
+  - question: What are LeBron James's career playoff totals?
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: get_career
+        args:
+          player_ids:
+          - 2544
+          season_type: Playoffs
+          metrics:
+          - points
+          - rebounds
+          - assists
+          - games_played
+      entities:
+        players:
+        - 2544
+    reuses: []
+  - question: Compare that with Kevin Durant.
+    gold:
+      path: stats
+      expect: answer
+      tool_call:
+        tool: compare
+        args:
+          player_ids:
+          - 2544
+          - 201142
+          metrics:
+          - points
+          - rebounds
+          - assists
+          - games_played
+          scope: career
+          season_type: Playoffs
+      entities:
+        players:
+        - 2544
+        - 201142
+    reuses:
+    - Metric and scope; turn 3's "he" is ambiguous and must trigger a clarifying question
+  - question: How many points did he score last season?
+    gold:
+      path: stats
+      expect: clarify
+      note: '''he'' is ambiguous (LeBron James or Kevin Durant): ask (owner rule 0005)'
+      entities:
+        players:
+        - 2544
+        - 201142
+    reuses:
+    - Metric and scope; turn 3's "he" is ambiguous and must trigger a clarifying question
+  source: spec v3 multi-turn table
+  critical: false
+  tags:
+  - multi-turn
+  - relative-time
+  split: dev
+- id: Q01-v1
+  seed_id: Q01
+  type: entity_variant
+  category: Player season
+  question: How many points per game is SGA averaging this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2025-26
+        metrics:
+        - points_per_game
+    entities:
+      players:
+      - 1628983
+  source: 'entity variant (2.10): initials'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q01-v2
+  seed_id: Q01
+  type: entity_variant
+  category: Player season
+  question: Shai Gilgeous Alexander points per game this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2025-26
+        metrics:
+        - points_per_game
+    entities:
+      players:
+      - 1628983
+  source: 'entity variant (2.10): missing hyphen'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q02-v1
+  seed_id: Q02
+  type: entity_variant
+  category: Player season
+  question: What are the Joker's averages this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 203999
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: 'entity variant (2.10): nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q02-v2
+  seed_id: Q02
+  type: entity_variant
+  category: Player season
+  question: What are Nikola Jokić's averages this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 203999
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: 'entity variant (2.10): accented spelling'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q03-v1
+  seed_id: Q03
+  type: entity_variant
+  category: Player season
+  question: How many triple doubles does Jokić have this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - triple_doubles
+    entities:
+      players:
+      - 203999
+  source: 'entity variant (2.10): accented, last name only'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q04-v1
+  seed_id: Q04
+  type: entity_variant
+  category: Player season
+  question: What is Wemby's blocks per game this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1641705
+        season: 2025-26
+        metrics:
+        - blocks_per_game
+    entities:
+      players:
+      - 1641705
+  source: 'entity variant (2.10): nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q04-v2
+  seed_id: Q04
+  type: entity_variant
+  category: Player season
+  question: What is Victor Wembenyama's blocks per game this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1641705
+        season: 2025-26
+        metrics:
+        - blocks_per_game
+    entities:
+      players:
+      - 1641705
+  source: 'entity variant (2.10): misspelling'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q06-v1
+  seed_id: Q06
+  type: entity_variant
+  category: Player season
+  question: How many 3s has Steph made this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 201939
+  source: 'entity variant (2.10): nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q06-v2
+  seed_id: Q06
+  type: entity_variant
+  category: Player season
+  question: How many threes has Steph Curry hit this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 201939
+  source: 'entity variant (2.10): nickname, slang'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q07-v1
+  seed_id: Q07
+  type: entity_variant
+  category: Player season
+  question: What is King James averaging this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 2544
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 2544
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: 'entity variant (2.10): nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q07-v2
+  seed_id: Q07
+  type: entity_variant
+  category: Player season
+  question: What is lebron averaging this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 2544
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 2544
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: 'entity variant (2.10): lower case first name'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q08-v1
+  seed_id: Q08
+  type: entity_variant
+  category: Player season
+  question: What is Luka Dončić's field goal percentage with the Lakers?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so.
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - field_goal_pct
+        team_id: 1610612747
+    entities:
+      players:
+      - 1629029
+  source: 'entity variant (2.10): accented spelling'
+  critical: false
+  tags:
+  - default-season
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q08-v2
+  seed_id: Q08
+  type: entity_variant
+  category: Player season
+  question: Luka FG% with the LA Lakers?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so.
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - field_goal_pct
+        team_id: 1610612747
+    entities:
+      players:
+      - 1629029
+  source: 'entity variant (2.10): first name, team shorthand'
+  critical: false
+  tags:
+  - default-season
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q09-v1
+  seed_id: Q09
+  type: entity_variant
+  category: Player season
+  question: How many minutes per game does Ant play?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1630162
+        season: 2025-26
+        metrics:
+        - minutes_per_game
+    entities:
+      players:
+      - 1630162
+  source: 'entity variant (2.10): nickname'
+  critical: false
+  tags:
+  - default-season
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q09-v2
+  seed_id: Q09
+  type: entity_variant
+  category: Player season
+  question: How many minutes does Anthony Edwrads average per game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1630162
+        season: 2025-26
+        metrics:
+        - minutes_per_game
+    entities:
+      players:
+      - 1630162
+  source: 'entity variant (2.10): misspelling'
+  critical: false
+  tags:
+  - default-season
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q10-v1
+  seed_id: Q10
+  type: entity_variant
+  category: Player season
+  question: What is the Greek Freak's free throw percentage this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - free_throw_pct
+    entities:
+      players:
+      - 203507
+  source: 'entity variant (2.10): nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q10-v2
+  seed_id: Q10
+  type: entity_variant
+  category: Player season
+  question: What is Giannis Antetokoumpo's free throw percentage this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - free_throw_pct
+    entities:
+      players:
+      - 203507
+  source: 'entity variant (2.10): misspelling'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q11-v1
+  seed_id: Q11
+  type: entity_variant
+  category: Player season
+  question: How many games has JT played this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628369
+        season: 2025-26
+        metrics:
+        - games_played
+    entities:
+      players:
+      - 1628369
+  source: 'entity variant (2.10): initials'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q24-v1
+  seed_id: Q24
+  type: entity_variant
+  category: Comparison
+  question: Compare Bron and MJ career playoff stats.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 2544
+        - 893
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: career
+        season_type: Playoffs
+    entities:
+      players:
+      - 2544
+      - 893
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: 'entity variant (2.10): nicknames'
+  critical: false
+  tags:
+  - entity-variant
+  split: dev
+- id: Q25-v1
+  seed_id: Q25
+  type: entity_variant
+  category: Comparison
+  question: Compare Steph and Klay career 3-point percentage.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 201939
+        - 202691
+        metrics:
+        - three_point_pct
+        scope: career
+    entities:
+      players:
+      - 201939
+      - 202691
+  source: 'entity variant (2.10): first names'
+  critical: false
+  tags:
+  - entity-variant
+  split: dev
+- id: Q26-v1
+  seed_id: Q26
+  type: entity_variant
+  category: Comparison
+  question: Who has more career rebounds, Wilt the Stilt or Bill Russel?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 76375
+        - 78049
+        metrics:
+        - rebounds
+        scope: career
+    entities:
+      players:
+      - 76375
+      - 78049
+  source: 'entity variant (2.10): nickname, misspelling'
+  critical: false
+  tags:
+  - entity-variant
+  split: heldout
+- id: Q27-v1
+  seed_id: Q27
+  type: entity_variant
+  category: Comparison
+  question: How do Wemby's first two seasons compare to the Big Fundamental's?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 1641705
+        - 1495
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: first_n_seasons
+        n_seasons: 2
+    entities:
+      players:
+      - 1641705
+      - 1495
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: 'entity variant (2.10): nicknames'
+  critical: false
+  tags:
+  - entity-variant
+  split: dev
+- id: Q29-v1
+  seed_id: Q29
+  type: entity_variant
+  category: Comparison
+  question: 'Kobe vs Bron: career points and championships'
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 977
+        - 2544
+        metrics:
+        - points
+        - player_championships
+        scope: career
+    entities:
+      players:
+      - 977
+      - 2544
+  source: 'entity variant (2.10): nicknames'
+  critical: false
+  tags:
+  - entity-variant
+  split: heldout
+- id: Q30-v1
+  seed_id: Q30
+  type: entity_variant
+  category: Comparison
+  question: Which team has a better defensive rating, the C's or OKC?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        team_ids:
+        - 1610612738
+        - 1610612760
+        metrics:
+        - defensive_rating
+        scope: season
+        season: 2025-26
+    entities:
+      teams:
+      - 1610612738
+      - 1610612760
+  source: 'entity variant (2.10): team nickname, abbreviation'
+  critical: false
+  tags:
+  - default-season
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q46-v1
+  seed_id: Q46
+  type: entity_variant
+  category: Team
+  question: What is the Lake Show's record at home this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: W-L'
+    tool_call:
+      tool: get_team_stats
+      args:
+        team_ids:
+        - 1610612747
+        season: 2025-26
+        metrics:
+        - home_wins
+        - home_losses
+    entities:
+      teams:
+      - 1610612747
+  source: 'entity variant (2.10): team nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q48-v1
+  seed_id: Q48
+  type: entity_variant
+  category: Team
+  question: Who is the Dubs' leading scorer this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+        team_id: 1610612744
+  source: 'entity variant (2.10): team nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q50-v1
+  seed_id: Q50
+  type: entity_variant
+  category: Team
+  question: What is the NYK longest winning streak this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        team_ids:
+        - 1610612752
+        season: 2025-26
+        streak: win
+    entities:
+      teams:
+      - 1610612752
+  source: 'entity variant (2.10): team abbreviation'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: Q52-v1
+  seed_id: Q52
+  type: entity_variant
+  category: Game
+  question: How many points did the Joker score in his last game?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        player_ids:
+        - 203999
+        last_n: 1
+    entities:
+      players:
+      - 203999
+  source: 'entity variant (2.10): nickname'
+  critical: false
+  tags:
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q74-v1
+  seed_id: Q74
+  type: entity_variant
+  category: Shooting
+  question: What's Giannis Antetokoumpo's field goal percentage at the rim?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - restricted_area_fg_pct
+    entities:
+      players:
+      - 203507
+  source: 'entity variant (2.10): misspelled surname (bare ''Antetokounmpo'' is ambiguous, see H03)'
+  critical: false
+  tags:
+  - default-season
+  - entity-variant
+  - relative-time
+  split: dev
+- id: Q76-v1
+  seed_id: Q76
+  type: entity_variant
+  category: Shooting
+  question: What is Luka Doncic's step back 3 percentage?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent, or "not tracked" (set in phase 1 from the shot data)'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - step_back_three_pct
+    entities:
+      players:
+      - 1629029
+  source: 'entity variant (2.10): missing accent, unhyphenated'
+  critical: false
+  tags:
+  - default-season
+  - entity-variant
+  - relative-time
+  split: heldout
+- id: H01
+  seed_id: H01
+  type: hard_negative
+  category: Player season
+  question: What is Holiday averaging this season?
+  gold:
+    path: stats
+    expect: clarify
+    note: Jrue or Aaron Holiday
+    entities:
+      players:
+      - 201950
+      - 1628988
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  - relative-time
+  split: dev
+- id: H02
+  seed_id: H02
+  type: hard_negative
+  category: Game
+  question: How many points did Ball score in his last game?
+  gold:
+    path: stats
+    expect: clarify
+    note: LaMelo or Lonzo Ball
+    entities:
+      players:
+      - 1630163
+      - 1628366
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  - relative-time
+  split: heldout
+- id: H03
+  seed_id: H03
+  type: hard_negative
+  category: Records
+  question: What are Antetokounmpo's career rebounds?
+  gold:
+    path: stats
+    expect: clarify
+    note: Giannis, Thanasis or Alex Antetokounmpo
+    entities:
+      players:
+      - 203507
+      - 203648
+      - 1630828
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  split: dev
+- id: H04
+  seed_id: H04
+  type: hard_negative
+  category: Player season
+  question: How many assists does J. Williams have this season?
+  gold:
+    path: stats
+    expect: clarify
+    note: several active players match (Jalen, Jaylin, ...)
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  - relative-time
+  split: dev
+- id: H05
+  seed_id: H05
+  type: hard_negative
+  category: Comparison
+  question: Is LeBron better than Jordan?
+  gold:
+    path: stats
+    expect: no_verdict
+    note: 'opinion: career stats side by side, no verdict (owner rule 0005)'
+    entities:
+      players:
+      - 2544
+      - 893
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 2544
+        - 893
+        metrics: &id002
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: career
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  split: dev
+- id: H06
+  seed_id: H06
+  type: hard_negative
+  category: Leaders
+  question: Who is the best point guard in the NBA right now?
+  gold:
+    path: stats
+    expect: no_verdict
+    note: 'opinion with no position data in v1: stats-based answer, no verdict'
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  - relative-time
+  split: dev
+- id: H07
+  seed_id: H07
+  type: hard_negative
+  category: Comparison
+  question: Was Wilt more dominant than Shaq?
+  gold:
+    path: stats
+    expect: no_verdict
+    note: 'opinion: career stats side by side, no verdict'
+    entities:
+      players:
+      - 76375
+      - 406
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 76375
+        - 406
+        metrics: *id002
+        scope: career
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  split: heldout
+- id: H08
+  seed_id: H08
+  type: hard_negative
+  category: Player season
+  question: How many steals did Bill Russell have in his career?
+  gold:
+    path: stats
+    expect: not_tracked
+    note: steals first tracked 1973-74; Russell retired in 1969
+    entities:
+      players:
+      - 78049
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 78049
+        metrics:
+        - steals
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  split: dev
+- id: H09
+  seed_id: H09
+  type: hard_negative
+  category: Player season
+  question: What was Michael Jordan's plus-minus in 1991-92?
+  gold:
+    path: stats
+    expect: not_tracked
+    note: plus-minus first tracked 1996-97
+    entities:
+      players:
+      - 893
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 893
+        season: 1991-92
+        metrics:
+        - plus_minus
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  split: heldout
+- id: H10
+  seed_id: H10
+  type: hard_negative
+  category: Player season
+  question: How many blocks did Jerry West have in 1965-66?
+  gold:
+    path: stats
+    expect: not_tracked
+    note: blocks first tracked 1973-74
+    entities:
+      players:
+      - 78497
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 78497
+        season: 1965-66
+        metrics:
+        - blocks
+  source: hard negative (2.12)
+  critical: false
+  tags:
+  - hard-negative
+  split: dev
+- id: Q01-p1
+  seed_id: Q01
+  type: paraphrase
+  category: Player season
+  question: What's Shai Gilgeous-Alexander's scoring average this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2025-26
+        metrics:
+        - points_per_game
+    entities:
+      players:
+      - 1628983
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q01-p2
+  seed_id: Q01
+  type: paraphrase
+  category: Player season
+  question: How many points a game is Shai Gilgeous-Alexander putting up this year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2025-26
+        metrics:
+        - points_per_game
+    entities:
+      players:
+      - 1628983
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q02-p1
+  seed_id: Q02
+  type: paraphrase
+  category: Player season
+  question: What are Nikola Jokic's per-game numbers this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 203999
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q02-p2
+  seed_id: Q02
+  type: paraphrase
+  category: Player season
+  question: Give me Nikola Jokic's season averages for this year.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 203999
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q03-p1
+  seed_id: Q03
+  type: paraphrase
+  category: Player season
+  question: How many triple-doubles has Nikola Jokic recorded this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - triple_doubles
+    entities:
+      players:
+      - 203999
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q03-p2
+  seed_id: Q03
+  type: paraphrase
+  category: Player season
+  question: What's Jokic's triple-double count so far this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - triple_doubles
+    entities:
+      players:
+      - 203999
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q04-p1
+  seed_id: Q04
+  type: paraphrase
+  category: Player season
+  question: How many blocks per game is Victor Wembanyama averaging this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1641705
+        season: 2025-26
+        metrics:
+        - blocks_per_game
+    entities:
+      players:
+      - 1641705
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q04-p2
+  seed_id: Q04
+  type: paraphrase
+  category: Player season
+  question: What's Victor Wembanyama's blocks average this year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1641705
+        season: 2025-26
+        metrics:
+        - blocks_per_game
+    entities:
+      players:
+      - 1641705
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q05-p1
+  seed_id: Q05
+  type: paraphrase
+  category: Player season
+  question: How did Cooper Flagg do in his rookie season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so. stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1642843
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 1642843
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q05-p2
+  seed_id: Q05
+  type: paraphrase
+  category: Player season
+  question: What were Cooper Flagg's stats as a rookie?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so. stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1642843
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 1642843
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q06-p1
+  seed_id: Q06
+  type: paraphrase
+  category: Player season
+  question: How many threes has Stephen Curry made this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 201939
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q06-p2
+  seed_id: Q06
+  type: paraphrase
+  category: Player season
+  question: What's Stephen Curry's 3-pointers made total this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 201939
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q07-p1
+  seed_id: Q07
+  type: paraphrase
+  category: Player season
+  question: What are LeBron James's averages this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 2544
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 2544
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q07-p2
+  seed_id: Q07
+  type: paraphrase
+  category: Player season
+  question: How is LeBron James doing statistically this year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 2544
+        season: 2025-26
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+    entities:
+      players:
+      - 2544
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q08-p1
+  seed_id: Q08
+  type: paraphrase
+  category: Player season
+  question: What's Luka Doncic shooting from the field for the Lakers?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so.
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - field_goal_pct
+        team_id: 1610612747
+    entities:
+      players:
+      - 1629029
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q08-p2
+  seed_id: Q08
+  type: paraphrase
+  category: Player season
+  question: How well has Luka Doncic shot from the field as a Laker?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q05's rookie season is the player's first season in `player_season`. Q08 uses the default season
+      (2025-26 regular season) and his Lakers stint. If the snapshot has no such stint, the gold answer
+      says so.
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - field_goal_pct
+        team_id: 1610612747
+    entities:
+      players:
+      - 1629029
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q09-p1
+  seed_id: Q09
+  type: paraphrase
+  category: Player season
+  question: What's Anthony Edwards's minutes per game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1630162
+        season: 2025-26
+        metrics:
+        - minutes_per_game
+    entities:
+      players:
+      - 1630162
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q09-p2
+  seed_id: Q09
+  type: paraphrase
+  category: Player season
+  question: On average, how many minutes does Anthony Edwards play a game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1630162
+        season: 2025-26
+        metrics:
+        - minutes_per_game
+    entities:
+      players:
+      - 1630162
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q10-p1
+  seed_id: Q10
+  type: paraphrase
+  category: Player season
+  question: What's Giannis Antetokounmpo shooting from the free throw line this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - free_throw_pct
+    entities:
+      players:
+      - 203507
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q10-p2
+  seed_id: Q10
+  type: paraphrase
+  category: Player season
+  question: How good is Giannis Antetokounmpo at free throws this year, by percentage?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - free_throw_pct
+    entities:
+      players:
+      - 203507
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q11-p1
+  seed_id: Q11
+  type: paraphrase
+  category: Player season
+  question: How many games has Jayson Tatum appeared in this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628369
+        season: 2025-26
+        metrics:
+        - games_played
+    entities:
+      players:
+      - 1628369
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q11-p2
+  seed_id: Q11
+  type: paraphrase
+  category: Player season
+  question: What's Jayson Tatum's games played total this year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628369
+        season: 2025-26
+        metrics:
+        - games_played
+    entities:
+      players:
+      - 1628369
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q12-p1
+  seed_id: Q12
+  type: paraphrase
+  category: Player season
+  question: How did Shai Gilgeous-Alexander play in last season's playoffs?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+      stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2024-25
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        season_type: Playoffs
+    entities:
+      players:
+      - 1628983
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q12-p2
+  seed_id: Q12
+  type: paraphrase
+  category: Player season
+  question: What were SGA's numbers in the playoffs last season?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+      stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+    note: 'answer type: Stat line'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1628983
+        season: 2024-25
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        season_type: Playoffs
+    entities:
+      players:
+      - 1628983
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q13-p1
+  seed_id: Q13
+  type: paraphrase
+  category: Leaders
+  question: Who's the NBA scoring leader this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q13-p2
+  seed_id: Q13
+  type: paraphrase
+  category: Leaders
+  question: Which player has the highest points per game in the league this year?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q14-p1
+  seed_id: Q14
+  type: paraphrase
+  category: Leaders
+  question: Who are the five best rebounders in the league this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: rebounds_per_game
+        limit: 5
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q14-p2
+  seed_id: Q14
+  type: paraphrase
+  category: Leaders
+  question: List the top 5 players in rebounds this season.
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: rebounds_per_game
+        limit: 5
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q15-p1
+  seed_id: Q15
+  type: paraphrase
+  category: Leaders
+  question: Who has the most assists per game in the NBA?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: assists_per_game
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q15-p2
+  seed_id: Q15
+  type: paraphrase
+  category: Leaders
+  question: Which player averages the most assists in the league?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: assists_per_game
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q16-p1
+  seed_id: Q16
+  type: paraphrase
+  category: Leaders
+  question: Who leads the NBA in total blocks this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: blocks
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q16-p2
+  seed_id: Q16
+  type: paraphrase
+  category: Leaders
+  question: Which player has blocked the most shots this year?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: blocks
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q17-p1
+  seed_id: Q17
+  type: paraphrase
+  category: Leaders
+  question: Among qualified players, who has the best 3-point percentage this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: 3P% leaders use NBA.com's minimum of 82 made 3-pointers.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: three_point_pct
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q17-p2
+  seed_id: Q17
+  type: paraphrase
+  category: Leaders
+  question: Who's the most accurate qualified 3-point shooter this year?
+  gold:
+    path: stats
+    expect: answer
+    rule: 3P% leaders use NBA.com's minimum of 82 made 3-pointers.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: three_point_pct
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q18-p1
+  seed_id: Q18
+  type: paraphrase
+  category: Leaders
+  question: Who leads the league in double-doubles this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: double_doubles
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q18-p2
+  seed_id: Q18
+  type: paraphrase
+  category: Leaders
+  question: Which player has the highest number of double-doubles this year?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: double_doubles
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q19-p1
+  seed_id: Q19
+  type: paraphrase
+  category: Leaders
+  question: Who has the most steals per game in the league?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: steals_per_game
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q19-p2
+  seed_id: Q19
+  type: paraphrase
+  category: Leaders
+  question: Which player averages the most steals in the NBA?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Leads in scoring" and other per-game rankings use the registry''s qualification: 70% of team
+      games (58 in an 82-game season), or fewer games if the player''s total divided by that minimum would
+      still lead (NBA.com''s league-leader rule).'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: steals_per_game
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q20-p1
+  seed_id: Q20
+  type: paraphrase
+  category: Leaders
+  question: Who is the top-scoring rookie this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+        rookies_only: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q20-p2
+  seed_id: Q20
+  type: paraphrase
+  category: Leaders
+  question: Which rookie averages the most points this year?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+        rookies_only: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q21-p1
+  seed_id: Q21
+  type: paraphrase
+  category: Leaders
+  question: Which player has scored 40 or more the most times this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: forty_point_games
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q21-p2
+  seed_id: Q21
+  type: paraphrase
+  category: Leaders
+  question: Who leads the league in 40-point games this year?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: forty_point_games
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q22-p1
+  seed_id: Q22
+  type: paraphrase
+  category: Leaders
+  question: Who has the best plus-minus in the NBA?
+  gold:
+    path: stats
+    expect: answer
+    rule: Plus-minus is the regular-season total; the answer names the measure.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: plus_minus
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q22-p2
+  seed_id: Q22
+  type: paraphrase
+  category: Leaders
+  question: Which player is first in the league in plus-minus?
+  gold:
+    path: stats
+    expect: answer
+    rule: Plus-minus is the regular-season total; the answer names the measure.
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: plus_minus
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q23-p1
+  seed_id: Q23
+  type: paraphrase
+  category: Comparison
+  question: Statistically, who's having the better season, Nikola Jokic or Shai Gilgeous-Alexander?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 203999
+        - 1628983
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: season
+        season: 2025-26
+    entities:
+      players:
+      - 203999
+      - 1628983
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q23-p2
+  seed_id: Q23
+  type: paraphrase
+  category: Comparison
+  question: Compare Jokic and Gilgeous-Alexander's stats this season.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 203999
+        - 1628983
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: season
+        season: 2025-26
+    entities:
+      players:
+      - 203999
+      - 1628983
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q24-p1
+  seed_id: Q24
+  type: paraphrase
+  category: Comparison
+  question: How do LeBron James's career playoff numbers compare with Michael Jordan's?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 2544
+        - 893
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: career
+        season_type: Playoffs
+    entities:
+      players:
+      - 2544
+      - 893
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q24-p2
+  seed_id: Q24
+  type: paraphrase
+  category: Comparison
+  question: Put LeBron and Michael Jordan's career playoff stats side by side.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 2544
+        - 893
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: career
+        season_type: Playoffs
+    entities:
+      players:
+      - 2544
+      - 893
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q25-p1
+  seed_id: Q25
+  type: paraphrase
+  category: Comparison
+  question: Who has the higher career 3-point percentage, Stephen Curry or Klay Thompson?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 201939
+        - 202691
+        metrics:
+        - three_point_pct
+        scope: career
+    entities:
+      players:
+      - 201939
+      - 202691
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q25-p2
+  seed_id: Q25
+  type: paraphrase
+  category: Comparison
+  question: How do Curry and Klay Thompson compare in career 3-point percentage?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 201939
+        - 202691
+        metrics:
+        - three_point_pct
+        scope: career
+    entities:
+      players:
+      - 201939
+      - 202691
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q26-p1
+  seed_id: Q26
+  type: paraphrase
+  category: Comparison
+  question: Between Wilt Chamberlain and Bill Russell, who grabbed more rebounds in his career?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 76375
+        - 78049
+        metrics:
+        - rebounds
+        scope: career
+    entities:
+      players:
+      - 76375
+      - 78049
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q26-p2
+  seed_id: Q26
+  type: paraphrase
+  category: Comparison
+  question: Compare Wilt Chamberlain's and Bill Russell's career rebound totals.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 76375
+        - 78049
+        metrics:
+        - rebounds
+        scope: career
+    entities:
+      players:
+      - 76375
+      - 78049
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q27-p1
+  seed_id: Q27
+  type: paraphrase
+  category: Comparison
+  question: Compare Victor Wembanyama's first two NBA seasons with Tim Duncan's first two.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 1641705
+        - 1495
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: first_n_seasons
+        n_seasons: 2
+    entities:
+      players:
+      - 1641705
+      - 1495
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q27-p2
+  seed_id: Q27
+  type: paraphrase
+  category: Comparison
+  question: How does Wembanyama's start to his career stack up against Tim Duncan's first two seasons?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 1641705
+        - 1495
+        metrics:
+        - games_played
+        - minutes_per_game
+        - points_per_game
+        - rebounds_per_game
+        - assists_per_game
+        - steals_per_game
+        - blocks_per_game
+        - field_goal_pct
+        - three_point_pct
+        - free_throw_pct
+        scope: first_n_seasons
+        n_seasons: 2
+    entities:
+      players:
+      - 1641705
+      - 1495
+    rule: stat line = GP, MPG, PTS/REB/AST/STL/BLK per game, FG%, 3P%, FT% (docs/decisions/0006-stat-line.md)
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q28-p1
+  seed_id: Q28
+  type: paraphrase
+  category: Comparison
+  question: How does Anthony Edwards's scoring this season compare with Ja Morant's?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 1630162
+        - 1629630
+        metrics:
+        - points_per_game
+        scope: season
+        season: 2025-26
+    entities:
+      players:
+      - 1630162
+      - 1629630
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q28-p2
+  seed_id: Q28
+  type: paraphrase
+  category: Comparison
+  question: Who's scoring more this season, Anthony Edwards or Ja Morant?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 1630162
+        - 1629630
+        metrics:
+        - points_per_game
+        scope: season
+        season: 2025-26
+    entities:
+      players:
+      - 1630162
+      - 1629630
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q29-p1
+  seed_id: Q29
+  type: paraphrase
+  category: Comparison
+  question: Compare Kobe Bryant and LeBron James in career points and titles.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 977
+        - 2544
+        metrics:
+        - points
+        - player_championships
+        scope: career
+    entities:
+      players:
+      - 977
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q29-p2
+  seed_id: Q29
+  type: paraphrase
+  category: Comparison
+  question: Who has more career points and championships, Kobe Bryant or LeBron James?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        player_ids:
+        - 977
+        - 2544
+        metrics:
+        - points
+        - player_championships
+        scope: career
+    entities:
+      players:
+      - 977
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q30-p1
+  seed_id: Q30
+  type: paraphrase
+  category: Comparison
+  question: Is Boston's or Oklahoma City's defensive rating better?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        team_ids:
+        - 1610612738
+        - 1610612760
+        metrics:
+        - defensive_rating
+        scope: season
+        season: 2025-26
+    entities:
+      teams:
+      - 1610612738
+      - 1610612760
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q30-p2
+  seed_id: Q30
+  type: paraphrase
+  category: Comparison
+  question: Compare the Celtics' and Thunder's defensive ratings.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Side-by-side'
+    tool_call:
+      tool: compare
+      args:
+        team_ids:
+        - 1610612738
+        - 1610612760
+        metrics:
+        - defensive_rating
+        scope: season
+        season: 2025-26
+    entities:
+      teams:
+      - 1610612738
+      - 1610612760
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q31-p1
+  seed_id: Q31
+  type: paraphrase
+  category: Records
+  question: Who has scored the most points in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q31-p2
+  seed_id: Q31
+  type: paraphrase
+  category: Records
+  question: Who is the NBA's career scoring leader?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q32-p1
+  seed_id: Q32
+  type: paraphrase
+  category: Records
+  question: Who is the NBA's all-time assists leader?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: assists
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q32-p2
+  seed_id: Q32
+  type: paraphrase
+  category: Records
+  question: Which player has dished out the most assists in league history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: assists
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q33-p1
+  seed_id: Q33
+  type: paraphrase
+  category: Records
+  question: Who is the NBA's all-time leader in 3-pointers made?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: threes_made
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q33-p2
+  seed_id: Q33
+  type: paraphrase
+  category: Records
+  question: Which player has made the most threes in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: threes_made
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q34-p1
+  seed_id: Q34
+  type: paraphrase
+  category: Records
+  question: What's the NBA record for points in one game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_points_game
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q34-p2
+  seed_id: Q34
+  type: paraphrase
+  category: Records
+  question: What is the highest single-game point total by a player in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_points_game
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q35-p1
+  seed_id: Q35
+  type: paraphrase
+  category: Records
+  question: Who is the NBA's all-time triple-double leader?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_record
+      args:
+        record: career_triple_doubles
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q35-p2
+  seed_id: Q35
+  type: paraphrase
+  category: Records
+  question: Which player has recorded the most triple-doubles in his career?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_record
+      args:
+        record: career_triple_doubles
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q36-p1
+  seed_id: Q36
+  type: paraphrase
+  category: Records
+  question: What's LeBron James's career point total?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 2544
+        metrics:
+        - points
+    entities:
+      players:
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q36-p2
+  seed_id: Q36
+  type: paraphrase
+  category: Records
+  question: How many points has LeBron James scored in his career?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 2544
+        metrics:
+        - points
+    entities:
+      players:
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q37-p1
+  seed_id: Q37
+  type: paraphrase
+  category: Records
+  question: Who has the best career scoring average in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    rule: Regular season only, with the registry's career minimum. The answer states the minimum. Confirm
+      the minimum in phase 1.
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q37-p2
+  seed_id: Q37
+  type: paraphrase
+  category: Records
+  question: Which player has the highest career points-per-game average?
+  gold:
+    path: stats
+    expect: answer
+    rule: Regular season only, with the registry's career minimum. The answer states the minimum. Confirm
+      the minimum in phase 1.
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q38-p1
+  seed_id: Q38
+  type: paraphrase
+  category: Records
+  question: Who is the NBA's all-time leader in blocks?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: blocks
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q38-p2
+  seed_id: Q38
+  type: paraphrase
+  category: Records
+  question: Which player has blocked the most shots in his career?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: blocks
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q39-p1
+  seed_id: Q39
+  type: paraphrase
+  category: Records
+  question: Which franchise has the most NBA titles?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_championships
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q39-p2
+  seed_id: Q39
+  type: paraphrase
+  category: Records
+  question: What team has won more championships than any other?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_championships
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q40-p1
+  seed_id: Q40
+  type: paraphrase
+  category: Records
+  question: Which team had the best regular-season record in NBA history?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Team + W-L'
+    tool_call:
+      tool: get_record
+      args:
+        record: best_regular_season_record
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q40-p2
+  seed_id: Q40
+  type: paraphrase
+  category: Records
+  question: What is the NBA record for the best regular season, by wins and losses?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Team + W-L'
+    tool_call:
+      tool: get_record
+      args:
+        record: best_regular_season_record
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q41-p1
+  seed_id: Q41
+  type: paraphrase
+  category: Records
+  question: Who holds the record for most games played in the NBA?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: games_played
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q41-p2
+  seed_id: Q41
+  type: paraphrase
+  category: Records
+  question: Which player has appeared in the most NBA games?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: games_played
+        limit: 1
+        scope: career
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q42-p1
+  seed_id: Q42
+  type: paraphrase
+  category: Records
+  question: What's the record for 3-pointers made in a single NBA game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_threes_game
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q42-p2
+  seed_id: Q42
+  type: paraphrase
+  category: Records
+  question: Who made the most threes in one game, and how many?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_record
+      args:
+        record: most_threes_game
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q43-p1
+  seed_id: Q43
+  type: paraphrase
+  category: Team
+  question: Show me the Western Conference standings right now.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Table'
+    tool_call:
+      tool: get_standings
+      args:
+        season: 2025-26
+        conference: West
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q43-p2
+  seed_id: Q43
+  type: paraphrase
+  category: Team
+  question: How does the West look in the standings at the moment?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Table'
+    tool_call:
+      tool: get_standings
+      args:
+        season: 2025-26
+        conference: West
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q44-p1
+  seed_id: Q44
+  type: paraphrase
+  category: Team
+  question: Who has the NBA's best record this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Team + W-L'
+    tool_call:
+      tool: get_standings
+      args:
+        season: 2025-26
+        limit: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q44-p2
+  seed_id: Q44
+  type: paraphrase
+  category: Team
+  question: Which team has won the most games this year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Team + W-L'
+    tool_call:
+      tool: get_standings
+      args:
+        season: 2025-26
+        limit: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q45-p1
+  seed_id: Q45
+  type: paraphrase
+  category: Team
+  question: Which team averages the most points per game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: team_points_per_game
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q45-p2
+  seed_id: Q45
+  type: paraphrase
+  category: Team
+  question: What's the highest-scoring team in the league by points per game?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: team_points_per_game
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q46-p1
+  seed_id: Q46
+  type: paraphrase
+  category: Team
+  question: How have the Lakers done at home this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: W-L'
+    tool_call:
+      tool: get_team_stats
+      args:
+        team_ids:
+        - 1610612747
+        season: 2025-26
+        metrics:
+        - home_wins
+        - home_losses
+    entities:
+      teams:
+      - 1610612747
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q46-p2
+  seed_id: Q46
+  type: paraphrase
+  category: Team
+  question: What's the Lakers' home win-loss record this year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: W-L'
+    tool_call:
+      tool: get_team_stats
+      args:
+        team_ids:
+        - 1610612747
+        season: 2025-26
+        metrics:
+        - home_wins
+        - home_losses
+    entities:
+      teams:
+      - 1610612747
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q47-p1
+  seed_id: Q47
+  type: paraphrase
+  category: Team
+  question: Which team leads the league in net rating?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: net_rating
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q47-p2
+  seed_id: Q47
+  type: paraphrase
+  category: Team
+  question: What team has the highest net rating?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: net_rating
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q48-p1
+  seed_id: Q48
+  type: paraphrase
+  category: Team
+  question: Who leads the Golden State Warriors in scoring this season?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+        team_id: 1610612744
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q48-p2
+  seed_id: Q48
+  type: paraphrase
+  category: Team
+  question: Which Warriors player averages the most points this year?
+  gold:
+    path: stats
+    expect: answer
+    rule: Q14 reads "top 5 rebounders" as rebounds per game. Q20 ranks rookies by points per game. Q48
+      ranks Warriors players by points per game over their Warriors stint (for a traded player, only his
+      Golden State games). All three use the same games rule as Q13.
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: points_per_game
+        limit: 1
+        season: 2025-26
+        team_id: 1610612744
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q49-p1
+  seed_id: Q49
+  type: paraphrase
+  category: Team
+  question: Which team plays the fastest, by pace?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: pace
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q49-p2
+  seed_id: Q49
+  type: paraphrase
+  category: Team
+  question: What team has the highest pace in the league?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: pace
+        limit: 1
+        season: 2025-26
+        entity: team
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q50-p1
+  seed_id: Q50
+  type: paraphrase
+  category: Team
+  question: What's the Knicks' longest win streak this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        team_ids:
+        - 1610612752
+        season: 2025-26
+        streak: win
+    entities:
+      teams:
+      - 1610612752
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q50-p2
+  seed_id: Q50
+  type: paraphrase
+  category: Team
+  question: How many games in a row did the New York Knicks win at most this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        team_ids:
+        - 1610612752
+        season: 2025-26
+        streak: win
+    entities:
+      teams:
+      - 1610612752
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q51-p1
+  seed_id: Q51
+  type: paraphrase
+  category: Game
+  question: Who won the most recent Celtics-Knicks game?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Score'
+    tool_call:
+      tool: get_games
+      args:
+        team_ids:
+        - 1610612738
+        - 1610612752
+        last_n: 1
+        season_types:
+        - Regular Season
+        - PlayIn
+        - Playoffs
+    entities:
+      teams:
+      - 1610612738
+      - 1610612752
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q51-p2
+  seed_id: Q51
+  type: paraphrase
+  category: Game
+  question: In the last game between Boston and New York, who won?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Score'
+    tool_call:
+      tool: get_games
+      args:
+        team_ids:
+        - 1610612738
+        - 1610612752
+        last_n: 1
+        season_types:
+        - Regular Season
+        - PlayIn
+        - Playoffs
+    entities:
+      teams:
+      - 1610612738
+      - 1610612752
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q52-p1
+  seed_id: Q52
+  type: paraphrase
+  category: Game
+  question: How many points did Nikola Jokic have in his most recent game?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        player_ids:
+        - 203999
+        last_n: 1
+    entities:
+      players:
+      - 203999
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q52-p2
+  seed_id: Q52
+  type: paraphrase
+  category: Game
+  question: What did Jokic score last game?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_games
+      args:
+        player_ids:
+        - 203999
+        last_n: 1
+    entities:
+      players:
+      - 203999
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q53-p1
+  seed_id: Q53
+  type: paraphrase
+  category: Game
+  question: What was the score of the final game of the last NBA Finals?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+    note: 'answer type: Score'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2024-25
+        season_types:
+        - Playoffs
+        finals_only: true
+        last_n: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q53-p2
+  seed_id: Q53
+  type: paraphrase
+  category: Game
+  question: How did the last game of the most recent NBA Finals end?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+    note: 'answer type: Score'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2024-25
+        season_types:
+        - Playoffs
+        finals_only: true
+        last_n: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q54-p1
+  seed_id: Q54
+  type: paraphrase
+  category: Game
+  question: What's the highest-scoring individual game this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        sort: player_points_desc
+        limit: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q54-p2
+  seed_id: Q54
+  type: paraphrase
+  category: Game
+  question: Who scored the most points in a single game this year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number + game'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        sort: player_points_desc
+        limit: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q55-p1
+  seed_id: Q55
+  type: paraphrase
+  category: Game
+  question: Who led in points, rebounds and assists in last night's games?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Table'
+    tool_call:
+      tool: get_games
+      args:
+        date: '2026-04-12'
+        box_leaders: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q55-p2
+  seed_id: Q55
+  type: paraphrase
+  category: Game
+  question: Give me the top performers from last night's NBA games.
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: Table'
+    tool_call:
+      tool: get_games
+      args:
+        date: '2026-04-12'
+        box_leaders: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q56-p1
+  seed_id: Q56
+  type: paraphrase
+  category: Game
+  question: What has Stephen Curry scored in each of his last 5 games?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: List'
+    tool_call:
+      tool: get_games
+      args:
+        player_ids:
+        - 201939
+        last_n: 5
+    entities:
+      players:
+      - 201939
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q56-p2
+  seed_id: Q56
+  type: paraphrase
+  category: Game
+  question: Show Curry's points in his five most recent games.
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Last game" and "last night" resolve against the snapshot''s latest game date. Q51 counts games
+      of any season type.'
+    note: 'answer type: List'
+    tool_call:
+      tool: get_games
+      args:
+        player_ids:
+        - 201939
+        last_n: 5
+    entities:
+      players:
+      - 201939
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q57-p1
+  seed_id: Q57
+  type: paraphrase
+  category: Game
+  question: Which games have gone to overtime this season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: List'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        overtime_only: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q57-p2
+  seed_id: Q57
+  type: paraphrase
+  category: Game
+  question: List this season's overtime games.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: List'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        overtime_only: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q58-p1
+  seed_id: Q58
+  type: paraphrase
+  category: Game
+  question: What's the biggest blowout of the season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Game + margin'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        sort: margin_desc
+        limit: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q58-p2
+  seed_id: Q58
+  type: paraphrase
+  category: Game
+  question: Which game this season had the largest winning margin?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Game + margin'
+    tool_call:
+      tool: get_games
+      args:
+        season: 2025-26
+        sort: margin_desc
+        limit: 1
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q59-p1
+  seed_id: Q59
+  type: paraphrase
+  category: Trend
+  question: How has the share of shots that are 3-pointers changed league-wide since 2010?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Since 2010" means 2010-11 onward. "The 1990s" means 1990-91 to 1999-00. "Now" means the snapshot''s
+      season.'
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: league
+        metric: league_three_point_attempt_rate
+        season_from: 2010-11
+        season_to: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q59-p2
+  seed_id: Q59
+  type: paraphrase
+  category: Trend
+  question: Show the league's 3-point attempt rate each season since 2010.
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Since 2010" means 2010-11 onward. "The 1990s" means 1990-91 to 1999-00. "Now" means the snapshot''s
+      season.'
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: league
+        metric: league_three_point_attempt_rate
+        season_from: 2010-11
+        season_to: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q60-p1
+  seed_id: Q60
+  type: paraphrase
+  category: Trend
+  question: How has Victor Wembanyama's 3-point shooting changed from season to season?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 1641705
+        metric: three_point_pct
+    entities:
+      players:
+      - 1641705
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q60-p2
+  seed_id: Q60
+  type: paraphrase
+  category: Trend
+  question: Show Wembanyama's 3-point percentage by season.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 1641705
+        metric: three_point_pct
+    entities:
+      players:
+      - 1641705
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q61-p1
+  seed_id: Q61
+  type: paraphrase
+  category: Trend
+  question: How has LeBron James's scoring average changed over his career?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 2544
+        metric: points_per_game
+    entities:
+      players:
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q61-p2
+  seed_id: Q61
+  type: paraphrase
+  category: Trend
+  question: Show LeBron's points per game for each season of his career.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 2544
+        metric: points_per_game
+    entities:
+      players:
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q62-p1
+  seed_id: Q62
+  type: paraphrase
+  category: Trend
+  question: Do NBA teams score more now than they did in the 1990s?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Since 2010" means 2010-11 onward. "The 1990s" means 1990-91 to 1999-00. "Now" means the snapshot''s
+      season.'
+    note: 'answer type: Comparison + series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: league
+        metric: league_points_per_game
+        season_from: 1990-91
+        season_to: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q62-p2
+  seed_id: Q62
+  type: paraphrase
+  category: Trend
+  question: Compare league-wide scoring today with the 1990s.
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Since 2010" means 2010-11 onward. "The 1990s" means 1990-91 to 1999-00. "Now" means the snapshot''s
+      season.'
+    note: 'answer type: Comparison + series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: league
+        metric: league_points_per_game
+        season_from: 1990-91
+        season_to: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q63-p1
+  seed_id: Q63
+  type: paraphrase
+  category: Trend
+  question: How many games has Oklahoma City won in each of the last five seasons?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: team
+        team_ids:
+        - 1610612760
+        metric: wins
+        season_from: 2021-22
+        season_to: 2025-26
+    entities:
+      teams:
+      - 1610612760
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q63-p2
+  seed_id: Q63
+  type: paraphrase
+  category: Trend
+  question: Show the Thunder's win totals over the past 5 seasons.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: team
+        team_ids:
+        - 1610612760
+        metric: wins
+        season_from: 2021-22
+        season_to: 2025-26
+    entities:
+      teams:
+      - 1610612760
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q64-p1
+  seed_id: Q64
+  type: paraphrase
+  category: Trend
+  question: Has Nikola Jokic's assists per game increased every year?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Yes/no + series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 203999
+        metric: assists_per_game
+    entities:
+      players:
+      - 203999
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q64-p2
+  seed_id: Q64
+  type: paraphrase
+  category: Trend
+  question: Has Jokic's assist average risen each season of his career?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Yes/no + series'
+    tool_call:
+      tool: get_trend
+      args:
+        entity: player
+        player_ids:
+        - 203999
+        metric: assists_per_game
+    entities:
+      players:
+      - 203999
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q65-p1
+  seed_id: Q65
+  type: paraphrase
+  category: Definition
+  question: How is true shooting percentage calculated?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text + formula'
+    chunks:
+    - true_shooting_pct
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q65-p2
+  seed_id: Q65
+  type: paraphrase
+  category: Definition
+  question: What does TS% measure, and what's the formula?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text + formula'
+    chunks:
+    - true_shooting_pct
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q66-p1
+  seed_id: Q66
+  type: paraphrase
+  category: Definition
+  question: What does PER stand for in basketball, and what does it measure?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - player_efficiency_rating
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q66-p2
+  seed_id: Q66
+  type: paraphrase
+  category: Definition
+  question: Explain the Player Efficiency Rating.
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - player_efficiency_rating
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q67-p1
+  seed_id: Q67
+  type: paraphrase
+  category: Definition
+  question: What is usage rate in basketball?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - usage_rate
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q67-p2
+  seed_id: Q67
+  type: paraphrase
+  category: Definition
+  question: Explain what a player's usage percentage means.
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - usage_rate
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q68-p1
+  seed_id: Q68
+  type: paraphrase
+  category: Definition
+  question: What does net rating measure?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - net_rating
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q68-p2
+  seed_id: Q68
+  type: paraphrase
+  category: Definition
+  question: How is a team's net rating defined?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - net_rating
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q69-p1
+  seed_id: Q69
+  type: paraphrase
+  category: Definition
+  question: What is a triple-double?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - triple_doubles
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q69-p2
+  seed_id: Q69
+  type: paraphrase
+  category: Definition
+  question: How many stats does a player need in double figures for a triple-double?
+  gold:
+    path: knowledge
+    expect: answer
+    note: 'answer type: Text'
+    chunks:
+    - triple_doubles
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q70-p1
+  seed_id: Q70
+  type: paraphrase
+  category: Definition
+  question: How many games does a player need to play to qualify for the scoring title?
+  gold:
+    path: knowledge
+    expect: answer
+    rule: The gold answer is the league-leader minimum above, not the 65-game minimum for awards.
+    note: 'answer type: Text + number'
+    chunks:
+    - per_game_leader
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q70-p2
+  seed_id: Q70
+  type: paraphrase
+  category: Definition
+  question: What's the games minimum to be eligible for the NBA scoring lead?
+  gold:
+    path: knowledge
+    expect: answer
+    rule: The gold answer is the league-leader minimum above, not the 65-game minimum for awards.
+    note: 'answer type: Text + number'
+    chunks:
+    - per_game_leader
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: heldout
+- id: Q71-p1
+  seed_id: Q71
+  type: paraphrase
+  category: Definition
+  question: Who leads the league in true shooting percentage this season, and what does TS% mean?
+  gold:
+    path: mixed
+    expect: answer
+    note: 'answer type: Ranked list + text'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: true_shooting_pct
+        limit: 1
+        season: 2025-26
+    chunks:
+    - true_shooting_pct
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q71-p2
+  seed_id: Q71
+  type: paraphrase
+  category: Definition
+  question: Which player has the best TS% this year, and what does true shooting measure?
+  gold:
+    path: mixed
+    expect: answer
+    note: 'answer type: Ranked list + text'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: true_shooting_pct
+        limit: 1
+        season: 2025-26
+    chunks:
+    - true_shooting_pct
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q72-p1
+  seed_id: Q72
+  type: paraphrase
+  category: Definition
+  question: What is Nikola Jokic's usage rate, and is that high for a center? What does usage rate mean?
+  gold:
+    path: mixed
+    expect: answer
+    note: 'answer type: Number + text'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - usage_rate
+    entities:
+      players:
+      - 203999
+    chunks:
+    - usage_rate
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q72-p2
+  seed_id: Q72
+  type: paraphrase
+  category: Definition
+  question: Explain usage rate and tell me whether Jokic's is high for a center.
+  gold:
+    path: mixed
+    expect: answer
+    note: 'answer type: Number + text'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203999
+        season: 2025-26
+        metrics:
+        - usage_rate
+    entities:
+      players:
+      - 203999
+    chunks:
+    - usage_rate
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q73-p1
+  seed_id: Q73
+  type: paraphrase
+  category: Shooting
+  question: What are Stephen Curry's most common shot locations?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Zone breakdown'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - shot_attempts
+        breakdown: zone
+    entities:
+      players:
+      - 201939
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q73-p2
+  seed_id: Q73
+  type: paraphrase
+  category: Shooting
+  question: Break down where Steph Curry's shot attempts come from.
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Zone breakdown'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 201939
+        season: 2025-26
+        metrics:
+        - shot_attempts
+        breakdown: zone
+    entities:
+      players:
+      - 201939
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q74-p1
+  seed_id: Q74
+  type: paraphrase
+  category: Shooting
+  question: How well does Giannis Antetokounmpo shoot in the restricted area?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - restricted_area_fg_pct
+    entities:
+      players:
+      - 203507
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q74-p2
+  seed_id: Q74
+  type: paraphrase
+  category: Shooting
+  question: What percentage does Giannis make in the restricted area?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 203507
+        season: 2025-26
+        metrics:
+        - restricted_area_fg_pct
+    entities:
+      players:
+      - 203507
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q75-p1
+  seed_id: Q75
+  type: paraphrase
+  category: Shooting
+  question: Who has made the most corner 3-pointers?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: corner_threes_made
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q75-p2
+  seed_id: Q75
+  type: paraphrase
+  category: Shooting
+  question: Which player leads in corner threes made?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"Most" ranks season totals, with no games minimum.'
+    note: 'answer type: Ranked list'
+    tool_call:
+      tool: get_leaders
+      args:
+        metric: corner_threes_made
+        limit: 1
+        season: 2025-26
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q76-p1
+  seed_id: Q76
+  type: paraphrase
+  category: Shooting
+  question: How accurate is Luka Doncic on step-back threes?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent, or "not tracked" (set in phase 1 from the shot data)'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - step_back_three_pct
+    entities:
+      players:
+      - 1629029
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q76-p2
+  seed_id: Q76
+  type: paraphrase
+  category: Shooting
+  question: What does Luka shoot on step-back 3-pointers?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Percent, or "not tracked" (set in phase 1 from the shot data)'
+    tool_call:
+      tool: get_player_stats
+      args:
+        player_ids:
+        - 1629029
+        season: 2025-26
+        metrics:
+        - step_back_three_pct
+    entities:
+      players:
+      - 1629029
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - default-season
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q77-p1
+  seed_id: Q77
+  type: paraphrase
+  category: Awards
+  question: Who was last season's MVP, and what were his numbers?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+    note: 'answer type: Name + stat line'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Most Valuable Player
+        season: 2024-25
+        include_stats: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q77-p2
+  seed_id: Q77
+  type: paraphrase
+  category: Awards
+  question: Who won the most recent MVP award, and what stats did he have that season?
+  gold:
+    path: stats
+    expect: answer
+    rule: On the eval snapshot, "last season" is 2024-25 and "the last NBA Finals" is the 2025 Finals.
+    note: 'answer type: Name + stat line'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Most Valuable Player
+        season: 2024-25
+        include_stats: true
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q78-p1
+  seed_id: Q78
+  type: paraphrase
+  category: Awards
+  question: Which player has the most MVP awards?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Most Valuable Player
+        mode: count_by_player
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q78-p2
+  seed_id: Q78
+  type: paraphrase
+  category: Awards
+  question: Who holds the record for most MVPs?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Name + number'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Most Valuable Player
+        mode: count_by_player
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q79-p1
+  seed_id: Q79
+  type: paraphrase
+  category: Awards
+  question: Who was the 2024 NBA Rookie of the Year?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"In 2024" means the award for the season that ended in 2024 (2023-24). The answer names the
+      season it used.'
+    note: 'answer type: Name'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Rookie of the Year
+        season: 2023-24
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q79-p2
+  seed_id: Q79
+  type: paraphrase
+  category: Awards
+  question: Which player won Rookie of the Year in 2024?
+  gold:
+    path: stats
+    expect: answer
+    rule: '"In 2024" means the award for the season that ended in 2024 (2023-24). The answer names the
+      season it used.'
+    note: 'answer type: Name'
+    tool_call:
+      tool: get_awards
+      args:
+        award: NBA Rookie of the Year
+        season: 2023-24
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q80-p1
+  seed_id: Q80
+  type: paraphrase
+  category: Awards
+  question: How many times has LeBron James been an All-Star?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 2544
+        metrics:
+        - all_star_selections
+    entities:
+      players:
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q80-p2
+  seed_id: Q80
+  type: paraphrase
+  category: Awards
+  question: What's LeBron James's total number of All-Star selections?
+  gold:
+    path: stats
+    expect: answer
+    note: 'answer type: Number'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 2544
+        metrics:
+        - all_star_selections
+    entities:
+      players:
+      - 2544
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: false
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q81-p1
+  seed_id: Q81
+  type: paraphrase
+  category: Scope limits
+  question: Which team is going to win the title this season?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (prediction)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q81-p2
+  seed_id: Q81
+  type: paraphrase
+  category: Scope limits
+  question: Predict this year's NBA champion.
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (prediction)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: heldout
+- id: Q82-p1
+  seed_id: Q82
+  type: paraphrase
+  category: Scope limits
+  question: Is betting on the Lakers tonight a good idea?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (betting)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q82-p2
+  seed_id: Q82
+  type: paraphrase
+  category: Scope limits
+  question: Should I put money on the Lakers game tonight?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (betting)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q83-p1
+  seed_id: Q83
+  type: paraphrase
+  category: Scope limits
+  question: Is Joel Embiid hurt?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (injury news)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q83-p2
+  seed_id: Q83
+  type: paraphrase
+  category: Scope limits
+  question: What's Joel Embiid's injury status today?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (injury news)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q84-p1
+  seed_id: Q84
+  type: paraphrase
+  category: Scope limits
+  question: How many points per game is Caitlin Clark averaging this year?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (WNBA)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q84-p2
+  seed_id: Q84
+  type: paraphrase
+  category: Scope limits
+  question: What are Caitlin Clark's stats this season?
+  gold:
+    path: refuse
+    expect: decline
+    note: 'answer type: Decline (WNBA)'
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - relative-time
+  - unreviewed
+  split: dev
+- id: Q85-p1
+  seed_id: Q85
+  type: paraphrase
+  category: Scope limits
+  question: How many threes did Wilt Chamberlain hit in his career?
+  gold:
+    path: stats
+    expect: not_tracked
+    note: 'answer type: No 3-point line in his career (introduced 1979-80).'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 76375
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 76375
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
+- id: Q85-p2
+  seed_id: Q85
+  type: paraphrase
+  category: Scope limits
+  question: What was Wilt Chamberlain's 3-point total?
+  gold:
+    path: stats
+    expect: not_tracked
+    note: 'answer type: No 3-point line in his career (introduced 1979-80).'
+    tool_call:
+      tool: get_career
+      args:
+        player_ids:
+        - 76375
+        metrics:
+        - threes_made
+    entities:
+      players:
+      - 76375
+  source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
+  critical: true
+  tags:
+  - paraphrase
+  - unreviewed
+  split: dev
