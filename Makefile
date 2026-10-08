@@ -21,8 +21,9 @@ backfill-status:
 eval:
 	@echo "eval: not implemented yet (task 2.15)"; exit 0
 
+# Local assistant (task 4.10). DB=<snapshot .duckdb> to use a file instead of current.
 serve:
-	@echo "serve: not implemented yet (task 4.10)"; exit 0
+	$(UV) run python -m app.cli $(if $(DB),--db $(DB)) $(if $(SHOTS),--shots $(SHOTS))
 
 test:
 	$(UV) run pytest -m "not network"
