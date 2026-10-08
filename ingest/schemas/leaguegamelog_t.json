@@ -1,0 +1,271 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "leaguegamelog_t",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "LeagueGameLog"
+       },
+       "headers": {
+        "const": [
+         "SEASON_ID",
+         "TEAM_ID",
+         "TEAM_ABBREVIATION",
+         "TEAM_NAME",
+         "GAME_ID",
+         "GAME_DATE",
+         "MATCHUP",
+         "WL",
+         "MIN",
+         "FGM",
+         "FGA",
+         "FG_PCT",
+         "FG3M",
+         "FG3A",
+         "FG3_PCT",
+         "FTM",
+         "FTA",
+         "FT_PCT",
+         "OREB",
+         "DREB",
+         "REB",
+         "AST",
+         "STL",
+         "BLK",
+         "TOV",
+         "PF",
+         "PTS",
+         "PLUS_MINUS",
+         "VIDEO_AVAILABLE"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 29,
+         "maxItems": 29,
+         "prefixItems": [
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "SEASON_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_ABBREVIATION"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_NAME"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "GAME_ID"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "GAME_DATE"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "MATCHUP"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "WL"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MIN"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3M"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3A"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FT_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "STL"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "BLK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TOV"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PF"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PTS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PLUS_MINUS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "VIDEO_AVAILABLE"
+          }
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

@@ -24,4 +24,3 @@ transform/.user.yml
 .env
 *.duckdb
 *.duckdb.wal
-!tests/fixtures/nba_fixture.duckdb

@@ -1,0 +1,40 @@
+# Task 1.9. Builds staging and marts into a NEW snapshot file (NBA_SNAPSHOT_PATH), never the live one.
+name: nba
+version: "1.0.0"
+config-version: 2
+profile: nba
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: target
+clean-targets: [target, dbt_packages]
+
+vars:
+  # As-of cutoff (task 1.28): keep only rows on or before this date. null = no cutoff.
+  as_of: null
+  # One-season unit-test fixture (task 1.27): careers hold only that season.
+  fixture: false
+
+models:
+  nba:
+    staging:
+      +schema: staging
+      +materialized: table
+    marts:
+      +schema: marts
+      +materialized: table
+    semantic:
+      +schema: semantic
+      +materialized: view
+
+seeds:
+  nba:
+    +schema: seeds
+    known_boxscore_gaps:
+      +column_types: {game_id: varchar, team_id: integer}
+    tiebreaker_games:
+      +column_types: {game_id: varchar}
+    records_curated:
+      +column_types: {valid_from: varchar, value: varchar, team_number: varchar}

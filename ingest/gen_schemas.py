@@ -39,7 +39,7 @@ SAMPLES: dict[str, list[tuple[str | None, dict[str, Any]]]] = {
         ("2024-25", {"season": "2024-25", "season_type_all_star": RS}),
         ("2024-25", {"season": "2024-25", "season_type_all_star": PO}),
     ],
-    "commonallplayers": [(None, {})],
+    "commonallplayers": [(None, {"season": "2025-26"})],
     "commonplayerinfo": [(None, {"player_id": 2544}), (None, {"player_id": 76375})],
     "playercareerstats": [
         (None, {"player_id": 2544}),
@@ -68,7 +68,7 @@ SAMPLES: dict[str, list[tuple[str | None, dict[str, Any]]]] = {
         ),
         (
             "2024-25",
-            {"team_id": 1610612742, "season_nullable": "2024-25", "season_type_all_star": PO},
+            {"team_id": 1610612760, "season_nullable": "2024-25", "season_type_all_star": PO},
         ),
     ],
 }

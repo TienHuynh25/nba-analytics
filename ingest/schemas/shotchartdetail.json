@@ -1,0 +1,232 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "shotchartdetail",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "Shot_Chart_Detail"
+       },
+       "headers": {
+        "const": [
+         "GRID_TYPE",
+         "GAME_ID",
+         "GAME_EVENT_ID",
+         "PLAYER_ID",
+         "PLAYER_NAME",
+         "TEAM_ID",
+         "TEAM_NAME",
+         "PERIOD",
+         "MINUTES_REMAINING",
+         "SECONDS_REMAINING",
+         "EVENT_TYPE",
+         "ACTION_TYPE",
+         "SHOT_TYPE",
+         "SHOT_ZONE_BASIC",
+         "SHOT_ZONE_AREA",
+         "SHOT_ZONE_RANGE",
+         "SHOT_DISTANCE",
+         "LOC_X",
+         "LOC_Y",
+         "SHOT_ATTEMPTED_FLAG",
+         "SHOT_MADE_FLAG",
+         "GAME_DATE",
+         "HTM",
+         "VTM"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 24,
+         "maxItems": 24,
+         "prefixItems": [
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "GRID_TYPE"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "GAME_ID"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GAME_EVENT_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "PLAYER_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "PLAYER_NAME"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_NAME"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PERIOD"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MINUTES_REMAINING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "SECONDS_REMAINING"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "EVENT_TYPE"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "ACTION_TYPE"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SHOT_TYPE"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SHOT_ZONE_BASIC"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SHOT_ZONE_AREA"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "SHOT_ZONE_RANGE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "SHOT_DISTANCE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "LOC_X"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "LOC_Y"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "SHOT_ATTEMPTED_FLAG"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "SHOT_MADE_FLAG"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "GAME_DATE"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "HTM"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "VTM"
+          }
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

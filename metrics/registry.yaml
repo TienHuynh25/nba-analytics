@@ -1,0 +1,693 @@
+# Metric registry (task 1.22, starter). The one definition of every metric.
+# Read by tools, semantic views, schema/glossary cards, the numeric verifier and the eval scorer.
+#
+# `sql` is an aggregate over the rows of `base` (see metrics/schema.py), so one expression serves
+# a season row, a career (all season rows), a stint and a league season.
+# `filter` narrows base rows first (shots by zone, awards by name).
+# Percentages are stored as fractions and displayed x100 (`display: percent`).
+# Changing a formula here requires recomputing gold values in eval/cases.yaml.
+
+version: 0.3.0
+
+qualifications:
+  - name: per_game_leader
+    description: >-
+      League leaders in per-game stats: at least 70% of team games (58 in an 82-game season), or
+      fewer games if the player's total divided by that minimum would still lead.
+    eras:
+      - from_season: "2013-14"
+        min_games_pct: 0.70
+        would_still_lead: true
+        confirmed: true
+        source: spec v3 (NBA.com league-leader rule)
+  - name: per_game_leader_playoffs
+    description: Playoff per-game leaders need 70% of the team's playoff games (owner rule, 0005).
+    season_type: Playoffs
+    eras:
+      - from_season: "1946-47"
+        min_games_pct: 0.70
+        confirmed: true
+        source: docs/decisions/0005-v3-resolutions.md
+  - name: fg3_pct_leader
+    description: 3-point percentage leaders need at least 82 made 3-pointers.
+    eras:
+      - from_season: "2013-14"
+        min_made: 82
+        min_made_stat: threes_made
+        confirmed: true
+        source: spec v3 gold rule Q17 (NBA.com)
+  - name: fg_pct_leader
+    description: Field goal percentage leaders need at least 300 made field goals.
+    eras:
+      - from_season: "2013-14"
+        min_made: 300
+        min_made_stat: field_goals_made
+        confirmed: false
+        source: NBA.com league leaders (to confirm in 3.2)
+  - name: ft_pct_leader
+    description: Free throw percentage leaders need at least 125 made free throws.
+    eras:
+      - from_season: "2013-14"
+        min_made: 125
+        min_made_stat: free_throws_made
+        confirmed: false
+        source: NBA.com league leaders (to confirm in 3.2)
+  - name: career_per_game
+    description: >-
+      Career per-game leaders (regular season): at least 400 games or 10,000 points.
+    eras:
+      - from_season: "1946-47"
+        min_career_games: 400
+        min_career_total: 10000
+        min_career_total_stat: points
+        confirmed: false
+        source: NBA record book convention (Q37; confirm against NBA.com all-time leaders)
+
+metrics:
+  # ---- player counting stats (season totals; careers sum season total rows) -------------------
+  - name: games_played
+    label: Games played
+    description: Games in which the player appeared.
+    formula: GP
+    base: player_season
+    sql: sum(gp)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [gp, games, games played]
+  - name: games_started
+    label: Games started
+    description: Games the player started.
+    formula: GS
+    base: player_season
+    sql: sum(gs)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [gs]
+    aliases: [gs, starts]
+  - name: points
+    label: Points
+    description: Total points scored.
+    formula: PTS
+    base: player_season
+    sql: sum(pts)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [pts, total points, career points]
+  - name: rebounds
+    label: Rebounds
+    description: Total rebounds (offensive plus defensive).
+    formula: REB
+    base: player_season
+    sql: sum(reb)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [reb]
+    aliases: [reb, boards, total rebounds, career rebounds]
+  - name: assists
+    label: Assists
+    description: Total assists.
+    formula: AST
+    base: player_season
+    sql: sum(ast)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [ast, dimes, total assists, career assists]
+  - name: steals
+    label: Steals
+    description: Total steals.
+    formula: STL
+    base: player_season
+    sql: sum(stl)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [stl]
+    aliases: [stl, total steals]
+  - name: blocks
+    label: Blocks
+    description: Total blocked shots.
+    formula: BLK
+    base: player_season
+    sql: sum(blk)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [blk]
+    aliases: [blk, blocked shots, total blocks, career blocks]
+  - name: turnovers
+    label: Turnovers
+    description: Total turnovers.
+    formula: TOV
+    base: player_season
+    sql: sum(tov)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [tov]
+    aliases: [tov, to]
+  - name: minutes
+    label: Minutes
+    description: Total minutes played.
+    formula: MIN
+    base: player_season
+    sql: sum(minutes)
+    grains: [player_season, player_career, player_stint]
+    unit: minutes
+    rounding: {decimals: 0}
+    requires: [minutes]
+    aliases: [min, total minutes]
+  - name: field_goals_made
+    label: Field goals made
+    description: Total field goals made.
+    formula: FGM
+    base: player_season
+    sql: sum(fgm)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [fgm]
+  - name: threes_made
+    label: 3-pointers made
+    description: Total 3-point field goals made.
+    formula: 3PM
+    base: player_season
+    sql: sum(fg3m)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [fg3m]
+    aliases: [3pm, fg3m, threes, 3-pointers, three pointers made, 3s made, triples]
+  - name: threes_attempted
+    label: 3-point attempts
+    description: Total 3-point field goal attempts.
+    formula: 3PA
+    base: player_season
+    sql: sum(fg3a)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [fg3a]
+    aliases: [3pa, fg3a]
+  - name: free_throws_made
+    label: Free throws made
+    description: Total free throws made.
+    formula: FTM
+    base: player_season
+    sql: sum(ftm)
+    grains: [player_season, player_career, player_stint]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [ftm]
+
+  # ---- player per-game and rate stats -----------------------------------------------------------
+  - name: points_per_game
+    label: Points per game
+    description: Points divided by games played.
+    formula: PTS / GP
+    base: player_season
+    sql: sum(pts) / nullif(sum(gp), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: per_game
+    rounding: {decimals: 1}
+    qualification: per_game_leader
+    per_game_of: points
+    aliases: [ppg, scoring, scoring average, points a game, pts per game]
+  - name: rebounds_per_game
+    label: Rebounds per game
+    description: Rebounds divided by games played.
+    formula: REB / GP
+    base: player_season
+    sql: sum(reb) / nullif(sum(gp), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: per_game
+    rounding: {decimals: 1}
+    qualification: per_game_leader
+    per_game_of: rebounds
+    requires: [reb]
+    aliases: [rpg, rebounding, rebounds a game]
+  - name: assists_per_game
+    label: Assists per game
+    description: Assists divided by games played.
+    formula: AST / GP
+    base: player_season
+    sql: sum(ast) / nullif(sum(gp), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: per_game
+    rounding: {decimals: 1}
+    qualification: per_game_leader
+    per_game_of: assists
+    aliases: [apg, assists a game]
+  - name: steals_per_game
+    label: Steals per game
+    description: Steals divided by games played.
+    formula: STL / GP
+    base: player_season
+    sql: sum(stl) / nullif(sum(gp), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: per_game
+    rounding: {decimals: 1}
+    qualification: per_game_leader
+    per_game_of: steals
+    requires: [stl]
+    aliases: [spg, steals a game]
+  - name: blocks_per_game
+    label: Blocks per game
+    description: Blocks divided by games played.
+    formula: BLK / GP
+    base: player_season
+    sql: sum(blk) / nullif(sum(gp), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: per_game
+    rounding: {decimals: 1}
+    qualification: per_game_leader
+    per_game_of: blocks
+    requires: [blk]
+    aliases: [bpg, blocks a game]
+  - name: minutes_per_game
+    label: Minutes per game
+    description: Minutes divided by games played.
+    formula: MIN / GP
+    base: player_season
+    sql: sum(minutes) / nullif(sum(gp), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: per_game
+    rounding: {decimals: 1}
+    qualification: per_game_leader
+    per_game_of: minutes
+    requires: [minutes]
+    aliases: [mpg, minutes a game]
+  - name: field_goal_pct
+    label: Field goal percentage
+    description: Field goals made divided by field goals attempted.
+    formula: FGM / FGA
+    base: player_season
+    sql: sum(fgm) / nullif(sum(fga), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    qualification: fg_pct_leader
+    aliases: [fg%, fg pct, field goal percentage, shooting percentage]
+  - name: three_point_pct
+    label: 3-point percentage
+    description: 3-pointers made divided by 3-point attempts.
+    formula: 3PM / 3PA
+    base: player_season
+    sql: sum(fg3m) / nullif(sum(fg3a), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    qualification: fg3_pct_leader
+    requires: [fg3m, fg3a]
+    aliases: [3p%, 3pt%, 3-point percentage, three point percentage, 3pt percentage, three-point pct]
+  - name: free_throw_pct
+    label: Free throw percentage
+    description: Free throws made divided by free throws attempted.
+    formula: FTM / FTA
+    base: player_season
+    sql: sum(ftm) / nullif(sum(fta), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    qualification: ft_pct_leader
+    aliases: [ft%, ft pct, free throw percentage]
+  - name: true_shooting_pct
+    label: True shooting percentage
+    description: >-
+      Scoring efficiency that counts 3-pointers and free throws: points divided by twice the
+      true shooting attempts, where each free throw attempt counts as 0.44 of a possession.
+    formula: PTS / (2 * (FGA + 0.44 * FTA))
+    base: player_season
+    sql: sum(pts) / nullif(2 * (sum(fga) + 0.44 * sum(fta)), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    qualification: per_game_leader
+    aliases: [ts%, ts pct, true shooting, true shooting percentage]
+    caveats: >-
+      Uses the per-game leader games minimum for "qualified" lists (Q71), since NBA.com lists no
+      separate TS% minimum. Checked against NBA.com's published TS% in task 3.2.
+  - name: effective_fg_pct
+    label: Effective field goal percentage
+    description: Field goal percentage that counts a made 3-pointer as 1.5 field goals.
+    formula: (FGM + 0.5 * 3PM) / FGA
+    base: player_season
+    sql: (sum(fgm) + 0.5 * sum(fg3m)) / nullif(sum(fga), 0)
+    grains: [player_season, player_career, player_stint]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    qualification: fg_pct_leader
+    requires: [fg3m]
+    aliases: [efg%, efg, effective field goal percentage]
+  - name: usage_rate
+    label: Usage rate
+    description: >-
+      Share of team plays a player used while on the floor (field goal attempts, free throw
+      trips and turnovers), as published by NBA.com.
+    formula: 100 * ((FGA + 0.44 * FTA + TOV) * (Team MIN / 5)) / (MIN * (Team FGA + 0.44 * Team FTA + Team TOV))
+    base: player_advanced
+    sql: max(usg_pct)
+    grains: [player_season]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    qualification: per_game_leader
+    requires: [advanced]
+    aliases: [usg%, usage, usage percentage, usg]
+    caveats: NBA.com's published value; season grain only (no career usage rate).
+
+  # ---- player game-log counts (box scores; complete from 1996-97, see ingest/ENDPOINTS.md) -----
+  - name: triple_doubles
+    label: Triple-doubles
+    description: Games with 10 or more in at least three of points, rebounds, assists, steals, blocks.
+    formula: count of games with >= 10 in three of PTS, REB, AST, STL, BLK
+    base: player_game
+    sql: >-
+      count(*) filter (where (coalesce(pts, 0) >= 10)::int + (coalesce(reb, 0) >= 10)::int
+      + (coalesce(ast, 0) >= 10)::int + (coalesce(stl, 0) >= 10)::int
+      + (coalesce(blk, 0) >= 10)::int >= 3)
+    grains: [player_season, player_career]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [triple doubles, triple-double, trip dubs]
+    caveats: >-
+      Counted from box scores, which are partial before 1996-97. Career counts for players active
+      before then come from the curated records table (G1).
+  - name: double_doubles
+    label: Double-doubles
+    description: Games with 10 or more in at least two of points, rebounds, assists, steals, blocks.
+    formula: count of games with >= 10 in two of PTS, REB, AST, STL, BLK
+    base: player_game
+    sql: >-
+      count(*) filter (where (coalesce(pts, 0) >= 10)::int + (coalesce(reb, 0) >= 10)::int
+      + (coalesce(ast, 0) >= 10)::int + (coalesce(stl, 0) >= 10)::int
+      + (coalesce(blk, 0) >= 10)::int >= 2)
+    grains: [player_season, player_career]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [double doubles, double-double]
+    caveats: Counted from box scores, which are partial before 1996-97.
+  - name: forty_point_games
+    label: 40-point games
+    description: Games in which the player scored 40 or more points.
+    formula: count of games with PTS >= 40
+    base: player_game
+    sql: count(*) filter (where pts >= 40)
+    grains: [player_season, player_career]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [40-point games, 40 point games, 40-pt games]
+  - name: plus_minus
+    label: Plus-minus
+    description: Team point differential while the player was on the floor, summed over games.
+    formula: sum of +/- over games
+    base: player_game
+    sql: sum(plus_minus)
+    grains: [player_season, player_career]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [plus_minus]
+    aliases: [+/-, plus minus, plus/minus]
+    caveats: Regular-season total by default (owner rule 0005, Q22); the answer names the measure.
+  - name: game_points
+    label: Points in a game
+    description: Points scored in one game.
+    formula: PTS
+    base: player_game
+    sql: sum(pts)
+    grains: [player_game]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [points scored, scored]
+
+  # ---- team ------------------------------------------------------------------------------------
+  - name: wins
+    label: Wins
+    description: Games won.
+    formula: W
+    base: team_season
+    sql: sum(wins)
+    grains: [team_season, team_all_time]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [w, victories]
+  - name: losses
+    label: Losses
+    description: Games lost.
+    formula: L
+    base: team_season
+    sql: sum(losses)
+    grains: [team_season, team_all_time]
+    unit: count
+    rounding: {decimals: 0}
+    higher_is_better: false
+    aliases: [l]
+  - name: win_pct
+    label: Win percentage
+    description: Wins divided by games played.
+    formula: W / GP
+    base: team_season
+    sql: sum(wins) / nullif(sum(gp), 0)
+    grains: [team_season, team_all_time]
+    unit: rate
+    rounding: {decimals: 3}
+    aliases: [winning percentage, win%, record]
+  - name: team_points_per_game
+    label: Team points per game
+    description: Points the team scored per game.
+    formula: Team PTS / GP
+    base: team_season
+    sql: sum(pts) / nullif(sum(gp), 0)
+    grains: [team_season, team_all_time]
+    unit: per_game
+    rounding: {decimals: 1}
+    aliases: [team ppg, team scoring, points per game (team)]
+  - name: opponent_points_per_game
+    label: Opponent points per game
+    description: Points the team allowed per game.
+    formula: Opp PTS / GP
+    base: team_season
+    sql: sum(opp_pts) / nullif(sum(gp), 0)
+    grains: [team_season, team_all_time]
+    unit: per_game
+    rounding: {decimals: 1}
+    higher_is_better: false
+    aliases: [opp ppg, points allowed per game]
+  - name: offensive_rating
+    label: Offensive rating
+    description: Points scored per 100 possessions, as published by NBA.com.
+    formula: 100 * PTS / possessions
+    base: team_season
+    sql: max(off_rating)
+    grains: [team_season]
+    unit: rating
+    rounding: {decimals: 1}
+    requires: [advanced]
+    aliases: [ortg, off rating, offensive efficiency]
+  - name: defensive_rating
+    label: Defensive rating
+    description: Points allowed per 100 possessions, as published by NBA.com.
+    formula: 100 * Opp PTS / possessions
+    base: team_season
+    sql: max(def_rating)
+    grains: [team_season]
+    unit: rating
+    rounding: {decimals: 1}
+    higher_is_better: false
+    requires: [advanced]
+    aliases: [drtg, def rating, defensive efficiency]
+  - name: net_rating
+    label: Net rating
+    description: Offensive rating minus defensive rating (point differential per 100 possessions).
+    formula: ORtg - DRtg
+    base: team_season
+    sql: max(net_rating)
+    grains: [team_season]
+    unit: rating
+    rounding: {decimals: 1}
+    requires: [advanced]
+    aliases: [nrtg, net rtg, point differential per 100]
+  - name: pace
+    label: Pace
+    description: Possessions per 48 minutes, as published by NBA.com.
+    formula: 48 * possessions / (team minutes / 5)
+    base: team_season
+    sql: max(pace)
+    grains: [team_season]
+    unit: rating
+    rounding: {decimals: 1}
+    requires: [advanced]
+    aliases: [possessions per game, tempo]
+  - name: home_wins
+    label: Home wins
+    description: Wins in home games (neutral-site games excluded).
+    formula: home W
+    base: team_season
+    sql: sum(home_wins)
+    grains: [team_season]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [wins at home]
+  - name: home_losses
+    label: Home losses
+    description: Losses in home games (neutral-site games excluded).
+    formula: home L
+    base: team_season
+    sql: sum(home_losses)
+    grains: [team_season]
+    unit: count
+    rounding: {decimals: 0}
+    higher_is_better: false
+    aliases: [losses at home]
+  - name: road_wins
+    label: Road wins
+    description: Wins in road games (neutral-site games excluded).
+    formula: road W
+    base: team_season
+    sql: sum(road_wins)
+    grains: [team_season]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [wins on the road, away wins]
+  - name: road_losses
+    label: Road losses
+    description: Losses in road games (neutral-site games excluded).
+    formula: road L
+    base: team_season
+    sql: sum(road_losses)
+    grains: [team_season]
+    unit: count
+    rounding: {decimals: 0}
+    higher_is_better: false
+    aliases: [losses on the road, away losses]
+  - name: championships
+    label: Championships
+    description: NBA titles won, counted by franchise.
+    formula: count of seasons as league champion
+    base: team_titles
+    sql: count(*)
+    grains: [team_all_time]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [titles, rings, nba titles, nba championships]
+
+  # ---- league-wide (trends) --------------------------------------------------------------------
+  - name: league_points_per_game
+    label: League points per game
+    description: Average points scored per team per game across the league.
+    formula: sum of team PTS / sum of team GP
+    base: league_season
+    sql: sum(pts) / nullif(sum(gp), 0)
+    grains: [league_season]
+    unit: per_game
+    rounding: {decimals: 1}
+    aliases: [league scoring, league-wide scoring, league average points]
+  - name: league_three_point_attempt_rate
+    label: League 3-point attempt rate
+    description: Share of all field goal attempts that were 3-pointers, league-wide.
+    formula: sum of 3PA / sum of FGA
+    base: league_season
+    sql: sum(fg3a) / nullif(sum(fga), 0)
+    grains: [league_season]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    requires: [fg3a]
+    aliases: [3-point attempt rate, 3par, three-point rate, 3pa rate]
+
+  # ---- shooting (shot charts, 1996-97 on) --------------------------------------------------------
+  - name: shot_attempts
+    label: Field goal attempts (shot chart)
+    description: Shot attempts, optionally filtered by zone or shot type.
+    formula: count of shots
+    base: shots
+    sql: count(*)
+    grains: [player_season, player_career]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [shots]
+    aliases: [shots taken]
+  - name: shot_fg_pct
+    label: Field goal percentage (shot chart)
+    description: Share of shot attempts made, optionally filtered by zone or shot type.
+    formula: made shots / shots
+    base: shots
+    sql: count(*) filter (where made) / nullif(count(*), 0)
+    grains: [player_season, player_career]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    requires: [shots]
+    aliases: [zone fg%]
+  - name: restricted_area_fg_pct
+    label: Restricted-area field goal percentage
+    description: Field goal percentage on shots in the restricted area (within 4 feet of the rim).
+    formula: made / attempts, zone = Restricted Area
+    base: shots
+    filter: zone = 'Restricted Area'
+    sql: count(*) filter (where made) / nullif(count(*), 0)
+    grains: [player_season, player_career]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    requires: [shots]
+    aliases: [restricted area fg%, fg% in the restricted area, at the rim fg%]
+  - name: corner_threes_made
+    label: Corner 3-pointers made
+    description: Made 3-pointers from either corner.
+    formula: made shots in Left Corner 3 or Right Corner 3
+    base: shots
+    filter: zone in ('Left Corner 3', 'Right Corner 3')
+    sql: count(*) filter (where made)
+    grains: [player_season, player_career]
+    unit: count
+    rounding: {decimals: 0}
+    requires: [shots]
+    aliases: [corner 3s, corner threes, corner 3s made]
+  - name: step_back_three_pct
+    label: Step-back 3-point percentage
+    description: 3-point percentage on step-back jump shots.
+    formula: made / attempts, 3PT shots with a step-back action type
+    base: shots
+    filter: shot_type = '3PT Field Goal' and action_type ilike 'step back%'
+    sql: count(*) filter (where made) / nullif(count(*), 0)
+    grains: [player_season, player_career]
+    unit: percent
+    rounding: {decimals: 1, display: percent}
+    requires: [shots]
+    aliases: [step-back 3%, step back three percentage, stepback 3 pct]
+
+  # ---- awards and titles -------------------------------------------------------------------------
+  - name: mvp_awards
+    label: MVP awards
+    description: Regular-season Most Valuable Player awards.
+    formula: count of NBA Most Valuable Player awards
+    base: awards
+    filter: award = 'NBA Most Valuable Player'
+    sql: count(*)
+    grains: [player_career]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [mvps, mvp awards, most valuable player awards]
+  - name: all_star_selections
+    label: All-Star selections
+    description: Selections to the NBA All-Star Game.
+    formula: count of NBA All-Star awards
+    base: awards
+    filter: award = 'NBA All-Star'
+    sql: count(*)
+    grains: [player_career]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [all-star appearances, all-star selections, all stars]
+  - name: player_championships
+    label: Championships (player)
+    description: >-
+      Seasons in which the player appeared in at least one playoff game for the champion.
+    formula: count of champion seasons with >= 1 playoff game for the champion
+    base: player_titles
+    sql: count(*)
+    grains: [player_career]
+    unit: count
+    rounding: {decimals: 0}
+    aliases: [rings (player), player titles]

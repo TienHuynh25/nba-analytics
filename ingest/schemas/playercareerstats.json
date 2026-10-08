@@ -1,0 +1,937 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "playercareerstats",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "SeasonTotalsRegularSeason"
+       },
+       "headers": {
+        "const": [
+         "PLAYER_ID",
+         "SEASON_ID",
+         "LEAGUE_ID",
+         "TEAM_ID",
+         "TEAM_ABBREVIATION",
+         "PLAYER_AGE",
+         "GP",
+         "GS",
+         "MIN",
+         "FGM",
+         "FGA",
+         "FG_PCT",
+         "FG3M",
+         "FG3A",
+         "FG3_PCT",
+         "FTM",
+         "FTA",
+         "FT_PCT",
+         "OREB",
+         "DREB",
+         "REB",
+         "AST",
+         "STL",
+         "BLK",
+         "TOV",
+         "PF",
+         "PTS"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 27,
+         "maxItems": 27,
+         "prefixItems": [
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "PLAYER_ID"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "SEASON_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "LEAGUE_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_ABBREVIATION"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PLAYER_AGE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GP"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MIN"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3M"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3A"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FT_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "STL"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "BLK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TOV"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PF"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PTS"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "CareerTotalsRegularSeason"
+       },
+       "headers": {
+        "const": [
+         "PLAYER_ID",
+         "LEAGUE_ID",
+         "TEAM_ID",
+         "GP",
+         "GS",
+         "MIN",
+         "FGM",
+         "FGA",
+         "FG_PCT",
+         "FG3M",
+         "FG3A",
+         "FG3_PCT",
+         "FTM",
+         "FTA",
+         "FT_PCT",
+         "OREB",
+         "DREB",
+         "REB",
+         "AST",
+         "STL",
+         "BLK",
+         "TOV",
+         "PF",
+         "PTS"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 24,
+         "maxItems": 24,
+         "prefixItems": [
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "PLAYER_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "LEAGUE_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GP"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MIN"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3M"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3A"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FT_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "STL"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "BLK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TOV"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PF"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PTS"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "SeasonTotalsPostSeason"
+       },
+       "headers": {
+        "const": [
+         "PLAYER_ID",
+         "SEASON_ID",
+         "LEAGUE_ID",
+         "TEAM_ID",
+         "TEAM_ABBREVIATION",
+         "PLAYER_AGE",
+         "GP",
+         "GS",
+         "MIN",
+         "FGM",
+         "FGA",
+         "FG_PCT",
+         "FG3M",
+         "FG3A",
+         "FG3_PCT",
+         "FTM",
+         "FTA",
+         "FT_PCT",
+         "OREB",
+         "DREB",
+         "REB",
+         "AST",
+         "STL",
+         "BLK",
+         "TOV",
+         "PF",
+         "PTS"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 27,
+         "maxItems": 27,
+         "prefixItems": [
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "PLAYER_ID"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "SEASON_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "LEAGUE_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_ABBREVIATION"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PLAYER_AGE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GP"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MIN"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3M"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3A"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FT_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "STL"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "BLK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TOV"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PF"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PTS"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "CareerTotalsPostSeason"
+       },
+       "headers": {
+        "const": [
+         "PLAYER_ID",
+         "LEAGUE_ID",
+         "TEAM_ID",
+         "GP",
+         "GS",
+         "MIN",
+         "FGM",
+         "FGA",
+         "FG_PCT",
+         "FG3M",
+         "FG3A",
+         "FG3_PCT",
+         "FTM",
+         "FTA",
+         "FT_PCT",
+         "OREB",
+         "DREB",
+         "REB",
+         "AST",
+         "STL",
+         "BLK",
+         "TOV",
+         "PF",
+         "PTS"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 24,
+         "maxItems": 24,
+         "prefixItems": [
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "PLAYER_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "LEAGUE_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GP"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MIN"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3M"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3A"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FT_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "STL"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "BLK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TOV"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PF"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PTS"
+          }
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}
