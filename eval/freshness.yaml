@@ -1,0 +1,67 @@
+# Freshness smoke test (task 2.21; run after every nightly refresh in task 5.2).
+# These check the PIPELINE on the live snapshot, not the model. Each check is one SELECT on the
+# semantic views. {as_of_date}, {latest_game_date} and {season} come from the snapshot manifest.
+# `in_season_only` checks are skipped from July through September.
+version: 0.1.0
+cases:
+  - id: F01
+    description: The latest game is no older than 3 days before as_of_date (in season).
+    sql: select max(game_date) >= date '{as_of_date}' - interval 3 day from semantic.games
+    expect: true
+    in_season_only: true
+  - id: F02
+    description: The manifest's latest game date equals the newest game in the snapshot.
+    sql: select max(game_date) = date '{latest_game_date}' from semantic.games
+    expect: true
+  - id: F03
+    description: Every game of the latest game date has a box score for both teams.
+    sql: >-
+      select count(*) = 0 from semantic.games g
+      where g.game_date = date '{latest_game_date}'
+        and (select count(distinct team_id) from semantic.player_game_log p
+             where p.game_id = g.game_id) < 2
+    expect: true
+  - id: F04
+    description: Current-season standings have 30 teams split 15/15 by conference.
+    sql: >-
+      select count(*) = 30 and count(*) filter (where conference = 'East') = 15
+      from semantic.team_season_stats where season = '{season}' and season_type = 'Regular Season'
+    expect: true
+    in_season_only: true
+  - id: F05
+    description: Wins equal losses league-wide this regular season (every game has one of each).
+    sql: >-
+      select sum(wins) = sum(losses) from semantic.team_season_stats
+      where season = '{season}' and season_type = 'Regular Season'
+    expect: true
+    in_season_only: true
+  - id: F06
+    description: The current season's scoring leader has a non-null points per game.
+    sql: >-
+      select count(*) > 0 from semantic.player_season_stats
+      where season = '{season}' and season_type = 'Regular Season' and points_per_game is not null
+    expect: true
+    in_season_only: true
+  - id: F07
+    description: No game is dated after as_of_date.
+    sql: select count(*) = 0 from semantic.games where game_date > date '{as_of_date}'
+    expect: true
+  - id: F08
+    description: Shots exist for the latest game date's games (shot charts landed).
+    sql: >-
+      select count(*) > 0 from semantic.shots where game_date = date '{latest_game_date}'
+    expect: true
+    in_season_only: true
+  - id: F09
+    description: Each team's current-season games played is within 3 of the league median.
+    sql: >-
+      select max(abs(gp - m)) <= 3 from semantic.team_season_stats,
+        (select median(gp) as m from semantic.team_season_stats
+         where season = '{season}' and season_type = 'Regular Season')
+      where season = '{season}' and season_type = 'Regular Season'
+    expect: true
+    in_season_only: true
+  - id: F10
+    description: The registry version in the snapshot matches the repo's registry.
+    sql: select registry_version from semantic.registry_info
+    expect: registry_version

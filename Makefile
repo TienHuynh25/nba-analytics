@@ -18,8 +18,11 @@ backfill:
 backfill-status:
 	$(UV) run python -m ingest.backfill --status
 
+# Eval harness (tasks 2.15-2.19): dev split, temperature 0, cache off. SPLIT=heldout only at gates.
+SPLIT ?= dev
+ANSWERER ?= stub
 eval:
-	@echo "eval: not implemented yet (task 2.15)"; exit 0
+	$(UV) run pytest eval/harness -q -p no:cacheprovider --split $(SPLIT) --answerer $(ANSWERER) $(if $(ACCEPT),--accept)
 
 # Local assistant (task 4.10). DB=<snapshot .duckdb> to use a file instead of current.
 serve:
