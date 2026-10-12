@@ -20,450 +20,2608 @@
       "properties": {
        "name": {
         "const": "Standings"
-       },
-       "headers": {
-        "type": "array",
-        "allOf": [
-         {
-          "contains": {
-           "const": "LeagueID"
-          }
-         },
-         {
-          "contains": {
-           "const": "SeasonID"
-          }
-         },
-         {
-          "contains": {
-           "const": "TeamID"
-          }
-         },
-         {
-          "contains": {
-           "const": "TeamCity"
-          }
-         },
-         {
-          "contains": {
-           "const": "TeamName"
-          }
-         },
-         {
-          "contains": {
-           "const": "TeamSlug"
-          }
-         },
-         {
-          "contains": {
-           "const": "Conference"
-          }
-         },
-         {
-          "contains": {
-           "const": "ConferenceRecord"
-          }
-         },
-         {
-          "contains": {
-           "const": "PlayoffRank"
-          }
-         },
-         {
-          "contains": {
-           "const": "ClinchIndicator"
-          }
-         },
-         {
-          "contains": {
-           "const": "Division"
-          }
-         },
-         {
-          "contains": {
-           "const": "DivisionRecord"
-          }
-         },
-         {
-          "contains": {
-           "const": "DivisionRank"
-          }
-         },
-         {
-          "contains": {
-           "const": "WINS"
-          }
-         },
-         {
-          "contains": {
-           "const": "LOSSES"
-          }
-         },
-         {
-          "contains": {
-           "const": "WinPCT"
-          }
-         },
-         {
-          "contains": {
-           "const": "LeagueRank"
-          }
-         },
-         {
-          "contains": {
-           "const": "Record"
-          }
-         },
-         {
-          "contains": {
-           "const": "HOME"
-          }
-         },
-         {
-          "contains": {
-           "const": "ROAD"
-          }
-         },
-         {
-          "contains": {
-           "const": "L10"
-          }
-         },
-         {
-          "contains": {
-           "const": "Last10Home"
-          }
-         },
-         {
-          "contains": {
-           "const": "Last10Road"
-          }
-         },
-         {
-          "contains": {
-           "const": "OT"
-          }
-         },
-         {
-          "contains": {
-           "const": "ThreePTSOrLess"
-          }
-         },
-         {
-          "contains": {
-           "const": "TenPTSOrMore"
-          }
-         },
-         {
-          "contains": {
-           "const": "LongHomeStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "strLongHomeStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "LongRoadStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "strLongRoadStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "LongWinStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "LongLossStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "CurrentHomeStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "strCurrentHomeStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "CurrentRoadStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "strCurrentRoadStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "CurrentStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "strCurrentStreak"
-          }
-         },
-         {
-          "contains": {
-           "const": "ConferenceGamesBack"
-          }
-         },
-         {
-          "contains": {
-           "const": "DivisionGamesBack"
-          }
-         },
-         {
-          "contains": {
-           "const": "ClinchedConferenceTitle"
-          }
-         },
-         {
-          "contains": {
-           "const": "ClinchedDivisionTitle"
-          }
-         },
-         {
-          "contains": {
-           "const": "ClinchedPlayoffBirth"
-          }
-         },
-         {
-          "contains": {
-           "const": "ClinchedPlayIn"
-          }
-         },
-         {
-          "contains": {
-           "const": "EliminatedConference"
-          }
-         },
-         {
-          "contains": {
-           "const": "EliminatedDivision"
-          }
-         },
-         {
-          "contains": {
-           "const": "AheadAtHalf"
-          }
-         },
-         {
-          "contains": {
-           "const": "BehindAtHalf"
-          }
-         },
-         {
-          "contains": {
-           "const": "TiedAtHalf"
-          }
-         },
-         {
-          "contains": {
-           "const": "AheadAtThird"
-          }
-         },
-         {
-          "contains": {
-           "const": "BehindAtThird"
-          }
-         },
-         {
-          "contains": {
-           "const": "TiedAtThird"
-          }
-         },
-         {
-          "contains": {
-           "const": "Score100PTS"
-          }
-         },
-         {
-          "contains": {
-           "const": "OppScore100PTS"
-          }
-         },
-         {
-          "contains": {
-           "const": "OppOver500"
-          }
-         },
-         {
-          "contains": {
-           "const": "LeadInFGPCT"
-          }
-         },
-         {
-          "contains": {
-           "const": "LeadInReb"
-          }
-         },
-         {
-          "contains": {
-           "const": "FewerTurnovers"
-          }
-         },
-         {
-          "contains": {
-           "const": "PointsPG"
-          }
-         },
-         {
-          "contains": {
-           "const": "OppPointsPG"
-          }
-         },
-         {
-          "contains": {
-           "const": "DiffPointsPG"
-          }
-         },
-         {
-          "contains": {
-           "const": "vsEast"
-          }
-         },
-         {
-          "contains": {
-           "const": "vsAtlantic"
-          }
-         },
-         {
-          "contains": {
-           "const": "vsCentral"
-          }
-         },
-         {
-          "contains": {
-           "const": "vsWest"
-          }
-         },
-         {
-          "contains": {
-           "const": "vsPacific"
-          }
-         },
-         {
-          "contains": {
-           "const": "Jan"
-          }
-         },
-         {
-          "contains": {
-           "const": "Feb"
-          }
-         },
-         {
-          "contains": {
-           "const": "Mar"
-          }
-         },
-         {
-          "contains": {
-           "const": "Apr"
-          }
-         },
-         {
-          "contains": {
-           "const": "May"
-          }
-         },
-         {
-          "contains": {
-           "const": "Jun"
-          }
-         },
-         {
-          "contains": {
-           "const": "Jul"
-          }
-         },
-         {
-          "contains": {
-           "const": "Aug"
-          }
-         },
-         {
-          "contains": {
-           "const": "Sep"
-          }
-         },
-         {
-          "contains": {
-           "const": "Oct"
-          }
-         },
-         {
-          "contains": {
-           "const": "Nov"
-          }
-         },
-         {
-          "contains": {
-           "const": "Dec"
-          }
-         },
-         {
-          "contains": {
-           "const": "Score_80_Plus"
-          }
-         },
-         {
-          "contains": {
-           "const": "Opp_Score_80_Plus"
-          }
-         },
-         {
-          "contains": {
-           "const": "Score_Below_80"
-          }
-         },
-         {
-          "contains": {
-           "const": "Opp_Score_Below_80"
-          }
-         },
-         {
-          "contains": {
-           "const": "LeagueGamesBack"
-          }
-         },
-         {
-          "contains": {
-           "const": "PlayoffSeeding"
-          }
-         },
-         {
-          "contains": {
-           "const": "ClinchedPostSeason"
-          }
-         },
-         {
-          "contains": {
-           "const": "NEUTRAL"
+       }
+      },
+      "anyOf": [
+       {
+        "properties": {
+         "headers": {
+          "const": [
+           "LeagueID",
+           "SeasonID",
+           "TeamID",
+           "TeamCity",
+           "TeamName",
+           "TeamSlug",
+           "Conference",
+           "ConferenceRecord",
+           "PlayoffRank",
+           "ClinchIndicator",
+           "Division",
+           "DivisionRecord",
+           "DivisionRank",
+           "WINS",
+           "LOSSES",
+           "WinPCT",
+           "LeagueRank",
+           "Record",
+           "HOME",
+           "ROAD",
+           "L10",
+           "Last10Home",
+           "Last10Road",
+           "OT",
+           "ThreePTSOrLess",
+           "TenPTSOrMore",
+           "LongHomeStreak",
+           "strLongHomeStreak",
+           "LongRoadStreak",
+           "strLongRoadStreak",
+           "LongWinStreak",
+           "LongLossStreak",
+           "CurrentHomeStreak",
+           "strCurrentHomeStreak",
+           "CurrentRoadStreak",
+           "strCurrentRoadStreak",
+           "CurrentStreak",
+           "strCurrentStreak",
+           "ConferenceGamesBack",
+           "DivisionGamesBack",
+           "ClinchedConferenceTitle",
+           "ClinchedDivisionTitle",
+           "ClinchedPlayoffBirth",
+           "ClinchedPlayIn",
+           "EliminatedConference",
+           "EliminatedDivision",
+           "AheadAtHalf",
+           "BehindAtHalf",
+           "TiedAtHalf",
+           "AheadAtThird",
+           "BehindAtThird",
+           "TiedAtThird",
+           "Score100PTS",
+           "OppScore100PTS",
+           "OppOver500",
+           "LeadInFGPCT",
+           "LeadInReb",
+           "FewerTurnovers",
+           "PointsPG",
+           "OppPointsPG",
+           "DiffPointsPG",
+           "vsEast",
+           "vsAtlantic",
+           "vsCentral",
+           "vsWest",
+           "vsPacific",
+           "vsMidwest",
+           "Jan",
+           "Feb",
+           "Mar",
+           "Apr",
+           "May",
+           "Jun",
+           "Jul",
+           "Aug",
+           "Sep",
+           "Oct",
+           "Nov",
+           "Dec",
+           "Score_80_Plus",
+           "Opp_Score_80_Plus",
+           "Score_Below_80",
+           "Opp_Score_Below_80",
+           "LeagueGamesBack",
+           "PlayoffSeeding",
+           "ClinchedPostSeason",
+           "NEUTRAL"
+          ]
+         },
+         "rowSet": {
+          "type": "array",
+          "items": {
+           "type": "array",
+           "minItems": 87,
+           "maxItems": 87,
+           "prefixItems": [
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LeagueID"
+            },
+            {
+             "type": [
+              "string"
+             ],
+             "$comment": "SeasonID"
+            },
+            {
+             "type": [
+              "number"
+             ],
+             "$comment": "TeamID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamCity"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamName"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamSlug"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Conference"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ConferenceRecord"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "PlayoffRank"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ClinchIndicator"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Division"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DivisionRecord"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DivisionRank"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "WINS"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LOSSES"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "WinPCT"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LeagueRank"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Record"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "HOME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ROAD"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "L10"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Last10Home"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Last10Road"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "OT"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "ThreePTSOrLess"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "TenPTSOrMore"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LongHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "strLongHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LongRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "strLongRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LongWinStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LongLossStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "CurrentHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "strCurrentHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "CurrentRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "strCurrentRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "CurrentStreak"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "strCurrentStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ConferenceGamesBack"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DivisionGamesBack"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "ClinchedConferenceTitle"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "ClinchedDivisionTitle"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "ClinchedPlayoffBirth"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedPlayIn"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "EliminatedConference"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "EliminatedDivision"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "AheadAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "BehindAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "TiedAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "AheadAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "BehindAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "TiedAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Score100PTS"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "OppScore100PTS"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "OppOver500"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LeadInFGPCT"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LeadInReb"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "FewerTurnovers"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "PointsPG"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "OppPointsPG"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DiffPointsPG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsEast"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsAtlantic"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsCentral"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsWest"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsPacific"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsMidwest"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Jan"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Feb"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Mar"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Apr"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "May"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Jun"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Jul"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Aug"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Sep"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Oct"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Nov"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Dec"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Score_80_Plus"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Opp_Score_80_Plus"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Score_Below_80"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Opp_Score_Below_80"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LeagueGamesBack"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "PlayoffSeeding"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "ClinchedPostSeason"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "NEUTRAL"
+            }
+           ]
           }
          }
-        ]
+        }
        },
-       "rowSet": {
-        "type": "array",
-        "items": {
-         "type": "array",
-         "minItems": 86
+       {
+        "properties": {
+         "headers": {
+          "const": [
+           "LeagueID",
+           "SeasonID",
+           "TeamID",
+           "TeamCity",
+           "TeamName",
+           "TeamSlug",
+           "Conference",
+           "ConferenceRecord",
+           "PlayoffRank",
+           "ClinchIndicator",
+           "Division",
+           "DivisionRecord",
+           "DivisionRank",
+           "WINS",
+           "LOSSES",
+           "WinPCT",
+           "LeagueRank",
+           "Record",
+           "HOME",
+           "ROAD",
+           "L10",
+           "Last10Home",
+           "Last10Road",
+           "OT",
+           "ThreePTSOrLess",
+           "TenPTSOrMore",
+           "LongHomeStreak",
+           "strLongHomeStreak",
+           "LongRoadStreak",
+           "strLongRoadStreak",
+           "LongWinStreak",
+           "LongLossStreak",
+           "CurrentHomeStreak",
+           "strCurrentHomeStreak",
+           "CurrentRoadStreak",
+           "strCurrentRoadStreak",
+           "CurrentStreak",
+           "strCurrentStreak",
+           "ConferenceGamesBack",
+           "DivisionGamesBack",
+           "ClinchedConferenceTitle",
+           "ClinchedDivisionTitle",
+           "ClinchedPlayoffBirth",
+           "ClinchedPlayIn",
+           "EliminatedConference",
+           "EliminatedDivision",
+           "AheadAtHalf",
+           "BehindAtHalf",
+           "TiedAtHalf",
+           "AheadAtThird",
+           "BehindAtThird",
+           "TiedAtThird",
+           "Score100PTS",
+           "OppScore100PTS",
+           "OppOver500",
+           "LeadInFGPCT",
+           "LeadInReb",
+           "FewerTurnovers",
+           "PointsPG",
+           "OppPointsPG",
+           "DiffPointsPG",
+           "vsEast",
+           "vsAtlantic",
+           "vsCentral",
+           "vsSoutheast",
+           "vsWest",
+           "vsNorthwest",
+           "vsPacific",
+           "vsSouthwest",
+           "Jan",
+           "Feb",
+           "Mar",
+           "Apr",
+           "May",
+           "Jun",
+           "Jul",
+           "Aug",
+           "Sep",
+           "Oct",
+           "Nov",
+           "Dec",
+           "ReturnToPlay_East_PI_Flag",
+           "ReturnToPlay_West_PI_Flag",
+           "ReturnToPlay_Already_Eliminated",
+           "Seeding_Game_1_Outcome",
+           "Seeding_Game_2_Outcome",
+           "Seeding_Game_3_Outcome",
+           "Seeding_Game_4_Outcome",
+           "Seeding_Game_5_Outcome",
+           "Seeding_Game_6_Outcome",
+           "Seeding_Game_7_Outcome",
+           "Seeding_Game_8_Outcome",
+           "Seeding_Game_1_ID",
+           "Seeding_Game_2_ID",
+           "Seeding_Game_3_ID",
+           "Seeding_Game_4_ID",
+           "Seeding_Game_5_ID",
+           "Seeding_Game_6_ID",
+           "Seeding_Game_7_ID",
+           "Seeding_Game_8_ID",
+           "Seeding_Game_1_Opponent",
+           "Seeding_Game_2_Opponent",
+           "Seeding_Game_3_Opponent",
+           "Seeding_Game_4_Opponent",
+           "Seeding_Game_5_Opponent",
+           "Seeding_Game_6_Opponent",
+           "Seeding_Game_7_Opponent",
+           "Seeding_Game_8_Opponent",
+           "Seeding_Game_1_Label",
+           "Seeding_Game_2_Label",
+           "Seeding_Game_3_Label",
+           "Seeding_Game_4_Label",
+           "Seeding_Game_5_Label",
+           "Seeding_Game_6_Label",
+           "Seeding_Game_7_Label",
+           "Seeding_Game_8_Label",
+           "Score_80_Plus",
+           "Opp_Score_80_Plus",
+           "Score_Below_80",
+           "Opp_Score_Below_80",
+           "LeagueGamesBack",
+           "PlayoffSeeding",
+           "ClinchedPostSeason",
+           "NEUTRAL"
+          ]
+         },
+         "rowSet": {
+          "type": "array",
+          "items": {
+           "type": "array",
+           "minItems": 124,
+           "maxItems": 124,
+           "prefixItems": [
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LeagueID"
+            },
+            {
+             "type": [
+              "string"
+             ],
+             "$comment": "SeasonID"
+            },
+            {
+             "type": [
+              "number"
+             ],
+             "$comment": "TeamID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamCity"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamName"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamSlug"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Conference"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ConferenceRecord"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "PlayoffRank"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ClinchIndicator"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Division"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DivisionRecord"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DivisionRank"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "WINS"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LOSSES"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "WinPCT"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LeagueRank"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Record"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "HOME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ROAD"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "L10"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Last10Home"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Last10Road"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "OT"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ThreePTSOrLess"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TenPTSOrMore"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strLongHomeStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strLongRoadStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongWinStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongLossStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "CurrentHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strCurrentHomeStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "CurrentRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strCurrentRoadStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "CurrentStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strCurrentStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ConferenceGamesBack"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DivisionGamesBack"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedConferenceTitle"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedDivisionTitle"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedPlayoffBirth"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedPlayIn"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "EliminatedConference"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "EliminatedDivision"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "AheadAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "BehindAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TiedAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "AheadAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "BehindAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TiedAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Score100PTS"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "OppScore100PTS"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "OppOver500"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LeadInFGPCT"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LeadInReb"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "FewerTurnovers"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "PointsPG"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "OppPointsPG"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DiffPointsPG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsEast"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsAtlantic"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsCentral"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsSoutheast"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsWest"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsNorthwest"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsPacific"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsSouthwest"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Jan"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Feb"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Mar"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Apr"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "May"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Jun"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Jul"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Aug"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "Sep"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Oct"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Nov"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Dec"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ReturnToPlay_East_PI_Flag"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ReturnToPlay_West_PI_Flag"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ReturnToPlay_Already_Eliminated"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_1_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_2_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_3_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_4_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_5_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_6_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_7_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_8_Outcome"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_1_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_2_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_3_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_4_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_5_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_6_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_7_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_8_ID"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_1_Opponent"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_2_Opponent"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_3_Opponent"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_4_Opponent"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_5_Opponent"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_6_Opponent"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_7_Opponent"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "Seeding_Game_8_Opponent"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_1_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_2_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_3_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_4_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_5_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_6_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_7_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Seeding_Game_8_Label"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Score_80_Plus"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Opp_Score_80_Plus"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Score_Below_80"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Opp_Score_Below_80"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "LeagueGamesBack"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "PlayoffSeeding"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "ClinchedPostSeason"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "NEUTRAL"
+            }
+           ]
+          }
+         }
+        }
+       },
+       {
+        "properties": {
+         "headers": {
+          "const": [
+           "LeagueID",
+           "SeasonID",
+           "TeamID",
+           "TeamCity",
+           "TeamName",
+           "TeamSlug",
+           "Conference",
+           "ConferenceRecord",
+           "PlayoffRank",
+           "ClinchIndicator",
+           "Division",
+           "DivisionRecord",
+           "DivisionRank",
+           "WINS",
+           "LOSSES",
+           "WinPCT",
+           "LeagueRank",
+           "Record",
+           "HOME",
+           "ROAD",
+           "L10",
+           "Last10Home",
+           "Last10Road",
+           "OT",
+           "ThreePTSOrLess",
+           "TenPTSOrMore",
+           "LongHomeStreak",
+           "strLongHomeStreak",
+           "LongRoadStreak",
+           "strLongRoadStreak",
+           "LongWinStreak",
+           "LongLossStreak",
+           "CurrentHomeStreak",
+           "strCurrentHomeStreak",
+           "CurrentRoadStreak",
+           "strCurrentRoadStreak",
+           "CurrentStreak",
+           "strCurrentStreak",
+           "ConferenceGamesBack",
+           "DivisionGamesBack",
+           "ClinchedConferenceTitle",
+           "ClinchedDivisionTitle",
+           "ClinchedPlayoffBirth",
+           "ClinchedPlayIn",
+           "EliminatedConference",
+           "EliminatedDivision",
+           "AheadAtHalf",
+           "BehindAtHalf",
+           "TiedAtHalf",
+           "AheadAtThird",
+           "BehindAtThird",
+           "TiedAtThird",
+           "Score100PTS",
+           "OppScore100PTS",
+           "OppOver500",
+           "LeadInFGPCT",
+           "LeadInReb",
+           "FewerTurnovers",
+           "PointsPG",
+           "OppPointsPG",
+           "DiffPointsPG",
+           "vsEast",
+           "vsAtlantic",
+           "vsCentral",
+           "vsSoutheast",
+           "vsWest",
+           "vsNorthwest",
+           "vsPacific",
+           "vsSouthwest",
+           "Jan",
+           "Feb",
+           "Mar",
+           "Apr",
+           "May",
+           "Jun",
+           "Jul",
+           "Aug",
+           "Sep",
+           "Oct",
+           "Nov",
+           "Dec",
+           "Score_80_Plus",
+           "Opp_Score_80_Plus",
+           "Score_Below_80",
+           "Opp_Score_Below_80",
+           "TotalPoints",
+           "OppTotalPoints",
+           "DiffTotalPoints",
+           "LeagueGamesBack",
+           "PlayoffSeeding",
+           "ClinchedPostSeason",
+           "NEUTRAL"
+          ]
+         },
+         "rowSet": {
+          "type": "array",
+          "items": {
+           "type": "array",
+           "minItems": 92,
+           "maxItems": 92,
+           "prefixItems": [
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LeagueID"
+            },
+            {
+             "type": [
+              "string"
+             ],
+             "$comment": "SeasonID"
+            },
+            {
+             "type": [
+              "number"
+             ],
+             "$comment": "TeamID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamCity"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamName"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TeamSlug"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Conference"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ConferenceRecord"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "PlayoffRank"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ClinchIndicator"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Division"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DivisionRecord"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DivisionRank"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "WINS"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LOSSES"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "WinPCT"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LeagueRank"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Record"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "HOME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ROAD"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "L10"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Last10Home"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Last10Road"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "OT"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ThreePTSOrLess"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TenPTSOrMore"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strLongHomeStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strLongRoadStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongWinStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LongLossStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "CurrentHomeStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strCurrentHomeStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "CurrentRoadStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strCurrentRoadStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "CurrentStreak"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "strCurrentStreak"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ConferenceGamesBack"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DivisionGamesBack"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedConferenceTitle"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedDivisionTitle"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedPlayoffBirth"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedPlayIn"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "EliminatedConference"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "EliminatedDivision"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "AheadAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "BehindAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TiedAtHalf"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "AheadAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "BehindAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TiedAtThird"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Score100PTS"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "OppScore100PTS"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "OppOver500"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LeadInFGPCT"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LeadInReb"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "FewerTurnovers"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "PointsPG"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "OppPointsPG"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DiffPointsPG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsEast"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsAtlantic"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsCentral"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsSoutheast"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsWest"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsNorthwest"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsPacific"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "vsSouthwest"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Jan"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Feb"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Mar"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Apr"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "May"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Jun"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Jul"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Aug"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Sep"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Oct"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Nov"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Dec"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Score_80_Plus"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Opp_Score_80_Plus"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Score_Below_80"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "Opp_Score_Below_80"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "TotalPoints"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "OppTotalPoints"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "DiffTotalPoints"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "LeagueGamesBack"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "PlayoffSeeding"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "ClinchedPostSeason"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "NEUTRAL"
+            }
+           ]
+          }
+         }
         }
        }
-      }
+      ]
      }
     }
    ]

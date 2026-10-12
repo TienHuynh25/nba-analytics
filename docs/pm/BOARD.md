@@ -30,10 +30,10 @@ Task IDs are Execution Plan IDs. "Done when" for each is the plan's check.
 | T-1.4v | Verify contract tests catch mutated responses (Gate 1 item, plan 1.4) | qa-tester | L | DONE (plan done-when met: 52/52 tests; 137-case matrix 105 caught; DEF-015 found) | NONE | 0 | |
 | T-SEEDS | Hand-written semantic-view query for every Stats/Mixed seed (Gate 1 item) | qa-tester | M | DONE (75/75 Stats+Mixed seeds answerable, all pass sql_guard; 0 GAP; 23 held-out ids logged) | T-1.19 | 0 | |
 | T-0.9b | Commit gap-policy work to PR #8 branch, push, CI result | devops | M | DONE as delivered (head 4c08895 pushed; CI red only on DEF-017, fixed in working tree, uncommitted); final commit + CI in T-0.9c | T-GAP2, T-QA2b | 0 | |
-| T-CONTRACT | Fix DEF-015: varying-header contracts reject type change / header swap / extra column / short row; validate whole raw cache | developer | H | IN-PROGRESS | T-1.4v | 0 | |
-| T-GUARD | Fix DEF-016: sql_guard set operation without LIMIT; no loosening | developer | M | DONE (QA verify needed: T-QA3b) | T-SEEDS | 0 | |
-| T-GAP2r2 | Rework 2: guard test flags its own source once tracked (DEF-017) | developer | L | DONE (900 passed; QA verify in T-QA3) | T-0.9b committed the file | 2 | afedc706c591d86c4 |
-| T-QA3 | Independent re-verification of T-CONTRACT (matrix re-run, cache validation, no loosening), T-GUARD (mutations: set ops, rejections) and DEF-017 (desktop guard still fails on a planted file) | qa-tester | M | BLOCKED | T-CONTRACT | 0 | |
+| T-CONTRACT | Fix DEF-015: varying-header contracts reject type change / header swap / extra column / short row; validate whole raw cache | developer | H | DONE (verified by T-QA3) | T-1.4v | 0 | |
+| T-GUARD | Fix DEF-016: sql_guard set operation without LIMIT; no loosening | developer | M | DONE (verified by T-QA3) | T-SEEDS | 0 | |
+| T-GAP2r2 | Rework 2: guard test flags its own source once tracked (DEF-017) | developer | L | DONE (verified by T-QA3) | T-0.9b committed the file | 2 | afedc706c591d86c4 |
+| T-QA3 | Independent re-verification of T-CONTRACT (matrix re-run, cache validation, no loosening), T-GUARD (mutations: set ops, rejections) and DEF-017 (desktop guard still fails on a planted file) | qa-tester | M | DONE (DEF-015/016/017 VERIFIED-FIXED; 210/210 mutations caught; 44/44 hostile SQL rejected; 954 passed) | T-CONTRACT, T-GUARD, T-GAP2r2 (all done) | 0 | |
 | T-0.9c | Final commit/push of T-CONTRACT + evidence, CI on last head | devops | L | BLOCKED | T-QA3 | 0 | |
 | T-G1 | Gate 1 governance review and security batch review (opus, Full tier) | governance, security-reviewer | H | TODO | all above | 0 | |
 
