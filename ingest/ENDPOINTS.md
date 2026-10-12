@@ -92,6 +92,10 @@ percentage, not "not tracked". The registry defines a step-back 3 as `SHOT_TYPE 
 the team rows. Untracked stats come back as NULL, not 0 (Wilt Chamberlain 1959-60: `STL`, `BLK`, `FG3M` are NULL).
 His career `FG3M` is NULL, which is what Q85 needs.
 
+playercareerstats returns no data for 219 persistent player ids (203 with game-log games, 16 without) and commonplayerinfo for 200603; all are listed in `known_player_career_gaps.csv` (decision 0009).
+
+playercareerstats can return a successful but empty response (every set 0 rows) for a player with games (Maxi Kleber 1628467, one re-fetch on 2026-10-11 stayed empty). Raw files with no regular-season totals must be checked against the game logs; reviewed gaps are in `known_player_career_gaps.csv` (decision 0009).
+
 ## Seed → endpoint map
 
 | Seeds | Tables | Endpoints |
