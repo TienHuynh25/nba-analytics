@@ -415,6 +415,19 @@ def test_snapshot_without_the_seed_table_has_no_gaps(fixture_db_path: Path, tmp_
 # --- no machine-specific paths in committed test and transform files ----------------------------
 
 
+# Built from parts so that this file does not contain the needle it searches for.
+DESKTOP = "/" + "Desktop" + "/"
+
+
+def files_naming_a_desktop_path(root: Path, files: list[str]) -> list[str]:
+    skip = {".parquet", ".duckdb", ".pyc"}
+    return [
+        f
+        for f in files
+        if f and Path(f).suffix not in skip and DESKTOP in (root / f).read_text(errors="ignore")
+    ]
+
+
 def test_no_tracked_file_names_a_desktop_path() -> None:
     import subprocess
 
@@ -427,22 +440,22 @@ def test_no_tracked_file_names_a_desktop_path() -> None:
         text=True,
         check=True,
     ).stdout.split("\0")
-    skip = {".parquet", ".duckdb", ".pyc"}
-    bad = [
-        f
-        for f in files
-        if f
-        and Path(f).suffix not in skip
-        and "/Desktop/" in (REPO_ROOT / f).read_text(errors="ignore")
-    ]
-    assert bad == []
+    assert files_naming_a_desktop_path(REPO_ROOT, files) == []
+
+
+def test_the_desktop_guard_fails_on_a_file_that_names_such_a_path(tmp_path: Path) -> None:
+    (tmp_path / "clean.sql").write_text("COPY t FROM 'a.parquet';\n")
+    (tmp_path / "dirty.sql").write_text(f"COPY t FROM '/Users/x{DESKTOP}r/a.parquet';\n")
+    (tmp_path / "dirty.parquet").write_text(DESKTOP)  # binary suffixes are not scanned
+    listed = ["clean.sql", "dirty.sql", "dirty.parquet", ""]
+    assert files_naming_a_desktop_path(tmp_path, listed) == ["dirty.sql"]
 
 
 def test_relativize_load_sql_keeps_only_file_names(tmp_path: Path) -> None:
     from ingest.fixture import relativize_load_sql
 
     (tmp_path / "load.sql").write_text(
-        "COPY marts.a FROM '/Users/x/Desktop/r/tests/fixtures/nba_fixture/marts_a.parquet' "
+        f"COPY marts.a FROM '/Users/x{DESKTOP}r/tests/fixtures/nba_fixture/marts_a.parquet' "
         "(FORMAT 'parquet');\n"
     )
     relativize_load_sql(tmp_path)

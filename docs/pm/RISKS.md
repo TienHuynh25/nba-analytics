@@ -19,7 +19,7 @@
 | R-010 | Run log records only failures, not successes (S4 observability gap in ingest/backfill.py); success rates must be inferred from raw `fetched_at` | PM | open |
 | R-011 | Ingest has no check for empty-but-successful playercareerstats responses; the backfill counts files, not content, so 'complete' can hide empty payloads | PM | open |
 | R-012 | The tool-layer note for an uncovered player says 'No games for this player', which is untrue for the 203+ who played; 0009 requires 'no coverage' wording | PM | open |
-| R-013 | Contract validation accepts an all-empty playercareerstats response, so the raw store can hold empty files that look valid; T-KLEB wrote a second empty Kleber file (2026-10-11 fetch). Content check planned in T-GAP2 | PM | open |
+| R-013 (scope widened by T-1.4v: a zero-row rowSet is accepted on all 13 endpoints; deliberately not rejected, since empty can be legitimate; content checks handle it) | Contract validation accepts an all-empty playercareerstats response, so the raw store can hold empty files that look valid; T-KLEB wrote a second empty Kleber file (2026-10-11 fetch). Content check planned in T-GAP2 | PM | open |
 | R-014 | Gate 1 box-score check ran on dev.duckdb (Oct 7), not a published snapshot; backfill completeness of that build unconfirmed. Re-run `-m network` test once T-2.1 publishes; governance to rule at T-G1 | PM | open |
 | R-015 | Box-score sample is a hash of game_id; all 20 games were regular season (1996-97 to 2025-26), no playoff game checked. Not expanded (no scope beyond plan 1.21) | PM | open |
 | A-005 | PM clarification inside D-013: for the 7 early-era/other partial-career players, get_career/get_player_stats add a 'season(s) missing from the source; totals exclude them' note so a partial career is never shown as complete. Not in the owner's wording; user may reverse | PM | open, flagged |
@@ -32,3 +32,6 @@
 | R-022 | T-1.21 box-score check ran on the Oct-7 dev.duckdb; dev.duckdb was rebuilt in T-1.19. Re-run `-m network` on the published snapshot (T-2.1) | PM | open |
 | R-023 | Process: QA tests read data/build/dev.duckdb while another task rebuilt it, causing one transient recon failure. Rule: no QA runs against a build during a rebuild; PM serialises such tasks | PM | open, mitigated |
 | R-024 | known_boxscore_gaps allowlist has 1217 rows and excuses the player-vs-team points check for those games (reviewed earlier, noted per row); size worth a governance look at T-G1 | PM | open |
+| R-025 | Semantic views expose no 'qualified' flag, so the SQL fallback must hand-code the registry qualification rules; stint view has no fga (limits Q08 to per-season). dev.duckdb is not the pinned snapshot (holds 2026 playoffs and 2025-26 awards), so gold must be computed on eval_2025_26_rs (T-2.6) | PM | open |
+| R-026 | Process: parallel committing (T-0.9b) changed what `git ls-files`-based tests see while other agents ran; schedule commits after QA batches or re-run CI on the last head (T-0.9c) | PM | open |
+| R-027 | CI skips 6 tests versus 1 locally (CI has no dev build / raw data); confirm at T-G1 that nothing Gate-1-relevant is only exercised locally | PM | open |

@@ -13,3 +13,9 @@ it is recorded here, so gate results can be read with that in mind.
 
 The resolver was checked once against all cases, held-out included. From then on, tuning checks
 run on dev only (`make eval SPLIT=dev`).
+
+## 2026-10-11, T-SEEDS (Gate 1 answerability check)
+
+QA read the question text and ran one hand-written query for each held-out Stats/Mixed seed, and saw the first result rows. Read for review only; no prompt, tool, registry, config or code was changed because of it, and no gold values were written.
+
+Held-out seeds viewed: Q07, Q08, Q10, Q15, Q16, Q18, Q22, Q26, Q29, Q30, Q32, Q35, Q37, Q38, Q47, Q50, Q51, Q54, Q59, Q61, Q71, Q76, Q77 (23). Also seen on dev: n/a (no tuning).
