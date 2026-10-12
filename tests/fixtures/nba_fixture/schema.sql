@@ -22,6 +22,7 @@ CREATE TABLE marts.team_titles(franchise_id INTEGER, team_id INTEGER, season VAR
 CREATE TABLE seeds.award_timing(award VARCHAR, known_at VARCHAR);;
 CREATE TABLE seeds.known_boxscore_gaps(game_id VARCHAR, team_id INTEGER, season VARCHAR, team_pts INTEGER, player_pts INTEGER, note VARCHAR);;
 CREATE TABLE seeds.known_stint_total_gaps(player_id INTEGER, season VARCHAR, season_type VARCHAR, difference VARCHAR, note VARCHAR);;
+CREATE TABLE seeds.known_player_career_gaps(player_id INTEGER, endpoint VARCHAR, "class" VARCHAR, season VARCHAR, season_type VARCHAR, gamelog_games INTEGER, gamelog_seasons INTEGER, note VARCHAR, reviewed VARCHAR);;
 CREATE TABLE seeds.known_team_record_gaps(team_id INTEGER, season VARCHAR, games_missing INTEGER, note VARCHAR);;
 CREATE TABLE seeds.player_alias_seed(alias VARCHAR, player_name VARCHAR, kind VARCHAR);;
 CREATE TABLE seeds.records_curated(record VARCHAR, record_kind VARCHAR, stat VARCHAR, player VARCHAR, "value" VARCHAR, source_url VARCHAR, valid_from VARCHAR, note VARCHAR);;
