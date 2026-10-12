@@ -306,7 +306,8 @@ class StatsPath:
             return self.llm.complete(msgs).strip()
 
         def fallback() -> str:
-            return "Here are the numbers:\n" + table(result.rows, result.metrics)
+            text = "Here are the numbers:\n" + table(result.rows, result.metrics)
+            return "\n".join([text, *result.notes])
 
         final = finalize(generate, ev, fallback)
         return final.text, final.status, final.first_check.problems

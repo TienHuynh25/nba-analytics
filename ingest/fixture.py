@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import time
 from pathlib import Path
@@ -47,6 +48,13 @@ def season_players(raw: Path, season: str) -> set[int]:
         i = rs["headers"].index("PLAYER_ID")
         ids.update(int(r[i]) for r in rs["rowSet"])
     return ids
+
+
+def relativize_load_sql(export: Path) -> None:
+    """DuckDB writes absolute parquet paths into load.sql. Keep only the file names: IMPORT
+    resolves them against the export folder, and a committed path must not name one machine."""
+    f = export / "load.sql"
+    f.write_text(re.sub(r"FROM '[^']*/([^/']+\.parquet)'", r"FROM '\1'", f.read_text()))
 
 
 def build(season: str) -> Path:
@@ -80,6 +88,7 @@ def build(season: str) -> Path:
         con.execute("alter table marts.shots_table rename to shots")
         shutil.rmtree(FIXTURE_EXPORT, ignore_errors=True)
         con.execute(f"export database '{FIXTURE_EXPORT}' (format parquet, compression zstd)")
+        relativize_load_sql(FIXTURE_EXPORT)
     finally:
         con.close()
     FIXTURE_DB.unlink(missing_ok=True)
