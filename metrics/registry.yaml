@@ -7,7 +7,7 @@
 # Percentages are stored as fractions and displayed x100 (`display: percent`).
 # Changing a formula here requires recomputing gold values in eval/cases.yaml.
 
-version: 0.3.0
+version: 0.4.0
 
 qualifications:
   - name: per_game_leader
@@ -36,6 +36,17 @@ qualifications:
         min_made_stat: threes_made
         confirmed: true
         source: spec v3 gold rule Q17 (NBA.com)
+  - name: ts_pct_leader
+    description: >-
+      True shooting percentage leaders need 70% of team games and at least 300 made field goals
+      (NBA.com publishes no TS% minimum; owner decision 0007, option B).
+    eras:
+      - from_season: "2013-14"
+        min_games_pct: 0.70
+        min_made: 300
+        min_made_stat: field_goals_made
+        confirmed: false
+        source: docs/decisions/0007-open-divergences.md (confirm against NBA.com in 3.2)
   - name: fg_pct_leader
     description: Field goal percentage leaders need at least 300 made field goals.
     eras:
@@ -326,11 +337,11 @@ metrics:
     grains: [player_season, player_career, player_stint]
     unit: percent
     rounding: {decimals: 1, display: percent}
-    qualification: per_game_leader
+    qualification: ts_pct_leader
     aliases: [ts%, ts pct, true shooting, true shooting percentage]
     caveats: >-
-      Uses the per-game leader games minimum for "qualified" lists (Q71), since NBA.com lists no
-      separate TS% minimum. Checked against NBA.com's published TS% in task 3.2.
+      "Qualified" lists need 70% of team games and 300 made field goals (decision 0007), since
+      NBA.com lists no separate TS% minimum. Checked against NBA.com's published TS% in task 3.2.
   - name: effective_fg_pct
     label: Effective field goal percentage
     description: Field goal percentage that counts a made 3-pointer as 1.5 field goals.

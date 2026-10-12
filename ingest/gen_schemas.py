@@ -57,8 +57,11 @@ SAMPLES: dict[str, list[tuple[str | None, dict[str, Any]]]] = {
         ("1996-97", {"season": "1996-97", "season_type_all_star": RS}),
         ("2024-25", {"season": "2024-25", "season_type_all_star": PO}),
     ],
+    # Three header variants (see ENDPOINTS.md "Contract header variants"): pre-2004 divisions
+    # (87 columns), 2004-05 on (92), and 2019-20 with the restart seeding-game columns (124).
     "leaguestandingsv3": [
         ("1970-71", {"season": "1970-71"}),
+        ("2019-20", {"season": "2019-20"}),
         ("2024-25", {"season": "2024-25"}),
     ],
     "shotchartdetail": [

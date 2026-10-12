@@ -18,7 +18,8 @@ from collections.abc import Callable, Sequence
 from dataclasses import dataclass, field
 from typing import Literal
 
-from metrics.rounding import Stated, extract, matches
+from app.labels import first_label
+from metrics.rounding import Stated, extract, matches, normalize
 from metrics.schema import Rounding
 
 _UNITS = {
@@ -89,6 +90,7 @@ def words_to_digits(text: str) -> str:
 class ResultValue:
     value: float
     rounding: Rounding
+    column: str | None = None  # registry metric name or plain column ("gp", "rank")
 
 
 @dataclass(frozen=True)
@@ -103,6 +105,12 @@ class Check:
     ok: bool
     unmatched: list[str] = field(default_factory=list)
     numbers: int = 0
+    # Real numbers described as a different metric: "32.7 assists" for a points value.
+    mislabeled: list[str] = field(default_factory=list)
+
+    @property
+    def problems(self) -> list[str]:
+        return [*self.unmatched, *self.mislabeled]
 
 
 def _allowed_literal(s: Stated, literal: list[Stated]) -> bool:
@@ -123,21 +131,52 @@ _SCALE_WORDS = re.compile(
 )
 
 
+# A window ends at the next number or clause punctuation.
+_STOP = re.compile(r"[\d,.;:!?()]")
+_LABEL_BEFORE = re.compile(r"([A-Za-z][A-Za-z %'-]{0,40}):\s*$")
+
+
+def _window_after(text: str, end: int) -> str:
+    rest = text[end:]
+    m = _STOP.search(rest)
+    return rest[: m.start()] if m else rest
+
+
+def _mislabel(text: str, s: Stated, cols: set[str]) -> str | None:
+    """The phrase if the words next to ``s`` name a metric that none of ``cols`` is."""
+    after = first_label(_window_after(text, s.end))
+    if after is not None and not (after[1] & cols):
+        return f"{s.text} {after[0]}"
+    m = _LABEL_BEFORE.search(text[: s.start])
+    if m:
+        before = first_label(m.group(1), max_words=6)
+        if before is not None and not (before[1] & cols) and after is None:
+            return f"{before[0]}: {s.text}"
+    return None
+
+
 def check(draft: str, ev: Evidence) -> Check:
-    text = words_to_digits(draft)
+    text = normalize(words_to_digits(draft))
     stated = extract(text)
+    mislabeled: list[str] = []
     literal: list[Stated] = []
     for t in [*ev.args_text, *ev.chunks]:
         literal += extract(t)
     unmatched = []
     for s in stated:
-        if not s.token and any(matches(s, v.value, v.rounding) for v in ev.values):
+        hits = [] if s.token else [v for v in ev.values if matches(s, v.value, v.rounding)]
+        if hits:
+            cols = {v.column for v in hits if v.column}
+            if cols and all(v.column for v in hits):
+                bad = _mislabel(text, s, cols)
+                if bad:
+                    mislabeled.append(bad)
             continue
         if not s.exotic and _allowed_literal(s, literal):
             continue
         unmatched.append(s.text)
     unmatched += [m.group(0) for m in _SCALE_WORDS.finditer(text)]
-    return Check(not unmatched, unmatched, len(stated))
+    return Check(not unmatched and not mislabeled, unmatched, len(stated), mislabeled)
 
 
 @dataclass(frozen=True)
@@ -163,7 +202,7 @@ def finalize(
     first = check(draft, ev)
     if first.ok:
         return Final(draft, "verified", 0, first)
-    retry = generate(first.unmatched)
+    retry = generate(first.problems)
     if check(retry, ev).ok:
         return Final(retry, "regenerated", 0, first)
     return Final(fallback(), "fallback", 0, first)

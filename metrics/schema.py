@@ -76,8 +76,10 @@ class EraRule(_Strict):
             self.min_made is not None,
             self.min_career_games is not None or self.min_career_total is not None,
         ]
-        if sum(kinds) != 1:
-            raise ValueError("an era rule sets exactly one of games %, made shots, or career")
+        # Games and made-shot minimums may combine (TS%: 70% of games AND 300 made field goals,
+        # docs/decisions/0007); a career rule stands alone.
+        if not any(kinds) or (kinds[2] and (kinds[0] or kinds[1])):
+            raise ValueError("an era rule sets games % and/or made shots, or a career minimum")
         if self.min_made is not None and not self.min_made_stat:
             raise ValueError("min_made needs min_made_stat")
         return self

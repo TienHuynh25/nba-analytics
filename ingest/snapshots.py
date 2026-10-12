@@ -92,6 +92,23 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+# Digests already computed in this process, keyed by file identity and stat. The reader checks
+# every checksum on first open; a later open (swap, rollback, a second store) re-hashes only files
+# whose identity changed. Shot files hard-linked between snapshots share an inode, so a swap
+# hashes only the new database and the changed seasons. A rewrite in place changes mtime_ns or
+# ctime_ns (ctime cannot be set from user space), so it misses the cache.
+_digests: dict[tuple[str, int, int, int, int, int], str] = {}
+
+
+def sha256_cached(path: Path) -> str:
+    st = path.stat()
+    key = (str(path.resolve()), st.st_dev, st.st_ino, st.st_size, st.st_mtime_ns, st.st_ctime_ns)
+    digest = _digests.get(key)
+    if digest is None:
+        digest = _digests[key] = sha256(path)
+    return digest
+
+
 def git_sha() -> str | None:
     try:
         out = subprocess.run(
@@ -221,16 +238,21 @@ def load(snap_dir: Path) -> Snapshot:
     return Snapshot(manifest["snapshot_id"], snap_dir, manifest)
 
 
-def health_check(snap: Snapshot, full: bool = True) -> None:
-    """Raise :class:`HealthError` unless the snapshot's files match its manifest and it opens."""
+def health_check(snap: Snapshot, full: bool = True, cached: bool = False) -> None:
+    """Raise :class:`HealthError` unless the snapshot's files match its manifest and it opens.
+
+    ``cached`` reuses digests this process already computed for unchanged files (the app's
+    reader); publish always re-hashes.
+    """
     if (snap.dir / MARKER).exists():
         raise HealthError(f"{snap.snapshot_id}: build did not finish")
     if not snap.db.exists():
         raise HealthError(f"{snap.snapshot_id}: database file missing")
     if full:
+        digest_of = sha256_cached if cached else sha256
         for rel, digest in snap.manifest["checksums"].items():
             p = snap.dir / rel
-            if not p.exists() or sha256(p) != digest:
+            if not p.exists() or digest_of(p) != digest:
                 raise HealthError(f"{snap.snapshot_id}: {rel} does not match its manifest checksum")
     try:
         con = duckdb.connect(str(snap.db), read_only=True)
@@ -302,12 +324,12 @@ def prune(cfg: SourcesConfig) -> list[str]:
     return removed
 
 
-def open_current(cfg: SourcesConfig, full_check: bool = True) -> Snapshot:
+def open_current(cfg: SourcesConfig, full_check: bool = True, cached: bool = False) -> Snapshot:
     """Return a healthy current snapshot, rolling back to the newest healthy one (1.25)."""
     cur = current(cfg)
     if cur is not None:
         try:
-            health_check(cur, full=full_check)
+            health_check(cur, full=full_check, cached=cached)
             return cur
         except HealthError as exc:
             log.error("current snapshot unhealthy", extra={"event": "rollback", "error": str(exc)})
@@ -315,7 +337,7 @@ def open_current(cfg: SourcesConfig, full_check: bool = True) -> Snapshot:
         if snap.manifest.get("pinned") or (cur is not None and snap.dir == cur.dir):
             continue
         try:
-            health_check(snap, full=full_check)
+            health_check(snap, full=full_check, cached=cached)
         except HealthError:
             continue
         point_current(cfg, snap)

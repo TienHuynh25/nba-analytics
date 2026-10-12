@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-Phase 1 (data foundation) code is done. Pre-work decisions 0.1, 0.2, 0.4 and 0.5 are recorded in `docs/decisions/`. Still open: 0.3 (paraphrase reviewer, needed in phase 2) and G1 (may Basketball-Reference *source* the curated `records` table, or only validate it). The historical backfill (1.6) is resumable and may still be incomplete: check `make backfill-status`. The planning documents are the source of truth. Their filenames contain spaces and an em dash, so quote them in shell commands:
+Phase 1 (data foundation) code is done. Pre-work decisions 0.1, 0.2, 0.4, 0.5 and 0008 are recorded in `docs/decisions/`. Decision 0008 closes 0.3 (the owner is the paraphrase reviewer) and G1, and lets Basketball-Reference *source* the curated `records` table under 0008's limits. The historical backfill (1.6) is resumable and may still be incomplete: check `make backfill-status`. The planning documents are the source of truth. Their filenames contain spaces and an em dash, so quote them in shell commands:
 
 - `Basketball Analytics RAG — Spec.md`: what to build and why (v3; the provisional rules were accepted in `docs/decisions/0005-v3-resolutions.md`).
 - `Basketball Analytics RAG — Execution Plan.md`: ordered tasks (IDs like `1.16`, `3.11`), dependencies, "done when" checks, gates 1–4, and spec gaps `G1`–`G11`.
@@ -66,6 +66,10 @@ These come from the spec's review findings. Violating them produces wrong number
 - Default filters come from the registry, not from prompts: regular season unless playoffs are named, so Play-In games are excluded. The NBA Cup final is never counted in regular-season stats. Per-game leaders need 70% of team games, or fewer if the player's total divided by that minimum would still lead (NBA.com's rule).
 - Every answer carries a source line: metric · season(s) · filters · snapshot date.
 - Decline predictions, betting, injuries and non-NBA leagues in one plain sentence.
+
+## PM agent team (opt-in)
+
+`/pm-kickoff` starts a PM session that delegates to the agents in `.claude/agents/` (architect, developer, qa-tester, devops, security-reviewer, governance). `/pm [status|resume|approve|...]` re-enters it, `/pm-gate <n>` runs a gate review. Process rules are in `.claude/pm/PM.md`; state is in `docs/pm/`. Normal sessions ignore all of this. Agents follow this file's invariants.
 
 ## Architecture
 

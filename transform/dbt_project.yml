@@ -34,7 +34,11 @@ seeds:
     +schema: seeds
     known_boxscore_gaps:
       +column_types: {game_id: varchar, team_id: integer}
+    known_player_career_gaps:
+      +column_types: {player_id: integer, season: varchar, season_type: varchar,
+                      reviewed: varchar}
     tiebreaker_games:
       +column_types: {game_id: varchar}
     records_curated:
-      +column_types: {valid_from: varchar, value: varchar, team_number: varchar}
+      +column_types: {record: varchar, record_kind: varchar, stat: varchar, player: varchar,
+                      value: varchar, source_url: varchar, valid_from: varchar, note: varchar}

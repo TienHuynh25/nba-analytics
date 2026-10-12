@@ -188,9 +188,10 @@ def check(sql: str, allowed: frozenset[str] | None = None) -> str:
 def _with_limit(tree: exp.Expression) -> exp.Expression:
     limit = tree.args.get("limit")
     if limit is None:
-        if isinstance(tree, exp.Select):
-            return tree.limit(MAX_ROWS)
-        return exp.select("*").from_(exp.subquery(tree, "q")).limit(MAX_ROWS)
+        # Select, Union, Intersect and Except all take a trailing LIMIT, which for a set
+        # operation caps the combined result (any WITH clause stays attached in front).
+        assert isinstance(tree, exp.Query)  # narrowed by check(): Select or a set operation
+        return tree.limit(MAX_ROWS)
     try:
         n = int(limit.expression.name)
     except (AttributeError, ValueError):

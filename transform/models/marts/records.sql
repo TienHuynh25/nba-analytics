@@ -1,7 +1,7 @@
 -- Curated and computed records (task 1.17, gap G1). Single-game maxima come from player_game,
 -- whose game logs are complete for every season (ingest/ENDPOINTS.md); the top 10 per stat are
 -- kept. Career counts that early box scores cannot support (e.g. career triple-doubles) come from
--- the curated seed, pending the owner's G1 decision on Basketball-Reference.
+-- the curated seed, hand-entered from Basketball-Reference (decision 0008).
 with single_game as (
     {% for stat, label in [('pts', 'Most points in a game'), ('fg3m', 'Most 3-pointers made in a game'),
                            ('reb', 'Most rebounds in a game'), ('ast', 'Most assists in a game')] %}
@@ -15,12 +15,14 @@ with single_game as (
     {% endfor %}
 ),
 curated as (
-    select award as record, award_category as record_kind, null as stat,
+    -- Hand-entered from Basketball-Reference, one row per record, each with its source URL
+    -- and valid-from date (docs/decisions/0008-records-source-and-reviewer.md).
+    select r.record, r.record_kind, r.stat,
            p.player_id, null as game_id, null::date as game_date, null as season,
-           null as season_type, try_cast(value as double) as value,
-           cast(valid_from as date) as valid_from, source
+           null as season_type, try_cast(r.value as double) as value,
+           cast(r.valid_from as date) as valid_from, r.source_url as source
     from {{ ref('records_curated') }} r
-    left join {{ ref('players') }} p on p.name = r.holder_name
+    left join {{ ref('players') }} p on p.name = r.player
     where {{ as_of_date_filter('cast(r.valid_from as date)') }}
 )
 select * from single_game

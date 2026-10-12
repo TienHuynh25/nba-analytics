@@ -97,6 +97,8 @@ def call_schema() -> dict[str, Any]:
     return {"anyOf": options}
 
 
+PROMPT_VERSION = "stats.v1"  # bump when TOOL_SYSTEM or ANSWER_TURN changes
+
 TOOL_SYSTEM = """You turn an NBA stats question into ONE call of one of these tools.
 Fill arguments only from the question and the resolved context below. Use the given ids.
 Seasons are like "2025-26". Leave season_type out unless the question names playoffs or Play-In.
@@ -111,6 +113,12 @@ If no tool fits, answer {"tool": "none", "args": {}}.
 
 Tools:
 """
+
+ANSWER_TURN = """The tool returned these result rows: {rows}
+Now answer the question in one to three plain sentences, as text, not JSON.
+Use ONLY these rows and copy every number exactly as written. Do not add, compute or round
+numbers. Do not state a source line; it is added for you.
+{extra}"""
 
 ANSWER_SYSTEM = """You answer an NBA stats question in one to three plain sentences.
 Use ONLY the result rows given, and copy every number exactly as written there.
@@ -171,7 +179,7 @@ class StatsPath:
 
     def _choose(
         self, question: str, ctx: Context, state: ConversationState, feedback: str | None
-    ) -> tuple[str, dict[str, Any]]:
+    ) -> tuple[str, dict[str, Any], list[Message]]:
         msgs = [
             Message("system", self._system),
             Message(
@@ -195,7 +203,9 @@ class StatsPath:
             args = {}
         if not isinstance(args, dict):
             raise ToolArgError("args must be a JSON object")
-        return tool, args
+        # The answer call continues this conversation, so the model server reuses the cached
+        # tool prompt instead of evaluating a second long prompt (task 4.11).
+        return tool, args, [*msgs, Message("assistant", raw)]
 
     def _fill(
         self, tool: str, args: dict[str, Any], ctx: Context, question: str = ""
@@ -246,7 +256,11 @@ class StatsPath:
 
     # -- step: write the answer -----------------------------------------------------------------
     def _compose(
-        self, question: str, result: ToolResult, opinion: bool
+        self,
+        question: str,
+        result: ToolResult,
+        opinion: bool,
+        prefix: list[Message] | None = None,
     ) -> tuple[str, str, list[str]]:
         rows = display_rows(result.rows[:25], result.metrics)
         measured = ", ".join(registry().metric(m).label for m in result.metrics) or "see rows"
@@ -270,15 +284,21 @@ class StatsPath:
         ev = Evidence(values=values, args_text=[*result.args_text(), *literals])
 
         def generate(feedback: list[str] | None) -> str:
-            msgs = [
-                Message("system", ANSWER_SYSTEM.format(extra=extra)),
-                Message("user", f"Question: {question}\nResult rows: {json.dumps(rows)}"),
-            ]
+            if prefix is not None:
+                msgs = [
+                    *prefix,
+                    Message("user", ANSWER_TURN.format(extra=extra, rows=json.dumps(rows))),
+                ]
+            else:
+                msgs = [
+                    Message("system", ANSWER_SYSTEM.format(extra=extra)),
+                    Message("user", f"Question: {question}\nResult rows: {json.dumps(rows)}"),
+                ]
             if feedback:
                 msgs.append(
                     Message(
                         "user",
-                        "These numbers were not in the result rows: "
+                        "These numbers were not in the result rows, or were called the wrong stat: "
                         + ", ".join(feedback)
                         + ". Rewrite without them.",
                     )
@@ -286,10 +306,11 @@ class StatsPath:
             return self.llm.complete(msgs).strip()
 
         def fallback() -> str:
-            return "Here are the numbers:\n" + table(result.rows, result.metrics)
+            text = "Here are the numbers:\n" + table(result.rows, result.metrics)
+            return "\n".join([text, *result.notes])
 
         final = finalize(generate, ev, fallback)
-        return final.text, final.status, final.first_check.unmatched
+        return final.text, final.status, final.first_check.problems
 
     # -- main -----------------------------------------------------------------------------------
     def answer(
@@ -321,9 +342,10 @@ class StatsPath:
         result: ToolResult | None = None
         tool: str = "none"
         args: dict[str, Any] = {}
+        prefix: list[Message] | None = None
         for _ in range(2):
             try:
-                tool, args = self._choose(question, ctx, state, feedback)
+                tool, args, prefix = self._choose(question, ctx, state, feedback)
                 if tool == "none":
                     break
                 args = self._fill(tool, args, ctx, question)
@@ -363,7 +385,7 @@ class StatsPath:
             )
             return done(a, update(state, ctx, tool, args))
         opinion = bool(OPINION.search(question))
-        text, status, rejected = self._compose(question, result, opinion)
+        text, status, rejected = self._compose(question, result, opinion, prefix)
         if result.not_tracked:
             text += " " + " ".join(n.sentence() for n in result.not_tracked)
         a = Answer(

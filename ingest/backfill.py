@@ -30,6 +30,7 @@ from zoneinfo import ZoneInfo
 
 from app import jsonlog
 from app.config import sources
+from ingest.career_gaps import CAREERSTATS, empty_successful, load_gaps, regular_season_games
 from ingest.client import FetchError, NbaClient
 from ingest.contracts import ContractError, validate
 from ingest.endpoints import (
@@ -254,6 +255,58 @@ def status(store: RawStore, ckpt: Checkpoints, last: int) -> list[tuple[str, int
     return rows
 
 
+def reconcile(
+    store: RawStore, ckpt: Checkpoints, last: int, gaps: set[tuple[str, int]]
+) -> list[tuple[str, int, int, int]]:
+    """Like ``status`` but with reviewed source gaps split out: (stage, done, documented, total).
+
+    A unit counts as documented only if it has no checkpoint and its (endpoint, player) is in the
+    gap seed. Any other unfinished unit stays pending (total - done - documented).
+    """
+    rows = []
+    for stage, planner in STAGES.items():
+        try:
+            units = list(planner(store, last))
+        except LookupError:
+            rows.append((stage, 0, 0, -1))
+            continue
+        todo = [u for u in units if not ckpt.done(u)]
+        known = sum((u.key, int(u.kwargs.get("player_id", -1))) in gaps for u in todo)
+        rows.append((stage, len(units) - len(todo), known, len(units)))
+    return rows
+
+
+def _build_db(cfg: Any) -> Path | None:
+    """The current snapshot's database, else the dev build; None when neither exists."""
+    from ingest.snapshots import current
+
+    snap = current(cfg)
+    if snap is not None and snap.db.exists():
+        return snap.db
+    dev = cfg.resolve(cfg.paths.raw).parent / "build" / "dev.duckdb"
+    return dev if dev.exists() else None
+
+
+def _report_empty(cfg: Any) -> None:
+    """Flag career-stat files that came back successful but empty for a player with games."""
+    import duckdb
+
+    db = _build_db(cfg)
+    if db is None:
+        print("empty-but-successful check: skipped (no current or dev build for game logs)")
+        return
+    con = duckdb.connect(str(db), read_only=True)
+    try:
+        games = regular_season_games(con)
+    finally:
+        con.close()
+    seeded = {pid for ep, pid in load_gaps() if ep == CAREERSTATS}
+    flagged = empty_successful(cfg.resolve(cfg.paths.raw), games, seeded)
+    print(f"empty-but-successful check: {len(flagged)} flagged (game logs from {db.name})")
+    for pid, n in flagged:
+        print(f"  FLAGGED {pid}: no regular-season totals but {n} regular-season games")
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("--stage", action="append", choices=list(STAGES), help="repeatable")
@@ -275,8 +328,17 @@ def main(argv: list[str] | None = None) -> int:
     ckpt = Checkpoints(cfg.resolve(cfg.paths.checkpoints) / "backfill")
     if args.status:
         store = RawStore(cfg.resolve(cfg.paths.raw), None)
-        for stage, done, total in status(store, ckpt, last):
-            print(f"{stage:13} {done:>6} / {total if total >= 0 else '(needs earlier stage)'}")
+        for stage, done, known, total in reconcile(store, ckpt, last, load_gaps()):
+            if total < 0:
+                print(f"{stage:13} {done:>6} / (needs earlier stage)")
+                continue
+            extra = f" + {known:>3} documented = {done + known:>6}" if known else ""
+            pending = total - done - known
+            print(
+                f"{stage:13} {done:>6}{extra} / {total}"
+                + (f"  MISSING {pending}" if pending else "")
+            )
+        _report_empty(cfg)
         return 0
     store = RawStore(cfg.resolve(cfg.paths.raw), NbaClient(cfg.nba_api), validator=validate)
     stats = run(store, ckpt, args.stage or list(STAGES), last, args.limit)

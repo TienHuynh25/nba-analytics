@@ -1,0 +1,128 @@
+ M .gitignore
+ M "Basketball Analytics RAG \342\200\224 Execution Plan.md"
+ M CLAUDE.md
+ M Makefile
+ M app/config.py
+ M config/models.yaml
+ M ingest/ENDPOINTS.md
+ M ingest/client.py
+ M ingest/contracts.py
+ M ingest/endpoints.py
+ M ingest/gen_schemas.py
+ M ingest/raw_store.py
+ M pyproject.toml
+ M uv.lock
+?? .claude/agents/
+?? .claude/commands/
+?? .claude/pm/
+?? .claude/settings.json
+?? .github/
+?? app/assistant.py
+?? app/cache.py
+?? "app/cli 2.py"
+?? app/cli.py
+?? app/entities.py
+?? app/format.py
+?? app/interfaces.py
+?? app/labels.py
+?? app/rag/
+?? app/router.py
+?? app/snapshot.py
+?? app/sql_fallback.py
+?? "app/sql_guard 2.py"
+?? app/sql_guard.py
+?? app/state.py
+?? "app/stats_path 2.py"
+?? app/stats_path.py
+?? app/timeparse.py
+?? "app/tools/base 2.py"
+?? app/tools/base.py
+?? app/tools/schemas.py
+?? app/tools/schemas/
+?? "app/tools/stats 2.py"
+?? app/tools/stats.py
+?? "app/verifier 2.py"
+?? app/verifier.py
+?? docs/decisions/0006-stat-line.md
+?? docs/decisions/0007-open-divergences.md
+?? docs/decisions/0008-records-source-and-reviewer.md
+?? docs/pm/
+?? docs/test-plan.md
+?? eval/README.md
+?? eval/benchmark.py
+?? eval/cases.yaml
+?? "eval/contamination 2.md"
+?? eval/contamination.md
+?? eval/freshness.yaml
+?? eval/harness/answerer.py
+?? eval/harness/conftest.py
+?? eval/harness/numeric.py
+?? eval/harness/regression.py
+?? eval/harness/report.py
+?? eval/harness/scorers.py
+?? eval/harness/test_eval.py
+?? eval/latency.py
+?? eval/reports/
+?? eval/schema.py
+?? eval/split.py
+?? ingest/backfill.py
+?? ingest/fixture.py
+?? ingest/incremental.py
+?? ingest/land.py
+?? ingest/refresh.py
+?? ingest/schemas/
+?? ingest/snapshots.py
+?? metrics/generate_views.py
+?? metrics/glossary/
+?? "metrics/registry 2.yaml"
+?? metrics/registry.yaml
+?? "metrics/rounding 2.py"
+?? metrics/rounding.py
+?? "metrics/schema 2.py"
+?? metrics/schema.py
+?? pm-team/
+?? prompts/
+?? "pyproject 2.toml"
+?? tests/conftest.py
+?? tests/fixtures/
+?? tests/test_adversarial.py
+?? tests/test_as_of.py
+?? tests/test_assistant.py
+?? "tests/test_backfill 2.py"
+?? tests/test_backfill.py
+?? tests/test_boxscore_match.py
+?? tests/test_cases.py
+?? tests/test_cli.py
+?? tests/test_client.py
+?? tests/test_contracts.py
+?? tests/test_domain_checks.py
+?? tests/test_entities.py
+?? tests/test_eval_report.py
+?? tests/test_freshness_cases.py
+?? tests/test_incremental.py
+?? tests/test_interfaces.py
+?? tests/test_land_and_schema_gen.py
+?? tests/test_numeric.py
+?? tests/test_paraphrase_prescreen.py
+?? tests/test_raw_store.py
+?? tests/test_records_seed.py
+?? tests/test_refresh.py
+?? tests/test_registry.py
+?? tests/test_regression.py
+?? tests/test_retrieval.py
+?? tests/test_scorers.py
+?? tests/test_semantic_guard.py
+?? tests/test_semantic_views.py
+?? tests/test_snapshots.py
+?? tests/test_sql_fallback.py
+?? tests/test_sql_guard.py
+?? "tests/test_stats_path 2.py"
+?? tests/test_stats_path.py
+?? tests/test_stats_path_adversarial.py
+?? tests/test_timeparse.py
+?? tests/test_tool_schemas.py
+?? tests/test_tools.py
+?? tests/test_tools_branches.py
+?? tests/test_tools_oracle.py
+?? tests/test_verifier.py
+?? transform/

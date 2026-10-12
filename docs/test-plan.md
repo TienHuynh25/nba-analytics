@@ -36,13 +36,13 @@ line coverage 69% (`uv run --with pytest-cov pytest -m "not network" --cov=app -
 | Layer | Scope | Status |
 |-------|-------|--------|
 | L1 Unit | registry, rounding, schemas, timeparse, entities, state, cache, config | covered, 82-99% |
-| L2 Data contracts | raw store, contracts, landing, dbt staging/marts, domain checks, as-of builds | `ingest/land.py` 17%, `contracts.py` 30%, `refresh.py` 0%: **gap G-A** |
+| L2 Data contracts | raw store, contracts, landing, dbt staging/marts, domain checks, as-of builds | refresh, landing, schema generation, multi-stage kill/resume now covered |
 | L3 Tools vs oracles | all 10 tools against marts/box scores; sweep of every registry metric | new: `test_tools_oracle.py` (tools 55% -> see below) |
 | L4 Guards | verifier and sql_guard adversarial, engine resource limits | new: `test_adversarial.py` |
 | L5 Stats path | scripted-model end to end: garbage, injection, fuzz | new: `test_stats_path_adversarial.py` |
 | L6 Knowledge/RAG | cards, BM25 + dense + rerank, cited numbers | `test_retrieval.py` (developer), **gap G-B**: paraphrase set, rerank order |
-| L7 Eval harness | scorers, splits, regression, report | `eval/harness/report.py`, `answerer.py` untested: **gap G-C** |
-| L8 CLI/e2e | `app/cli.py` with a scripted LLM, `make eval` stub run | **gap G-D** |
+| L7 Eval harness | scorers, splits, regression, report | report/accept/stub covered; `StatsAnswerer`/`FullAnswerer` need Ollama (manual) |
+| L8 CLI/e2e | `app/cli.py` loop with a fake assistant | covered; `make eval` stub run is manual |
 | L9 Network (manual) | Gate 1 box-score match | deselected, user runs |
 
 ## Adversarial matrix (L4/L5)
@@ -64,6 +64,10 @@ question, drafts with planted numbers (fuzz).
 | 3 | Medium | `repeat('x', 4000000000)` allocates ~3.9 GB; DuckDB `memory_limit` does not bound scalar results | fixed by the guard's function allowlist; engine-only bypass is a documented limit (not testable in-process: `ru_maxrss` is a process-wide high-water mark) |
 | 4 | Medium | Unknown tool name, non-dict args or null tool raised out of `StatsPath.answer` | fixed, tests live |
 | 5 | Low | Guard allowed `current_setting`/`version` (path leak) | fixed by the allowlist |
+| 7 | Medium | `get_leaders` ignores `stat_availability`: untracked-era leaders give empty/"qualification rule" results, not "not tracked" | strict xfail, sent to dev |
+| 8 | Low | `compare` returns teams sorted by id, not as requested | strict xfail, sent to dev |
+| 9 | Spec gap | Per-game leaders raise for every season before 2013-14 (no era rules); SQL fallback then has no qualification | asserted as explicit error; decision needed |
+| 10 | Review | Paraphrase pre-screen flags for the owner (see `KNOWN_FLAGS` in `tests/test_paraphrase_prescreen.py`) | handed to PM/owner |
 | 6 | Design | Verifier checks numbers, not meaning (right number, wrong metric word) | semantic guard agreed; tests to follow the API |
 
 ## Loop

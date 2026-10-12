@@ -1,0 +1,4 @@
+# macOS Finder/iCloud duplicate copies ("name 2.csv", "name 3.sql"). dbt rejects resource
+# names with spaces, so one stray copy fails every build. Pending owner decision D-007.
+* [0-9].*
+* [0-9]

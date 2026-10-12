@@ -84,6 +84,7 @@ def test_fuzzed_model_drafts_never_leak_an_unverified_number(store: FileSnapshot
 
 
 def test_model_cannot_swap_the_metric_after_a_numeric_match(store: FileSnapshotStore) -> None:
-    """Known limit (reported to the developer): the verifier checks numbers, not meaning."""
-    a = run(store, [GOOD_CALL, "He averages 32.7 assists per game."])
-    assert a.status == "verified"  # documents the gap; flips if a semantic guard lands
+    """The semantic guard: a real number called the wrong stat never verifies."""
+    a = run(store, [GOOD_CALL, "He averages 32.7 assists per game.", "Still 32.7 assists."])
+    assert a.status == "fallback" and "assists" not in a.text.split("\n")[0]
+    assert a.rejected and "32.7 assists" in a.rejected[0]

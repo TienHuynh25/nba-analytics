@@ -128,7 +128,8 @@ def test_games_sorted_by_margin_match_games_table(store: FileSnapshotStore) -> N
 
 
 def test_overtime_only_returns_only_overtime_games(store: FileSnapshotStore) -> None:
-    r = run_tool("get_games", {"season": S, "overtime_only": True, "limit": 100}, store)
+    # No explicit limit: the tool's default cap (100) must return every overtime game.
+    r = run_tool("get_games", {"season": S, "overtime_only": True}, store)
     n = q(
         store,
         "select count(*) from marts.games where season=? and season_type=? and periods>4",
@@ -241,3 +242,46 @@ def test_every_tool_rejects_unknown_arguments_without_querying() -> None:
     for name in TOOLS:
         with pytest.raises(ToolArgError):
             run_tool(name, {"definitely_not_an_arg": 1}, Boom())
+
+
+# --- TS% qualification: games% AND made field goals (decision 0007, option B) ---------------
+
+
+def _ts_rows(store: FileSnapshotStore) -> list[tuple[int, int, int, float]]:
+    """(player_id, gp, fgm, ts) from the marts for every regular-season player-season."""
+    return q(
+        store,
+        "select player_id, gp, fgm, pts / (2 * (fga + 0.44 * fta)) from marts.player_season "
+        "where season = ? and season_type = 'Regular Season' and fga + 0.44 * fta > 0",
+        S,
+    )
+
+
+def test_ts_pct_leaders_need_70pct_of_games_and_300_made_fgs(store: FileSnapshotStore) -> None:
+    team_gp = 82
+    rows = _ts_rows(store)
+    ok = [r for r in rows if r[1] >= 0.7 * team_gp and r[2] >= 300]
+    want = sorted(ok, key=lambda r: -r[3])[:5]
+    got = run_tool("get_leaders", {"metric": "true_shooting_pct", "season": S, "limit": 5}, store)
+    assert [x["player_id"] for x in got.rows] == [r[0] for r in want]
+    assert [x["true_shooting_pct"] for x in got.rows] == pytest.approx([r[3] for r in want])
+
+
+def test_ts_pct_rule_is_and_not_or(store: FileSnapshotStore) -> None:
+    team_gp = 82
+    rows = _ts_rows(store)
+    games_only = {r[0] for r in rows if r[1] >= 0.7 * team_gp and r[2] < 300}
+    shots_only = {r[0] for r in rows if r[1] < 0.7 * team_gp and r[2] >= 300}
+    assert games_only and shots_only  # the fixture has both kinds, so the test can bite
+    got = run_tool("get_leaders", {"metric": "true_shooting_pct", "season": S, "limit": 25}, store)
+    returned = {x["player_id"] for x in got.rows}
+    assert not returned & games_only and not returned & shots_only
+
+
+def test_ts_pct_unqualified_lets_a_low_volume_player_lead(store: FileSnapshotStore) -> None:
+    args = {"metric": "true_shooting_pct", "season": S, "limit": 1}
+    qual = run_tool("get_leaders", args, store)
+    unq = run_tool("get_leaders", {**args, "qualified": False}, store)
+    assert unq.rows[0]["true_shooting_pct"] >= qual.rows[0]["true_shooting_pct"]
+    assert unq.rows[0]["player_id"] != qual.rows[0]["player_id"]
+    assert "qualified" in qual.source and "qualified" not in unq.source.replace("unqualified", "")

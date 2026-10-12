@@ -183,7 +183,7 @@ def test_generated_schema_accepts_its_samples_and_rejects_drift() -> None:
     assert not v.is_valid(ragged)
 
 
-def test_samples_with_a_varying_column_only_require_the_shared_ones() -> None:
+def test_samples_with_varying_headers_become_exact_variants() -> None:
     from jsonschema import Draft202012Validator
 
     a = body(["PERSON_ID", "EXTRA"], [[1, "x"]])
@@ -191,6 +191,30 @@ def test_samples_with_a_varying_column_only_require_the_shared_ones() -> None:
     v = Draft202012Validator(generate_schema("t", [a, b], ["T"]))
     assert v.is_valid(a) and v.is_valid(b)
     assert not v.is_valid(body(["OTHER"], [[1]]))
+    assert not v.is_valid(body(["EXTRA", "PERSON_ID"], [["x", 1]]))  # swapped
+    assert not v.is_valid(body(["PERSON_ID", "EXTRA", "MORE"], [[1, "x", 0]]))  # extra column
+    assert not v.is_valid(body(["PERSON_ID", "EXTRA"], [[1]]))  # short row
+    assert not v.is_valid(body(["PERSON_ID"], [[2, "x"]]))  # long row
+    assert not v.is_valid(body(["PERSON_ID", "EXTRA"], [["1", "x"]]))  # type change
+    assert not v.is_valid(body(["PERSON_ID", "EXTRA"], [[1, 7]]))  # EXTRA seen only as string
+    assert v.is_valid(body(["PERSON_ID", "EXTRA"], [[1, None]]))  # non-key null stays allowed
+    assert v.is_valid(body(["PERSON_ID"], []))  # empty rowSet: content checks live elsewhere
+
+
+def test_variant_types_come_only_from_samples_with_that_variant() -> None:
+    from jsonschema import Draft202012Validator
+
+    a = body(["PERSON_ID", "X"], [[1, "s"]])
+    b = body(["PERSON_ID", "X", "Y"], [[2, 5, 0]])
+    v = Draft202012Validator(generate_schema("t", [a, b], ["T"]))
+    assert not v.is_valid(body(["PERSON_ID", "X"], [[1, 5]]))  # X is a number only in variant b
+    assert not v.is_valid(body(["PERSON_ID", "X", "Y"], [[1, "s", 0]]))
+
+
+def test_single_variant_schema_has_no_any_of() -> None:
+    s = generate_schema("t", [body(["PERSON_ID"], [[1]]), body(["PERSON_ID"], [[2]])], ["T"])
+    item = s["properties"]["resultSets"]["allOf"][0]["contains"]
+    assert "anyOf" not in item and item["properties"]["headers"] == {"const": ["PERSON_ID"]}
 
 
 def test_missing_result_set_in_samples_is_an_error() -> None:

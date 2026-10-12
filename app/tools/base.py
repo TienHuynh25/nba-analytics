@@ -72,11 +72,12 @@ class ToolResult:
                 if isinstance(v, bool) or not isinstance(v, int | float):
                     continue
                 if col in self.metrics:
-                    out.append(ResultValue(float(v), reg.metric(col).rounding))
+                    out.append(ResultValue(float(v), reg.metric(col).rounding, col))
                 elif col.endswith("_id"):
                     continue  # ids are never shown
                 else:
-                    out.append(ResultValue(float(v), INT if float(v).is_integer() else FLOAT1))
+                    rule = INT if float(v).is_integer() else FLOAT1
+                    out.append(ResultValue(float(v), rule, col))
         return out
 
     def args_text(self) -> list[str]:

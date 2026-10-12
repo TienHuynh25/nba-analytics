@@ -1,5 +1,8 @@
 """SQL-fallback parser guardrails (task 3.16 done-when, parser half)."""
 
+from pathlib import Path
+
+import duckdb
 import pytest
 
 from app.sql_guard import GuardError, check
@@ -64,3 +67,66 @@ def test_ctes_and_unions_on_semantic_views() -> None:
 def test_error_names_the_allowed_views_for_repair() -> None:
     with pytest.raises(GuardError, match=r"semantic\.player_season_stats"):
         check("select * from marts.player_season")
+
+
+_SET_OPS = ["UNION", "UNION ALL", "INTERSECT", "EXCEPT"]
+_A = "SELECT player_id FROM semantic.players"
+
+
+@pytest.mark.parametrize("op", _SET_OPS)
+def test_set_operation_gets_valid_limit(op: str, fixture_db_path: Path) -> None:
+    out = check(f"{_A} {op} {_A}")
+    assert out.endswith("LIMIT 100") and "SELECT * FROM" not in out
+    _run(out, fixture_db_path)
+
+
+@pytest.mark.parametrize("op", _SET_OPS)
+def test_set_operation_limit_is_capped(op: str, fixture_db_path: Path) -> None:
+    assert check(f"{_A} {op} {_A} LIMIT 5").endswith("LIMIT 5")
+    out = check(f"{_A} {op} {_A} LIMIT 5000")
+    assert out.endswith("LIMIT 100") and "5000" not in out
+    assert len(_run(out, fixture_db_path)) <= 100
+
+
+def test_cte_with_union_gets_limit(fixture_db_path: Path) -> None:
+    out = check(f"WITH t AS ({_A}) SELECT player_id FROM t UNION ALL SELECT player_id FROM t")
+    assert out.startswith("WITH t AS") and out.endswith("LIMIT 100")
+    assert len(_run(out, fixture_db_path)) == 100
+
+
+def test_chained_set_operations_and_inner_limit(fixture_db_path: Path) -> None:
+    out = check(f"{_A} UNION ALL {_A} EXCEPT ({_A} LIMIT 500)")
+    assert out.endswith("LIMIT 100")
+    _run(out, fixture_db_path)
+
+
+def _run(sql: str, db: Path) -> list[tuple[object, ...]]:
+    con = duckdb.connect(str(db), read_only=True)
+    try:
+        return con.execute(sql).fetchall()
+    finally:
+        con.close()
+
+
+@pytest.mark.parametrize(
+    "sql",
+    [
+        f"{_A} UNION SELECT game_id FROM marts.games",
+        f"SELECT game_id FROM marts.games UNION ALL {_A}",
+        f"{_A} INTERSECT SELECT x FROM staging.stg_team_game",
+        f"{_A} EXCEPT SELECT * FROM read_csv('x.csv')",
+        f"{_A} UNION ALL SELECT * FROM 'x.json'",
+        f"WITH t AS ({_A}) SELECT * FROM t UNION SELECT * FROM marts.players",
+        f"{_A} UNION ALL {_A}; DROP TABLE x",
+        f"{_A} UNION ALL {_A}; SELECT 1",
+        f"{_A} UNION ALL SELECT repeat('x', 4000000000)",
+        "ATTACH 'o.duckdb'",
+        "COPY (SELECT 1 UNION SELECT 2) TO 'o.csv'",
+        "PRAGMA database_list",
+        "SET threads = 1",
+        f"({_A} UNION {_A})",
+    ],
+)
+def test_set_operation_rejections_unchanged(sql: str) -> None:
+    with pytest.raises(GuardError):
+        check(sql)

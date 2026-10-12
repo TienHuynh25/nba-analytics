@@ -152,7 +152,7 @@ def test_opinion_question_gets_stats_without_verdict(store: FileSnapshotStore) -
     )
     a, _ = sp.answer("Is Jokic better than SGA this season?")
     assert a.behaviour == "no_verdict"
-    assert "do not say who is better" in llm.prompts[1][0].content
+    assert "do not say who is better" in llm.prompts[1][-1].content
 
 
 def test_invented_ids_are_dropped(store: FileSnapshotStore) -> None:

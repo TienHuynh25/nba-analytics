@@ -52,8 +52,11 @@ class LiveSnapshotStore:
         self,
         cfg: SourcesConfig | None = None,
         on_swap: Callable[[str], None] | None = None,
-        full_check: bool = False,
+        full_check: bool = True,
     ) -> None:
+        # full_check verifies every manifest checksum on the first open of each snapshot in this
+        # process (DEF-005: a metadata-only probe served mid-file corruption and tampered shots).
+        # Digests are cached by file stat, so later opens re-hash only changed files.
         self.cfg = cfg or sources()
         self._on_swap = on_swap
         self._full_check = full_check
@@ -70,7 +73,7 @@ class LiveSnapshotStore:
             if self._snap is not None and self._snap.snapshot_id == self._target_id():
                 return
             old = self._snap.snapshot_id if self._snap else None
-            snap = snapshots.open_current(self.cfg, full_check=self._full_check)
+            snap = snapshots.open_current(self.cfg, full_check=self._full_check, cached=True)
             if self._con is not None:
                 self._con.close()
             self._con = connect_read_only(snap.db, snap.shots)

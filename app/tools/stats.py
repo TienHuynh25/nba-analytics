@@ -10,6 +10,7 @@ import math
 from collections.abc import Sequence
 from typing import Any, ClassVar
 
+from app import career_gaps
 from app.interfaces import SnapshotStore
 from app.tools.base import (
     STAT_LINE,
@@ -80,15 +81,18 @@ class GetPlayerStats(BaseTool):
                 "where player_id = ? and season = ? and season_type = ?"
             )
             rows = _rows(store, sql, [pid, season, st])
-        notes = (
-            []
-            if rows
-            else [
-                f"No {season_phrase(season, st)} games for this player"
-                + (" with that team" if "team_id" in a else "")
-                + "."
-            ]
-        )
+        gs = career_gaps.gaps(store, [pid]).get(pid, [])
+        notes: list[str] = []
+        if not rows:
+            if career_gaps.covers(gs, season, st):
+                notes.append(career_gaps.NO_TOTALS)
+            else:
+                notes.append(
+                    f"No {season_phrase(season, st)} games for this player"
+                    + (" with that team" if "team_id" in a else "")
+                    + "."
+                )
+        notes += career_gaps.missing_note(gs)
         return ToolResult(
             self.name,
             a,
@@ -168,6 +172,13 @@ class GetLeaders(BaseTool):
         season = a.get("season")
         order = "desc" if m.higher_is_better else "asc"
         notes: list[str] = []
+        if scope == "season" and season:
+            # A stat not tracked that season is answered as such, before any qualification rule
+            # (which may not exist for that era) is looked up.
+            nt = self.not_tracked(store, [m.name], [season])
+            if nt:
+                src = source_line([m.label.lower()], season_phrase(season, st), [], store)
+                return ToolResult(self.name, a, [], [], [], src, nt)
         if a["entity"] == "team":
             _require_grain(self, [m.name], Grain.team_season, "for teams")
             if season is None:
@@ -213,10 +224,17 @@ class GetLeaders(BaseTool):
         def qualifies(r: dict[str, Any]) -> bool:
             if rule is None:
                 return True
-            if rule.min_games_pct is not None:
-                return bool(r["gp"] >= math.ceil(rule.min_games_pct * (r["team_gp"] or 0)))
-            if rule.min_made is not None and rule.min_made_stat:
-                return bool((r[rule.min_made_stat] or 0) >= rule.min_made)
+            if rule.min_games_pct is not None or rule.min_made is not None:
+                # Every minimum the rule sets must be met.
+                games_met = rule.min_games_pct is None or bool(
+                    r["gp"] >= math.ceil(rule.min_games_pct * (r["team_gp"] or 0))
+                )
+                made_met = (
+                    rule.min_made is None
+                    or not rule.min_made_stat
+                    or bool((r[rule.min_made_stat] or 0) >= rule.min_made)
+                )
+                return games_met and made_met
             games_ok = (
                 rule.min_career_games is not None
                 and (r["games_played"] or 0) >= rule.min_career_games
@@ -251,7 +269,12 @@ class GetLeaders(BaseTool):
             r["rank"] = i
         filters = []
         if rule is not None:
-            if rule.min_games_pct:
+            if rule.min_games_pct and rule.min_made:
+                filters.append(
+                    f"qualified (at least {round(100 * rule.min_games_pct)}% of team games and "
+                    f"{rule.min_made} {self.metric(rule.min_made_stat or '').label.lower()})"
+                )
+            elif rule.min_games_pct:
                 filters.append(
                     f"qualified (at least {round(100 * rule.min_games_pct)}% of team games)"
                 )
@@ -310,6 +333,7 @@ class Compare(BaseTool):
                 "and season = ? and season_type = ? order by team_id",
                 [*ids, a["season"], st],
             )
+            rows.sort(key=lambda r: ids.index(r["team_id"]))  # the requested order
             src = source_line(_labels(self, metrics), season_phrase(a["season"], st), [], store)
             return ToolResult(
                 self.name,
@@ -370,8 +394,15 @@ class Compare(BaseTool):
         nt = self.not_tracked(store, metrics, sorted(set(seasons_all))) if seasons_all else []
         notes = []
         missing = set(ids) - {r["player_id"] for r in rows}
-        if missing:
-            notes.append(f"No {seasons_desc} data for player id(s) {sorted(missing)}.")
+        gs = career_gaps.gaps(store, ids)
+        listed = sorted(i for i in missing if career_gaps.covers(gs.get(i, [])))
+        for i in listed:
+            notes.append(f"{career_gaps.NO_TOTALS} Player id: {i}.")
+        unlisted = sorted(missing - set(listed))
+        if unlisted:
+            notes.append(f"No {seasons_desc} data for player id(s) {unlisted}.")
+        for i in ids:
+            notes += career_gaps.missing_note(gs.get(i, []))
         src = source_line(_labels(self, metrics), seasons_desc, [], store)
         return ToolResult(
             self.name,
@@ -605,7 +636,15 @@ class GetCareer(BaseTool):
             [pid, st],
         )
         src = source_line(_labels(self, metrics), f"career, {st.lower()}", [], store)
-        notes = [] if rows else [f"No {st.lower()} games for this player."]
+        gs = career_gaps.gaps(store, [pid]).get(pid, [])
+        notes: list[str] = []
+        if not rows:
+            notes.append(
+                career_gaps.NO_TOTALS
+                if career_gaps.covers(gs)
+                else f"No {st.lower()} games for this player."
+            )
+        notes += career_gaps.missing_note(gs)
         return ToolResult(
             self.name,
             a,

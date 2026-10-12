@@ -49,6 +49,8 @@ class Stated:
     percent: bool
     token: bool = False  # a season or date: matched by text, never by value
     exotic: bool = False  # a Unicode digit or fraction (½, ², ٣): never matches anything
+    start: int = -1  # position in normalize(text)
+    end: int = -1
 
 
 def extract(text: str) -> list[Stated]:
@@ -58,10 +60,12 @@ def extract(text: str) -> list[Stated]:
     and fractions normalize into digits that no longer match ("99²" -> "992", "99½" ->
     "991" and "2"). Any numeric character left over (other scripts' digits) is flagged as exotic.
     """
-    text = unicodedata.normalize("NFKC", text)
+    text = normalize(text)
     out = []
     for m in TOKEN.finditer(text):
-        out.append(Stated(m.group(1), Decimal(0), 0, False, token=True))
+        out.append(
+            Stated(m.group(1), Decimal(0), 0, False, token=True, start=m.start(1), end=m.end(1))
+        )
     rest = TOKEN.sub(lambda m: " " * len(m.group(0)), text)
     rest = STAT_NAME.sub(lambda m: " " * len(m.group(0)), rest)
     for m in NUMBER.finditer(rest):
@@ -73,11 +77,18 @@ def extract(text: str) -> list[Stated]:
         if sign == "-":
             v = -v
         decimals = (len(frac) - 1 if frac else 0) if not scale else 0
-        out.append(Stated(m.group(0).strip(), v, decimals, pct == "%"))
-    for ch in rest:
+        out.append(
+            Stated(m.group(0).strip(), v, decimals, pct == "%", start=m.start(), end=m.end())
+        )
+    for i, ch in enumerate(rest):
         if not ("0" <= ch <= "9") and ch.isnumeric():
-            out.append(Stated(ch, Decimal(0), 0, False, exotic=True))
-    return sorted(out, key=lambda st: text.find(st.text))
+            out.append(Stated(ch, Decimal(0), 0, False, exotic=True, start=i, end=i + 1))
+    return sorted(out, key=lambda st: st.start)
+
+
+def normalize(text: str) -> str:
+    """NFKC: full-width digits become ASCII; positions in ``Stated`` refer to this text."""
+    return unicodedata.normalize("NFKC", text)
 
 
 def round_half_up(x: float, decimals: int) -> Decimal:
