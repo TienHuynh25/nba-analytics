@@ -1,0 +1,674 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "leaguedashplayerstats_adv",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "LeagueDashPlayerStats"
+       },
+       "headers": {
+        "const": [
+         "PLAYER_ID",
+         "PLAYER_NAME",
+         "NICKNAME",
+         "TEAM_ID",
+         "TEAM_ABBREVIATION",
+         "AGE",
+         "GP",
+         "W",
+         "L",
+         "W_PCT",
+         "MIN",
+         "E_OFF_RATING",
+         "OFF_RATING",
+         "sp_work_OFF_RATING",
+         "E_DEF_RATING",
+         "DEF_RATING",
+         "sp_work_DEF_RATING",
+         "E_NET_RATING",
+         "NET_RATING",
+         "sp_work_NET_RATING",
+         "AST_PCT",
+         "AST_TO",
+         "AST_RATIO",
+         "OREB_PCT",
+         "DREB_PCT",
+         "REB_PCT",
+         "TM_TOV_PCT",
+         "E_TOV_PCT",
+         "EFG_PCT",
+         "TS_PCT",
+         "USG_PCT",
+         "E_USG_PCT",
+         "E_PACE",
+         "PACE",
+         "PACE_PER40",
+         "sp_work_PACE",
+         "PIE",
+         "POSS",
+         "FGM",
+         "FGA",
+         "FGM_PG",
+         "FGA_PG",
+         "FG_PCT",
+         "GP_RANK",
+         "W_RANK",
+         "L_RANK",
+         "W_PCT_RANK",
+         "MIN_RANK",
+         "E_OFF_RATING_RANK",
+         "OFF_RATING_RANK",
+         "sp_work_OFF_RATING_RANK",
+         "E_DEF_RATING_RANK",
+         "DEF_RATING_RANK",
+         "sp_work_DEF_RATING_RANK",
+         "E_NET_RATING_RANK",
+         "NET_RATING_RANK",
+         "sp_work_NET_RATING_RANK",
+         "AST_PCT_RANK",
+         "AST_TO_RANK",
+         "AST_RATIO_RANK",
+         "OREB_PCT_RANK",
+         "DREB_PCT_RANK",
+         "REB_PCT_RANK",
+         "TM_TOV_PCT_RANK",
+         "E_TOV_PCT_RANK",
+         "EFG_PCT_RANK",
+         "TS_PCT_RANK",
+         "USG_PCT_RANK",
+         "E_USG_PCT_RANK",
+         "E_PACE_RANK",
+         "PACE_RANK",
+         "sp_work_PACE_RANK",
+         "PIE_RANK",
+         "FGM_RANK",
+         "FGA_RANK",
+         "FGM_PG_RANK",
+         "FGA_PG_RANK",
+         "FG_PCT_RANK",
+         "TEAM_COUNT"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 79,
+         "maxItems": 79,
+         "prefixItems": [
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "PLAYER_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "PLAYER_NAME"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "NICKNAME"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_ABBREVIATION"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AGE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GP"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "W"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "L"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "W_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MIN"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_OFF_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OFF_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_OFF_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_DEF_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DEF_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_DEF_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_NET_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "NET_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_NET_RATING"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST_TO"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST_RATIO"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TM_TOV_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_TOV_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "EFG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TS_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "USG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_USG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_PACE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PACE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PACE_PER40"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_PACE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PIE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "POSS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM_PG"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA_PG"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GP_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "W_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "L_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "W_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "MIN_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_OFF_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OFF_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_OFF_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_DEF_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DEF_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_DEF_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_NET_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "NET_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_NET_RATING_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST_TO_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST_RATIO_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TM_TOV_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_TOV_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "EFG_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TS_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "USG_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_USG_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "E_PACE_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PACE_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "sp_work_PACE_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PIE_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM_PG_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA_PG_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TEAM_COUNT"
+          }
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

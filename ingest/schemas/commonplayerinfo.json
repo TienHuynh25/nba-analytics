@@ -1,0 +1,604 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "commonplayerinfo",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "CommonPlayerInfo"
+       }
+      },
+      "anyOf": [
+       {
+        "properties": {
+         "headers": {
+          "const": [
+           "PERSON_ID",
+           "FIRST_NAME",
+           "LAST_NAME",
+           "DISPLAY_FIRST_LAST",
+           "DISPLAY_LAST_COMMA_FIRST",
+           "DISPLAY_FI_LAST",
+           "PLAYER_SLUG",
+           "BIRTHDATE",
+           "SCHOOL",
+           "COUNTRY",
+           "LAST_AFFILIATION",
+           "HEIGHT",
+           "WEIGHT",
+           "SEASON_EXP",
+           "JERSEY",
+           "POSITION",
+           "ROSTERSTATUS",
+           "GAMES_PLAYED_CURRENT_SEASON_FLAG",
+           "TEAM_ID",
+           "TEAM_NAME",
+           "TEAM_ABBREVIATION",
+           "TEAM_CODE",
+           "TEAM_CITY",
+           "PLAYERCODE",
+           "FROM_YEAR",
+           "TO_YEAR",
+           "DLEAGUE_FLAG",
+           "NBA_FLAG",
+           "GAMES_PLAYED_FLAG",
+           "DRAFT_YEAR",
+           "DRAFT_ROUND",
+           "DRAFT_NUMBER",
+           "GREATEST_75_FLAG",
+           "SUPPLEMENTAL_STATUS"
+          ]
+         },
+         "rowSet": {
+          "type": "array",
+          "items": {
+           "type": "array",
+           "minItems": 34,
+           "maxItems": 34,
+           "prefixItems": [
+            {
+             "type": [
+              "number"
+             ],
+             "$comment": "PERSON_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "FIRST_NAME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LAST_NAME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DISPLAY_FIRST_LAST"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DISPLAY_LAST_COMMA_FIRST"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DISPLAY_FI_LAST"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "PLAYER_SLUG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "BIRTHDATE"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "SCHOOL"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "COUNTRY"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LAST_AFFILIATION"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "HEIGHT"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "WEIGHT"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "SEASON_EXP"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "JERSEY"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "POSITION"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ROSTERSTATUS"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "GAMES_PLAYED_CURRENT_SEASON_FLAG"
+            },
+            {
+             "type": [
+              "number"
+             ],
+             "$comment": "TEAM_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_NAME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_ABBREVIATION"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_CODE"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_CITY"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "PLAYERCODE"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "FROM_YEAR"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "TO_YEAR"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DLEAGUE_FLAG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "NBA_FLAG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "GAMES_PLAYED_FLAG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DRAFT_YEAR"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DRAFT_ROUND"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DRAFT_NUMBER"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "GREATEST_75_FLAG"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "SUPPLEMENTAL_STATUS"
+            }
+           ]
+          }
+         }
+        }
+       },
+       {
+        "properties": {
+         "headers": {
+          "const": [
+           "PERSON_ID",
+           "FIRST_NAME",
+           "LAST_NAME",
+           "DISPLAY_FIRST_LAST",
+           "DISPLAY_LAST_COMMA_FIRST",
+           "DISPLAY_FI_LAST",
+           "PLAYER_SLUG",
+           "BIRTHDATE",
+           "SCHOOL",
+           "COUNTRY",
+           "LAST_AFFILIATION",
+           "HEIGHT",
+           "WEIGHT",
+           "SEASON_EXP",
+           "JERSEY",
+           "POSITION",
+           "ROSTERSTATUS",
+           "GAMES_PLAYED_CURRENT_SEASON_FLAG",
+           "TEAM_ID",
+           "TEAM_NAME",
+           "TEAM_ABBREVIATION",
+           "TEAM_CODE",
+           "TEAM_CITY",
+           "PLAYERCODE",
+           "FROM_YEAR",
+           "TO_YEAR",
+           "DLEAGUE_FLAG",
+           "NBA_FLAG",
+           "GAMES_PLAYED_FLAG",
+           "DRAFT_YEAR",
+           "DRAFT_ROUND",
+           "DRAFT_NUMBER",
+           "GREATEST_75_FLAG"
+          ]
+         },
+         "rowSet": {
+          "type": "array",
+          "items": {
+           "type": "array",
+           "minItems": 33,
+           "maxItems": 33,
+           "prefixItems": [
+            {
+             "type": [
+              "number"
+             ],
+             "$comment": "PERSON_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "FIRST_NAME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LAST_NAME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DISPLAY_FIRST_LAST"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DISPLAY_LAST_COMMA_FIRST"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DISPLAY_FI_LAST"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "PLAYER_SLUG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "BIRTHDATE"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "SCHOOL"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "COUNTRY"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "LAST_AFFILIATION"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "HEIGHT"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "WEIGHT"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "SEASON_EXP"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "JERSEY"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "POSITION"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "ROSTERSTATUS"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "GAMES_PLAYED_CURRENT_SEASON_FLAG"
+            },
+            {
+             "type": [
+              "number"
+             ],
+             "$comment": "TEAM_ID"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_NAME"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_ABBREVIATION"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_CODE"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "TEAM_CITY"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "PLAYERCODE"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "FROM_YEAR"
+            },
+            {
+             "type": [
+              "number",
+              "null"
+             ],
+             "$comment": "TO_YEAR"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DLEAGUE_FLAG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "NBA_FLAG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "GAMES_PLAYED_FLAG"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "DRAFT_YEAR"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "DRAFT_ROUND"
+            },
+            {
+             "type": [
+              "string",
+              "number",
+              "boolean",
+              "null"
+             ],
+             "$comment": "DRAFT_NUMBER"
+            },
+            {
+             "type": [
+              "string",
+              "null"
+             ],
+             "$comment": "GREATEST_75_FLAG"
+            }
+           ]
+          }
+         }
+        }
+       }
+      ]
+     }
+    }
+   ]
+  }
+ }
+}

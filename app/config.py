@@ -26,15 +26,23 @@ class LLMConfig(_Strict):
     model: str
     temperature: float = Field(ge=0.0, le=2.0)
     timeout_s: float = Field(gt=0)
+    think: bool = False  # reasoning mode; off: qwen3.5:9b takes ~35 s/call with it on
+    num_ctx: int = Field(default=8192, ge=2048)  # explicit, so long prompts are never cut
+    keep_alive: str = "30m"  # keep the model loaded between questions
 
 
 class EmbeddingsConfig(_Strict):
+    backend: Literal["ollama"] = "ollama"
+    base_url: HttpUrl = HttpUrl("http://localhost:11434")
     model: str
+    batch: int = Field(default=32, gt=0)
 
 
 class RerankerConfig(_Strict):
     model: str
     keep: int = Field(gt=0)
+    device: Literal["auto", "mps", "cpu"] = "auto"
+    half_precision: bool = True  # ~1.1 GB instead of ~2.2 GB on the 16 GB target Mac
 
 
 class RetrievalConfig(_Strict):

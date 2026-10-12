@@ -4,13 +4,18 @@ Each endpoint key has a schema in ``ingest/schemas/<key>.json``. The schemas are
 real samples by :func:`generate_schema` and then tightened:
 
 - every result set we rely on must be present, with its ``headers`` equal to the stored list,
-  in order;
-- every row has exactly ``len(headers)`` cells;
-- each cell's JSON type is limited to the types seen in the samples, plus ``null``;
+  in order. Where samples legitimately differ (``CommonPlayerInfo`` omits
+  ``SUPPLEMENTAL_STATUS`` for retired players; ``Standings`` columns change with the division
+  layout and the 2019-20 restart), each observed header list is stored as its own *variant*
+  and the headers must equal one variant exactly, in order (``anyOf``);
+- every row has exactly ``len(headers)`` cells of the matched variant;
+- each cell's JSON type is limited to the types seen in that variant's samples, plus ``null``;
 - key columns (IDs, dates, season) may never be ``null``.
 
-A renamed field, a dropped or added column, or a key that turns ``null`` fails validation, so the
-run stops before bad data reaches staging.
+A renamed, swapped, dropped or added column, a short or long row, a changed cell type, or a key
+that turns ``null`` fails validation, so the run stops before bad data reaches staging. An empty
+``rowSet`` and a ``null`` in a non-key cell pass by design (content checks live elsewhere;
+untracked stats are ``NULL``).
 """
 
 from __future__ import annotations
@@ -68,64 +73,64 @@ def _sets(body: dict[str, Any]) -> list[dict[str, Any]]:
     return sets
 
 
+def _cell_types(col: str, seen: set[str]) -> list[str]:
+    observed = sorted(seen - {"null"})
+    if col in NON_NULL_COLUMNS:
+        return observed or ["string", "number"]
+    return [*observed, "null"] if observed else ["string", "number", "boolean", "null"]
+
+
+def _variant(headers: list[str], types: dict[str, set[str]]) -> dict[str, Any]:
+    """Exact headers, exact row width and per-cell types for one observed header list."""
+    cells = [{"type": _cell_types(col, types.get(col, set())), "$comment": col} for col in headers]
+    n = len(headers)
+    return {
+        "headers": {"const": headers},
+        "rowSet": {
+            "type": "array",
+            "items": {"type": "array", "minItems": n, "maxItems": n, "prefixItems": cells},
+        },
+    }
+
+
 def generate_schema(
     key: str, samples: Iterable[dict[str, Any]], names: Iterable[str]
 ) -> dict[str, Any]:
-    """Build a tightened schema from one or more sample bodies of the same endpoint."""
+    """Build a tightened schema from one or more sample bodies of the same endpoint.
+
+    Each distinct header list seen for a result set becomes one variant, typed only from the
+    samples that carry it. One variant is stored inline; several are stored as ``anyOf``.
+    """
     wanted = list(names)
-    headers: dict[str, list[str]] = {}
-    types: dict[str, list[set[str]]] = {}
+    # result set -> header tuple (first-seen order) -> column -> JSON types seen
+    variants: dict[str, dict[tuple[str, ...], dict[str, set[str]]]] = {}
     for body in samples:
         for rs in _sets(body):
             name = rs["name"]
             if name not in wanted:
                 continue
             h = list(rs["headers"])
-            if name in headers and headers[name] != h:
-                raise ContractError(f"{key}.{name}: headers differ between samples")
-            headers[name] = h
-            cols = types.setdefault(name, [set() for _ in h])
+            cols = variants.setdefault(name, {}).setdefault(tuple(h), {})
             for row in rs["rowSet"]:
-                for i, cell in enumerate(row):
-                    cols[i].add(_json_type(cell))
-    missing = [n for n in wanted if n not in headers]
+                for col, cell in zip(h, row, strict=True):
+                    cols.setdefault(col, set()).add(_json_type(cell))
+    missing = [n for n in wanted if n not in variants]
     if missing:
         raise ContractError(f"{key}: samples lack result sets {missing}")
 
-    contains = []
+    contains: list[dict[str, Any]] = []
     for name in wanted:
-        cells = []
-        for col, seen in zip(headers[name], types[name], strict=True):
-            observed = sorted(seen - {"null"})
-            if col in NON_NULL_COLUMNS:
-                allowed = observed or ["string", "number"]
-            else:
-                allowed = (
-                    [*observed, "null"] if observed else ["string", "number", "boolean", "null"]
-                )
-            cells.append({"type": allowed, "$comment": col})
-        n = len(headers[name])
-        contains.append(
-            {
-                "contains": {
-                    "type": "object",
-                    "required": ["name", "headers", "rowSet"],
-                    "properties": {
-                        "name": {"const": name},
-                        "headers": {"const": headers[name]},
-                        "rowSet": {
-                            "type": "array",
-                            "items": {
-                                "type": "array",
-                                "minItems": n,
-                                "maxItems": n,
-                                "prefixItems": cells,
-                            },
-                        },
-                    },
-                }
-            }
-        )
+        found = [_variant(list(h), types) for h, types in variants[name].items()]
+        item: dict[str, Any] = {
+            "type": "object",
+            "required": ["name", "headers", "rowSet"],
+            "properties": {"name": {"const": name}},
+        }
+        if len(found) == 1:
+            item["properties"].update(found[0])
+        else:
+            item["anyOf"] = [{"properties": v} for v in found]
+        contains.append({"contains": item})
     return {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "title": key,

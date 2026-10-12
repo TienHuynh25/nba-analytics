@@ -1,0 +1,314 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "teamyearbyyearstats",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "TeamStats"
+       },
+       "headers": {
+        "const": [
+         "TEAM_ID",
+         "TEAM_CITY",
+         "TEAM_NAME",
+         "YEAR",
+         "GP",
+         "WINS",
+         "LOSSES",
+         "WIN_PCT",
+         "CONF_RANK",
+         "DIV_RANK",
+         "PO_WINS",
+         "PO_LOSSES",
+         "CONF_COUNT",
+         "DIV_COUNT",
+         "NBA_FINALS_APPEARANCE",
+         "FGM",
+         "FGA",
+         "FG_PCT",
+         "FG3M",
+         "FG3A",
+         "FG3_PCT",
+         "FTM",
+         "FTA",
+         "FT_PCT",
+         "OREB",
+         "DREB",
+         "REB",
+         "AST",
+         "PF",
+         "STL",
+         "TOV",
+         "BLK",
+         "PTS",
+         "PTS_RANK"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 34,
+         "maxItems": 34,
+         "prefixItems": [
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_CITY"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_NAME"
+          },
+          {
+           "type": [
+            "string"
+           ],
+           "$comment": "YEAR"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GP"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "WINS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "LOSSES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "WIN_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "CONF_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DIV_RANK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PO_WINS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PO_LOSSES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "CONF_COUNT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DIV_COUNT"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "NBA_FINALS_APPEARANCE"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FGA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3M"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3A"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FG3_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTM"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FTA"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "FT_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "OREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DREB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "REB"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "AST"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PF"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "STL"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "TOV"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "BLK"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PTS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PTS_RANK"
+          }
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

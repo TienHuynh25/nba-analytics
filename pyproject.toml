@@ -6,9 +6,12 @@ dependencies = [
     "dbt-duckdb>=1.11.0",
     "duckdb>=1.5.6",
     "jsonschema>=4.26.0",
+    "lancedb>=0.40.0",
     "nba-api==1.11.4",
     "pydantic>=2",
     "pyyaml>=6.0.3",
+    "rapidfuzz>=3.14.6",
+    "sentence-transformers>=6.1.0",
     "sqlglot>=30.21.0",
     "tenacity>=9.1.4",
 ]
@@ -41,7 +44,7 @@ files = ["app", "ingest", "metrics", "eval", "tests"]
 exclude = ["transform/"]
 
 [[tool.mypy.overrides]]
-module = ["nba_api.*"]
+module = ["nba_api.*", "pyarrow.*", "lancedb.*", "sentence_transformers.*", "torch.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
@@ -50,4 +53,5 @@ testpaths = ["tests"]
 addopts = "-q"
 markers = [
     "network: calls stats.nba.com (deselect with -m 'not network')",
+    "dbt: runs dbt against a copy of the fixture (slower)",
 ]

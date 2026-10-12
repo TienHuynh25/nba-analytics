@@ -1,0 +1,19 @@
+version: 2
+seeds:
+  - name: records_curated
+    description: Hand-entered records from Basketball-Reference (decision 0008).
+    columns:
+      - name: record
+        data_tests: [not_null]
+      - name: record_kind
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: [single_game, career_count]}}
+      - name: player
+        data_tests: [not_null]
+      - name: value
+        data_tests: [not_null]
+      - name: source_url
+        data_tests: [not_null]
+      - name: valid_from
+        data_tests: [not_null]

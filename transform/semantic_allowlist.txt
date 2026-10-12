@@ -1,0 +1,21 @@
+# Semantic-layer views the SQL fallback may read (task 1.23 -> 3.16). Generated.
+semantic.awards
+semantic.franchises
+semantic.games
+semantic.league_season_stats
+semantic.player_aliases
+semantic.player_career_stats
+semantic.player_game_log
+semantic.player_season_stats
+semantic.player_stint_stats
+semantic.player_titles
+semantic.players
+semantic.records
+semantic.registry_info
+semantic.shots
+semantic.stat_availability
+semantic.team_aliases
+semantic.team_all_time_stats
+semantic.team_season_stats
+semantic.team_titles
+semantic.teams

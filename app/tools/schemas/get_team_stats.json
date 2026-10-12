@@ -1,0 +1,57 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "type": "object",
+ "description": "One team's stats for one season.",
+ "properties": {
+  "team_ids": {
+   "type": "array",
+   "items": {
+    "type": "integer"
+   },
+   "minItems": 1,
+   "maxItems": 1
+  },
+  "season": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}$",
+   "description": "e.g. 2025-26"
+  },
+  "season_type": {
+   "type": "string",
+   "enum": [
+    "Regular Season",
+    "Playoffs",
+    "PlayIn"
+   ],
+   "default": "Regular Season"
+  },
+  "metrics": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "enum": [
+     "defensive_rating",
+     "home_losses",
+     "home_wins",
+     "losses",
+     "net_rating",
+     "offensive_rating",
+     "opponent_points_per_game",
+     "pace",
+     "road_losses",
+     "road_wins",
+     "team_points_per_game",
+     "win_pct",
+     "wins"
+    ]
+   },
+   "minItems": 1
+  }
+ },
+ "required": [
+  "team_ids",
+  "season",
+  "metrics"
+ ],
+ "additionalProperties": false
+}

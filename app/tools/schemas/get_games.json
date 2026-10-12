@@ -1,0 +1,90 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "type": "object",
+ "description": "Games and box scores: last games, head-to-head, overtime, margins, streaks.",
+ "properties": {
+  "team_ids": {
+   "type": "array",
+   "items": {
+    "type": "integer"
+   },
+   "minItems": 1,
+   "maxItems": 2
+  },
+  "player_ids": {
+   "type": "array",
+   "items": {
+    "type": "integer"
+   },
+   "minItems": 1,
+   "maxItems": 1
+  },
+  "season": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}$",
+   "description": "e.g. 2025-26"
+  },
+  "season_types": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "enum": [
+     "Regular Season",
+     "Playoffs",
+     "PlayIn"
+    ],
+    "default": "Regular Season"
+   },
+   "minItems": 1,
+   "default": [
+    "Regular Season"
+   ]
+  },
+  "date": {
+   "type": "string",
+   "format": "date"
+  },
+  "last_n": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 82
+  },
+  "overtime_only": {
+   "type": "boolean",
+   "default": false
+  },
+  "finals_only": {
+   "type": "boolean",
+   "default": false
+  },
+  "sort": {
+   "type": "string",
+   "enum": [
+    "date_desc",
+    "margin_desc",
+    "player_points_desc"
+   ],
+   "default": "date_desc"
+  },
+  "limit": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 100
+  },
+  "box_leaders": {
+   "type": "boolean",
+   "default": false,
+   "description": "include each game's points/rebounds/assists leaders"
+  },
+  "streak": {
+   "type": "string",
+   "enum": [
+    "win",
+    "loss"
+   ],
+   "description": "longest streak for the team in the season"
+  }
+ },
+ "required": [],
+ "additionalProperties": false
+}

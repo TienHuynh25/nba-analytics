@@ -56,12 +56,15 @@ in `leaguegamelog_t`:
 Every game is present in every season probed. Game counts match the schedule: 331 in 1946-47, 697 in 1970-71,
 943 in 1983-84.
 
-**Result: 1996-97 is the first season in which player game logs reconcile exactly with team totals.**
+**Result: 1996-97 is the first season in which player game logs reconcile with team totals.** A full check
+of every season after the backfill (1,217 mismatched team-games in all, after resolving 15 players the source lists under both teams in one game) found one later exception, an NBA.com
+source error: game `0029800661` (NJN @ DET, 1999-04-28), where the Nets' player points sum to 97 but the team
+row says 93.
 Earlier seasons have all their games, but some box scores are partial. Consequences:
 
 1. **Domain check 1.20 (player points sum to team points)** is enforced exactly from 1996-97. Earlier
-   seasons are checked against a stored allowlist of known mismatches (`transform/seeds/known_boxscore_gaps.csv`),
-   so a new mismatch still fails the build. **This differs from the spec, which states the check without a
+   seasons, plus the one 1998-99 source error, are checked against a stored allowlist of known mismatches
+   (`transform/seeds/known_boxscore_gaps.csv`, 1,217 team-games), so any new mismatch still fails the build. **This differs from the spec, which states the check without a
    season bound. Flagged for the owner.**
 2. **Game-level stats before 1973-74 steals/blocks and before 1996-97 in general can be NULL in `player_game`**,
    even when the league tracked the stat that season. Season totals (`playercareerstats`) are complete for tracked
@@ -88,6 +91,28 @@ percentage, not "not tracked". The registry defines a step-back 3 as `SHOT_TYPE 
 1,408 PTS. `player_season` takes the `TOT` row when present, else the single team row. `player_season_stint` takes
 the team rows. Untracked stats come back as NULL, not 0 (Wilt Chamberlain 1959-60: `STL`, `BLK`, `FG3M` are NULL).
 His career `FG3M` is NULL, which is what Q85 needs.
+
+playercareerstats returns no data for 219 persistent player ids (203 with game-log games, 16 without) and commonplayerinfo for 200603; all are listed in `known_player_career_gaps.csv` (decision 0009).
+
+playercareerstats can return a successful but empty response (every set 0 rows) for a player with games (Maxi Kleber 1628467, one re-fetch on 2026-10-11 stayed empty). Raw files with no regular-season totals must be checked against the game logs; reviewed gaps are in `known_player_career_gaps.csv` (decision 0009).
+
+## Contract header variants (DEF-015)
+
+Two result sets have more than one legitimate header list. `ingest/contracts.py` stores each list seen in the
+`gen_schemas.SAMPLES` responses as an exact variant (ordered headers, row width, per-cell types from that variant's
+samples); a response must match one variant exactly. Survey of the whole raw cache on 2026-10-11 (17,447 files):
+
+- `commonplayerinfo.CommonPlayerInfo`: 34 columns with `SUPPLEMENTAL_STATUS` (704 files, e.g. player 2544) and 33
+  without it (4,538 files, e.g. retired player 76375). Both are in the samples.
+- `leaguestandingsv3.Standings`: 87 columns for 1970-71 to 2003-04 (34 files; has `vsMidwest`); 92 columns from
+  2004-05 (21 files; `vsSoutheast`/`vsNorthwest`/`vsSouthwest` and `TotalPoints`, `OppTotalPoints`,
+  `DiffTotalPoints` instead of `vsMidwest`); 124 columns for 2019-20 only (1 file, the restart season, which adds
+  `ReturnToPlay_*` flags and `Seeding_Game_1..8_{Outcome,ID,Opponent,Label}`). The 2019-20 variant was missing from
+  the samples and rejected `data/raw/leaguestandingsv3/2019-20/2026-09-30/1588eba07151bc4a.20260930T224342622755Z.json`,
+  so 2019-20 was added to `SAMPLES`.
+
+Every other result set has a single header list across the cache. A new header list fails the contract: check the
+response, then add a sample for it in `gen_schemas.SAMPLES` and regenerate; never hand-edit the schema.
 
 ## Seed → endpoint map
 

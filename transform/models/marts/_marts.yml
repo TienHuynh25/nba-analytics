@@ -1,0 +1,116 @@
+version: 2
+
+models:
+  - name: players
+    columns:
+      - name: player_id
+        data_tests: [unique, not_null]
+      - name: name
+        data_tests: [not_null]
+  - name: player_aliases
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [player_id, alias_norm]}
+    columns:
+      - name: player_id
+        data_tests: [not_null, {relationships: {to: ref('players'), field: player_id}}]
+  - name: franchises
+    columns:
+      - name: franchise_id
+        data_tests: [unique, not_null]
+  - name: teams
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [team_id, first_season_start]}
+    columns:
+      - name: franchise_id
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]
+  - name: games
+    columns:
+      - name: game_id
+        data_tests: [unique, not_null]
+      - name: season
+        data_tests: [not_null]
+      - name: season_type
+        data_tests:
+          - not_null
+          - accepted_values: {arguments: {values: ['Regular Season', 'Playoffs', 'PlayIn', 'Cup Final', 'Tiebreaker']}}
+      - name: game_date
+        data_tests: [not_null]
+      - name: home_team_id
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]
+      - name: away_team_id
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]
+      - name: home_pts
+        data_tests: [not_null]
+      - name: away_pts
+        data_tests: [not_null]
+  - name: player_game
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [game_id, player_id]}
+    columns:
+      - name: game_id
+        data_tests: [not_null, {relationships: {to: ref('games'), field: game_id}}]
+      - name: player_id
+        data_tests: [not_null]
+      - name: season_type
+        data_tests: [not_null]
+  - name: player_season_stint
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [player_id, season, season_type, team_id]}
+    columns:
+      - name: player_id
+        data_tests: [not_null, {relationships: {to: ref('players'), field: player_id}}]
+      - name: team_id
+        data_tests: [not_null]
+  - name: player_season
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [player_id, season, season_type]}
+    columns:
+      - name: player_id
+        data_tests: [not_null, {relationships: {to: ref('players'), field: player_id}}]
+      - name: season
+        data_tests: [not_null]
+      - name: gp
+        data_tests: [not_null]
+  - name: team_season
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [team_id, season, season_type]}
+    columns:
+      - name: team_id
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]
+  - name: team_titles
+    columns:
+      - name: season
+        data_tests: [unique, not_null]
+      - name: franchise_id
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]
+  - name: awards
+    columns:
+      - name: player_id
+        data_tests: [not_null, {relationships: {to: ref('players'), field: player_id}}]
+      - name: award
+        data_tests: [not_null]
+      - name: season
+        data_tests: [not_null]
+  - name: records
+    columns:
+      - name: record
+        data_tests: [not_null]
+      - name: value
+        data_tests: [not_null]
+      - name: valid_from
+        data_tests: [not_null]
+  - name: stat_availability
+    columns:
+      - name: stat
+        data_tests: [unique, not_null]
+      - name: first_season_start
+        data_tests: [not_null]
+  - name: player_titles
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [player_id, season]}
+  - name: player_advanced
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [player_id, season, season_type]}
+  - name: team_aliases
+    data_tests:
+      - dbt_utils_unique_combination: {columns: [alias_norm, team_id]}

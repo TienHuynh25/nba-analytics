@@ -62,10 +62,10 @@ class RawStore:
         return self.root / key / season
 
     def latest(
-        self, spec: EndpointSpec, season: str | None, params: Mapping[str, Any]
+        self, spec: EndpointSpec, partition: str | None, params: Mapping[str, Any]
     ) -> Path | None:
         h = request_hash(spec.endpoint, params)
-        base = self._dir(spec.key, season or ALL)
+        base = self._dir(spec.key, partition or ALL)
         if not base.exists():
             return None
         hits = sorted(base.glob(f"*/{h}.*.json"))
@@ -74,22 +74,26 @@ class RawStore:
     def get(
         self,
         spec: EndpointSpec,
-        season: str | None = None,
+        partition: str | None = None,
         refresh: bool = False,
         **kwargs: Any,
     ) -> RawRecord:
-        """Return the cached response, fetching it only on a miss or when ``refresh`` is set."""
+        """Return the cached response, fetching it only on a miss or when ``refresh`` is set.
+
+        ``partition`` is the season folder (``_all`` when None). ``kwargs`` are the endpoint's
+        own parameters (which may include ``season``).
+        """
         params = spec.params(**kwargs)
         if not refresh:
-            hit = self.latest(spec, season, params)
+            hit = self.latest(spec, partition, params)
             if hit is not None:
                 return load(hit)
         if self.client is None:
-            raise LookupError(f"cache miss for {spec.key} {season} {kwargs} and no client")
+            raise LookupError(f"cache miss for {spec.key} {partition} {kwargs} and no client")
         body = self.client.fetch(spec.endpoint, params)
         if self.validator is not None:
             self.validator(spec.key, body)
-        return self._write(spec, season or ALL, params, body)
+        return self._write(spec, partition or ALL, params, body)
 
     def _write(
         self, spec: EndpointSpec, season: str, params: dict[str, Any], body: dict[str, Any]
