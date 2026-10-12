@@ -1,0 +1,115 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "type": "object",
+ "description": "Ranked leaders for a metric in a season, or all-time (career).",
+ "properties": {
+  "entity": {
+   "type": "string",
+   "enum": [
+    "player",
+    "team"
+   ],
+   "default": "player"
+  },
+  "metric": {
+   "type": "string",
+   "enum": [
+    "all_star_selections",
+    "assists",
+    "assists_per_game",
+    "blocks",
+    "blocks_per_game",
+    "corner_threes_made",
+    "defensive_rating",
+    "double_doubles",
+    "effective_fg_pct",
+    "field_goal_pct",
+    "field_goals_made",
+    "forty_point_games",
+    "free_throw_pct",
+    "free_throws_made",
+    "games_played",
+    "games_started",
+    "home_losses",
+    "home_wins",
+    "losses",
+    "minutes",
+    "minutes_per_game",
+    "mvp_awards",
+    "net_rating",
+    "offensive_rating",
+    "opponent_points_per_game",
+    "pace",
+    "player_championships",
+    "plus_minus",
+    "points",
+    "points_per_game",
+    "rebounds",
+    "rebounds_per_game",
+    "restricted_area_fg_pct",
+    "road_losses",
+    "road_wins",
+    "shot_attempts",
+    "shot_fg_pct",
+    "steals",
+    "steals_per_game",
+    "step_back_three_pct",
+    "team_points_per_game",
+    "three_point_pct",
+    "threes_attempted",
+    "threes_made",
+    "triple_doubles",
+    "true_shooting_pct",
+    "turnovers",
+    "usage_rate",
+    "win_pct",
+    "wins"
+   ]
+  },
+  "scope": {
+   "type": "string",
+   "enum": [
+    "season",
+    "career"
+   ],
+   "default": "season"
+  },
+  "season": {
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}$",
+   "description": "e.g. 2025-26"
+  },
+  "season_type": {
+   "type": "string",
+   "enum": [
+    "Regular Season",
+    "Playoffs",
+    "PlayIn"
+   ],
+   "default": "Regular Season"
+  },
+  "limit": {
+   "type": "integer",
+   "minimum": 1,
+   "maximum": 25,
+   "default": 5
+  },
+  "qualified": {
+   "type": "boolean",
+   "default": true,
+   "description": "apply the registry's qualification rule"
+  },
+  "rookies_only": {
+   "type": "boolean",
+   "default": false
+  },
+  "team_id": {
+   "type": "integer",
+   "description": "rank within one team (Q48)"
+  }
+ },
+ "required": [
+  "metric"
+ ],
+ "additionalProperties": false
+}

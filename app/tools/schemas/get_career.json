@@ -1,0 +1,75 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "type": "object",
+ "description": "One player's career totals and averages.",
+ "properties": {
+  "player_ids": {
+   "type": "array",
+   "items": {
+    "type": "integer"
+   },
+   "minItems": 1,
+   "maxItems": 1
+  },
+  "season_type": {
+   "type": "string",
+   "enum": [
+    "Regular Season",
+    "Playoffs",
+    "PlayIn"
+   ],
+   "default": "Regular Season"
+  },
+  "metrics": {
+   "type": "array",
+   "items": {
+    "type": "string",
+    "enum": [
+     "stat_line",
+     "all_star_selections",
+     "assists",
+     "assists_per_game",
+     "blocks",
+     "blocks_per_game",
+     "corner_threes_made",
+     "double_doubles",
+     "effective_fg_pct",
+     "field_goal_pct",
+     "field_goals_made",
+     "forty_point_games",
+     "free_throw_pct",
+     "free_throws_made",
+     "games_played",
+     "games_started",
+     "minutes",
+     "minutes_per_game",
+     "mvp_awards",
+     "player_championships",
+     "plus_minus",
+     "points",
+     "points_per_game",
+     "rebounds",
+     "rebounds_per_game",
+     "restricted_area_fg_pct",
+     "shot_attempts",
+     "shot_fg_pct",
+     "steals",
+     "steals_per_game",
+     "step_back_three_pct",
+     "three_point_pct",
+     "threes_attempted",
+     "threes_made",
+     "triple_doubles",
+     "true_shooting_pct",
+     "turnovers"
+    ]
+   },
+   "minItems": 1
+  }
+ },
+ "required": [
+  "player_ids",
+  "metrics"
+ ],
+ "additionalProperties": false
+}

@@ -6,12 +6,20 @@ llm:
   model: qwen3.5:9b          # placeholder until the 3.17 benchmark
   temperature: 0.0
   timeout_s: 60
+  think: false               # Qwen 3.x thinks by default: ~35 s/call vs ~0.5 s
+  num_ctx: 8192              # tool prompt is ~2,700 tokens; Ollama's default could truncate
+  keep_alive: 30m
 sql_fallback_llm: null       # optional larger model for the SQL fallback only (risk mitigation)
 embeddings:
-  model: BAAI/bge-m3
+  backend: ollama            # `ollama pull bge-m3` (decision 2026-10-07)
+  base_url: http://localhost:11434
+  model: bge-m3
+  batch: 32
 reranker:
-  model: BAAI/bge-reranker-v2-m3
+  model: BAAI/bge-reranker-v2-m3   # sentence-transformers CrossEncoder
   keep: 6
+  device: auto
+  half_precision: true
 retrieval:
   fusion_top_k: 40
 agent:
