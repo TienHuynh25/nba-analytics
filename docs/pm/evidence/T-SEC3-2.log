@@ -1,0 +1,9 @@
+current snapshot unhealthy
+rolled back
+SEC-003: ['blocked (IOException: IO Error: Cannot open file "/private/var/folders/j8/c5r2ywtx6pb2q163d2)', 'blocked (IOException: IO Error: Failed to create directory "/private/var/folders/j8/c5r2ywtx)']; modes in snapshot: ['0o444', '0o555']
+SEC-004: rolled back to nba_20260929
+SEC-006 header: raised ContractError: commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['x" VARCHAR); CREATE TABLE pwned(a INT); CREATE TABLE 
+SEC-006 path: landed with a quote in the work path
+SEC-006 contract: raised ContractError: commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['PERSON_ID', 'RENAMED'], 'rowSet': [[1, 'x']]}] does n
+SEC-009 build ../: raised SnapshotIdError: invalid snapshot id '../victim': must match ^[a-z0-9_]+$; precious exists: True
+SEC-009 manifest id: raised SnapshotIdError: invalid snapshot id '../../evil': must match ^[a-z0-9_]+$

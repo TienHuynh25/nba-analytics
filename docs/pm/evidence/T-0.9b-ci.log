@@ -1,0 +1,66 @@
+check	Run uv run pytest -m "not network"	﻿2026-10-12T04:08:15.4108533Z ##[group]Run uv run pytest -m "not network"
+check	Run uv run pytest -m "not network"	2026-10-12T04:08:15.4108919Z ^[[36;1muv run pytest -m "not network"^[[0m
+check	Run uv run pytest -m "not network"	2026-10-12T04:08:15.4172981Z shell: /usr/bin/bash -e {0}
+check	Run uv run pytest -m "not network"	2026-10-12T04:08:15.4173261Z env:
+check	Run uv run pytest -m "not network"	2026-10-12T04:08:15.4173521Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+check	Run uv run pytest -m "not network"	2026-10-12T04:08:15.4173850Z ##[endgroup]
+check	Run uv run pytest -m "not network"	2026-10-12T04:08:22.8243255Z ........................................................................ [  8%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:08:34.9208652Z .....................sss................s.s.....s.......F............... [ 16%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:09:22.4498699Z ........................................................................ [ 24%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:09:25.0156483Z ........................................................................ [ 32%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:09:35.4395185Z ........................................................................ [ 41%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:09.8478195Z ........................................................................ [ 49%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:21.2707080Z ........................................................................ [ 57%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:21.3401791Z ........................................................................ [ 65%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:21.4046972Z ........................................................................ [ 73%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:21.4676425Z ........................................................................ [ 82%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:23.9728643Z ........................................................................ [ 90%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:27.5332330Z ........................................................................ [ 98%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3125300Z ............                                                             [100%]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3126599Z =================================== FAILURES ===================================
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3127916Z __________________ test_no_tracked_file_names_a_desktop_path ___________________
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3128338Z 
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3128590Z     def test_no_tracked_file_names_a_desktop_path() -> None:
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3129383Z         import subprocess
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3129849Z     
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3130270Z         from app.config import REPO_ROOT
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3130735Z     
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3131080Z         files = subprocess.run(
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3131509Z             ["git", "ls-files", "-z", "tests", "transform"],
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3131945Z             cwd=REPO_ROOT,
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3132284Z             capture_output=True,
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3132633Z             text=True,
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3132933Z             check=True,
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3133247Z         ).stdout.split("\0")
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3133624Z         skip = {".parquet", ".duckdb", ".pyc"}
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3134015Z         bad = [
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3134289Z             f
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3134569Z             for f in files
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3134885Z             if f
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3135189Z             and Path(f).suffix not in skip
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3135949Z             and "/Desktop/" in (REPO_ROOT / f).read_text(errors="ignore")
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3136474Z         ]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3136750Z >       assert bad == []
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3137227Z E       AssertionError: assert ['tests/test_career_gaps.py'] == []
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3137716Z E         
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3138079Z E         Left contains one more item: 'tests/test_career_gaps.py'
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3138543Z E         
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3138801Z E         Full diff:
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3139096Z E         - []
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3139368Z E         + [
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3139666Z E         +     'tests/test_career_gaps.py',
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3140056Z E         + ]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3140208Z 
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3140375Z tests/test_career_gaps.py:438: AssertionError
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3140882Z =========================== short test summary info ============================
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3141808Z FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path - AssertionError: assert ['tests/test_career_gaps.py'] == []
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3142671Z   
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3142920Z   Left contains one more item: 'tests/test_career_gaps.py'
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3143234Z   
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3143403Z   Full diff:
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3143589Z   - []
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3143768Z   + [
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3143962Z   +     'tests/test_career_gaps.py',
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3144213Z   + ]
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.3144486Z 1 failed, 869 passed, 6 skipped, 1 deselected in 129.89s (0:02:09)
+check	Run uv run pytest -m "not network"	2026-10-12T04:10:28.7449058Z ##[error]Process completed with exit code 1.

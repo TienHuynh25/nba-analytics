@@ -1,0 +1,18 @@
+schedule files: 1; using latest fetched_at 2026-10-01T02:02:38.029650+00:00
+tolerance (config/sources.yaml row_count_tolerance): 0.10
+scheduled days: 212; scheduled games total: 1322; observed games total: 1322
+busiest scheduled day: 2026-04-10 with 15 scheduled games
+games per scheduled-count value (count: days): {1: 22, 2: 20, 3: 17, 4: 13, 5: 13, 6: 25, 7: 18, 8: 21, 9: 24, 10: 18, 11: 10, 12: 7, 14: 2, 15: 2}
+
+UNPLANTED real data, all scheduled days: no flags
+  busiest day observed: 15 of 15 scheduled
+
+PLANTED deficits on 2026-04-10 (scheduled 15):
+  missing | observed | deviation | tolerance | result
+        0 |       15 |     0.00% |     10.0% | NOT flagged
+        1 |       14 |     6.67% |     10.0% | NOT flagged
+        2 |       13 |    13.33% |     10.0% | FLAGGED (game counts off schedule: 2026-04-10: fetched 13, scheduled 15)
+        3 |       12 |    20.00% |     10.0% | FLAGGED (game counts off schedule: 2026-04-10: fetched 12, scheduled 15)
+       15 |        0 |   100.00% |     10.0% | FLAGGED (game counts off schedule: 2026-04-10: fetched 0, scheduled 15)
+  ...
+smallest caught deficit on 2026-04-10: 2 missing (13.33%)

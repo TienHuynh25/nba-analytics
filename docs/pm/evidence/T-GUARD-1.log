@@ -1,0 +1,46 @@
+........................................................................ [  8%]
+................................................s.......F............... [ 16%]
+........................................................................ [ 24%]
+........................................................................ [ 32%]
+........................................................................ [ 40%]
+........................................................................ [ 48%]
+........................................................................ [ 56%]
+........................................................................ [ 64%]
+........................................................................ [ 72%]
+........................................................................ [ 80%]
+........................................................................ [ 88%]
+........................................................................ [ 96%]
+....................................                                     [100%]
+=================================== FAILURES ===================================
+__________________ test_no_tracked_file_names_a_desktop_path ___________________
+
+    def test_no_tracked_file_names_a_desktop_path() -> None:
+        import subprocess
+    
+        from app.config import REPO_ROOT
+    
+        files = subprocess.run(
+            ["git", "ls-files", "-z", "tests", "transform"],
+            cwd=REPO_ROOT,
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.split("\0")
+        skip = {".parquet", ".duckdb", ".pyc"}
+        bad = [
+            f
+            for f in files
+            if f
+            and Path(f).suffix not in skip
+            and "/Desktop/" in (REPO_ROOT / f).read_text(errors="ignore")
+        ]
+>       assert bad == []
+E       AssertionError: assert ['tests/test_career_gaps.py'] == []
+E         
+E         Left contains one more item: 'tests/test_career_gaps.py'
+E         Use -v to get more diff
+
+tests/test_career_gaps.py:438: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+1 failed, 898 passed, 1 skipped, 1 deselected in 81.59s (0:01:21)

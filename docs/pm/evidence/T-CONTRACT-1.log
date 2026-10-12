@@ -1,0 +1,12 @@
+{"ts": "2026-10-12T04:20:29.582996+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "leaguegamelog_t"}
+{"ts": "2026-10-12T04:20:29.990674+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "leaguegamelog_p"}
+{"ts": "2026-10-12T04:20:30.019914+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "commonallplayers"}
+{"ts": "2026-10-12T04:20:30.052594+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "commonplayerinfo"}
+{"ts": "2026-10-12T04:20:30.088778+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "playercareerstats"}
+{"ts": "2026-10-12T04:20:30.120593+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "playerawards"}
+{"ts": "2026-10-12T04:20:30.121958+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "franchisehistory"}
+{"ts": "2026-10-12T04:20:30.124365+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "teamyearbyyearstats"}
+{"ts": "2026-10-12T04:20:30.126395+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "leaguedashteamstats_adv"}
+{"ts": "2026-10-12T04:20:30.140811+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "leaguedashplayerstats_adv"}
+{"ts": "2026-10-12T04:20:30.146471+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "leaguestandingsv3"}
+{"ts": "2026-10-12T04:20:30.202012+00:00", "level": "INFO", "logger": "ingest.gen_schemas", "msg": "schema written", "run_id": "8c047976d432", "snapshot_id": null, "endpoint": "shotchartdetail"}

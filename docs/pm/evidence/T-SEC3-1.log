@@ -1,0 +1,8 @@
+current snapshot unhealthy
+SEC-003: ['WRITE SUCCEEDED', 'WRITE SUCCEEDED']; modes in snapshot: ['0o644', '0o755']
+SEC-004: raised HealthError: no healthy snapshot available
+SEC-006 header: landed; injected table present: True
+SEC-006 path: raised ParserException: Parser Error: syntax error at or near "s"
+SEC-006 contract: tampered file landed: {'commonallplayers__commonallplayers': 1}
+SEC-009 build ../: built outside root; precious exists: False
+SEC-009 manifest id: loaded with snapshot_id='../../evil', db=/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/sec3_jxo1vuf1/snapshots/nba_20260930/../../evil.duckdb

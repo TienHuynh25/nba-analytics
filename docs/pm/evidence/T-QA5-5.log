@@ -1,0 +1,26 @@
+PASS len 1: build ok, load ok, health ok 
+PASS len 64: build ok, load ok, health ok 
+PASS len 65 build -> SnapshotIdError 
+PASS len 65 validate -> SnapshotIdError 
+PASS len 65 ctor -> SnapshotIdError 
+PASS len 65 load -> SnapshotIdError 
+PASS len 65 point_current -> SnapshotIdError 
+PASS len 200 build -> SnapshotIdError 
+PASS len 200 validate -> SnapshotIdError 
+PASS len 200 ctor -> SnapshotIdError 
+PASS len 200 load -> SnapshotIdError 
+PASS len 200 point_current -> SnapshotIdError 
+PASS len 250 build -> SnapshotIdError 
+PASS len 250 validate -> SnapshotIdError 
+PASS len 250 ctor -> SnapshotIdError 
+PASS len 250 load -> SnapshotIdError 
+PASS len 250 point_current -> SnapshotIdError 
+PASS published()/prune/rollback skip long-id folders [12, 12, 64, 1]
+PASS open_current ok with long-id junk present 
+PASS still rejected 'UPPER' 
+PASS still rejected 'a.b' 
+PASS still rejected 'a/b' 
+PASS still rejected '..' 
+PASS still rejected '' 
+PASS still rejected 'a b' 
+FAILS [] of 25

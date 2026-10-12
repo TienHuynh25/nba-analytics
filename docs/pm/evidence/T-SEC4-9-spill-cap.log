@@ -1,0 +1,10 @@
+== cap default 4GB
+max_temp_directory_size = 3.7 GiB
+memory_limit = 61.0 MiB
+sort OK (19999999,) 0.8s
+raise cap refused InvalidInputException
+== cap 1MB
+max_temp_directory_size = 976.5 KiB
+memory_limit = 61.0 MiB
+sort FAILED OutOfMemoryException Out of Memory Error: failed to offload data block of size 256.0 KiB (768.0 KiB/976.5 KiB used). 0.1s
+raise cap refused InvalidInputException

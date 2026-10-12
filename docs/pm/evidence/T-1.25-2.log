@@ -1,0 +1,19 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/tienhuynh/dev/nba-analytics
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 30 items
+
+tests/test_snapshots.py ......                                           [ 20%]
+tests/test_snapshots_rollback.py ..................xx....                [100%]
+
+=========================== short test summary info ============================
+XFAIL tests/test_snapshots_rollback.py::test_reader_rolls_back_on_mid_file_db_corruption - DEF (T-1.25): the app reader defaults to full_check=False, which only opens the file and counts marts.games, so a corrupted data block is served (queries then fail).
+XFAIL tests/test_snapshots_rollback.py::test_reader_rolls_back_on_tampered_shots - DEF (T-1.25): the app reader defaults to full_check=False, so tampered shot files never trigger rollback.
+======================== 28 passed, 2 xfailed in 7.57s =========================
+--- ruff
+All checks passed!
+1 file already formatted
+--- mypy
+Success: no issues found in 2 source files

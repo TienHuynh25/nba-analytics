@@ -1,0 +1,23 @@
+...................                                                      [100%]
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_career_gaps.py::test_seed_has_242_unique_rows_with_notes_and_review_date
+PASSED tests/test_career_gaps.py::test_seed_covers_265_player_seasons_and_211_players
+PASSED tests/test_career_gaps.py::test_status_counts_listed_gap_as_documented_and_unlisted_as_missing
+PASSED tests/test_career_gaps.py::test_status_on_the_real_cache_is_fully_accounted
+PASSED tests/test_career_gaps.py::test_empty_successful_flags_only_unseeded_players_with_regular_season_games
+PASSED tests/test_career_gaps.py::test_empty_successful_on_the_real_cache_flags_nothing_until_kleber_is_unlisted
+PASSED tests/test_career_gaps.py::test_fixture_reconciles_with_the_seed
+PASSED tests/test_career_gaps.py::test_deleting_one_season_row_makes_it_unexplained
+PASSED tests/test_career_gaps.py::test_unlisted_missing_player_seasons_fail
+PASSED tests/test_career_gaps.py::test_listed_id_or_season_with_a_player_season_row_fails
+PASSED tests/test_career_gaps.py::test_a_new_reverse_direction_row_fails
+PASSED tests/test_career_gaps.py::test_full_build_reconciles_with_the_seed
+PASSED tests/test_career_gaps.py::test_kleber_has_no_player_season_rows_in_the_fixture
+PASSED tests/test_career_gaps.py::test_kleber_gets_the_no_totals_sentence_in_all_three_tools
+PASSED tests/test_career_gaps.py::test_unlisted_player_keeps_the_old_wording
+PASSED tests/test_career_gaps.py::test_kleber_fallback_table_says_no_rows_and_the_new_sentence
+PASSED tests/test_career_gaps.py::test_partial_player_gets_a_missing_seasons_note_on_every_tool
+PASSED tests/test_career_gaps.py::test_other_class_player_with_no_rows_gets_the_sentence_and_the_missing_note
+PASSED tests/test_career_gaps.py::test_snapshot_without_the_seed_table_has_no_gaps
+19 passed in 3.62s

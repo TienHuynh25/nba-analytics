@@ -1,0 +1,1471 @@
+.................................................FFFFFFFFFF.......FFFF.. [ 49%]
+..F.FF....FFFFFF.F....................................................FF [ 99%]
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_cte_name_outside_its_scope_is_rejected[SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master] _
+
+sql = 'SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables] _
+
+sql = 'SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases] _
+
+sql = 'SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings] _
+
+sql = 'SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[SELECT player_id FROM semantic.players WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) AND player_id IN (SELECT 1 FROM duckdb_tables)] _
+
+sql = 'SELECT player_id FROM semantic.players WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) AND player_id IN (SELECT 1 FROM duckdb_tables)'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[SELECT 1 AS x FROM duckdb_settings UNION ALL (WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)] _
+
+sql = 'SELECT 1 AS x FROM duckdb_settings UNION ALL (WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master] _
+
+sql = 'WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a] _
+
+sql = 'WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master] _
+
+sql = 'WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+_ test_cte_name_outside_its_scope_is_rejected[WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a] _
+
+sql = 'WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            # The review's exploit: a CTE declared in a nested subquery made the outer name pass.
+            "SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master",
+            "SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables",
+            "SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases",
+            "SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings",
+            f"{_A} WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) "
+            "AND player_id IN (SELECT 1 FROM duckdb_tables)",
+            "SELECT 1 AS x FROM duckdb_settings UNION ALL "
+            "(WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)",
+            # A CTE's own name inside its body, or a later CTE's name, binds to the catalog table.
+            "WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master",
+            "WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a",
+            "WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master "
+            "UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master",
+            "WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), "
+            "duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a",
+        ],
+    )
+    def test_cte_name_outside_its_scope_is_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="not a semantic-layer view"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sql_guard.py:162: Failed
+____________________ test_non_plain_limit_becomes_100[100%] ____________________
+
+limit = '100%'
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    @pytest.mark.parametrize(
+        "limit",
+        [
+            "100%",
+            "100 PERCENT",
+            "50 + 50000",
+            "$1",
+            "?",
+            "(SELECT 100000)",
+            "99.9",
+            "1e5",
+            "-1",
+            "101",
+            "5 WITH TIES",
+        ],
+    )
+    def test_non_plain_limit_becomes_100(limit: str, fixture_db_path: Path) -> None:
+        sql = f"{_LOG} ORDER BY player_id LIMIT {limit}" if "TIES" in limit else f"{_LOG} LIMIT {limit}"
+        out = check(sql)
+>       assert out.endswith(f"{_LOG} LIMIT 100") or out.endswith("ORDER BY player_id LIMIT 100")
+E       AssertionError: assert (False or False)
+E        +  where False = <built-in method endswith of str object at 0x1122ec6c0>('SELECT player_id FROM semantic.player_game_log LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x1122ec6c0> = 'SELECT player_id FROM semantic.player_game_log LIMIT 100 PERCENT'.endswith
+E        +  and   False = <built-in method endswith of str object at 0x1122ec6c0>('ORDER BY player_id LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x1122ec6c0> = 'SELECT player_id FROM semantic.player_game_log LIMIT 100 PERCENT'.endswith
+
+tests/test_sql_guard.py:203: AssertionError
+________________ test_non_plain_limit_becomes_100[100 PERCENT] _________________
+
+limit = '100 PERCENT'
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    @pytest.mark.parametrize(
+        "limit",
+        [
+            "100%",
+            "100 PERCENT",
+            "50 + 50000",
+            "$1",
+            "?",
+            "(SELECT 100000)",
+            "99.9",
+            "1e5",
+            "-1",
+            "101",
+            "5 WITH TIES",
+        ],
+    )
+    def test_non_plain_limit_becomes_100(limit: str, fixture_db_path: Path) -> None:
+        sql = f"{_LOG} ORDER BY player_id LIMIT {limit}" if "TIES" in limit else f"{_LOG} LIMIT {limit}"
+        out = check(sql)
+>       assert out.endswith(f"{_LOG} LIMIT 100") or out.endswith("ORDER BY player_id LIMIT 100")
+E       AssertionError: assert (False or False)
+E        +  where False = <built-in method endswith of str object at 0x112282640>('SELECT player_id FROM semantic.player_game_log LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x112282640> = 'SELECT player_id FROM semantic.player_game_log LIMIT 100 PERCENT'.endswith
+E        +  and   False = <built-in method endswith of str object at 0x112282640>('ORDER BY player_id LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x112282640> = 'SELECT player_id FROM semantic.player_game_log LIMIT 100 PERCENT'.endswith
+
+tests/test_sql_guard.py:203: AssertionError
+_________________ test_non_plain_limit_becomes_100[50 + 50000] _________________
+
+limit = '50 + 50000'
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    @pytest.mark.parametrize(
+        "limit",
+        [
+            "100%",
+            "100 PERCENT",
+            "50 + 50000",
+            "$1",
+            "?",
+            "(SELECT 100000)",
+            "99.9",
+            "1e5",
+            "-1",
+            "101",
+            "5 WITH TIES",
+        ],
+    )
+    def test_non_plain_limit_becomes_100(limit: str, fixture_db_path: Path) -> None:
+        sql = f"{_LOG} ORDER BY player_id LIMIT {limit}" if "TIES" in limit else f"{_LOG} LIMIT {limit}"
+        out = check(sql)
+>       assert out.endswith(f"{_LOG} LIMIT 100") or out.endswith("ORDER BY player_id LIMIT 100")
+E       AssertionError: assert (False or False)
+E        +  where False = <built-in method endswith of str object at 0x1122836e0>('SELECT player_id FROM semantic.player_game_log LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x1122836e0> = 'SELECT player_id FROM semantic.player_game_log LIMIT 50 + 50000'.endswith
+E        +  and   False = <built-in method endswith of str object at 0x1122836e0>('ORDER BY player_id LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x1122836e0> = 'SELECT player_id FROM semantic.player_game_log LIMIT 50 + 50000'.endswith
+
+tests/test_sql_guard.py:203: AssertionError
+_____________________ test_non_plain_limit_becomes_100[$1] _____________________
+
+limit = '$1'
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    @pytest.mark.parametrize(
+        "limit",
+        [
+            "100%",
+            "100 PERCENT",
+            "50 + 50000",
+            "$1",
+            "?",
+            "(SELECT 100000)",
+            "99.9",
+            "1e5",
+            "-1",
+            "101",
+            "5 WITH TIES",
+        ],
+    )
+    def test_non_plain_limit_becomes_100(limit: str, fixture_db_path: Path) -> None:
+        sql = f"{_LOG} ORDER BY player_id LIMIT {limit}" if "TIES" in limit else f"{_LOG} LIMIT {limit}"
+        out = check(sql)
+>       assert out.endswith(f"{_LOG} LIMIT 100") or out.endswith("ORDER BY player_id LIMIT 100")
+E       AssertionError: assert (False or False)
+E        +  where False = <built-in method endswith of str object at 0x112230030>('SELECT player_id FROM semantic.player_game_log LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x112230030> = 'SELECT player_id FROM semantic.player_game_log LIMIT $1'.endswith
+E        +  and   False = <built-in method endswith of str object at 0x112230030>('ORDER BY player_id LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x112230030> = 'SELECT player_id FROM semantic.player_game_log LIMIT $1'.endswith
+
+tests/test_sql_guard.py:203: AssertionError
+_____________________ test_non_plain_limit_becomes_100[-1] _____________________
+
+limit = '-1'
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    @pytest.mark.parametrize(
+        "limit",
+        [
+            "100%",
+            "100 PERCENT",
+            "50 + 50000",
+            "$1",
+            "?",
+            "(SELECT 100000)",
+            "99.9",
+            "1e5",
+            "-1",
+            "101",
+            "5 WITH TIES",
+        ],
+    )
+    def test_non_plain_limit_becomes_100(limit: str, fixture_db_path: Path) -> None:
+        sql = f"{_LOG} ORDER BY player_id LIMIT {limit}" if "TIES" in limit else f"{_LOG} LIMIT {limit}"
+        out = check(sql)
+>       assert out.endswith(f"{_LOG} LIMIT 100") or out.endswith("ORDER BY player_id LIMIT 100")
+E       AssertionError: assert (False or False)
+E        +  where False = <built-in method endswith of str object at 0x112232b50>('SELECT player_id FROM semantic.player_game_log LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x112232b50> = 'SELECT player_id FROM semantic.player_game_log LIMIT -1'.endswith
+E        +  and   False = <built-in method endswith of str object at 0x112232b50>('ORDER BY player_id LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x112232b50> = 'SELECT player_id FROM semantic.player_game_log LIMIT -1'.endswith
+
+tests/test_sql_guard.py:203: AssertionError
+________________ test_non_plain_limit_becomes_100[5 WITH TIES] _________________
+
+limit = '5 WITH TIES'
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    @pytest.mark.parametrize(
+        "limit",
+        [
+            "100%",
+            "100 PERCENT",
+            "50 + 50000",
+            "$1",
+            "?",
+            "(SELECT 100000)",
+            "99.9",
+            "1e5",
+            "-1",
+            "101",
+            "5 WITH TIES",
+        ],
+    )
+    def test_non_plain_limit_becomes_100(limit: str, fixture_db_path: Path) -> None:
+        sql = f"{_LOG} ORDER BY player_id LIMIT {limit}" if "TIES" in limit else f"{_LOG} LIMIT {limit}"
+        out = check(sql)
+>       assert out.endswith(f"{_LOG} LIMIT 100") or out.endswith("ORDER BY player_id LIMIT 100")
+E       AssertionError: assert (False or False)
+E        +  where False = <built-in method endswith of str object at 0x1122b2230>('SELECT player_id FROM semantic.player_game_log LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x1122b2230> = 'SELECT player_id FROM semantic.player_game_log ORDER BY player_id LIMIT 5 WITH TIES'.endswith
+E        +  and   False = <built-in method endswith of str object at 0x1122b2230>('ORDER BY player_id LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x1122b2230> = 'SELECT player_id FROM semantic.player_game_log ORDER BY player_id LIMIT 5 WITH TIES'.endswith
+
+tests/test_sql_guard.py:203: AssertionError
+_________________________ test_fetch_first_and_offset __________________________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_fetch_first_and_offset(fixture_db_path: Path) -> None:
+        assert check(f"{_LOG} FETCH FIRST 100000 ROWS ONLY").endswith("LIMIT 100")
+        out = check(f"{_LOG} LIMIT 100% OFFSET 10")
+>       assert out.endswith("LIMIT 100 OFFSET 10") and len(_run(out, fixture_db_path)) == 100
+E       AssertionError: assert (False)
+E        +  where False = <built-in method endswith of str object at 0x112383330>('LIMIT 100 OFFSET 10')
+E        +    where <built-in method endswith of str object at 0x112383330> = 'SELECT player_id FROM semantic.player_game_log LIMIT 100 PERCENT OFFSET 10'.endswith
+
+tests/test_sql_guard.py:210: AssertionError
+__________________ test_set_operation_percent_limit_is_capped __________________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_set_operation_percent_limit_is_capped(fixture_db_path: Path) -> None:
+        out = check(f"{_LOG} UNION ALL {_LOG} LIMIT 100 PERCENT")
+>       assert out.endswith("LIMIT 100") and "PERCENT" not in out
+E       AssertionError: assert (False)
+E        +  where False = <built-in method endswith of str object at 0x1122f7b50>('LIMIT 100')
+E        +    where <built-in method endswith of str object at 0x1122f7b50> = 'SELECT player_id FROM semantic.player_game_log UNION ALL SELECT player_id FROM semantic.player_game_log LIMIT 100 PERCENT'.endswith
+
+tests/test_sql_guard.py:220: AssertionError
+_ test_parse_failures_raise_guard_error[SELECT ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((1)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) FROM semantic.players] _
+
+sql = 'SELECT ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((...)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) FROM semantic.players'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT " + "(" * 800 + "1" + ")" * 800 + " FROM semantic.players",
+            f"{_A} WHERE " + "NOT " * 900 + "TRUE",
+            "SELECT 'abc FROM semantic.players",
+            'SELECT "abc FROM semantic.players',
+            "SELECT $$x FROM semantic.players",
+            "SELECT 1 FROM semantic.players WHERE",
+        ],
+    )
+    def test_parse_failures_raise_guard_error(sql: str) -> None:
+        with pytest.raises(GuardError):
+>           check(sql)
+
+tests/test_sql_guard.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+app/sql_guard.py:140: in check
+    statements = [s for s in sqlglot.parse(sql, read="duckdb") if s is not None]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/__init__.py:110: in parse
+    return Dialect.get_or_raise(read or dialect).parse(sql, **opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1205: in parse
+    return self.parser(**opts).parse(self.tokenize(sql), sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2152: in parse
+    return self._parse(
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2272: in _parse
+    return self._parse_batch_statements(parse_method=parse_method, sep_first_statement=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2239: in _parse_batch_statements
+    expressions.append(parse_method(self))
+                       ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2402: in _parse_statement
+    expression = self._parse_set_operations(expression) if expression else self._parse_select()
+                                                                           ^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:4022: in _parse_select
+    query = self._parse_select_query(
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:4127: in _parse_select_query
+    projections, exclude = self._parse_projections()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:3978: in _parse_projections
+    return self._parse_expressions(), None
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:9014: in _parse_expressions
+    return self._parse_csv(self._parse_expression)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:8979: in _parse_csv
+    parse_result = parse_method()
+                   ^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parsers/duckdb.py:293: in _parse_expression
+    return super()._parse_expression()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6047: in _parse_expression
+    return self._parse_alias(self._parse_assignment())
+                             ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6050: in _parse_assignment
+    this = self._parse_disjunction()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6072: in _parse_disjunction
+    this = self._parse_conjunction()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6084: in _parse_conjunction
+    this = self._parse_equality()
+           ^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6096: in _parse_equality
+    this = self._parse_comparison()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6108: in _parse_comparison
+    this = self._parse_range()
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6118: in _parse_range
+    this = this or self._parse_bitwise()
+                   ^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6353: in _parse_bitwise
+    this = self._parse_term()
+           ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6388: in _parse_term
+    this = self._parse_factor(parse_mod=parse_mod)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6414: in _parse_factor
+    this = self._parse_at_time_zone(parse_method())
+                                    ^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6438: in _parse_factor_operand
+    return self._parse_exponent() if self.EXPONENT else self._parse_unary()
+           ^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6441: in _parse_exponent
+    this = self._parse_unary()
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6453: in _parse_unary
+    return self._parse_type()
+           ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6516: in _parse_type
+    return self._parse_column()
+           ^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6890: in _parse_column
+    this = self._parse_column_reference()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6977: in _parse_column_reference
+    this = self._parse_field()
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:7220: in _parse_field
+    field = self._parse_primary() or self._parse_function(
+            ^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parsers/duckdb.py:414: in _parse_primary
+    return super()._parse_primary()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:7202: in _parse_primary
+    return self._parse_paren()
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:7148: in _parse_paren
+    expressions = self._parse_expressions()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:9014: in _parse_expressions
+    return self._parse_csv(self._parse_expression)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   RecursionError: maximum recursion depth exceeded
+!!! Recursion detected (same locals & position)
+_ test_parse_failures_raise_guard_error[SELECT player_id FROM semantic.players WHERE NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT TRUE] _
+
+sql = 'SELECT player_id FROM semantic.players WHERE NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT ...T NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT TRUE'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT " + "(" * 800 + "1" + ")" * 800 + " FROM semantic.players",
+            f"{_A} WHERE " + "NOT " * 900 + "TRUE",
+            "SELECT 'abc FROM semantic.players",
+            'SELECT "abc FROM semantic.players',
+            "SELECT $$x FROM semantic.players",
+            "SELECT 1 FROM semantic.players WHERE",
+        ],
+    )
+    def test_parse_failures_raise_guard_error(sql: str) -> None:
+        with pytest.raises(GuardError):
+>           check(sql)
+
+tests/test_sql_guard.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+app/sql_guard.py:140: in check
+    statements = [s for s in sqlglot.parse(sql, read="duckdb") if s is not None]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/__init__.py:110: in parse
+    return Dialect.get_or_raise(read or dialect).parse(sql, **opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1205: in parse
+    return self.parser(**opts).parse(self.tokenize(sql), sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2152: in parse
+    return self._parse(
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2272: in _parse
+    return self._parse_batch_statements(parse_method=parse_method, sep_first_statement=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2239: in _parse_batch_statements
+    expressions.append(parse_method(self))
+                       ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:2402: in _parse_statement
+    expression = self._parse_set_operations(expression) if expression else self._parse_select()
+                                                                           ^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:4022: in _parse_select
+    query = self._parse_select_query(
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:4152: in _parse_select_query
+    this = self._parse_query_modifiers(this)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:4390: in _parse_query_modifiers
+    key, expression = parser(self)
+                      ^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:1600: in <lambda>
+    TokenType.WHERE: lambda self: ("where", self._parse_where()),
+                                            ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:5587: in _parse_where
+    exp.Where(this=self._parse_disjunction()),
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6072: in _parse_disjunction
+    this = self._parse_conjunction()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6084: in _parse_conjunction
+    this = self._parse_equality()
+           ^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6096: in _parse_equality
+    this = self._parse_comparison()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6108: in _parse_comparison
+    this = self._parse_range()
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6118: in _parse_range
+    this = this or self._parse_bitwise()
+                   ^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6353: in _parse_bitwise
+    this = self._parse_term()
+           ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6388: in _parse_term
+    this = self._parse_factor(parse_mod=parse_mod)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6414: in _parse_factor
+    this = self._parse_at_time_zone(parse_method())
+                                    ^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6438: in _parse_factor_operand
+    return self._parse_exponent() if self.EXPONENT else self._parse_unary()
+           ^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6441: in _parse_exponent
+    this = self._parse_unary()
+           ^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6452: in _parse_unary
+    return self.UNARY_PARSERS[self._prev.token_type](self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:1191: in <lambda>
+    TokenType.NOT: lambda self: self.expression(exp.Not(this=self._parse_equality())),
+                                                             ^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/parser.py:6096: in _parse_equality
+    this = self._parse_comparison()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+E   RecursionError: maximum recursion depth exceeded
+!!! Recursion detected (same locals & position)
+___ test_parse_failures_raise_guard_error[SELECT 'abc FROM semantic.players] ___
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120669f0>
+sql = "SELECT 'abc FROM semantic.players"
+
+    def tokenize(self, sql: str) -> list[Token]:
+        """Returns a list of tokens corresponding to the SQL string `sql`."""
+        self.reset()
+        self.sql = sql
+        self.size = len(sql)
+    
+        try:
+>           self._scan()
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:678: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:714: in _scan
+    self._scan_keywords()
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:854: in _scan_keywords
+    if self._scan_string(word):
+       ^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:1084: in _scan_string
+    text = self._extract_string(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120669f0>
+delimiter = "'", escapes = {"'"}, raw_string = False, raise_unmatched = True
+
+    def _extract_string(
+        self,
+        delimiter: str,
+        escapes: set[str] | None = None,
+        raw_string: bool = False,
+        raise_unmatched: bool = True,
+    ) -> str:
+        text = ""
+        delim_size = len(delimiter)
+        escapes = self.string_escapes if escapes is None else escapes
+        unescaped_sequences = self.unescaped_sequences
+        escape_follow_chars = self.escape_follow_chars
+        numeric_escapes = self.numeric_escapes
+        drop_unknown_escapes = self.drop_unknown_escapes
+        string_escapes_allowed_in_raw_strings = self.string_escapes_allowed_in_raw_strings
+        quotes = self.quotes
+        sql = self.sql
+    
+        # use str.find() when the string is simple... no \ or other escapes
+        if delim_size == 1:
+            pos = self._current - 1
+            end = sql.find(delimiter, pos)
+    
+            if (
+                # the closing delimiter was found
+                end != -1
+                # there's no doubled delimiter (e.g. '' escape), or the delimiter isn't an escape char
+                and (end + 1 >= self.size or sql[end + 1] != delimiter or delimiter not in escapes)
+                # no backslash in the string that would need escape processing
+                and (not (unescaped_sequences or "\\" in escapes) or sql.find("\\", pos, end) == -1)
+            ):
+                newlines = sql.count("\n", pos, end)
+                if newlines:
+                    self._line += newlines
+                    self._col = end - sql.rfind("\n", pos, end)
+                else:
+                    self._col += end - pos
+    
+                self._current = end + 1
+                self._end = self._current >= self.size
+                self._char = sql[end]
+                self._peek = "" if self._end else sql[self._current]
+                return sql[pos:end]
+    
+        while True:
+            backslash_escape = not raw_string and self._char == "\\" and "\\" in escapes
+    
+            # Numeric escapes come first, since they may overlap fixed sequences (e.g. \000 vs \0)
+            if backslash_escape and numeric_escapes:
+                decoded = self._scan_numeric_escape()
+                if decoded:
+                    text += decoded
+                    continue
+    
+            # An escape at the end of the input is left to the checks below, which report the
+            # unterminated string
+            if (
+                not raw_string
+                and unescaped_sequences
+                and self._char in escapes
+                and self._current + 1 < self.size
+            ):
+                unescaped_sequence = unescaped_sequences.get(self._char + self._peek)
+                if unescaped_sequence:
+                    # Advance one char at a time so that line numbers are updated for a newline
+                    if self._peek in "\n\r":
+                        self._advance()
+                        self._advance()
+                    else:
+                        self._advance(2)
+                    text += unescaped_sequence
+                    continue
+    
+            # Not decoded: drop the backslash if configured, unless the string is unterminated
+            if backslash_escape and drop_unknown_escapes and self._current + 1 < self.size:
+                # Advance one char at a time so that line numbers are updated if `peek` is a newline
+                peek = self._peek
+                self._advance()
+                self._advance()
+                text += peek
+                continue
+    
+            is_valid_custom_escape = (
+                escape_follow_chars and self._char == "\\" and self._peek not in escape_follow_chars
+            )
+    
+            # An escaped quote before the closing delimiter (e.g. \" in """a\"""") must be
+            # consumed here, otherwise it'd be picked up by the delimiter check below and
+            # terminate the string early. This is only relevant for multi-char delimiters
+            # made up of quote chars, e.g. it shouldn't apply to Snowflake's $$ strings
+            escaped_delimiter = self._peek == delimiter or (
+                delim_size > 1 and self._peek == delimiter[0] and self._peek in quotes
+            )
+    
+            if (
+                (string_escapes_allowed_in_raw_strings or not raw_string)
+                and self._char in escapes
+                and (escaped_delimiter or self._peek in escapes or is_valid_custom_escape)
+                and (self._char not in quotes or self._char == self._peek)
+            ):
+                if escaped_delimiter:
+                    text += self._peek if not raw_string else self._char + self._peek
+                elif is_valid_custom_escape and self._char != self._peek:
+                    text += self._peek
+                else:
+                    text += self._char + self._peek
+    
+                if self._current + 1 < self.size:
+                    self._advance(2)
+                else:
+                    raise TokenError(f"Missing {delimiter} from {self._line}:{self._current}")
+            else:
+                if self._chars(delim_size) == delimiter:
+                    if delim_size > 1:
+                        self._advance(delim_size - 1)
+                    break
+    
+                if self._end:
+                    if not raise_unmatched:
+                        return text + self._char
+    
+>                   raise TokenError(f"Missing {delimiter} from {self._line}:{self._start}")
+E                   sqlglot.errors.TokenError: Missing ' from 1:7
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:1317: TokenError
+
+The above exception was the direct cause of the following exception:
+
+sql = "SELECT 'abc FROM semantic.players"
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT " + "(" * 800 + "1" + ")" * 800 + " FROM semantic.players",
+            f"{_A} WHERE " + "NOT " * 900 + "TRUE",
+            "SELECT 'abc FROM semantic.players",
+            'SELECT "abc FROM semantic.players',
+            "SELECT $$x FROM semantic.players",
+            "SELECT 1 FROM semantic.players WHERE",
+        ],
+    )
+    def test_parse_failures_raise_guard_error(sql: str) -> None:
+        with pytest.raises(GuardError):
+>           check(sql)
+
+tests/test_sql_guard.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+app/sql_guard.py:140: in check
+    statements = [s for s in sqlglot.parse(sql, read="duckdb") if s is not None]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/__init__.py:110: in parse
+    return Dialect.get_or_raise(read or dialect).parse(sql, **opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1205: in parse
+    return self.parser(**opts).parse(self.tokenize(sql), sql)
+                                     ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1224: in tokenize
+    return self.tokenizer(dialect=dialect).tokenize(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/tokens.py:591: in tokenize
+    return self._core.tokenize(sql)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120669f0>
+sql = "SELECT 'abc FROM semantic.players"
+
+    def tokenize(self, sql: str) -> list[Token]:
+        """Returns a list of tokens corresponding to the SQL string `sql`."""
+        self.reset()
+        self.sql = sql
+        self.size = len(sql)
+    
+        try:
+            self._scan()
+        except Exception as e:
+            start = max(self._current - 50, 0)
+            end = min(self._current + 50, self.size - 1)
+            context = self.sql[start:end]
+>           raise TokenError(f"Error tokenizing '{context}'", start=start, end=end) from e
+E           sqlglot.errors.TokenError: Error tokenizing 'SELECT 'abc FROM semantic.player'
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:683: TokenError
+___ test_parse_failures_raise_guard_error[SELECT "abc FROM semantic.players] ___
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120665a0>
+sql = 'SELECT "abc FROM semantic.players'
+
+    def tokenize(self, sql: str) -> list[Token]:
+        """Returns a list of tokens corresponding to the SQL string `sql`."""
+        self.reset()
+        self.sql = sql
+        self.size = len(sql)
+    
+        try:
+>           self._scan()
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:678: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:712: in _scan
+    self._scan_identifier(identifiers[self._char])
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:1107: in _scan_identifier
+    text = self._extract_string(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120665a0>
+delimiter = '"', escapes = {'"'}, raw_string = False, raise_unmatched = True
+
+    def _extract_string(
+        self,
+        delimiter: str,
+        escapes: set[str] | None = None,
+        raw_string: bool = False,
+        raise_unmatched: bool = True,
+    ) -> str:
+        text = ""
+        delim_size = len(delimiter)
+        escapes = self.string_escapes if escapes is None else escapes
+        unescaped_sequences = self.unescaped_sequences
+        escape_follow_chars = self.escape_follow_chars
+        numeric_escapes = self.numeric_escapes
+        drop_unknown_escapes = self.drop_unknown_escapes
+        string_escapes_allowed_in_raw_strings = self.string_escapes_allowed_in_raw_strings
+        quotes = self.quotes
+        sql = self.sql
+    
+        # use str.find() when the string is simple... no \ or other escapes
+        if delim_size == 1:
+            pos = self._current - 1
+            end = sql.find(delimiter, pos)
+    
+            if (
+                # the closing delimiter was found
+                end != -1
+                # there's no doubled delimiter (e.g. '' escape), or the delimiter isn't an escape char
+                and (end + 1 >= self.size or sql[end + 1] != delimiter or delimiter not in escapes)
+                # no backslash in the string that would need escape processing
+                and (not (unescaped_sequences or "\\" in escapes) or sql.find("\\", pos, end) == -1)
+            ):
+                newlines = sql.count("\n", pos, end)
+                if newlines:
+                    self._line += newlines
+                    self._col = end - sql.rfind("\n", pos, end)
+                else:
+                    self._col += end - pos
+    
+                self._current = end + 1
+                self._end = self._current >= self.size
+                self._char = sql[end]
+                self._peek = "" if self._end else sql[self._current]
+                return sql[pos:end]
+    
+        while True:
+            backslash_escape = not raw_string and self._char == "\\" and "\\" in escapes
+    
+            # Numeric escapes come first, since they may overlap fixed sequences (e.g. \000 vs \0)
+            if backslash_escape and numeric_escapes:
+                decoded = self._scan_numeric_escape()
+                if decoded:
+                    text += decoded
+                    continue
+    
+            # An escape at the end of the input is left to the checks below, which report the
+            # unterminated string
+            if (
+                not raw_string
+                and unescaped_sequences
+                and self._char in escapes
+                and self._current + 1 < self.size
+            ):
+                unescaped_sequence = unescaped_sequences.get(self._char + self._peek)
+                if unescaped_sequence:
+                    # Advance one char at a time so that line numbers are updated for a newline
+                    if self._peek in "\n\r":
+                        self._advance()
+                        self._advance()
+                    else:
+                        self._advance(2)
+                    text += unescaped_sequence
+                    continue
+    
+            # Not decoded: drop the backslash if configured, unless the string is unterminated
+            if backslash_escape and drop_unknown_escapes and self._current + 1 < self.size:
+                # Advance one char at a time so that line numbers are updated if `peek` is a newline
+                peek = self._peek
+                self._advance()
+                self._advance()
+                text += peek
+                continue
+    
+            is_valid_custom_escape = (
+                escape_follow_chars and self._char == "\\" and self._peek not in escape_follow_chars
+            )
+    
+            # An escaped quote before the closing delimiter (e.g. \" in """a\"""") must be
+            # consumed here, otherwise it'd be picked up by the delimiter check below and
+            # terminate the string early. This is only relevant for multi-char delimiters
+            # made up of quote chars, e.g. it shouldn't apply to Snowflake's $$ strings
+            escaped_delimiter = self._peek == delimiter or (
+                delim_size > 1 and self._peek == delimiter[0] and self._peek in quotes
+            )
+    
+            if (
+                (string_escapes_allowed_in_raw_strings or not raw_string)
+                and self._char in escapes
+                and (escaped_delimiter or self._peek in escapes or is_valid_custom_escape)
+                and (self._char not in quotes or self._char == self._peek)
+            ):
+                if escaped_delimiter:
+                    text += self._peek if not raw_string else self._char + self._peek
+                elif is_valid_custom_escape and self._char != self._peek:
+                    text += self._peek
+                else:
+                    text += self._char + self._peek
+    
+                if self._current + 1 < self.size:
+                    self._advance(2)
+                else:
+                    raise TokenError(f"Missing {delimiter} from {self._line}:{self._current}")
+            else:
+                if self._chars(delim_size) == delimiter:
+                    if delim_size > 1:
+                        self._advance(delim_size - 1)
+                    break
+    
+                if self._end:
+                    if not raise_unmatched:
+                        return text + self._char
+    
+>                   raise TokenError(f"Missing {delimiter} from {self._line}:{self._start}")
+E                   sqlglot.errors.TokenError: Missing " from 1:7
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:1317: TokenError
+
+The above exception was the direct cause of the following exception:
+
+sql = 'SELECT "abc FROM semantic.players'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT " + "(" * 800 + "1" + ")" * 800 + " FROM semantic.players",
+            f"{_A} WHERE " + "NOT " * 900 + "TRUE",
+            "SELECT 'abc FROM semantic.players",
+            'SELECT "abc FROM semantic.players',
+            "SELECT $$x FROM semantic.players",
+            "SELECT 1 FROM semantic.players WHERE",
+        ],
+    )
+    def test_parse_failures_raise_guard_error(sql: str) -> None:
+        with pytest.raises(GuardError):
+>           check(sql)
+
+tests/test_sql_guard.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+app/sql_guard.py:140: in check
+    statements = [s for s in sqlglot.parse(sql, read="duckdb") if s is not None]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/__init__.py:110: in parse
+    return Dialect.get_or_raise(read or dialect).parse(sql, **opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1205: in parse
+    return self.parser(**opts).parse(self.tokenize(sql), sql)
+                                     ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1224: in tokenize
+    return self.tokenizer(dialect=dialect).tokenize(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/tokens.py:591: in tokenize
+    return self._core.tokenize(sql)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120665a0>
+sql = 'SELECT "abc FROM semantic.players'
+
+    def tokenize(self, sql: str) -> list[Token]:
+        """Returns a list of tokens corresponding to the SQL string `sql`."""
+        self.reset()
+        self.sql = sql
+        self.size = len(sql)
+    
+        try:
+            self._scan()
+        except Exception as e:
+            start = max(self._current - 50, 0)
+            end = min(self._current + 50, self.size - 1)
+            context = self.sql[start:end]
+>           raise TokenError(f"Error tokenizing '{context}'", start=start, end=end) from e
+E           sqlglot.errors.TokenError: Error tokenizing 'SELECT "abc FROM semantic.player'
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:683: TokenError
+___ test_parse_failures_raise_guard_error[SELECT $$x FROM semantic.players] ____
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120669f0>
+sql = 'SELECT $$x FROM semantic.players'
+
+    def tokenize(self, sql: str) -> list[Token]:
+        """Returns a list of tokens corresponding to the SQL string `sql`."""
+        self.reset()
+        self.sql = sql
+        self.size = len(sql)
+    
+        try:
+>           self._scan()
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:678: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:714: in _scan
+    self._scan_keywords()
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:854: in _scan_keywords
+    if self._scan_string(word):
+       ^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:1084: in _scan_string
+    text = self._extract_string(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120669f0>
+delimiter = '$$', escapes = {"'"}, raw_string = False, raise_unmatched = True
+
+    def _extract_string(
+        self,
+        delimiter: str,
+        escapes: set[str] | None = None,
+        raw_string: bool = False,
+        raise_unmatched: bool = True,
+    ) -> str:
+        text = ""
+        delim_size = len(delimiter)
+        escapes = self.string_escapes if escapes is None else escapes
+        unescaped_sequences = self.unescaped_sequences
+        escape_follow_chars = self.escape_follow_chars
+        numeric_escapes = self.numeric_escapes
+        drop_unknown_escapes = self.drop_unknown_escapes
+        string_escapes_allowed_in_raw_strings = self.string_escapes_allowed_in_raw_strings
+        quotes = self.quotes
+        sql = self.sql
+    
+        # use str.find() when the string is simple... no \ or other escapes
+        if delim_size == 1:
+            pos = self._current - 1
+            end = sql.find(delimiter, pos)
+    
+            if (
+                # the closing delimiter was found
+                end != -1
+                # there's no doubled delimiter (e.g. '' escape), or the delimiter isn't an escape char
+                and (end + 1 >= self.size or sql[end + 1] != delimiter or delimiter not in escapes)
+                # no backslash in the string that would need escape processing
+                and (not (unescaped_sequences or "\\" in escapes) or sql.find("\\", pos, end) == -1)
+            ):
+                newlines = sql.count("\n", pos, end)
+                if newlines:
+                    self._line += newlines
+                    self._col = end - sql.rfind("\n", pos, end)
+                else:
+                    self._col += end - pos
+    
+                self._current = end + 1
+                self._end = self._current >= self.size
+                self._char = sql[end]
+                self._peek = "" if self._end else sql[self._current]
+                return sql[pos:end]
+    
+        while True:
+            backslash_escape = not raw_string and self._char == "\\" and "\\" in escapes
+    
+            # Numeric escapes come first, since they may overlap fixed sequences (e.g. \000 vs \0)
+            if backslash_escape and numeric_escapes:
+                decoded = self._scan_numeric_escape()
+                if decoded:
+                    text += decoded
+                    continue
+    
+            # An escape at the end of the input is left to the checks below, which report the
+            # unterminated string
+            if (
+                not raw_string
+                and unescaped_sequences
+                and self._char in escapes
+                and self._current + 1 < self.size
+            ):
+                unescaped_sequence = unescaped_sequences.get(self._char + self._peek)
+                if unescaped_sequence:
+                    # Advance one char at a time so that line numbers are updated for a newline
+                    if self._peek in "\n\r":
+                        self._advance()
+                        self._advance()
+                    else:
+                        self._advance(2)
+                    text += unescaped_sequence
+                    continue
+    
+            # Not decoded: drop the backslash if configured, unless the string is unterminated
+            if backslash_escape and drop_unknown_escapes and self._current + 1 < self.size:
+                # Advance one char at a time so that line numbers are updated if `peek` is a newline
+                peek = self._peek
+                self._advance()
+                self._advance()
+                text += peek
+                continue
+    
+            is_valid_custom_escape = (
+                escape_follow_chars and self._char == "\\" and self._peek not in escape_follow_chars
+            )
+    
+            # An escaped quote before the closing delimiter (e.g. \" in """a\"""") must be
+            # consumed here, otherwise it'd be picked up by the delimiter check below and
+            # terminate the string early. This is only relevant for multi-char delimiters
+            # made up of quote chars, e.g. it shouldn't apply to Snowflake's $$ strings
+            escaped_delimiter = self._peek == delimiter or (
+                delim_size > 1 and self._peek == delimiter[0] and self._peek in quotes
+            )
+    
+            if (
+                (string_escapes_allowed_in_raw_strings or not raw_string)
+                and self._char in escapes
+                and (escaped_delimiter or self._peek in escapes or is_valid_custom_escape)
+                and (self._char not in quotes or self._char == self._peek)
+            ):
+                if escaped_delimiter:
+                    text += self._peek if not raw_string else self._char + self._peek
+                elif is_valid_custom_escape and self._char != self._peek:
+                    text += self._peek
+                else:
+                    text += self._char + self._peek
+    
+                if self._current + 1 < self.size:
+                    self._advance(2)
+                else:
+                    raise TokenError(f"Missing {delimiter} from {self._line}:{self._current}")
+            else:
+                if self._chars(delim_size) == delimiter:
+                    if delim_size > 1:
+                        self._advance(delim_size - 1)
+                    break
+    
+                if self._end:
+                    if not raise_unmatched:
+                        return text + self._char
+    
+>                   raise TokenError(f"Missing {delimiter} from {self._line}:{self._start}")
+E                   sqlglot.errors.TokenError: Missing $$ from 1:7
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:1317: TokenError
+
+The above exception was the direct cause of the following exception:
+
+sql = 'SELECT $$x FROM semantic.players'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT " + "(" * 800 + "1" + ")" * 800 + " FROM semantic.players",
+            f"{_A} WHERE " + "NOT " * 900 + "TRUE",
+            "SELECT 'abc FROM semantic.players",
+            'SELECT "abc FROM semantic.players',
+            "SELECT $$x FROM semantic.players",
+            "SELECT 1 FROM semantic.players WHERE",
+        ],
+    )
+    def test_parse_failures_raise_guard_error(sql: str) -> None:
+        with pytest.raises(GuardError):
+>           check(sql)
+
+tests/test_sql_guard.py:237: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+app/sql_guard.py:140: in check
+    statements = [s for s in sqlglot.parse(sql, read="duckdb") if s is not None]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/__init__.py:110: in parse
+    return Dialect.get_or_raise(read or dialect).parse(sql, **opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1205: in parse
+    return self.parser(**opts).parse(self.tokenize(sql), sql)
+                                     ^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/dialects/dialect.py:1224: in tokenize
+    return self.tokenizer(dialect=dialect).tokenize(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/sqlglot/tokens.py:591: in tokenize
+    return self._core.tokenize(sql)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <sqlglot.tokenizer_core.TokenizerCore object at 0x1120669f0>
+sql = 'SELECT $$x FROM semantic.players'
+
+    def tokenize(self, sql: str) -> list[Token]:
+        """Returns a list of tokens corresponding to the SQL string `sql`."""
+        self.reset()
+        self.sql = sql
+        self.size = len(sql)
+    
+        try:
+            self._scan()
+        except Exception as e:
+            start = max(self._current - 50, 0)
+            end = min(self._current + 50, self.size - 1)
+            context = self.sql[start:end]
+>           raise TokenError(f"Error tokenizing '{context}'", start=start, end=end) from e
+E           sqlglot.errors.TokenError: Error tokenizing 'SELECT $$x FROM semantic.player'
+
+.venv/lib/python3.12/site-packages/sqlglot/tokenizer_core.py:683: TokenError
+_____________________________ test_sql_length_cap ______________________________
+
+    def test_sql_length_cap() -> None:
+>       from app.sql_guard import MAX_SQL_CHARS
+E       ImportError: cannot import name 'MAX_SQL_CHARS' from 'app.sql_guard' (/Users/tienhuynh/dev/nba-analytics/app/sql_guard.py)
+
+tests/test_sql_guard.py:241: ImportError
+________________ test_run_with_timeout_returns_at_most_max_rows ________________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_run_with_timeout_returns_at_most_max_rows(fixture_db_path: Path) -> None:
+        con = locked_connection(fixture_db_path, None)
+        cols, rows = run_with_timeout(con, "select player_id from semantic.player_game_log")
+>       assert cols == ["player_id"] and len(rows) == 100
+E       AssertionError: assert (['player_id'] == ['player_id']
+E         
+E         Use -v to get more diff and 28265 == 100)
+E        +  where 28265 = len([(1630532,), (1629048,), (1629611,), (1631165,), (203926,), (1629006,), ...])
+
+tests/test_sql_fallback.py:138: AssertionError
+_____________________ test_percent_limit_returns_100_rows ______________________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_percent_limit_returns_100_rows(fixture_db_path: Path) -> None:
+>       fb, _ = make(fixture_db_path, ["select player_id from semantic.player_game_log limit 100%"])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_sql_fallback.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+replies = ['select player_id from semantic.player_game_log limit 100%']
+
+    def make(fixture_db_path: Path, replies: list[str]) -> tuple[SqlFallback, ScriptedLLM]:
+>       con = duckdb.connect(str(fixture_db_path), read_only=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       _duckdb.ConnectionException: Connection Error: Can't open a connection to same database file with a different configuration than existing connections
+
+tests/test_sql_fallback.py:76: ConnectionException
+_______________ test_deep_nesting_is_a_guard_error_then_repaired _______________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_deep_nesting_is_a_guard_error_then_repaired(fixture_db_path: Path) -> None:
+        deep = "select " + "(" * 800 + "1" + ")" * 800 + " from semantic.games"
+>       fb, llm = make(fixture_db_path, [deep, "select count(*) from semantic.games"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_sql_fallback.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+replies = ['select (((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((...)))))))))))))))))))))))))))))))))))))))))))))))))))))))))) from semantic.games', 'select count(*) from semantic.games']
+
+    def make(fixture_db_path: Path, replies: list[str]) -> tuple[SqlFallback, ScriptedLLM]:
+>       con = duckdb.connect(str(fixture_db_path), read_only=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       _duckdb.ConnectionException: Connection Error: Can't open a connection to same database file with a different configuration than existing connections
+
+tests/test_sql_fallback.py:76: ConnectionException
+=========================== short test summary info ============================
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[SELECT name, sql FROM (WITH sqlite_master AS (SELECT 1) SELECT 1) q, sqlite_master]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[SELECT * FROM (WITH duckdb_tables AS (SELECT 1) SELECT 1) q, duckdb_tables]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[SELECT * FROM (WITH duckdb_databases AS (SELECT 1) SELECT 1) q, duckdb_databases]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[SELECT * FROM (WITH pg_settings AS (SELECT 1) SELECT 1) q, pg_settings]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[SELECT player_id FROM semantic.players WHERE EXISTS (WITH duckdb_tables AS (SELECT 1) SELECT 1) AND player_id IN (SELECT 1 FROM duckdb_tables)]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[SELECT 1 AS x FROM duckdb_settings UNION ALL (WITH duckdb_settings AS (SELECT 1) SELECT 1 FROM duckdb_settings)]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[WITH sqlite_master AS (SELECT * FROM sqlite_master) SELECT * FROM sqlite_master]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[WITH a AS (SELECT * FROM duckdb_tables), duckdb_tables AS (SELECT 1) SELECT * FROM a]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[WITH RECURSIVE sqlite_master AS (SELECT count(*) AS n FROM sqlite_master UNION ALL SELECT n + 1 FROM sqlite_master WHERE n < 3) SELECT * FROM sqlite_master]
+FAILED tests/test_sql_guard.py::test_cte_name_outside_its_scope_is_rejected[WITH RECURSIVE a AS (SELECT count(*) AS n FROM duckdb_tables), duckdb_tables AS (SELECT 1 AS x) SELECT * FROM a]
+FAILED tests/test_sql_guard.py::test_non_plain_limit_becomes_100[100%] - Asse...
+FAILED tests/test_sql_guard.py::test_non_plain_limit_becomes_100[100 PERCENT]
+FAILED tests/test_sql_guard.py::test_non_plain_limit_becomes_100[50 + 50000]
+FAILED tests/test_sql_guard.py::test_non_plain_limit_becomes_100[$1] - Assert...
+FAILED tests/test_sql_guard.py::test_non_plain_limit_becomes_100[-1] - Assert...
+FAILED tests/test_sql_guard.py::test_non_plain_limit_becomes_100[5 WITH TIES]
+FAILED tests/test_sql_guard.py::test_fetch_first_and_offset - AssertionError:...
+FAILED tests/test_sql_guard.py::test_set_operation_percent_limit_is_capped - ...
+FAILED tests/test_sql_guard.py::test_parse_failures_raise_guard_error[SELECT ((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((1)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))) FROM semantic.players]
+FAILED tests/test_sql_guard.py::test_parse_failures_raise_guard_error[SELECT player_id FROM semantic.players WHERE NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT NOT TRUE]
+FAILED tests/test_sql_guard.py::test_parse_failures_raise_guard_error[SELECT 'abc FROM semantic.players]
+FAILED tests/test_sql_guard.py::test_parse_failures_raise_guard_error[SELECT "abc FROM semantic.players]
+FAILED tests/test_sql_guard.py::test_parse_failures_raise_guard_error[SELECT $$x FROM semantic.players]
+FAILED tests/test_sql_guard.py::test_sql_length_cap - ImportError: cannot imp...
+FAILED tests/test_sql_fallback.py::test_run_with_timeout_returns_at_most_max_rows
+FAILED tests/test_sql_fallback.py::test_percent_limit_returns_100_rows - _duc...
+FAILED tests/test_sql_fallback.py::test_deep_nesting_is_a_guard_error_then_repaired
+27 failed, 118 passed in 17.61s

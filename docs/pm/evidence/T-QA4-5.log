@@ -1,0 +1,8 @@
+current snapshot unhealthy
+rolled back
+tmp qa4_zcnnuobg
+current nba_20260903 rollback target nba_20260902
+PASS open_current healthy while app holds it 
+PASS corrupt current -> rollback accepts target the app holds locked nba_20260902
+PASS lockdown after health-first open IOException
+FAIL []

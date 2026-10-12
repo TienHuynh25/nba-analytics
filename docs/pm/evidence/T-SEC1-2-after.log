@@ -1,0 +1,22 @@
+REJECTED  SEC-001 sqlite_master        sqlite_master is not a semantic-layer view; allowed views: semantic.awards, semantic.franc
+REJECTED  SEC-001 duckdb_tables        duckdb_tables is not a semantic-layer view; allowed views: semantic.awards, semantic.franc
+REJECTED  SEC-001 duckdb_databases     duckdb_databases is not a semantic-layer view; allowed views: semantic.awards, semantic.fr
+REJECTED  SEC-001 pg_settings          pg_settings is not a semantic-layer view; allowed views: semantic.awards, semantic.franchi
+REJECTED  SEC-001 where-subq           duckdb_tables is not a semantic-layer view; allowed views: semantic.awards, semantic.franc
+REJECTED  SEC-001 self-ref CTE         sqlite_master is not a semantic-layer view; allowed views: semantic.awards, semantic.franc
+REJECTED  SEC-001 forward CTE ref      duckdb_tables is not a semantic-layer view; allowed views: semantic.awards, semantic.franc
+REJECTED  SEC-001 union branch         duckdb_settings is not a semantic-layer view; allowed views: semantic.awards, semantic.fra
+REJECTED  SEC-001 sibling CTE          duckdb_settings is not a semantic-layer view; allowed views: semantic.awards, semantic.fra
+ACCEPTED  SEC-002 LIMIT 100%           rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT 100 PERCENT    rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT expr           rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT param          rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT subq           rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT 5.5            rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT -1             rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 FETCH FIRST          rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 OFFSET only          rows=100 sql_tail='ntic.player_game_log LIMIT 100 OFFSET 10' first='(203084,)'
+REJECTED  SEC-005 deep nesting         the SQL is nested too deeply
+REJECTED  SEC-005 deep subq            the SQL is 7230 characters; at most 4000 are allowed
+REJECTED  SEC-005 unterminated str     could not parse the SQL: Error tokenizing 'SELECT 'abc FROM semantic.player'
+REJECTED  SEC-005 long sql             the SQL is 6841 characters; at most 4000 are allowed

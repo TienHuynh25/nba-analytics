@@ -1,0 +1,22 @@
+ACCEPTED  SEC-001 sqlite_master        rows=61 sql_tail=' SELECT 1) AS q, sqlite_master LIMIT 100' first="('awards', 'CREATE TABLE marts.awards(player_id INTEGER, season VARCHAR, season_"
+ACCEPTED  SEC-001 duckdb_tables        rows=41 sql_tail=' SELECT 1) AS q, duckdb_tables LIMIT 100' first="(1, 'nba_fixture', 20999, 'marts', 20625, 'awards', 20627, None, {}, False, Fals"
+ACCEPTED  SEC-001 duckdb_databases     rows=1 sql_tail='LECT 1) AS q, duckdb_databases LIMIT 100' first="(1, 'nba_fixture', 20999, '/private/tmp/claude-501/-Users-tienhuynh-dev-nba-anal"
+ACCEPTED  SEC-001 pg_settings          rows=100 sql_tail='1) SELECT 1) AS q, pg_settings LIMIT 100' first="(1, 'Calendar', 'gregorian', 'The current calendar', 'string')"
+ACCEPTED  SEC-001 where-subq           rows=0 sql_tail=' (SELECT 1 FROM duckdb_tables) LIMIT 100'
+ACCEPTED  SEC-001 self-ref CTE         rows=61 sql_tail='r) SELECT * FROM sqlite_master LIMIT 100' first="('table', 'awards', 'awards', 0, 'CREATE TABLE marts.awards(player_id INTEGER, s"
+ACCEPTED  SEC-001 forward CTE ref      rows=41 sql_tail=' AS (SELECT 1) SELECT * FROM a LIMIT 100' first="('nba_fixture', 20999, 'marts', 20625, 'awards', 20627, None, {}, False, False, "
+ACC/EXECERR SEC-001 union branch       CatalogException: Catalog Error: Table with name duckdb_settings does not exist! sql_tail='SELECT 1 FROM duckdb_settings) LIMIT 100'
+REJECTED  SEC-001 sibling CTE          duckdb_settings is not a semantic-layer view; allowed views: semantic.awards, semantic.fra
+ACCEPTED  SEC-002 LIMIT 100%           rows=28265 sql_tail='mantic.player_game_log LIMIT 100 PERCENT' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT 100 PERCENT    rows=28265 sql_tail='mantic.player_game_log LIMIT 100 PERCENT' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT expr           rows=28265 sql_tail='emantic.player_game_log LIMIT 50 + 50000' first='(1630532,)'
+ACC/EXECERR SEC-002 LIMIT param        InvalidInputException: Invalid Input Error: Values were not provided for the following prepared stateme sql_tail='d FROM semantic.player_game_log LIMIT $1'
+ACCEPTED  SEC-002 LIMIT subq           rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 LIMIT 5.5            rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACC/EXECERR SEC-002 LIMIT -1           BinderException: Binder Error: LIMIT/OFFSET cannot be negative sql_tail='d FROM semantic.player_game_log LIMIT -1'
+ACCEPTED  SEC-002 FETCH FIRST          rows=100 sql_tail=' FROM semantic.player_game_log LIMIT 100' first='(1630532,)'
+ACCEPTED  SEC-002 OFFSET only          rows=100 sql_tail='ntic.player_game_log LIMIT 100 OFFSET 10' first='(203084,)'
+UNCAUGHT  SEC-005 deep nesting         RecursionError: maximum recursion depth exceeded
+UNCAUGHT  SEC-005 deep subq            RecursionError: maximum recursion depth exceeded
+UNCAUGHT  SEC-005 unterminated str     TokenError: Error tokenizing 'SELECT 'abc FROM semantic.player'
+ACCEPTED  SEC-005 long sql             rows=0 sql_tail='player_id = 1 OR player_id = 1 LIMIT 100'

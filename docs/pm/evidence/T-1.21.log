@@ -1,0 +1,5 @@
+.                                                                        [100%]
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_boxscore_match.py::test_twenty_box_scores_match_nba_com
+1 passed in 11.84s

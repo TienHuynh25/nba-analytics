@@ -1,0 +1,8 @@
+current snapshot unhealthy
+rolled back
+current snapshot unhealthy
+rolled back
+db_mid_file_4k           old(full_check=False)      served=nba_20260930 rolled_back=False
+db_mid_file_4k           default(full_check=True)   served=nba_20260929 rolled_back=True
+shots_parquet_modified   old(full_check=False)      served=nba_20260930 rolled_back=False
+shots_parquet_modified   default(full_check=True)   served=nba_20260929 rolled_back=True

@@ -1,0 +1,17 @@
+$ seed count
+220 Counter({'played-in-gamelogs': 203, 'no-games': 16, 'commonplayerinfo': 1})
+$ make backfill-status
+uv run python -m ingest.backfill --status
+reference          2 / 2
+gamelogs         340 / 340
+team_history      45 / 45
+season_dash      176 / 176
+players        15509 + 220 documented =  15729 / 15729
+shots           1372 / 1372
+$ scratch seed minus player 1852
+reference          2 / 2
+gamelogs         340 / 340
+team_history      45 / 45
+season_dash      176 / 176
+players        15509 + 219 documented =  15728 / 15729  MISSING 1
+shots           1372 / 1372

@@ -1,0 +1,21 @@
+.................                                                        [100%]
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[10-10-True]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[9-10-True]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[11-10-True]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[8-10-False]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[12-10-False]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[1-10-False]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[0-10-False]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[1-1-True]
+PASSED tests/test_anomaly_check.py::test_tolerance_boundary[0-1-False]
+PASSED tests/test_anomaly_check.py::test_fetched_duplicates_do_not_inflate_the_count
+PASSED tests/test_anomaly_check.py::test_games_fetched_on_a_day_with_no_schedule_fail
+PASSED tests/test_anomaly_check.py::test_scheduled_day_with_nothing_fetched_fails
+PASSED tests/test_anomaly_check.py::test_every_bad_day_is_reported_in_one_error
+PASSED tests/test_anomaly_check.py::test_e2e_short_day_stops_before_build_and_publish
+PASSED tests/test_anomaly_check.py::test_e2e_day_at_the_tolerance_edge_reaches_publish
+PASSED tests/test_anomaly_check.py::test_e2e_day_just_past_the_edge_stops
+PASSED tests/test_anomaly_check.py::test_e2e_missing_day_is_caught_even_when_others_match
+17 passed in 1.09s

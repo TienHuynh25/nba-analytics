@@ -1,0 +1,25 @@
+...................F.................................................... [ 65%]
+......................................                                   [100%]
+=================================== FAILURES ===================================
+________________ test_overtime_only_returns_only_overtime_games ________________
+
+store = <app.snapshot.FileSnapshotStore object at 0x11013d820>
+
+    def test_overtime_only_returns_only_overtime_games(store: FileSnapshotStore) -> None:
+        r = run_tool("get_games", {"season": S, "overtime_only": True, "limit": 25}, store)
+        n = q(
+            store,
+            "select count(*) from marts.games where season=? and season_type=? and periods>4",
+            S,
+            RS,
+        )[0][0]
+        assert r.rows and all(x["periods"] > 4 for x in r.rows)
+>       assert len(r.rows) == min(n, 100)
+E       AssertionError: assert 25 == 60
+E        +  where 25 = len([{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...])
+E        +    where [{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...] = ToolResult(tool='get_games', args={'season_types': ['Regular Season'], 'overtime_only': True, 'finals_only': False, 's...], source='games · 2024-25 regular season · overtime · data through 2025-06-22', not_tracked=[], notes=[], entities={}).rows
+E        +  and   60 = min(60, 100)
+
+tests/test_tools_oracle.py:139: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_tools_oracle.py::test_overtime_only_returns_only_overtime_games

@@ -1,0 +1,6 @@
+tests/test_career_gaps.py:402: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_career_gaps.py::test_kleber_gets_the_no_totals_sentence_in_all_three_tools
+FAILED tests/test_career_gaps.py::test_kleber_fallback_table_says_no_rows_and_the_new_sentence
+FAILED tests/test_career_gaps.py::test_partial_player_gets_a_missing_seasons_note_on_every_tool
+FAILED tests/test_career_gaps.py::test_other_class_player_with_no_rows_gets_the_sentence_and_the_missing_note

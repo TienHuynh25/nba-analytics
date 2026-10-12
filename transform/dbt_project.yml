@@ -11,6 +11,10 @@ macro-paths: ["macros"]
 target-path: target
 clean-targets: [target, dbt_packages]
 
+# SEC-008: no anonymous usage telemetry.
+flags:
+  send_anonymous_usage_stats: false
+
 vars:
   # As-of cutoff (task 1.28): keep only rows on or before this date. null = no cutoff.
   as_of: null

@@ -1,0 +1,35 @@
+PASS sealed snapshot, 64MB limit: big sort spills and succeeds (8335598177395817995612,)
+temp_directory: /var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/nba-duckdb-85550-ok15q1on/snap_a_c8e6dd413268 cap: 3.7 GiB
+PASS spill folder outside the snapshots tree 
+PASS spill root mode 0700 0o700
+PASS spill root named per process nba-duckdb-85550-ok15q1on
+PASS snapshot still sealed, no .tmp next to db 
+PASS cap set (4GB -> 3.7 GiB) 3.7 GiB
+PASS after lock: SET max_temp_directory_size='500GB' refused 
+PASS after lock: SET temp_directory='/tmp/evil_qa5' refused 
+PASS after lock: SET memory_limit='100GB' refused 
+PASS after lock: SET enable_external_access=true refused 
+PASS after lock: SET lock_configuration=false refused 
+PASS blocked: COPY (select 1) TO '/private/tmp/claude-501/-Users-tienhuynh IOException
+PASS blocked: EXPORT DATABASE '/private/tmp/claude-501/-Users-tienhuynh-de IOException
+PASS blocked: select * from read_csv('/etc/hosts') PermissionException
+PASS blocked: select * from read_text('/etc/passwd') PermissionException
+PASS blocked: select * from glob('/tmp/*') PermissionException
+PASS blocked: select * from read_blob('/var/folders/j8/c5r2ywtx6pb2q163d23 PermissionException
+PASS blocked: select * from read_text('/private/tmp/claude-501/-Users-tien InvalidInputException
+PASS blocked: COPY (select 1) TO '/var/folders/j8/c5r2ywtx6pb2q163d23sw9t0 PermissionException
+PASS blocked: ATTACH '/tmp/x_qa5.duckdb' AS x PermissionException
+PASS second connection same db: spills and works 
+PASS second db: same process root, different subfolder snap_b_785dafa727ae
+PASS second db spills 
+PASS after close: instance spill subfolder removed, root remains []
+/private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/qa3/sec11.py:86: DeprecationWarning: This process (pid=85550) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+PASS forked child exit did not delete parent's spill root 
+PASS forked child used its own root (different dir) and removed it at exit nba-duckdb-85559-161bse15
+PASS spill beyond 1MB cap fails with a DuckDB error OutOfMemoryException: Out of Memory Error: failed to offload data block of size 256.0 KiB (8
+PASS connection usable after the failed spill 
+PASS normal process exit removes its spill root nba-duckdb-85560-uq41qzpv
+SIGKILL leaves root (known limitation): True 0o700
+FAILS [] of 29
+leftover nba-duckdb dirs in tmpdir: 3

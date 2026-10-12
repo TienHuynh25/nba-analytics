@@ -68,10 +68,19 @@ def as_of_build(cutoff: date, snapshot_id: str | None) -> snapshots.Snapshot:
     return snapshots.build(cfg, snapshot_id=sid, as_of=cutoff, pinned=True)
 
 
+def _snapshot_id(value: str) -> str:
+    try:
+        return snapshots.validate_id(value)
+    except snapshots.SnapshotIdError as exc:
+        raise argparse.ArgumentTypeError(str(exc)) from exc
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
     ap.add_argument("--as-of", help="cutoff date YYYY-MM-DD (last included game date)")
-    ap.add_argument("--snapshot-id", help="name for an as-of snapshot, e.g. eval_2025_26_rs")
+    ap.add_argument(
+        "--snapshot-id", type=_snapshot_id, help="name for an as-of snapshot, e.g. eval_2025_26_rs"
+    )
     args = ap.parse_args(argv)
 
     jsonlog.configure()

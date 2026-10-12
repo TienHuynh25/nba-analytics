@@ -1,0 +1,17 @@
+## data listing BEFORE rework
+data/build:
+total 2079840
+drwxr-xr-x@  9 tienhuynh  staff        288 Oct 12 01:14 .
+drwxr-xr-x   9 tienhuynh  staff        288 Oct 12 01:02 ..
+-rw-r--r--@  1 tienhuynh  staff  475541504 Oct 11 22:53 dev.duckdb
+-rw-r--r--@  1 tienhuynh  staff  200552448 Oct 11 22:50 dev.duckdb.pre-T-1.19
+drwxr-xr-x@ 32 tienhuynh  staff       1024 Oct 11 22:52 dev_shots
+drwxr-xr-x@  7 tienhuynh  staff        224 Oct  7 21:59 fixture
+-rw-r--r--@  1 tienhuynh  staff  264777728 Oct 11 22:52 landing.duckdb
+-rw-r--r--@  1 tienhuynh  staff  113782784 Oct 11 22:50 landing.duckdb.pre-T-1.19
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 11 22:52 landing_work
+
+data/snapshots:
+total 0
+drwxr-xr-x@ 2 tienhuynh  staff   64 Oct 12 01:14 .
+drwxr-xr-x  9 tienhuynh  staff  288 Oct 12 01:02 ..

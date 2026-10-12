@@ -1,0 +1,463 @@
+uv run pytest -m "not network"
+........................................................................ [  8%]
+.....................EEF................................................ [ 16%]
+...............................FFFFFFFF................................. [ 24%]
+........................................................................ [ 33%]
+...................................................................xx... [ 41%]
+........................................F............................... [ 49%]
+........................................................................ [ 58%]
+........................................................................ [ 66%]
+........................................................................ [ 74%]
+........................................................................ [ 83%]
+.................................................F...................... [ 91%]
+........................................................................ [ 99%]
+..                                                                       [100%]
+==================================== ERRORS ====================================
+__________________ ERROR at setup of test_no_row_after_cutoff __________________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10f961880>, _basetemp=PosixPath...ders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103'), _retention_count=3, _retention_policy='all')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_as_of.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+db = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/asof0/asof_test/asof_test.duckdb')
+shots = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/asof0/asof_test/shots')
+landing = PosixPath('/Users/tienhuynh/dev/nba-analytics/data/build/fixture/landing.duckdb')
+as_of = datetime.date(2025, 4, 13), extra_vars = {'fixture': True}
+
+    def run_dbt(
+        db: Path,
+        shots: Path,
+        landing: Path,
+        as_of: date | None,
+        extra_vars: dict[str, Any] | None = None,
+    ) -> None:
+        env = {
+            **os.environ,
+            "NBA_SNAPSHOT_PATH": str(db),
+            "NBA_SHOTS_DIR": str(shots),
+            "NBA_LANDING_PATH": str(landing),
+        }
+        cmd = ["dbt", "build", "--profiles-dir", ".", "--project-dir", "."]
+        dbt_vars: dict[str, Any] = dict(extra_vars or {})
+        if as_of is not None:
+            dbt_vars["as_of"] = as_of.isoformat()
+        if dbt_vars:
+            cmd += ["--vars", json.dumps(dbt_vars)]
+        res = subprocess.run(cmd, cwd=TRANSFORM, env=env, capture_output=True, text=True)
+        if res.returncode != 0:
+            tail = "\n".join(res.stdout.splitlines()[-40:])
+>           raise BuildError(f"dbt build failed:\n{tail}")
+E           ingest.snapshots.BuildError: dbt build failed:
+E           [0m02:22:52  Running with dbt=1.12.5
+E           [0m02:22:52  Registered adapter: duckdb=1.11.0
+E           [0m02:22:52  Unable to do partial parsing because config vars, config profile, or config target have changed
+E           [0m02:22:52  Unable to do partial parsing because profile has changed
+E           [0m02:22:53  [[33mWARNING[0m]: 'stat_availability' is a seed node, but it is specified in the models section of
+E           models/marts/_marts.yml. To fix this error, place the `stat_availability`
+E           specification under the seeds key instead.
+E           [0m02:22:53  [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+E           functionality
+E           Found top-level arguments to test `relationships` defined on 'player_aliases' in
+E           package 'nba' (models/marts/_marts.yml). Arguments to generic tests should be
+E           nested under the `arguments` property.
+E           [0m02:22:53  [[31mERROR[0m]: Encountered an error:
+E           Runtime Error
+E             Resource names cannot contain spaces:
+E               * 'seed.nba.records_curated 2' (seeds/records_curated 2.csv)
+E             Please rename the invalid model(s) so that their name(s) do not contain any spaces.
+E           [0m02:22:53  [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+E           Summary of encountered deprecations:
+E           - MissingArgumentsPropertyInGenericTestDeprecation: 19 occurrences
+E           To see all deprecation instances instead of just the first occurrence of each,
+E           run command again with the `--show-all-deprecations` flag. You may also need to
+E           run with `--no-partial-parse` as some deprecations are only encountered during
+E           parsing.
+
+ingest/snapshots.py:127: BuildError
+________ ERROR at setup of test_manifest_as_of_date_is_day_after_cutoff ________
+
+tmp_path_factory = TempPathFactory(_given_basetemp=None, _trace=<pluggy._tracing.TagTracerSub object at 0x10f961880>, _basetemp=PosixPath...ders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103'), _retention_count=3, _retention_policy='all')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_as_of.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+db = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/asof0/asof_test/asof_test.duckdb')
+shots = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/asof0/asof_test/shots')
+landing = PosixPath('/Users/tienhuynh/dev/nba-analytics/data/build/fixture/landing.duckdb')
+as_of = datetime.date(2025, 4, 13), extra_vars = {'fixture': True}
+
+    def run_dbt(
+        db: Path,
+        shots: Path,
+        landing: Path,
+        as_of: date | None,
+        extra_vars: dict[str, Any] | None = None,
+    ) -> None:
+        env = {
+            **os.environ,
+            "NBA_SNAPSHOT_PATH": str(db),
+            "NBA_SHOTS_DIR": str(shots),
+            "NBA_LANDING_PATH": str(landing),
+        }
+        cmd = ["dbt", "build", "--profiles-dir", ".", "--project-dir", "."]
+        dbt_vars: dict[str, Any] = dict(extra_vars or {})
+        if as_of is not None:
+            dbt_vars["as_of"] = as_of.isoformat()
+        if dbt_vars:
+            cmd += ["--vars", json.dumps(dbt_vars)]
+        res = subprocess.run(cmd, cwd=TRANSFORM, env=env, capture_output=True, text=True)
+        if res.returncode != 0:
+            tail = "\n".join(res.stdout.splitlines()[-40:])
+>           raise BuildError(f"dbt build failed:\n{tail}")
+E           ingest.snapshots.BuildError: dbt build failed:
+E           [0m02:22:52  Running with dbt=1.12.5
+E           [0m02:22:52  Registered adapter: duckdb=1.11.0
+E           [0m02:22:52  Unable to do partial parsing because config vars, config profile, or config target have changed
+E           [0m02:22:52  Unable to do partial parsing because profile has changed
+E           [0m02:22:53  [[33mWARNING[0m]: 'stat_availability' is a seed node, but it is specified in the models section of
+E           models/marts/_marts.yml. To fix this error, place the `stat_availability`
+E           specification under the seeds key instead.
+E           [0m02:22:53  [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+E           functionality
+E           Found top-level arguments to test `relationships` defined on 'player_aliases' in
+E           package 'nba' (models/marts/_marts.yml). Arguments to generic tests should be
+E           nested under the `arguments` property.
+E           [0m02:22:53  [[31mERROR[0m]: Encountered an error:
+E           Runtime Error
+E             Resource names cannot contain spaces:
+E               * 'seed.nba.records_curated 2' (seeds/records_curated 2.csv)
+E             Please rename the invalid model(s) so that their name(s) do not contain any spaces.
+E           [0m02:22:53  [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+E           Summary of encountered deprecations:
+E           - MissingArgumentsPropertyInGenericTestDeprecation: 19 occurrences
+E           To see all deprecation instances instead of just the first occurrence of each,
+E           run command again with the `--show-all-deprecations` flag. You may also need to
+E           run with `--no-partial-parse` as some deprecations are only encountered during
+E           parsing.
+
+ingest/snapshots.py:127: BuildError
+=================================== FAILURES ===================================
+_______________ test_cutoff_inside_a_season_type_fails_the_build _______________
+
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_cutoff_inside_a_season_ty0')
+
+>   ???
+E   AssertionError: Regex pattern did not match.
+E     Expected regex: 'as_of_not_inside_season_type'
+E     Actual message: "dbt build failed:\n\x1b[0m02:22:55  Running with dbt=1.12.5\n\x1b[0m02:22:55  Registered adapter: duckdb=1.11.0\n\x1b[0m02:22:55  Unable to do partial parsing because config vars, config profile, or config target have changed\n\x1b[0m02:22:55  Unable to do partial parsing because profile has changed\n\x1b[0m02:22:56  [\x1b[33mWARNING\x1b[0m]: 'stat_availability' is a seed node, but it is specified in the models section of\nmodels/marts/_marts.yml. To fix this error, place the `stat_availability`\nspecification under the seeds key instead.\n\x1b[0m02:22:56  [\x1b[33mWARNING\x1b[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated\nfunctionality\nFound top-level arguments to test `relationships` defined on 'player_aliases' in\npackage 'nba' (models/marts/_marts.yml). Arguments to generic tests should be\nnested under the `arguments` property.\n\x1b[0m02:22:56  [\x1b[31mERROR\x1b[0m]: Encountered an error:\nRuntime Error\n  Resource names cannot contain spaces:\n    * 'seed.nba.records_curated 2' (seeds/records_curated 2.csv)\n  Please rename the invalid model(s) so that their name(s) do not contain any spaces.\n\x1b[0m02:22:56  [\x1b[33mWARNING\x1b[0m][DeprecationsSummary]: Deprecated functionality\nSummary of encountered deprecations:\n- MissingArgumentsPropertyInGenericTestDeprecation: 19 occurrences\nTo see all deprecation instances instead of just the first occurrence of each,\nrun command again with the `--show-all-deprecations` flag. You may also need to\nrun with `--no-partial-parse` as some deprecations are only encountered during\nparsing."
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_as_of.py:71: AssertionError
+_________________ test_clean_fixture_passes_every_domain_check _________________
+
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_clean_fixture_passes_ever0')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:116: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_clean_fixture_passes_ever0/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_clean_fixture_passes_ever0/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_______ test_planted_error_fails_its_check[as_of_not_inside_season_type] _______
+
+check = 'as_of_not_inside_season_type'
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c0')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c0/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c0/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+___________ test_planted_error_fails_its_check[careers_match_source] ___________
+
+check = 'careers_match_source'
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c1')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c1/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c1/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_______ test_planted_error_fails_its_check[games_within_schedule_length] _______
+
+check = 'games_within_schedule_length'
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c2')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c2/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c2/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_____ test_planted_error_fails_its_check[player_points_sum_to_team_points] _____
+
+check = 'player_points_sum_to_team_points'
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c3')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c3/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c3/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+________ test_planted_error_fails_its_check[stints_sum_to_season_total] ________
+
+check = 'stints_sum_to_season_total'
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c4')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c4/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c4/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+________ test_planted_error_fails_its_check[team_record_matches_source] ________
+
+check = 'team_record_matches_source'
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c5')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c5/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c5/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_________ test_planted_error_fails_its_check[untracked_stats_are_null] _________
+
+check = 'untracked_stats_are_null'
+clean_copy = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/clean0/fixture.duckdb')
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c6')
+
+>   ???
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_domain_checks.py:98: in run_domain_tests
+    ???
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c6/target/run_results.json')
+mode = 'r', buffering = -1, encoding = 'locale', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-103/test_planted_error_fails_its_c6/target/run_results.json'
+
+../../.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/pathlib.py:1013: FileNotFoundError
+_______________ test_opinion_question_gets_stats_without_verdict _______________
+
+store = <app.snapshot.FileSnapshotStore object at 0x11a41a7e0>
+
+    def test_opinion_question_gets_stats_without_verdict(store: FileSnapshotStore) -> None:
+        sp, llm = path(
+            store,
+            [
+                call("compare", player_ids=[JOKIC, SGA], metrics=["points_per_game"], season="2024-25"),
+                "Nikola Jokic averaged 29.6 points and Shai Gilgeous-Alexander 32.7.",
+            ],
+        )
+        a, _ = sp.answer("Is Jokic better than SGA this season?")
+        assert a.behaviour == "no_verdict"
+>       assert "do not say who is better" in llm.prompts[1][0].content
+E       AssertionError: assert 'do not say who is better' in 'You turn an NBA stats question into ONE call of one of these tools.\nFill arguments only from the question and the re... all-star selections, all stars)\n- player_championships: Championships (player) (also: rings (player), player titles)'
+E        +  where 'You turn an NBA stats question into ONE call of one of these tools.\nFill arguments only from the question and the re... all-star selections, all stars)\n- player_championships: Championships (player) (also: rings (player), player titles)' = Message(role='system', content='You turn an NBA stats question into ONE call of one of these tools.\nFill arguments on...all-star selections, all stars)\n- player_championships: Championships (player) (also: rings (player), player titles)').content
+
+tests/test_stats_path 2.py:155: AssertionError
+________________ test_overtime_only_returns_only_overtime_games ________________
+
+store = <app.snapshot.FileSnapshotStore object at 0x11a570f50>
+
+>   ???
+E   AssertionError: assert 25 == 60
+E    +  where 25 = len([{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...])
+E    +    where [{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...] = ToolResult(tool='get_games', args={'season_types': ['Regular Season'], 'overtime_only': True, 'finals_only': False, 's...], source='games · 2024-25 regular season · overtime · data through 2025-06-22', not_tracked=[], notes=[], entities={}).rows
+E    +  and   60 = min(60, 100)
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_tools_oracle.py:139: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_as_of.py::test_cutoff_inside_a_season_type_fails_the_build
+FAILED tests/test_domain_checks.py::test_clean_fixture_passes_every_domain_check
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[as_of_not_inside_season_type]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[careers_match_source]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[games_within_schedule_length]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[player_points_sum_to_team_points]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[stints_sum_to_season_total]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[team_record_matches_source]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[untracked_stats_are_null]
+FAILED tests/test_stats_path 2.py::test_opinion_question_gets_stats_without_verdict
+FAILED tests/test_tools_oracle.py::test_overtime_only_returns_only_overtime_games
+ERROR tests/test_as_of.py::test_no_row_after_cutoff - ingest.snapshots.BuildE...
+ERROR tests/test_as_of.py::test_manifest_as_of_date_is_day_after_cutoff - ing...
+11 failed, 851 passed, 1 deselected, 2 xfailed, 2 errors in 79.17s (0:01:19)
+make: *** [test] Error 1

@@ -1,0 +1,58 @@
+### BEFORE (HEAD working tree before T-SEC4)
+== SEC-012
+[using sample] guard accepted -> 'SELECT player_id FROM semantic.players LIMIT 100 USING SAMPLE SYSTEM (10 PERCENT)'
+[using sample] execution ParserException: Parser Error: syntax error at or near "USING"
+[using sample rows] guard accepted -> 'SELECT player_id FROM semantic.players LIMIT 100 USING SAMPLE RESERVOIR (5 ROWS)'
+[using sample rows] execution ParserException: Parser Error: syntax error at or near "USING"
+[tablesample] guard accepted -> 'SELECT player_id FROM semantic.players TABLESAMPLE RESERVOIR (5 ROWS) LIMIT 100'
+[tablesample] executed OK
+== NUL / surrogate
+[nul] guard accepted -> 'SELECT 1 AS \x00 LIMIT 100'
+[nul] execution ParserException: Parser Error: syntax error at end of input
+[nul mid] GuardError: could not parse the SQL: Invalid expression / Unexpected token. Line 1, Col: 49.
+[surrogate] guard accepted -> "SELECT '\ud800' AS a LIMIT 100"
+[surrogate] UNCAUGHT UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 8: surrogates not allowed
+[answer nul] ok=False attempts=2 error='Parser Error: syntax error at end of input'
+[answer surrogate] UNCAUGHT UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 8: surrogates not allowed
+== snapshot id length
+[validate_id len 64] accepted
+[validate_id len 65] accepted
+[validate_id len 200] accepted
+[validate_id len 300] accepted
+--- SEC-011 before (old app/snapshot.py), memory_limit 64MB, sealed 0555 snapshot
+temp_directory under snapshot: True
+FAIL IOException IO Error: Failed to create directory "/private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/sec4/
+  spilled files now: (0, 0)
+
+### AFTER
+== SEC-012
+[using sample] GuardError: TABLESAMPLE is not allowed
+[using sample rows] GuardError: TABLESAMPLE is not allowed
+[tablesample] GuardError: TABLESAMPLE is not allowed
+== NUL / surrogate
+[nul] GuardError: the SQL contains a NUL character
+[nul mid] GuardError: the SQL contains a NUL character
+[surrogate] GuardError: the SQL contains text that is not valid UTF-8 (surrogates not allowed)
+[answer nul] ok=False attempts=2 error='the SQL contains a NUL character'
+[answer surrogate] ok=False attempts=2 error='the SQL contains text that is not valid UTF-8 (surrogates not allowed)'
+== snapshot id length
+[validate_id len 64] accepted
+[validate_id len 65] SnapshotIdError: aaaaaaaaa': must match ^[a-z0-9_]{1,64}$
+[validate_id len 200] SnapshotIdError: aaaaaaaaa': must match ^[a-z0-9_]{1,64}$
+[validate_id len 300] SnapshotIdError: aaaaaaaaa': must match ^[a-z0-9_]{1,64}$
+--- SEC-011 after
+temp_directory under snapshot: False
+OK (19999999,) 0.8s
+  spilled files now: (0, 0)
+--- spill folder outside allowed_directories under enable_external_access=false (probe11b, set before lock)
+spill /var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/nba-duckdb-2xjna_mm/s1
+temp_directory = /var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/nba-duckdb-2xjna_mm/s1
+sort FAILED OutOfMemoryException Out of Memory Error: failed to pin block of size 256.0 KiB (28.4 MiB/28.6 MiB used)
+spill exists True []
+COPY OK !! /var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/nba-duckdb-2xjna_mm/s1/x.csv
+COPY refused IOException IO Error: Cannot open file "/private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1
+read spill refused OutOfMemoryException Out of Memory Error: could not allocate block of size 30.5 MiB (0 bytes/28.6 MiB used)
+
+Po
+reset refused InvalidInputException
+spill after close False

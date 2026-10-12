@@ -1,0 +1,138 @@
+commonallplayers | drop rowSet of first result set | yes | commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['PER
+commonallplayers | drop headers of first result set | yes | commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'rowSet': [[7600
+commonallplayers | rename middle header (+_X) | yes | commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['PER
+commonallplayers | swap first two headers (rows unchanged) | yes | commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['DIS
+commonallplayers | type change first non-null cell | yes | commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['PER
+commonallplayers | add unexpected column EXTRA_COL | yes | commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['PER
+commonallplayers | truncate one row by one cell | yes | commonallplayers: response breaks its contract: ['resultSets']: [{'name': 'CommonAllPlayers', 'headers': ['PER
+commonallplayers | remove first expected result set | yes | commonallplayers: response breaks its contract: ['resultSets']: [] does not contain items matching the given s
+commonallplayers | rename top-level resultSets key | yes | commonallplayers: response breaks its contract: []: 'resultSets' is a required property
+commonallplayers | empty rowSet (zero rows) | NO (accepted) | 
+commonallplayers | null a non-key cell in row 0 | NO (accepted) | 
+commonplayerinfo | drop rowSet of first result set | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [{'name': 'CommonPlayerInfo', 'headers': ['PER
+commonplayerinfo | drop headers of first result set | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [{'name': 'CommonPlayerInfo', 'rowSet': [[7637
+commonplayerinfo | rename middle header (+_X) | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [{'name': 'CommonPlayerInfo', 'headers': ['PER
+commonplayerinfo | swap first two headers (rows unchanged) | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [{'name': 'CommonPlayerInfo', 'headers': ['FIR
+commonplayerinfo | type change first non-null cell | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [{'name': 'CommonPlayerInfo', 'headers': ['PER
+commonplayerinfo | add unexpected column EXTRA_COL | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [{'name': 'CommonPlayerInfo', 'headers': ['PER
+commonplayerinfo | truncate one row by one cell | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [{'name': 'CommonPlayerInfo', 'headers': ['PER
+commonplayerinfo | remove first expected result set | yes | commonplayerinfo: response breaks its contract: ['resultSets']: [] does not contain items matching the given s
+commonplayerinfo | rename top-level resultSets key | yes | commonplayerinfo: response breaks its contract: []: 'resultSets' is a required property
+commonplayerinfo | empty rowSet (zero rows) | NO (accepted) | 
+commonplayerinfo | null a non-key cell in row 0 | NO (accepted) | 
+franchisehistory | drop rowSet of first result set | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'FranchiseHistory', 'headers': ['LEA
+franchisehistory | drop headers of first result set | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'FranchiseHistory', 'rowSet': [['00'
+franchisehistory | rename middle header (+_X) | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'FranchiseHistory', 'headers': ['LEA
+franchisehistory | swap first two headers (rows unchanged) | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'FranchiseHistory', 'headers': ['TEA
+franchisehistory | type change first non-null cell | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'FranchiseHistory', 'headers': ['LEA
+franchisehistory | add unexpected column EXTRA_COL | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'FranchiseHistory', 'headers': ['LEA
+franchisehistory | truncate one row by one cell | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'FranchiseHistory', 'headers': ['LEA
+franchisehistory | remove first expected result set | yes | franchisehistory: response breaks its contract: ['resultSets']: [{'name': 'DefunctTeams', 'headers': ['LEAGUE_
+franchisehistory | rename top-level resultSets key | yes | franchisehistory: response breaks its contract: []: 'resultSets' is a required property
+franchisehistory | empty rowSet (zero rows) | NO (accepted) | 
+franchisehistory | null a non-key cell in row 0 | NO (accepted) | 
+leaguedashplayerstats_adv | drop rowSet of first result set | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashPlayerStats', 'h
+leaguedashplayerstats_adv | drop headers of first result set | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashPlayerStats', 'r
+leaguedashplayerstats_adv | rename middle header (+_X) | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashPlayerStats', 'h
+leaguedashplayerstats_adv | swap first two headers (rows unchanged) | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashPlayerStats', 'h
+leaguedashplayerstats_adv | type change first non-null cell | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashPlayerStats', 'h
+leaguedashplayerstats_adv | add unexpected column EXTRA_COL | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashPlayerStats', 'h
+leaguedashplayerstats_adv | truncate one row by one cell | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashPlayerStats', 'h
+leaguedashplayerstats_adv | remove first expected result set | yes | leaguedashplayerstats_adv: response breaks its contract: ['resultSets']: [] does not contain items matching th
+leaguedashplayerstats_adv | rename top-level resultSets key | yes | leaguedashplayerstats_adv: response breaks its contract: []: 'resultSets' is a required property
+leaguedashplayerstats_adv | empty rowSet (zero rows) | NO (accepted) | 
+leaguedashplayerstats_adv | null a non-key cell in row 0 | NO (accepted) | 
+leaguedashteamstats_adv | drop rowSet of first result set | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashTeamStats', 'heade
+leaguedashteamstats_adv | drop headers of first result set | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashTeamStats', 'rowSe
+leaguedashteamstats_adv | rename middle header (+_X) | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashTeamStats', 'heade
+leaguedashteamstats_adv | swap first two headers (rows unchanged) | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashTeamStats', 'heade
+leaguedashteamstats_adv | type change first non-null cell | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashTeamStats', 'heade
+leaguedashteamstats_adv | add unexpected column EXTRA_COL | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashTeamStats', 'heade
+leaguedashteamstats_adv | truncate one row by one cell | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [{'name': 'LeagueDashTeamStats', 'heade
+leaguedashteamstats_adv | remove first expected result set | yes | leaguedashteamstats_adv: response breaks its contract: ['resultSets']: [] does not contain items matching the 
+leaguedashteamstats_adv | rename top-level resultSets key | yes | leaguedashteamstats_adv: response breaks its contract: []: 'resultSets' is a required property
+leaguedashteamstats_adv | empty rowSet (zero rows) | NO (accepted) | 
+leaguedashteamstats_adv | null a non-key cell in row 0 | NO (accepted) | 
+leaguegamelog_p | drop rowSet of first result set | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_p | drop headers of first result set | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'rowSet': [['42024',
+leaguegamelog_p | rename middle header (+_X) | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_p | swap first two headers (rows unchanged) | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['PLAYER_
+leaguegamelog_p | type change first non-null cell | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_p | add unexpected column EXTRA_COL | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_p | truncate one row by one cell | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_p | remove first expected result set | yes | leaguegamelog_p: response breaks its contract: ['resultSets']: [] does not contain items matching the given sc
+leaguegamelog_p | rename top-level resultSets key | yes | leaguegamelog_p: response breaks its contract: []: 'resultSets' is a required property
+leaguegamelog_p | empty rowSet (zero rows) | NO (accepted) | 
+leaguegamelog_p | null a non-key cell in row 0 | NO (accepted) | 
+leaguegamelog_t | drop rowSet of first result set | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_t | drop headers of first result set | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'rowSet': [['52024',
+leaguegamelog_t | rename middle header (+_X) | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_t | swap first two headers (rows unchanged) | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['TEAM_ID
+leaguegamelog_t | type change first non-null cell | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_t | add unexpected column EXTRA_COL | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_t | truncate one row by one cell | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [{'name': 'LeagueGameLog', 'headers': ['SEASON_
+leaguegamelog_t | remove first expected result set | yes | leaguegamelog_t: response breaks its contract: ['resultSets']: [] does not contain items matching the given sc
+leaguegamelog_t | rename top-level resultSets key | yes | leaguegamelog_t: response breaks its contract: []: 'resultSets' is a required property
+leaguegamelog_t | empty rowSet (zero rows) | NO (accepted) | 
+leaguegamelog_t | null a non-key cell in row 0 | NO (accepted) | 
+leaguestandingsv3 | drop rowSet of first result set | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [{'name': 'Standings', 'headers': ['LeagueID'
+leaguestandingsv3 | drop headers of first result set | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [{'name': 'Standings', 'rowSet': [['00', '220
+leaguestandingsv3 | rename middle header (+_X) | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [{'name': 'Standings', 'headers': ['LeagueID'
+leaguestandingsv3 | swap first two headers (rows unchanged) | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [{'name': 'Standings', 'headers': ['SeasonID'
+leaguestandingsv3 | type change first non-null cell | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [{'name': 'Standings', 'headers': ['LeagueID'
+leaguestandingsv3 | add unexpected column EXTRA_COL | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [{'name': 'Standings', 'headers': ['LeagueID'
+leaguestandingsv3 | truncate one row by one cell | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [{'name': 'Standings', 'headers': ['LeagueID'
+leaguestandingsv3 | remove first expected result set | yes | leaguestandingsv3: response breaks its contract: ['resultSets']: [] does not contain items matching the given 
+leaguestandingsv3 | rename top-level resultSets key | yes | leaguestandingsv3: response breaks its contract: []: 'resultSets' is a required property
+leaguestandingsv3 | empty rowSet (zero rows) | NO (accepted) | 
+leaguestandingsv3 | null a non-key cell in row 0 | NO (accepted) | 
+playerawards | drop rowSet of first result set | yes | playerawards: response breaks its contract: ['resultSets']: [{'name': 'PlayerAwards', 'headers': ['PERSON_ID',
+playerawards | drop headers of first result set | yes | playerawards: response breaks its contract: ['resultSets']: [{'name': 'PlayerAwards', 'rowSet': [[76375, 'Wilt
+playerawards | rename middle header (+_X) | yes | playerawards: response breaks its contract: ['resultSets']: [{'name': 'PlayerAwards', 'headers': ['PERSON_ID',
+playerawards | swap first two headers (rows unchanged) | yes | playerawards: response breaks its contract: ['resultSets']: [{'name': 'PlayerAwards', 'headers': ['FIRST_NAME'
+playerawards | type change first non-null cell | yes | playerawards: response breaks its contract: ['resultSets']: [{'name': 'PlayerAwards', 'headers': ['PERSON_ID',
+playerawards | add unexpected column EXTRA_COL | yes | playerawards: response breaks its contract: ['resultSets']: [{'name': 'PlayerAwards', 'headers': ['PERSON_ID',
+playerawards | truncate one row by one cell | yes | playerawards: response breaks its contract: ['resultSets']: [{'name': 'PlayerAwards', 'headers': ['PERSON_ID',
+playerawards | remove first expected result set | yes | playerawards: response breaks its contract: ['resultSets']: [] does not contain items matching the given schem
+playerawards | rename top-level resultSets key | yes | playerawards: response breaks its contract: []: 'resultSets' is a required property
+playerawards | empty rowSet (zero rows) | NO (accepted) | 
+playerawards | null a non-key cell in row 0 | NO (accepted) | 
+playercareerstats | drop rowSet of first result set | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'SeasonTotalsRegularSeason', 'heade
+playercareerstats | drop headers of first result set | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'SeasonTotalsRegularSeason', 'rowSe
+playercareerstats | rename middle header (+_X) | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'SeasonTotalsRegularSeason', 'heade
+playercareerstats | swap first two headers (rows unchanged) | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'SeasonTotalsRegularSeason', 'heade
+playercareerstats | type change first non-null cell | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'SeasonTotalsRegularSeason', 'heade
+playercareerstats | add unexpected column EXTRA_COL | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'SeasonTotalsRegularSeason', 'heade
+playercareerstats | truncate one row by one cell | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'SeasonTotalsRegularSeason', 'heade
+playercareerstats | remove first expected result set | yes | playercareerstats: response breaks its contract: ['resultSets']: [{'name': 'CareerTotalsRegularSeason', 'heade
+playercareerstats | rename top-level resultSets key | yes | playercareerstats: response breaks its contract: []: 'resultSets' is a required property
+playercareerstats | empty rowSet (zero rows) | NO (accepted) | 
+playercareerstats | null a non-key cell in row 0 | NO (accepted) | 
+scheduleleaguev2 | drop required field gameStatus | yes | scheduleleaguev2: response breaks its contract: ['leagueSchedule', 'gameDates', 0, 'games', 0]: 'gameStatus' i
+scheduleleaguev2 | type change gameId int | yes | scheduleleaguev2: response breaks its contract: ['leagueSchedule', 'gameDates', 0, 'games', 0, 'gameId']: 2400
+scheduleleaguev2 | type change gameStatus str | yes | scheduleleaguev2: response breaks its contract: ['leagueSchedule', 'gameDates', 0, 'games', 0, 'gameStatus']: 
+scheduleleaguev2 | unexpected key in game | NO (accepted) | 
+scheduleleaguev2 | empty gameDates | yes | scheduleleaguev2: response breaks its contract: ['leagueSchedule', 'gameDates']: [] should be non-empty
+shotchartdetail | drop rowSet of first result set | yes | shotchartdetail: response breaks its contract: ['resultSets']: [{'name': 'Shot_Chart_Detail', 'headers': ['GRI
+shotchartdetail | drop headers of first result set | yes | shotchartdetail: response breaks its contract: ['resultSets']: [{'name': 'Shot_Chart_Detail', 'rowSet': [['Sho
+shotchartdetail | rename middle header (+_X) | yes | shotchartdetail: response breaks its contract: ['resultSets']: [{'name': 'Shot_Chart_Detail', 'headers': ['GRI
+shotchartdetail | swap first two headers (rows unchanged) | yes | shotchartdetail: response breaks its contract: ['resultSets']: [{'name': 'Shot_Chart_Detail', 'headers': ['GAM
+shotchartdetail | type change first non-null cell | yes | shotchartdetail: response breaks its contract: ['resultSets']: [{'name': 'Shot_Chart_Detail', 'headers': ['GRI
+shotchartdetail | add unexpected column EXTRA_COL | yes | shotchartdetail: response breaks its contract: ['resultSets']: [{'name': 'Shot_Chart_Detail', 'headers': ['GRI
+shotchartdetail | truncate one row by one cell | yes | shotchartdetail: response breaks its contract: ['resultSets']: [{'name': 'Shot_Chart_Detail', 'headers': ['GRI
+shotchartdetail | remove first expected result set | yes | shotchartdetail: response breaks its contract: ['resultSets']: [] does not contain items matching the given sc
+shotchartdetail | rename top-level resultSets key | yes | shotchartdetail: response breaks its contract: []: 'resultSets' is a required property
+shotchartdetail | empty rowSet (zero rows) | NO (accepted) | 
+shotchartdetail | null a non-key cell in row 0 | NO (accepted) | 
+teamyearbyyearstats | drop rowSet of first result set | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [{'name': 'TeamStats', 'headers': ['TEAM_ID
+teamyearbyyearstats | drop headers of first result set | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [{'name': 'TeamStats', 'rowSet': [[16106127
+teamyearbyyearstats | rename middle header (+_X) | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [{'name': 'TeamStats', 'headers': ['TEAM_ID
+teamyearbyyearstats | swap first two headers (rows unchanged) | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [{'name': 'TeamStats', 'headers': ['TEAM_CI
+teamyearbyyearstats | type change first non-null cell | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [{'name': 'TeamStats', 'headers': ['TEAM_ID
+teamyearbyyearstats | add unexpected column EXTRA_COL | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [{'name': 'TeamStats', 'headers': ['TEAM_ID
+teamyearbyyearstats | truncate one row by one cell | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [{'name': 'TeamStats', 'headers': ['TEAM_ID
+teamyearbyyearstats | remove first expected result set | yes | teamyearbyyearstats: response breaks its contract: ['resultSets']: [] does not contain items matching the give
+teamyearbyyearstats | rename top-level resultSets key | yes | teamyearbyyearstats: response breaks its contract: []: 'resultSets' is a required property
+teamyearbyyearstats | empty rowSet (zero rows) | NO (accepted) | 
+teamyearbyyearstats | null a non-key cell in row 0 | NO (accepted) | 
+TOTAL 137 caught 112 accepted 25 na 0 crash 0

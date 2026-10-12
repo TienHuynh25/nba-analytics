@@ -1,0 +1,57 @@
+........................................................................ [  8%]
+........................................................................ [ 16%]
+........................................................................ [ 24%]
+........................................................................ [ 33%]
+........................................................................ [ 41%]
+..........................................F............................. [ 49%]
+........................................................................ [ 58%]
+........................................................................ [ 66%]
+........................................................................ [ 74%]
+........................................................................ [ 82%]
+...................................................F.................... [ 91%]
+........................................................................ [ 99%]
+....                                                                     [100%]
+=================================== FAILURES ===================================
+_______________ test_opinion_question_gets_stats_without_verdict _______________
+
+store = <app.snapshot.FileSnapshotStore object at 0x119aecb00>
+
+    def test_opinion_question_gets_stats_without_verdict(store: FileSnapshotStore) -> None:
+        sp, llm = path(
+            store,
+            [
+                call("compare", player_ids=[JOKIC, SGA], metrics=["points_per_game"], season="2024-25"),
+                "Nikola Jokic averaged 29.6 points and Shai Gilgeous-Alexander 32.7.",
+            ],
+        )
+        a, _ = sp.answer("Is Jokic better than SGA this season?")
+        assert a.behaviour == "no_verdict"
+>       assert "do not say who is better" in llm.prompts[1][0].content
+E       AssertionError: assert 'do not say who is better' in 'You turn an NBA stats question into ONE call of one of these tools.\nFill arguments only from the question and the re... all-star selections, all stars)\n- player_championships: Championships (player) (also: rings (player), player titles)'
+E        +  where 'You turn an NBA stats question into ONE call of one of these tools.\nFill arguments only from the question and the re... all-star selections, all stars)\n- player_championships: Championships (player) (also: rings (player), player titles)' = Message(role='system', content='You turn an NBA stats question into ONE call of one of these tools.\nFill arguments on...all-star selections, all stars)\n- player_championships: Championships (player) (also: rings (player), player titles)').content
+
+tests/test_stats_path 2.py:155: AssertionError
+________________ test_overtime_only_returns_only_overtime_games ________________
+
+store = <app.snapshot.FileSnapshotStore object at 0x119a36cf0>
+
+    def test_overtime_only_returns_only_overtime_games(store: FileSnapshotStore) -> None:
+        # No explicit limit: the tool's default cap (100) must return every overtime game.
+        r = run_tool("get_games", {"season": S, "overtime_only": True}, store)
+        n = q(
+            store,
+            "select count(*) from marts.games where season=? and season_type=? and periods>4",
+            S,
+            RS,
+        )[0][0]
+>       assert r.rows and all(x["periods"] > 4 for x in r.rows)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: assert 25 == 60
+E        +  where 25 = len([{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...])
+E        +    where [{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...] = ToolResult(tool='get_games', args={'season_types': ['Regular Season'], 'overtime_only': True, 'finals_only': False, 's...], source='games · 2024-25 regular season · overtime · data through 2025-06-22', not_tracked=[], notes=[], entities={}).rows
+E        +  and   60 = min(60, 100)
+
+tests/test_tools_oracle.py:139: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_stats_path 2.py::test_opinion_question_gets_stats_without_verdict
+FAILED tests/test_tools_oracle.py::test_overtime_only_returns_only_overtime_games

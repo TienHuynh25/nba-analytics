@@ -1,0 +1,17 @@
+Kleber get_player_stats rows= 0
+   NOTE: The source has no season totals for this player.
+Kleber get_career rows= 0
+   NOTE: The source has no season totals for this player.
+Kleber vs SGA compare rows= 1
+   NOTE: The source has no season totals for this player. Player id: 1628467.
+Hennessy 76998 get_player_stats rows= 0
+   NOTE: The source has no season totals for this player.
+   NOTE: The source is missing season totals for this player for: 1956-57 regular season. The totals here exclude those seasons.
+Hennessy 76998 get_career rows= 1
+   NOTE: The source is missing season totals for this player for: 1956-57 regular season. The totals here exclude those seasons.
+Hennessy 76998 vs SGA compare rows= 0
+   NOTE: The source has no season totals for this player. Player id: 76998.
+   NOTE: No 1956-57 regular season data for player id(s) [1628983].
+   NOTE: The source is missing season totals for this player for: 1956-57 regular season. The totals here exclude those seasons.
+Hennessy other season get_player_stats rows= 1
+   NOTE: The source is missing season totals for this player for: 1956-57 regular season. The totals here exclude those seasons.

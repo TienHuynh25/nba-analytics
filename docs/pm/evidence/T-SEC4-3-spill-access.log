@@ -1,0 +1,5 @@
+temp_directory /var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/nba-duckdb-81429-tk7iqusd/nba_fixture_1f52e4b481d2
+FAIL tk7iqusd/nba_fixture_1f52e4b481d2/x.csv' IOException IO Error: Cannot open file "/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/nba
+FAIL k7iqusd/nba_fixture_1f52e4b481d2/x.csv') IOException IO Error: No files found that match the pattern "/var/folders/j8/c5r2ywtx6pb2q16
+FAIL 000gn/T/nba-duckdb-81429-tk7iqusd/y.csv' PermissionException Permission Error: Cannot access file "/var/folders/j8/c5r2ywtx6pb2q163d23sw9t000
+FAIL select * from read_csv('/etc/hosts') PermissionException Permission Error: Cannot access file "/etc/hosts" - file system operations are d
