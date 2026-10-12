@@ -66,6 +66,10 @@ def nba_transport(endpoint: str, params: Mapping[str, Any], timeout: float) -> d
     body = resp.get_dict()
     if not isinstance(body, dict):
         raise FetchError(f"{endpoint}: response is not a JSON object")
+    if not body:
+        # stats.nba.com sometimes answers 200 with "{}" in bursts (seen in the 1.6 backfill);
+        # treat it as transient so the client backs off and retries.
+        raise FetchError(f"{endpoint}: empty response body")
     return body
 
 

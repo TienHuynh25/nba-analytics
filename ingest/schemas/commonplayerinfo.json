@@ -1,0 +1,207 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "commonplayerinfo",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "CommonPlayerInfo"
+       },
+       "headers": {
+        "type": "array",
+        "allOf": [
+         {
+          "contains": {
+           "const": "PERSON_ID"
+          }
+         },
+         {
+          "contains": {
+           "const": "FIRST_NAME"
+          }
+         },
+         {
+          "contains": {
+           "const": "LAST_NAME"
+          }
+         },
+         {
+          "contains": {
+           "const": "DISPLAY_FIRST_LAST"
+          }
+         },
+         {
+          "contains": {
+           "const": "DISPLAY_LAST_COMMA_FIRST"
+          }
+         },
+         {
+          "contains": {
+           "const": "DISPLAY_FI_LAST"
+          }
+         },
+         {
+          "contains": {
+           "const": "PLAYER_SLUG"
+          }
+         },
+         {
+          "contains": {
+           "const": "BIRTHDATE"
+          }
+         },
+         {
+          "contains": {
+           "const": "SCHOOL"
+          }
+         },
+         {
+          "contains": {
+           "const": "COUNTRY"
+          }
+         },
+         {
+          "contains": {
+           "const": "LAST_AFFILIATION"
+          }
+         },
+         {
+          "contains": {
+           "const": "HEIGHT"
+          }
+         },
+         {
+          "contains": {
+           "const": "WEIGHT"
+          }
+         },
+         {
+          "contains": {
+           "const": "SEASON_EXP"
+          }
+         },
+         {
+          "contains": {
+           "const": "JERSEY"
+          }
+         },
+         {
+          "contains": {
+           "const": "POSITION"
+          }
+         },
+         {
+          "contains": {
+           "const": "ROSTERSTATUS"
+          }
+         },
+         {
+          "contains": {
+           "const": "GAMES_PLAYED_CURRENT_SEASON_FLAG"
+          }
+         },
+         {
+          "contains": {
+           "const": "TEAM_ID"
+          }
+         },
+         {
+          "contains": {
+           "const": "TEAM_NAME"
+          }
+         },
+         {
+          "contains": {
+           "const": "TEAM_ABBREVIATION"
+          }
+         },
+         {
+          "contains": {
+           "const": "TEAM_CODE"
+          }
+         },
+         {
+          "contains": {
+           "const": "TEAM_CITY"
+          }
+         },
+         {
+          "contains": {
+           "const": "PLAYERCODE"
+          }
+         },
+         {
+          "contains": {
+           "const": "FROM_YEAR"
+          }
+         },
+         {
+          "contains": {
+           "const": "TO_YEAR"
+          }
+         },
+         {
+          "contains": {
+           "const": "DLEAGUE_FLAG"
+          }
+         },
+         {
+          "contains": {
+           "const": "NBA_FLAG"
+          }
+         },
+         {
+          "contains": {
+           "const": "GAMES_PLAYED_FLAG"
+          }
+         },
+         {
+          "contains": {
+           "const": "DRAFT_YEAR"
+          }
+         },
+         {
+          "contains": {
+           "const": "DRAFT_ROUND"
+          }
+         },
+         {
+          "contains": {
+           "const": "DRAFT_NUMBER"
+          }
+         },
+         {
+          "contains": {
+           "const": "GREATEST_75_FLAG"
+          }
+         }
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 33
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,311 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "franchisehistory",
+ "type": "object",
+ "required": [
+  "resultSets"
+ ],
+ "properties": {
+  "resultSets": {
+   "type": "array",
+   "allOf": [
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "FranchiseHistory"
+       },
+       "headers": {
+        "const": [
+         "LEAGUE_ID",
+         "TEAM_ID",
+         "TEAM_CITY",
+         "TEAM_NAME",
+         "START_YEAR",
+         "END_YEAR",
+         "YEARS",
+         "GAMES",
+         "WINS",
+         "LOSSES",
+         "WIN_PCT",
+         "PO_APPEARANCES",
+         "DIV_TITLES",
+         "CONF_TITLES",
+         "LEAGUE_TITLES"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 15,
+         "maxItems": 15,
+         "prefixItems": [
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "LEAGUE_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_CITY"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_NAME"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "START_YEAR"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "END_YEAR"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "YEARS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GAMES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "WINS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "LOSSES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "WIN_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PO_APPEARANCES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DIV_TITLES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "CONF_TITLES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "LEAGUE_TITLES"
+          }
+         ]
+        }
+       }
+      }
+     }
+    },
+    {
+     "contains": {
+      "type": "object",
+      "required": [
+       "name",
+       "headers",
+       "rowSet"
+      ],
+      "properties": {
+       "name": {
+        "const": "DefunctTeams"
+       },
+       "headers": {
+        "const": [
+         "LEAGUE_ID",
+         "TEAM_ID",
+         "TEAM_CITY",
+         "TEAM_NAME",
+         "START_YEAR",
+         "END_YEAR",
+         "YEARS",
+         "GAMES",
+         "WINS",
+         "LOSSES",
+         "WIN_PCT",
+         "PO_APPEARANCES",
+         "DIV_TITLES",
+         "CONF_TITLES",
+         "LEAGUE_TITLES"
+        ]
+       },
+       "rowSet": {
+        "type": "array",
+        "items": {
+         "type": "array",
+         "minItems": 15,
+         "maxItems": 15,
+         "prefixItems": [
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "LEAGUE_ID"
+          },
+          {
+           "type": [
+            "number"
+           ],
+           "$comment": "TEAM_ID"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_CITY"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "TEAM_NAME"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "START_YEAR"
+          },
+          {
+           "type": [
+            "string",
+            "null"
+           ],
+           "$comment": "END_YEAR"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "YEARS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "GAMES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "WINS"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "LOSSES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "WIN_PCT"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "PO_APPEARANCES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "DIV_TITLES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "CONF_TITLES"
+          },
+          {
+           "type": [
+            "number",
+            "null"
+           ],
+           "$comment": "LEAGUE_TITLES"
+          }
+         ]
+        }
+       }
+      }
+     }
+    }
+   ]
+  }
+ }
+}
