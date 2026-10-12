@@ -1,0 +1,12 @@
+# Defects
+
+| ID | Sev | Found in | Summary | Status |
+|---|---|---|---|---|
+| DEF-001 | S3 | T-1.8 | `.venv/bin/pytest` shebang points at a stale path (`/Users/tienhuynh/Desktop/nba-analytics/.venv/...`), so `uv run pytest` and `make test` fail on conftest import (no `duckdb`). `uv run python -m pytest` works. Evidence: docs/pm/evidence/T-1.8-1.log | FIXED by T-ENV (shebangs); `.venv/bin/activate*` still names Desktop path, harmless for `uv run`, accepted |
+| DEF-002 | S3 | T-2.9 (found in new `tests/test_snapshots_rollback.py`) | 4 mypy attr-defined errors at lines 127, 128, 403, 467. File is being written by T-1.25 (in flight); re-check when it reports | OPEN, owned by T-1.25 |
+| DEF-003 | S3 | T-2.9 | `tests/test_tools_oracle.py:139` `test_overtime_only_returns_only_overtime_games` fails: 25 rows vs expected 60. Tracebacks cite `/Users/tienhuynh/Desktop/nba-analytics`, so it may run against a second checkout (stale editable install). Re-test after T-ENV before diagnosing | OPEN |
+| DEF-004 | S3 | T-2.9 | Non-identical stray duplicates under `tests/` (e.g. `tests/test_stats_path 2.py`) are collected by pytest and fail (`test_opinion_question_gets_stats_without_verdict`). Interim: QA runs use `--ignore-glob='* [23].py'`. Needs user decision on the 49 kept duplicates (D-007) | OPEN |
+| DEF-005 | S2 | T-1.25 (violates plan 1.25 done-when) | `app/snapshot.py:55` opens with `full_check=False`, which skips checksums (`ingest/snapshots.py:230-234`) and answers `count(*)` from metadata (:238), so mid-file DB corruption or tampered shots parquet is served instead of rolling back to the previous snapshot. Only a fully unreadable file triggers rollback. Strict xfails: `tests/test_snapshots_rollback.py::test_reader_rolls_back_on_mid_file_db_corruption`, `::test_reader_rolls_back_on_tampered_shots` | FIXED by T-1.25f; awaiting independent QA verification (T-QA1) |
+| DEF-006 | S2 (provisional) | T-ENV | `tests/test_domain_checks.py`: 8 failures incl. the clean-fixture check, after the venv repair. Cause unknown (data, fixture or code). Evidence: docs/pm/evidence/T-ENV-test.log | OPEN; T-FIX1 |
+| DEF-007 | S2 (provisional) | T-ENV | `tests/test_as_of.py`: 1 failure + 2 errors (`BuildError`). Evidence: T-ENV-test.log | OPEN; T-FIX1 |
+| note | | | DEF-003/006/007 fixed by T-FIX1 (cause: stray `transform/seeds/records_curated 2.csv` broke dbt parse; overtime test bug). DEF-003's second-checkout theory ruled out. Pending QA verification in T-QA1 | |
