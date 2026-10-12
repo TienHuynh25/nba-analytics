@@ -1,0 +1,48 @@
+skipping invalid snapshot
+skipping invalid snapshot
+skipping invalid snapshot
+tmp qa4_p_9e0ftt
+published ids: ['nba_20260901', 'nba_20260902', 'nba_20260903', 'nba_20260904', 'nba_20260905', 'nba_20260906', 'nba_20260907', 'nba_20260908', 'nba_20260909', 'nba_20260910']
+after prune: ['current', 'nba_20260904', 'nba_20260905', 'nba_20260906', 'nba_20260907', 'nba_20260908', 'nba_20260909', 'nba_20260910']
+PASS prune kept 7 nightly + current link 
+PASS pruned sealed folders removed 
+PASS current target exists and is still sealed 0o555 0o444
+PASS all files 0444 / dirs 0555 in current []
+PASS hard-linked shot shared, nlink>1, still 0444 nlink=7
+PASS every kept snapshot 0555 {'0o555'}
+PASS COPY to shots/x.csv fails IOException
+PASS COPY to shots/season dir fails IOException
+PASS COPY overwrite existing parquet fails IOException
+PASS EXPORT DATABASE into shots fails IOException
+PASS COPY to snapshot dir (outside allowed) fails PermissionException
+PASS COPY to /tmp fails PermissionException
+PASS config lock blocks SET 
+PASS os create file in shots fails PermissionError
+PASS os mkdir in shots fails PermissionError
+PASS os write existing parquet fails PermissionError
+PASS os unlink parquet fails PermissionError
+PASS _remove_tree(current) refused 
+PASS prune keep=0 keeps current removed 6
+PASS current still sealed 
+PASS health_check on snapshot app holds locked 
+older available: []
+PASS BUILDING sealed leftover cleaned and rebuilt 
+PASS failed build with sealed contents removed 
+--- SEC-009
+FAIL id 'aaaaaaaaaaaaaaaaaaaa' validate ACCEPTED
+FAIL CLI id 'aaaaaaaaaaaaaaaaaaaa' rc=1 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'"}
+
+precious intact: True
+PASS outside folder untouched 
+id len 200: ACCEPTED, built OK
+id len 250: other error OSError [Errno 63] File name too long: '/private/tmp/claude-501/-Use
+PASS manifest id != folder: load rejected 
+PASS manifest id != folder: Snapshot ctor rejected 
+PASS published() skips mismatched folder (open/rollback/prune path) 
+PASS manifest id ../../evil rejected 
+PASS prune ignores bad-manifest folder, no escape 
+PASS remove_tree symlink rejected 
+PASS build into symlink rejected 
+PASS prune over symlinked folder safe 
+id 'current': SnapshotIdError
+TOTAL 34 FAIL ["id 'aaaaaaaaaaaaaaaaaaaa' validate", "CLI id 'aaaaaaaaaaaaaaaaaaaa'"]

@@ -14,33 +14,31 @@ Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Bask
 
 | PM gate | Plan gate | Status |
 |---|---|---|
-| G0 charter approved | n/a | ✅ |
-| G1 | Gate 1: data foundation | ⬜ code and tests present; no recorded passing run; backfill 99% (see below) |
-| G2 | Gate 2: test set and baseline | ⬜ no baseline report, no pinned snapshot |
-| G3 | Gate 3: stats path | ⬜ only a preliminary benchmark |
-| G4 | Gate 4: release | ⬜ no release report, no held-out run, no tag |
+| G0 charter approved | n/a | ✅ 2026-10-11 |
+| G1 | Gate 1: data foundation | ⏳ governance final verdict APPROVE-WITH-CONDITIONS (T-G1-GOV2); all six checkboxes and conditions 1-5 MET; security 0 Critical/High/Medium; remaining: user pushes the 30 changes and CI must be green on the new head (condition 1), then PM marks G1 passed |
+| G2 | Gate 2: test set and baseline | ⬜ entry criterion proposed by governance: re-run the box-score check on the published snapshot (R-022) |
+| G3 | Gate 3: stats path | ⬜ |
+| G4 | Gate 4: release | ⬜ |
 
-## Repo state (Explore survey, 2026-10-11; judged from file presence, no tests run)
+## Repo state (2026-10-12)
 
-- Code and tests exist for phases 0, 1 and 3, and most of 4 (tasks 3.x/4.x beyond the stats path are ahead of the gates, built before Gate 3).
-- `make backfill-status`: reference 2/2, gamelogs 340/340, team_history 45/45, season_dash 176/176, shots 1372/1372, **players 15509/15729 (220 missing)**. Task 1.6 is not done. `_failed.jsonl` exists.
-- No `data/snapshots/`, so the pinned `eval_2025_26_rs` snapshot (2.1) is not published. Gold values (2.6) and everything downstream wait on it.
-- `eval/cases.yaml` has about 305 of 320 cases. No baseline (2.22), no `model-benchmark.md`, no `release-v1.md`, no git tags.
-- Not started: 2.4, 2.7, 2.20, 2.22, 3.2, 3.3, 3.19, 4.12, 4.14, phase 5 (5.5 partial).
-- Unverified Explore claims to check before relying on them: 1.8 anomaly check location, 1.21 scope (fixture vs full data), 3.20 need (per decision 0004).
+- Phase 1 code and tests are in; PR #8 (branch chore/gate1-closeout) is open and unmerged (user merges). Last green CI head f961f25; final head 11cb9ed CI running.
+- Backfill: all stages complete; players 15509 + 220 documented source gaps = 15729 (decision 0009 and Amendment: 242 seed rows, 265 player-seasons, 211 players). Full dbt build PASS=134. No published snapshot exists (T-2.1 not started).
+- All Gate 1 checkboxes have independent evidence; one open defect: DEF-004 (S3, stray duplicates).
+- Eval: 320 case units complete; 15 paraphrase flags await owner review (T-2.9r); gold values not computed (need pinned snapshot, T-2.6).
+- CLAUDE.md status paragraph updated for decision 0008 (T-HK2). Decisions 0006-0009 recorded.
 
-## Divergences to resolve
+## Divergences
 
-- **D-A:** `CLAUDE.md` says 0.3 and G1 are open; `docs/decisions/0008-records-source-and-reviewer.md` (accepted by owner 2026-10-07) closes both. Treating them as closed; `CLAUDE.md` project-status paragraph needs a one-line update (owner's file, not edited by PM).
-- **D-B:** stray Finder duplicates (`* 2.py`, `* 3.py`, `registry 2.yaml`, `pyproject 2.toml`, `contamination 2.md`) are untracked in the repo. Deleting needs your approval.
-- **D-C:** much code is untracked or uncommitted, including `.github/workflows/ci.yml`, so CI may never have run.
-- **D-D:** plan names `ingest/rollback.py`; rollback lives in `ingest/snapshots.py`. Plan task 1.25 "done when" needs checking against that.
+- D-A: resolved (CLAUDE.md updated, T-HK2).
+- D-B: 49-51 stray Finder duplicates still on disk; deletion pending user (D-007, D-008). `transform/.dbtignore` and `--ignore-glob` keep them from breaking builds and tests.
+- D-C: resolved (work committed; CI ran green on f961f25).
+- D-D: plan names ingest/publish.py and ingest/rollback.py; code is in ingest/snapshots.py (R-004); plan text needs a note.
 
 ## Assumptions
 
-- A-001: phase 1 code is accepted as built; the work left for G1 is verification (full dbt tests on real data, Gate 1 network box-score test) plus finishing the 220-player backfill.
-- A-002: Phase 2 test-set authoring (2.4, 2.7, 2.20 and the review tasks) may run in parallel with Phase 1 close-out, as CLAUDE.md allows.
+- A-001 / A-002: as before. A-005: partial-career note in get_career/get_player_stats/compare (PM clarification inside D-013, user may reverse).
 
 ## Open owner decisions
 
-- None blocking. 0.3 and G1 are settled by decision 0008 (see D-A). Owner still owes: check Basketball-Reference terms before the first `records` entry, and act as paraphrase/gold/judge reviewer (blocks phase 2 time).
+- None blocking. 0.3 and G1 are settled by decision 0008. Owner still owes: Basketball-Reference terms check and the records list for T-REC; paraphrase/gold/judge review (T-2.9r, 2.20); the anomaly floor question (R-001); merging PR #8; plan filenames (R-004); the stray duplicates (D-007/D-008).

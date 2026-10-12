@@ -1,1 +1,2 @@
-evidence/*.log
+# Evidence logs are tracked on purpose (decision D-020): the evidence write-ups cite them.
+# Keep logs small and free of secrets; scan before committing.

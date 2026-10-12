@@ -1,0 +1,66 @@
+== 1 SEC-001 exploits
+REJ   review exploit               sqlite_master is not a semantic-layer view; allowed views: s
+REJ   duckdb_tables                duckdb_tables is not a semantic-layer view; allowed views: s
+REJ   duckdb_databases             duckdb_databases is not a semantic-layer view; allowed views
+REJ   pg_settings                  pg_settings is not a semantic-layer view; allowed views: sem
+REJ   information_schema           information_schema.tables is not a semantic-layer view; allo
+REJ   info schema bare             information_schema.columns is not a semantic-layer view; all
+REJ   self name in body            sqlite_master is not a semantic-layer view; allowed views: s
+REJ   self name in body dt         duckdb_tables is not a semantic-layer view; allowed views: s
+REJ   forward ref                  b is not a semantic-layer view; allowed views: semantic.awar
+REJ   forward ref catalog          sqlite_master is not a semantic-layer view; allowed views: s
+REJ   recursive self               sqlite_master is not a semantic-layer view; allowed views: s
+REJ   recursive union              r is not a semantic-layer view; allowed views: semantic.awar
+REJ   recursive catalog union      sqlite_master is not a semantic-layer view; allowed views: s
+REJ   sibling subquery scope       x is not a semantic-layer view; allowed views: semantic.awar
+REJ   sibling scope catalog        duckdb_tables is not a semantic-layer view; allowed views: s
+REJ   nested scopes leak           q is not a semantic-layer view; allowed views: semantic.awar
+REJ   cte in where subq            sqlite_master is not a semantic-layer view; allowed views: s
+REJ   cte in union branch          s is not a semantic-layer view; allowed views: semantic.awar
+REJ   quoted                       sqlite_master is not a semantic-layer view; allowed views: s
+REJ   mixed case                   sqlite_master is not a semantic-layer view; allowed views: s
+REJ   mixed case self              sqlite_master is not a semantic-layer view; allowed views: s
+REJ   schema-qualified             main.sqlite_master is not a semantic-layer view; allowed vie
+REJ   schema-qualified cte-name    main.x is not a semantic-layer view; allowed views: semantic
+REJ   temp.duckdb                  database-qualified names are not allowed
+REJ   pg_catalog                   pg_catalog.pg_settings is not a semantic-layer view; allowed
+REJ   function pragma_table_info   reading PRAGMA_TABLE_INFO('x') is not allowed; query semanti
+REJ   cte shadows allowlisted      sqlite_master is not a semantic-layer view; allowed views: s
+not-rejected: 0 (expect 0)
+== legit CTEs still ok
+OK    simple
+OK    chain
+OK    cte in subquery
+OK    cte in from subq
+OK    join cte
+OK    cte union
+== corpus old vs new
+queries 75 identical accepted output 75 diffs []
+== 2 SEC-002 limits (rows on fixture)
+rej  LIMIT 0x10 | {b} {v
+rej  LIMIT 0x10 | {b} UN
+rej  LIMIT 0x10 | WITH t
+rej  LIMIT 0x10 | {b} OR
+over-100 results: 0
+lim samples: ['ROM semantic.players LIMIT 100', 'ROM semantic.players LIMIT 100', 'tic.players LIMIT 100 OFFSET 2', 'ROM semantic.players LIMIT 100', 'ROM semantic.players LIMIT 100']
+== 3 SEC-005
+REJ   depth parens 800     the SQL is nested too deeply
+REJ   depth parens 5000    the SQL is 10008 characters; at most 4000 are allowed
+REJ   subq nest 900        the SQL is 12616 characters; at most 4000 are allowed
+REJ   nested subq 300      the SQL is 4830 characters; at most 4000 are allowed
+REJ   union chain 3000     the SQL is 57008 characters; at most 4000 are allowed
+REJ   10k tokens           the SQL is 40004 characters; at most 4000 are allowed
+REJ   >4000 chars          the SQL is 4031 characters; at most 4000 are allowed
+OK    exactly 4000         
+REJ   4001                 the SQL is 4033 characters; at most 4000 are allowed
+OK    unicode              
+OK    nul byte             
+OK    lone surrogate       
+REJ   unterminated str     could not parse the SQL: Error tokenizing 'SELECT 'abc FROM 
+REJ   unterminated cmt     could not parse the SQL: Error tokenizing 'SELECT 1 /* ab'
+REJ   fullwidth            could not parse the SQL: Invalid expression / Unexpected tok
+REJ   homoglyph table      sеmantic.players is not a semantic-layer view; allowed views
+REJ   empty                exactly one statement is allowed
+REJ   whitespace           exactly one statement is allowed
+REJ   comment only         exactly one statement is allowed
+CRASH not str None         TypeError: object of type 'NoneType' has no len()

@@ -1,0 +1,31 @@
+kinds: ['type_obj', 'type_flip', 'swap', 'swap_both', 'extra', 'short', 'long', 'rename', 'drop', 'nullkey', 'dropset', 'rowsnotarray', 'rowobj', 'reorder_rows_hdr']
+commonallplayers[_all|16c] C C C C C C C C C C C C C C
+franchisehistory[_all|15c] C C C C C C C C C C C C C C
+leaguedashplayerstats_adv[2011-12|79c] C C C C C C C C C C C C C C
+leaguedashteamstats_adv[2011-12|46c] C C C C C C C C C C C C C C
+leaguegamelog_p[1988-89|32c] C C C C C C C C C C C C C C
+leaguegamelog_t[1988-89|29c] C C C C C C C C C C C C C C
+playerawards[_all|14c] C C C C C C C C C C C C C C
+playercareerstats[_all|27c] C C C C C C C C C C C C C C
+shotchartdetail[2011-12|24c] C C C C C C C C C C C C C C
+teamyearbyyearstats[_all|34c] C C C C C C C C C C C C C C
+commonplayerinfo[_all|34c] C C C C C C C C C C C C C C
+commonplayerinfo[_all|33c] C C C C C C C C C C C C C C
+leaguestandingsv3[1970-71|87c] C C C C C C C C C C C C C C
+leaguestandingsv3[2004-05|92c] C C C C C C C C C C C C C C
+leaguestandingsv3[2019-20|124c] C C C C C C C C C C C C C C
+{'C': 210}
+ACCEPTED: {}
+--- scheduleleaguev2 (hand-written schema, own shape)
+gameStatus int->string       C
+gameId int                   C
+gameId short pattern         C
+gameId null                  C
+gameId key renamed           C
+gameStatus dropped           C
+gameDate bad format          C
+gameDates empty              C
+gameDates not array          C
+leagueSchedule removed       C
+games empty list             ACC(by design)
+extra key on game            ACC(by design)

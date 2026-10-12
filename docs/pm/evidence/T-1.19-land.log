@@ -1,0 +1,19 @@
+INFO:ingest.land:landing built
+16 tables 8057232 rows 106 s
+commonallplayers__commonallplayers 5243
+commonplayerinfo__commonplayerinfo 5242
+franchisehistory__defunctteams 15
+franchisehistory__franchisehistory 74
+leaguedashplayerstats_adv__leaguedashplayerstats 20668
+leaguedashteamstats_adv__leaguedashteamstats 1372
+leaguegamelog_p__leaguegamelog 1486811
+leaguegamelog_t__leaguegamelog 146748
+leaguestandingsv3__standings 1484
+playerawards__playerawards 8447
+playercareerstats__careertotalspostseason 3011
+playercareerstats__careertotalsregularseason 4900
+playercareerstats__seasontotalspostseason 11728
+playercareerstats__seasontotalsregularseason 31098
+shotchartdetail__shot_chart_detail 6328668
+teamyearbyyearstats__teamstats 1723
+PYTHONPATH=. uv run python   137.56s user 17.29s system 145% cpu 1:46.66 total

@@ -1,0 +1,94 @@
+[0m06:04:08  Running with dbt=1.12.5
+[0m06:04:08  Registered adapter: duckdb=1.11.0
+[0m06:04:09  Unable to do partial parsing because profile has changed
+[0m06:04:09  [[33mWARNING[0m]: 'stat_availability' is a seed node, but it is specified in the models section of
+models/marts/_marts.yml. To fix this error, place the `stat_availability`
+specification under the seeds key instead.
+[0m06:04:09  [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `relationships` defined on 'player_aliases' in
+package 'nba' (models/marts/_marts.yml). Arguments to generic tests should be
+nested under the `arguments` property.
+[0m06:04:10  [[33mWARNING[0m][DuplicateNameDistinctNodeTypesDeprecation]: Deprecated
+functionality
+Found resources with the same name 'stat_availability' in package 'nba':
+'model.nba.stat_availability' and 'seed.nba.stat_availability'. Please update
+one of the resources to have a unique name.
+[0m06:04:10  Found 50 models, 84 data tests, 11 seeds, 16 sources, 514 macros
+[0m06:04:10  
+[0m06:04:10  Concurrency: 4 threads (target='build')
+[0m06:04:10  
+[0m06:04:10  1 of 30 START test curated_records_match_box_scores ............................ [RUN]
+[0m06:04:10  2 of 30 START test dbt_utils_unique_combination_player_advanced_player_id__season__season_type  [RUN]
+[0m06:04:10  3 of 30 START test dbt_utils_unique_combination_player_game_game_id__player_id . [RUN]
+[0m06:04:10  4 of 30 START test dbt_utils_unique_combination_player_season_stint_player_id__season__season_type__team_id  [RUN]
+[0m06:04:10  2 of 30 PASS dbt_utils_unique_combination_player_advanced_player_id__season__season_type  [[32mPASS[0m in 0.04s]
+[0m06:04:10  5 of 30 START test dbt_utils_unique_combination_player_titles_player_id__season  [RUN]
+[0m06:04:10  1 of 30 PASS curated_records_match_box_scores .................................. [[32mPASS[0m in 0.06s]
+[0m06:04:10  4 of 30 PASS dbt_utils_unique_combination_player_season_stint_player_id__season__season_type__team_id  [[32mPASS[0m in 0.05s]
+[0m06:04:10  6 of 30 START test dbt_utils_unique_combination_team_aliases_alias_norm__team_id  [RUN]
+[0m06:04:10  7 of 30 START test not_null_player_advanced_player_id .......................... [RUN]
+[0m06:04:10  3 of 30 PASS dbt_utils_unique_combination_player_game_game_id__player_id ....... [[32mPASS[0m in 0.06s]
+[0m06:04:10  8 of 30 START test not_null_player_game_game_id ................................ [RUN]
+[0m06:04:10  5 of 30 PASS dbt_utils_unique_combination_player_titles_player_id__season ...... [[32mPASS[0m in 0.04s]
+[0m06:04:10  9 of 30 START test not_null_player_game_player_id .............................. [RUN]
+[0m06:04:10  7 of 30 PASS not_null_player_advanced_player_id ................................ [[32mPASS[0m in 0.03s]
+[0m06:04:10  6 of 30 PASS dbt_utils_unique_combination_team_aliases_alias_norm__team_id ..... [[32mPASS[0m in 0.03s]
+[0m06:04:10  10 of 30 START test not_null_player_game_season_type ........................... [RUN]
+[0m06:04:10  8 of 30 PASS not_null_player_game_game_id ...................................... [[32mPASS[0m in 0.02s]
+[0m06:04:10  11 of 30 START test not_null_player_season_stint_player_id ..................... [RUN]
+[0m06:04:10  12 of 30 START test not_null_player_season_stint_team_id ....................... [RUN]
+[0m06:04:10  9 of 30 PASS not_null_player_game_player_id .................................... [[32mPASS[0m in 0.03s]
+[0m06:04:10  13 of 30 START test not_null_player_titles_franchise_id ........................ [RUN]
+[0m06:04:10  10 of 30 PASS not_null_player_game_season_type ................................. [[32mPASS[0m in 0.03s]
+[0m06:04:10  11 of 30 PASS not_null_player_season_stint_player_id ........................... [[32mPASS[0m in 0.03s]
+[0m06:04:10  14 of 30 START test not_null_player_titles_player_id ........................... [RUN]
+[0m06:04:10  12 of 30 PASS not_null_player_season_stint_team_id ............................. [[32mPASS[0m in 0.02s]
+[0m06:04:10  15 of 30 START test not_null_records_record .................................... [RUN]
+[0m06:04:10  16 of 30 START test not_null_records_valid_from ................................ [RUN]
+[0m06:04:10  13 of 30 PASS not_null_player_titles_franchise_id .............................. [[32mPASS[0m in 0.02s]
+[0m06:04:10  17 of 30 START test not_null_records_value ..................................... [RUN]
+[0m06:04:10  14 of 30 PASS not_null_player_titles_player_id ................................. [[32mPASS[0m in 0.03s]
+[0m06:04:10  18 of 30 START test not_null_team_aliases_team_id .............................. [RUN]
+[0m06:04:10  15 of 30 PASS not_null_records_record .......................................... [[32mPASS[0m in 0.03s]
+[0m06:04:10  16 of 30 PASS not_null_records_valid_from ...................................... [[32mPASS[0m in 0.03s]
+[0m06:04:10  19 of 30 START test player_points_sum_to_team_points ........................... [RUN]
+[0m06:04:10  20 of 30 START test relationships_player_advanced_player_id__player_id__ref_players_  [RUN]
+[0m06:04:10  17 of 30 PASS not_null_records_value ........................................... [[32mPASS[0m in 0.02s]
+[0m06:04:10  21 of 30 START test relationships_player_game_game_id__game_id__ref_games_ ..... [RUN]
+[0m06:04:10  18 of 30 PASS not_null_team_aliases_team_id .................................... [[32mPASS[0m in 0.03s]
+[0m06:04:10  22 of 30 START test relationships_player_game_player_id__player_id__ref_players_  [RUN]
+[0m06:04:10  20 of 30 PASS relationships_player_advanced_player_id__player_id__ref_players_ . [[32mPASS[0m in 0.04s]
+[0m06:04:10  23 of 30 START test relationships_player_season_stint_player_id__player_id__ref_players_  [RUN]
+[0m06:04:10  19 of 30 PASS player_points_sum_to_team_points ................................. [[32mPASS[0m in 0.05s]
+[0m06:04:10  21 of 30 PASS relationships_player_game_game_id__game_id__ref_games_ ........... [[32mPASS[0m in 0.04s]
+[0m06:04:10  24 of 30 START test relationships_player_season_stint_team_id__franchise_id__ref_franchises_  [RUN]
+[0m06:04:10  25 of 30 START test relationships_player_titles_franchise_id__franchise_id__ref_franchises_  [RUN]
+[0m06:04:10  22 of 30 PASS relationships_player_game_player_id__player_id__ref_players_ ..... [[32mPASS[0m in 0.05s]
+[0m06:04:10  26 of 30 START test relationships_player_titles_player_id__player_id__ref_players_  [RUN]
+[0m06:04:10  23 of 30 PASS relationships_player_season_stint_player_id__player_id__ref_players_  [[32mPASS[0m in 0.04s]
+[0m06:04:10  25 of 30 PASS relationships_player_titles_franchise_id__franchise_id__ref_franchises_  [[32mPASS[0m in 0.03s]
+[0m06:04:10  27 of 30 START test relationships_records_player_id__player_id__ref_players_ ... [RUN]
+[0m06:04:10  24 of 30 PASS relationships_player_season_stint_team_id__franchise_id__ref_franchises_  [[32mPASS[0m in 0.04s]
+[0m06:04:10  28 of 30 START test relationships_team_aliases_team_id__franchise_id__ref_franchises_  [RUN]
+[0m06:04:10  29 of 30 START test stints_sum_to_season_total ................................. [RUN]
+[0m06:04:10  26 of 30 PASS relationships_player_titles_player_id__player_id__ref_players_ ... [[32mPASS[0m in 0.04s]
+[0m06:04:10  30 of 30 START test untracked_stats_are_null ................................... [RUN]
+[0m06:04:10  27 of 30 PASS relationships_records_player_id__player_id__ref_players_ ......... [[32mPASS[0m in 0.03s]
+[0m06:04:10  28 of 30 PASS relationships_team_aliases_team_id__franchise_id__ref_franchises_  [[32mPASS[0m in 0.03s]
+[0m06:04:10  29 of 30 PASS stints_sum_to_season_total ....................................... [[32mPASS[0m in 0.02s]
+[0m06:04:10  30 of 30 PASS untracked_stats_are_null ......................................... [[32mPASS[0m in 0.02s]
+[0m06:04:10  
+[0m06:04:10  Finished running 30 data tests in 0 hours 0 minutes and 0.40 seconds (0.40s).
+[0m06:04:10  
+[0m06:04:10  [32mCompleted successfully[0m
+[0m06:04:10  
+[0m06:04:10  Done. PASS=30 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=30
+[0m06:04:10  [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 26 occurrences
+- DuplicateNameDistinctNodeTypesDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.

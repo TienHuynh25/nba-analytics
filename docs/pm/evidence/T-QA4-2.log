@@ -1,0 +1,19 @@
+parens {10: 'OK', 50: 'rej', 100: 'rej', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+not {10: 'OK', 50: 'OK', 100: 'rej', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+neg {10: 'OK', 50: 'OK', 100: 'OK', 150: 'OK', 200: 'OK', 300: 'OK', 500: 'OK', 800: 'OK', 1000: 'OK', 1500: 'OK', 2000: 'OK'}
+plus {10: 'OK', 50: 'OK', 100: 'OK', 150: 'OK', 200: 'OK', 300: 'OK', 500: 'OK', 800: 'OK', 1000: 'OK', 1500: 'OK', 2000: 'rej'}
+case {10: 'OK', 50: 'OK', 100: 'rej', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+subq {10: 'OK', 50: 'OK', 100: 'rej', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+cast {10: 'OK', 50: 'rej', 100: 'rej', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+arr {10: 'rej', 50: 'rej', 100: 'rej', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+fn abs {10: 'OK', 50: 'rej', 100: 'rej', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+and {10: 'OK', 50: 'OK', 100: 'OK', 150: 'OK', 200: 'OK', 300: 'OK', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+union {10: 'OK', 50: 'OK', 100: 'OK', 150: 'OK', 200: 'OK', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+cte chain {10: 'OK', 50: 'OK', 100: 'OK', 150: 'rej', 200: 'rej', 300: 'rej', 500: 'rej', 800: 'rej', 1000: 'rej', 1500: 'rej', 2000: 'rej'}
+tot 132 crashes 0
+guard ok; exec -> ParserException Parser Error: syntax error at end of input
+
+LINE 1: SELECT 1
+guard ok; exec -> UnicodeEncodeError 'utf-8' codec can't encode character '\ud800' in position 8:
+guard ok; exec -> 100
+(con: 'duckdb.DuckDBPyConnection', sql: 'str', timeout_s: 'float' = 5.0) -> 'tuple[list[str], list[tuple[Any, ...]]]'

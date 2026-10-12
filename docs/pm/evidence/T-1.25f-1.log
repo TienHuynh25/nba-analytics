@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/tienhuynh/dev/nba-analytics
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 35 items
+
+tests/test_snapshots.py ......                                           [ 17%]
+tests/test_snapshots_rollback.py ..........................              [ 91%]
+tests/test_interfaces.py ...                                             [100%]
+
+============================== 35 passed in 9.32s ==============================

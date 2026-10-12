@@ -5,7 +5,18 @@ A generated query is accepted only if, parsed with sqlglot (DuckDB dialect), it 
 view from ``transform/semantic_allowlist.txt`` or one of its own CTE names. Table functions
 (``read_csv``, ``read_parquet``, ...), file paths given as table names (``FROM 'x.json'``), and
 any ``ATTACH``, ``COPY``, ``PRAGMA``, ``SET``, DDL or DML are rejected. A ``LIMIT 100`` is added
-when the outer query has none, and a larger limit is lowered to 100.
+when the outer query has none; any outer limit that is not a plain integer from 0 to 100 (a
+larger number, a percent, an expression, a parameter, ``WITH TIES``) is replaced by ``LIMIT 100``.
+
+An unqualified name counts as a CTE only where SQL scoping makes it one (SEC-001): the CTE is
+declared in a ``WITH`` of an enclosing query, and, inside a ``WITH`` list, only earlier CTEs are
+visible. A CTE's own name inside its body is not a CTE reference, because DuckDB binds it to the
+catalog table of that name (``sqlite_master``, ``duckdb_tables``, ...), so recursive CTEs are
+rejected. Queries over ``MAX_SQL_CHARS`` and anything sqlglot cannot parse, including input
+nested deeply enough to exhaust the recursion limit, raise :class:`GuardError` (SEC-005).
+So do a NUL character or text that cannot be encoded as UTF-8 (a lone surrogate), which sqlglot
+would pass through but DuckDB cannot run, and ``USING SAMPLE`` / ``TABLESAMPLE`` (SEC-012: the
+LIMIT would be written in front of a ``USING SAMPLE`` clause, which is invalid SQL).
 
 Part 2, the engine lockdown and the 5 s watchdog, is in :mod:`app.sql_fallback`. It also
 blocks file reads if this parser check were ever bypassed.
@@ -13,15 +24,17 @@ blocks file reads if this parser check were ever bypassed.
 
 from __future__ import annotations
 
+import re
 from functools import cache
 from pathlib import Path
 
 import sqlglot
 from sqlglot import exp
-from sqlglot.errors import ParseError
+from sqlglot.errors import SqlglotError
 
 ALLOWLIST_PATH = Path(__file__).resolve().parent.parent / "transform" / "semantic_allowlist.txt"
 MAX_ROWS = 100
+MAX_SQL_CHARS = 4000
 
 
 class GuardError(ValueError):
@@ -56,6 +69,7 @@ _FORBIDDEN = (
     exp.Transaction,
     exp.Commit,
     exp.Rollback,
+    exp.TableSample,  # USING SAMPLE / TABLESAMPLE (SEC-012); no stats question needs a sample
 )
 
 
@@ -136,10 +150,24 @@ ALLOWED_ANONYMOUS = frozenset({"date_part", "datepart", "ifnull", "round_even"})
 def check(sql: str, allowed: frozenset[str] | None = None) -> str:
     """Return the query to run (with a LIMIT), or raise :class:`GuardError`."""
     allowed = allowed if allowed is not None else allowlist()
+    if len(sql) > MAX_SQL_CHARS:
+        raise GuardError(f"the SQL is {len(sql)} characters; at most {MAX_SQL_CHARS} are allowed")
+    if "\x00" in sql:
+        raise GuardError("the SQL contains a NUL character")
     try:
-        statements = [s for s in sqlglot.parse(sql, read="duckdb") if s is not None]
-    except ParseError as exc:
+        sql.encode("utf-8")
+    except UnicodeEncodeError as exc:
+        raise GuardError(f"the SQL contains text that is not valid UTF-8 ({exc.reason})") from None
+    try:
+        return _check(sql, allowed)
+    except SqlglotError as exc:
         raise GuardError(f"could not parse the SQL: {str(exc).splitlines()[0]}") from exc
+    except RecursionError:
+        raise GuardError("the SQL is nested too deeply") from None
+
+
+def _check(sql: str, allowed: frozenset[str]) -> str:
+    statements = [s for s in sqlglot.parse(sql, read="duckdb") if s is not None]
     if len(statements) != 1:
         raise GuardError("exactly one statement is allowed")
     tree = statements[0]
@@ -148,7 +176,6 @@ def check(sql: str, allowed: frozenset[str] | None = None) -> str:
     for node in tree.walk():
         if isinstance(node, _FORBIDDEN):
             raise GuardError(f"{node.key.upper()} is not allowed")
-    ctes = {c.alias_or_name.lower() for c in tree.find_all(exp.CTE)}
     for table in tree.find_all(exp.Table):
         if not isinstance(table.this, exp.Identifier):
             # FROM read_csv(...), FROM 'data/raw/x.json', FROM some_function()
@@ -160,7 +187,7 @@ def check(sql: str, allowed: frozenset[str] | None = None) -> str:
             raise GuardError("database-qualified names are not allowed")
         name = table.name.lower()
         full = f"{table.db.lower()}.{name}" if table.db else name
-        if not table.db and name in ctes:
+        if not table.db and name in _visible_ctes(table):
             continue
         if full not in allowed:
             raise GuardError(
@@ -185,17 +212,51 @@ def check(sql: str, allowed: frozenset[str] | None = None) -> str:
     return _with_limit(tree).sql(dialect="duckdb")
 
 
+def _visible_ctes(table: exp.Table) -> set[str]:
+    """CTE names an unqualified table reference can resolve to, by walking up its ancestors.
+
+    A query's ``WITH`` is visible from the query body and everything nested in it. From inside
+    the i-th CTE of a ``WITH`` list only CTEs 0..i-1 are visible: a later CTE or the CTE itself
+    would bind to a catalog table in DuckDB (even under ``WITH RECURSIVE``, in the anchor term or
+    a body without ``UNION``), so neither counts. A sibling subquery's ``WITH`` is never visible.
+    """
+    names: set[str] = set()
+    child: object = table  # compared by identity only
+    node = table.parent
+    while node is not None:
+        if isinstance(node, exp.With):
+            for cte in node.expressions:
+                if cte is child:
+                    break
+                names.add(cte.alias_or_name.lower())
+        else:
+            with_ = node.args.get("with_")
+            if isinstance(with_, exp.With) and with_ is not child:
+                names.update(c.alias_or_name.lower() for c in with_.expressions)
+        child, node = node, node.parent
+    return names
+
+
 def _with_limit(tree: exp.Expression) -> exp.Expression:
+    # Select, Union, Intersect and Except all take a trailing LIMIT, which for a set operation
+    # caps the combined result (any WITH clause stays attached in front).
+    assert isinstance(tree, exp.Query)  # narrowed by check(): Select or a set operation
     limit = tree.args.get("limit")
     if limit is None:
-        # Select, Union, Intersect and Except all take a trailing LIMIT, which for a set
-        # operation caps the combined result (any WITH clause stays attached in front).
-        assert isinstance(tree, exp.Query)  # narrowed by check(): Select or a set operation
         return tree.limit(MAX_ROWS)
-    try:
-        n = int(limit.expression.name)
-    except (AttributeError, ValueError):
-        n = MAX_ROWS + 1
-    if n > MAX_ROWS:
+    if not _plain_limit_within_cap(limit):
+        # Keeps any OFFSET (a separate node); drops PERCENT, WITH TIES, FETCH, expressions.
         tree.set("limit", exp.Limit(expression=exp.Literal.number(MAX_ROWS)))
     return tree
+
+
+def _plain_limit_within_cap(limit: exp.Expression) -> bool:
+    """True only for ``LIMIT n`` with n a plain integer literal from 0 to MAX_ROWS (SEC-002)."""
+    if not isinstance(limit, exp.Limit):
+        return False  # FETCH FIRST ... and anything else
+    if any(limit.args.get(k) for k in ("this", "limit_options", "expressions")):
+        return False  # PERCENT, WITH TIES, LIMIT BY
+    n = limit.expression
+    if not isinstance(n, exp.Literal) or n.is_string or not re.fullmatch(r"[0-9]+", n.name):
+        return False  # expression, parameter, subquery, negative, decimal, exponent
+    return int(n.name) <= MAX_ROWS

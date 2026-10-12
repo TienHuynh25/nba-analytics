@@ -1,0 +1,88 @@
+# scratch copy /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/sec4/repo_copy1 with validate_id replaced by 'return snapshot_id' (accepts anything)
+$ python -m pytest tests/test_sec3_hardening.py::test_cli_rejects_bad_snapshot_id tests/test_sec4_hardening.py::test_cli_length_cap -p no:cacheprovider
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+____________________ test_cli_rejects_bad_snapshot_id[../x] ____________________
+
+sid = '../x', capsys = <_pytest.capture.CaptureFixture object at 0x1148a7e90>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x114d420c0>
+
+    @pytest.mark.parametrize("sid", ["../x", "/abs", "Eval"])
+    def test_cli_rejects_bad_snapshot_id(
+        sid: str, capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        forbid_real_build(monkeypatch)
+        with pytest.raises(SystemExit) as exc:
+            refresh.main(["--as-of", "2026-04-12", "--snapshot-id", sid])
+>       assert exc.value.code == 2
+E       AssertionError: assert 'a bad snapshot id got past validation and reached a build step' == 2
+E        +  where 'a bad snapshot id got past validation and reached a build step' = SystemExit('a bad snapshot id got past validation and reached a build step').code
+E        +    where SystemExit('a bad snapshot id got past validation and reached a build step') = <ExceptionInfo SystemExit('a bad snapshot id got past validation and reached a build step') tblen=3>.value
+
+/Users/tienhuynh/dev/nba-analytics/tests/test_sec3_hardening.py:450: AssertionError
+____________________ test_cli_rejects_bad_snapshot_id[/abs] ____________________
+
+sid = '/abs', capsys = <_pytest.capture.CaptureFixture object at 0x114d42630>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x114d40d40>
+
+    @pytest.mark.parametrize("sid", ["../x", "/abs", "Eval"])
+    def test_cli_rejects_bad_snapshot_id(
+        sid: str, capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        forbid_real_build(monkeypatch)
+        with pytest.raises(SystemExit) as exc:
+            refresh.main(["--as-of", "2026-04-12", "--snapshot-id", sid])
+>       assert exc.value.code == 2
+E       AssertionError: assert 'a bad snapshot id got past validation and reached a build step' == 2
+E        +  where 'a bad snapshot id got past validation and reached a build step' = SystemExit('a bad snapshot id got past validation and reached a build step').code
+E        +    where SystemExit('a bad snapshot id got past validation and reached a build step') = <ExceptionInfo SystemExit('a bad snapshot id got past validation and reached a build step') tblen=3>.value
+
+/Users/tienhuynh/dev/nba-analytics/tests/test_sec3_hardening.py:450: AssertionError
+____________________ test_cli_rejects_bad_snapshot_id[Eval] ____________________
+
+sid = 'Eval', capsys = <_pytest.capture.CaptureFixture object at 0x114d40920>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x114d436e0>
+
+    @pytest.mark.parametrize("sid", ["../x", "/abs", "Eval"])
+    def test_cli_rejects_bad_snapshot_id(
+        sid: str, capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        forbid_real_build(monkeypatch)
+        with pytest.raises(SystemExit) as exc:
+            refresh.main(["--as-of", "2026-04-12", "--snapshot-id", sid])
+>       assert exc.value.code == 2
+E       AssertionError: assert 'a bad snapshot id got past validation and reached a build step' == 2
+E        +  where 'a bad snapshot id got past validation and reached a build step' = SystemExit('a bad snapshot id got past validation and reached a build step').code
+E        +    where SystemExit('a bad snapshot id got past validation and reached a build step') = <ExceptionInfo SystemExit('a bad snapshot id got past validation and reached a build step') tblen=3>.value
+
+/Users/tienhuynh/dev/nba-analytics/tests/test_sec3_hardening.py:450: AssertionError
+_____________________________ test_cli_length_cap ______________________________
+
+capsys = <_pytest.capture.CaptureFixture object at 0x114d43ec0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x114da4230>
+
+    def test_cli_length_cap(
+        capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        forbid_real_build(monkeypatch)
+        with pytest.raises(SystemExit) as exc:
+            refresh.main(["--as-of", "2026-04-12", "--snapshot-id", LONG_ID])
+>       assert exc.value.code == 2
+E       AssertionError: assert 'a bad snapshot id got past validation and reached a build step' == 2
+E        +  where 'a bad snapshot id got past validation and reached a build step' = SystemExit('a bad snapshot id got past validation and reached a build step').code
+E        +    where SystemExit('a bad snapshot id got past validation and reached a build step') = <ExceptionInfo SystemExit('a bad snapshot id got past validation and reached a build step') tblen=3>.value
+
+/Users/tienhuynh/dev/nba-analytics/tests/test_sec4_hardening.py:182: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_sec3_hardening.py::test_cli_rejects_bad_snapshot_id[../x]
+FAILED tests/test_sec3_hardening.py::test_cli_rejects_bad_snapshot_id[/abs]
+FAILED tests/test_sec3_hardening.py::test_cli_rejects_bad_snapshot_id[Eval]
+FAILED tests/test_sec4_hardening.py::test_cli_length_cap - AssertionError: as...
+4 failed in 0.13s
+pytest rc=1 wall=1s
+ps samples matching dbt/land/landing during the run: 0
+copy has data/: no
+real data/snapshots:
+total 0
+drwxr-xr-x@ 2 tienhuynh  staff   64 Oct 12 01:14 .
+drwxr-xr-x  9 tienhuynh  staff  288 Oct 12 01:02 ..

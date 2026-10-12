@@ -1,0 +1,683 @@
+ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]
+pytest: error: unrecognized arguments: --timeout=60
+  inifile: /Users/tienhuynh/dev/nba-analytics/pyproject.toml
+  rootdir: /Users/tienhuynh/dev/nba-analytics
+
+FFFFFFFFFFFFFFFFFFFFF                                                    [100%]
+=================================== FAILURES ===================================
+_________ test_query_over_memory_limit_spills_outside_sealed_snapshot __________
+
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_query_over_memory_limit_s0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x110432cc0>
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_query_over_memory_limit_spills_outside_sealed_snapshot(
+        tmp_path: Path, monkeypatch: pytest.MonkeyPatch, fixture_db_path: Path
+    ) -> None:
+        cfg = cfg_for(tmp_path)
+        _patch_build(monkeypatch, source_db=fixture_db_path)
+        snap = _build(cfg, 30)
+        snapshots.publish(cfg, snap)
+        monkeypatch.setattr(app_snapshot, "APP_MEMORY_LIMIT", "64MB")
+        con = LiveSnapshotStore(cfg).connection()
+        tmp = Path(con.execute("select current_setting('temp_directory')").fetchone()[0])  # type: ignore[index]
+        root = cfg.resolve(cfg.paths.snapshots).resolve()
+>       assert not tmp.resolve().is_relative_to(root)
+E       AssertionError: assert not True
+E        +  where True = is_relative_to(PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_query_over_memory_limit_s0/snapshots'))
+E        +    where is_relative_to = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_query_over_memory_limit_s0/snapshots/nba_20260930/nba_20260930.duckdb.tmp').is_relative_to
+E        +      where PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_query_over_memory_limit_s0/snapshots/nba_20260930/nba_20260930.duckdb.tmp') = resolve()
+E        +        where resolve = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_query_over_memory_limit_s0/snapshots/nba_20260930/nba_20260930.duckdb.tmp').resolve
+
+tests/test_sec4_hardening.py:49: AssertionError
+___________________ test_spill_paths_are_unique_per_instance ___________________
+
+    def test_spill_paths_are_unique_per_instance() -> None:
+>       a = app_snapshot.spill_dir(Path("x/s1.duckdb"))
+            ^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: module 'app.snapshot' has no attribute 'spill_dir'
+
+tests/test_sec4_hardening.py:63: AttributeError
+_ test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players USING SAMPLE 10%] _
+
+sql = 'SELECT player_id FROM semantic.players USING SAMPLE 10%'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            f"{P} USING SAMPLE 10%",
+            f"{P} USING SAMPLE 5 ROWS",
+            f"{P} USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)",
+            f"{P} TABLESAMPLE RESERVOIR(5 ROWS)",
+            f"{P} p TABLESAMPLE (10%) LIMIT 5",
+            f"SELECT * FROM ({P}) USING SAMPLE 5",
+            f"WITH t AS ({P} USING SAMPLE 10%) SELECT * FROM t",
+        ],
+    )
+    def test_sample_clauses_are_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="TABLESAMPLE is not allowed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:86: Failed
+_ test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players USING SAMPLE 5 ROWS] _
+
+sql = 'SELECT player_id FROM semantic.players USING SAMPLE 5 ROWS'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            f"{P} USING SAMPLE 10%",
+            f"{P} USING SAMPLE 5 ROWS",
+            f"{P} USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)",
+            f"{P} TABLESAMPLE RESERVOIR(5 ROWS)",
+            f"{P} p TABLESAMPLE (10%) LIMIT 5",
+            f"SELECT * FROM ({P}) USING SAMPLE 5",
+            f"WITH t AS ({P} USING SAMPLE 10%) SELECT * FROM t",
+        ],
+    )
+    def test_sample_clauses_are_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="TABLESAMPLE is not allowed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:86: Failed
+_ test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)] _
+
+sql = 'SELECT player_id FROM semantic.players USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            f"{P} USING SAMPLE 10%",
+            f"{P} USING SAMPLE 5 ROWS",
+            f"{P} USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)",
+            f"{P} TABLESAMPLE RESERVOIR(5 ROWS)",
+            f"{P} p TABLESAMPLE (10%) LIMIT 5",
+            f"SELECT * FROM ({P}) USING SAMPLE 5",
+            f"WITH t AS ({P} USING SAMPLE 10%) SELECT * FROM t",
+        ],
+    )
+    def test_sample_clauses_are_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="TABLESAMPLE is not allowed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:86: Failed
+_ test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players TABLESAMPLE RESERVOIR(5 ROWS)] _
+
+sql = 'SELECT player_id FROM semantic.players TABLESAMPLE RESERVOIR(5 ROWS)'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            f"{P} USING SAMPLE 10%",
+            f"{P} USING SAMPLE 5 ROWS",
+            f"{P} USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)",
+            f"{P} TABLESAMPLE RESERVOIR(5 ROWS)",
+            f"{P} p TABLESAMPLE (10%) LIMIT 5",
+            f"SELECT * FROM ({P}) USING SAMPLE 5",
+            f"WITH t AS ({P} USING SAMPLE 10%) SELECT * FROM t",
+        ],
+    )
+    def test_sample_clauses_are_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="TABLESAMPLE is not allowed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:86: Failed
+_ test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players p TABLESAMPLE (10%) LIMIT 5] _
+
+sql = 'SELECT player_id FROM semantic.players p TABLESAMPLE (10%) LIMIT 5'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            f"{P} USING SAMPLE 10%",
+            f"{P} USING SAMPLE 5 ROWS",
+            f"{P} USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)",
+            f"{P} TABLESAMPLE RESERVOIR(5 ROWS)",
+            f"{P} p TABLESAMPLE (10%) LIMIT 5",
+            f"SELECT * FROM ({P}) USING SAMPLE 5",
+            f"WITH t AS ({P} USING SAMPLE 10%) SELECT * FROM t",
+        ],
+    )
+    def test_sample_clauses_are_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="TABLESAMPLE is not allowed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:86: Failed
+_ test_sample_clauses_are_rejected[SELECT * FROM (SELECT player_id FROM semantic.players) USING SAMPLE 5] _
+
+sql = 'SELECT * FROM (SELECT player_id FROM semantic.players) USING SAMPLE 5'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            f"{P} USING SAMPLE 10%",
+            f"{P} USING SAMPLE 5 ROWS",
+            f"{P} USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)",
+            f"{P} TABLESAMPLE RESERVOIR(5 ROWS)",
+            f"{P} p TABLESAMPLE (10%) LIMIT 5",
+            f"SELECT * FROM ({P}) USING SAMPLE 5",
+            f"WITH t AS ({P} USING SAMPLE 10%) SELECT * FROM t",
+        ],
+    )
+    def test_sample_clauses_are_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="TABLESAMPLE is not allowed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:86: Failed
+_ test_sample_clauses_are_rejected[WITH t AS (SELECT player_id FROM semantic.players USING SAMPLE 10%) SELECT * FROM t] _
+
+sql = 'WITH t AS (SELECT player_id FROM semantic.players USING SAMPLE 10%) SELECT * FROM t'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            f"{P} USING SAMPLE 10%",
+            f"{P} USING SAMPLE 5 ROWS",
+            f"{P} USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)",
+            f"{P} TABLESAMPLE RESERVOIR(5 ROWS)",
+            f"{P} p TABLESAMPLE (10%) LIMIT 5",
+            f"SELECT * FROM ({P}) USING SAMPLE 5",
+            f"WITH t AS ({P} USING SAMPLE 10%) SELECT * FROM t",
+        ],
+    )
+    def test_sample_clauses_are_rejected(sql: str) -> None:
+>       with pytest.raises(GuardError, match="TABLESAMPLE is not allowed"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:86: Failed
+____________ test_nul_and_surrogates_are_guard_errors[SELECT 1\x00] ____________
+
+sql = 'SELECT 1\x00'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1\x00",
+            f"{P}\x00",
+            f"{P} WHERE player_id = 1 \x00",
+            "SELECT '\ud800' AS a",
+            f"{P} WHERE player_name = '\udfff'",
+        ],
+    )
+    def test_nul_and_surrogates_are_guard_errors(sql: str) -> None:
+>       with pytest.raises(GuardError, match="NUL|UTF-8"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:104: Failed
+_ test_nul_and_surrogates_are_guard_errors[SELECT player_id FROM semantic.players\x00] _
+
+sql = 'SELECT player_id FROM semantic.players\x00'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1\x00",
+            f"{P}\x00",
+            f"{P} WHERE player_id = 1 \x00",
+            "SELECT '\ud800' AS a",
+            f"{P} WHERE player_name = '\udfff'",
+        ],
+    )
+    def test_nul_and_surrogates_are_guard_errors(sql: str) -> None:
+>       with pytest.raises(GuardError, match="NUL|UTF-8"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'NUL|UTF-8'
+E         Actual message: 'semantic.players\x00 is not a semantic-layer view; allowed views: semantic.awards, semantic.franchises, semantic.games, semantic.league_season_stats, semantic.player_aliases, semantic.player_career_stats, semantic.player_game_log, semantic.player_season_stats, semantic.player_stint_stats, semantic.player_titles, semantic.players, semantic.records, semantic.registry_info, semantic.shots, semantic.stat_availability, semantic.team_aliases, semantic.team_all_time_stats, semantic.team_season_stats, semantic.team_titles, semantic.teams'
+
+tests/test_sec4_hardening.py:104: AssertionError
+_ test_nul_and_surrogates_are_guard_errors[SELECT player_id FROM semantic.players WHERE player_id = 1 \x00] _
+
+sql = 'SELECT player_id FROM semantic.players WHERE player_id = 1 \x00'
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1\x00",
+            f"{P}\x00",
+            f"{P} WHERE player_id = 1 \x00",
+            "SELECT '\ud800' AS a",
+            f"{P} WHERE player_name = '\udfff'",
+        ],
+    )
+    def test_nul_and_surrogates_are_guard_errors(sql: str) -> None:
+>       with pytest.raises(GuardError, match="NUL|UTF-8"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'NUL|UTF-8'
+E         Actual message: 'could not parse the SQL: Invalid expression / Unexpected token. Line 1, Col: 60.'
+
+tests/test_sec4_hardening.py:104: AssertionError
+________ test_nul_and_surrogates_are_guard_errors[SELECT '\ud800' AS a] ________
+
+sql = "SELECT '\ud800' AS a"
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1\x00",
+            f"{P}\x00",
+            f"{P} WHERE player_id = 1 \x00",
+            "SELECT '\ud800' AS a",
+            f"{P} WHERE player_name = '\udfff'",
+        ],
+    )
+    def test_nul_and_surrogates_are_guard_errors(sql: str) -> None:
+>       with pytest.raises(GuardError, match="NUL|UTF-8"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:104: Failed
+_ test_nul_and_surrogates_are_guard_errors[SELECT player_id FROM semantic.players WHERE player_name = '\udfff'] _
+
+sql = "SELECT player_id FROM semantic.players WHERE player_name = '\udfff'"
+
+    @pytest.mark.parametrize(
+        "sql",
+        [
+            "SELECT 1\x00",
+            f"{P}\x00",
+            f"{P} WHERE player_id = 1 \x00",
+            "SELECT '\ud800' AS a",
+            f"{P} WHERE player_name = '\udfff'",
+        ],
+    )
+    def test_nul_and_surrogates_are_guard_errors(sql: str) -> None:
+>       with pytest.raises(GuardError, match="NUL|UTF-8"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE GuardError
+
+tests/test_sec4_hardening.py:104: Failed
+____________ test_fallback_treats_unencodable_sql_as_a_failed_query ____________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x1105be3f0>
+
+    def test_fallback_treats_unencodable_sql_as_a_failed_query(
+        fixture_db_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Even with the guard bypassed, a driver UnicodeEncodeError goes to repair, not up."""
+        monkeypatch.setattr(sql_fallback, "check", lambda sql: sql)
+        fb, llm = make(fixture_db_path, ["SELECT '\ud800' AS a", "select count(*) from semantic.games"])
+>       r = fb.answer("how many games")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_sec4_hardening.py:114: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+app/sql_fallback.py:125: in answer
+    cols, rows = run_with_timeout(self.con, safe)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+con = <_duckdb.DuckDBPyConnection object at 0x1100b93b0>
+sql = "SELECT '\ud800' AS a", timeout_s = 5.0
+
+    def run_with_timeout(
+        con: duckdb.DuckDBPyConnection, sql: str, timeout_s: float = TIMEOUT_S
+    ) -> tuple[list[str], list[tuple[Any, ...]]]:
+        fired = threading.Event()
+    
+        def stop() -> None:
+            fired.set()
+            con.interrupt()
+    
+        timer = threading.Timer(timeout_s, stop)
+        timer.start()
+        try:
+>           cur = con.execute(sql)
+                  ^^^^^^^^^^^^^^^^
+E           UnicodeEncodeError: 'utf-8' codec can't encode character '\ud800' in position 8: surrogates not allowed
+
+app/sql_fallback.py:55: UnicodeEncodeError
+_________________ test_fallback_surrogate_sql_gives_up_cleanly _________________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_fallback_surrogate_sql_gives_up_cleanly(fixture_db_path: Path) -> None:
+>       fb, _ = make(fixture_db_path, ["SELECT '\ud800' AS a", "SELECT 1\x00"])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_sec4_hardening.py:120: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+replies = ["SELECT '\ud800' AS a", 'SELECT 1\x00']
+
+    def make(fixture_db_path: Path, replies: list[str]) -> tuple[SqlFallback, ScriptedLLM]:
+>       con = duckdb.connect(str(fixture_db_path), read_only=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       _duckdb.ConnectionException: Connection Error: Can't open a connection to same database file with a different configuration than existing connections
+
+tests/test_sql_fallback.py:76: ConnectionException
+_________________________ test_validate_id_length_cap __________________________
+
+    def test_validate_id_length_cap() -> None:
+        assert snapshots.validate_id(OK_ID) == OK_ID
+        for sid in (LONG_ID, "a" * 200, "a" * 300):
+>           with pytest.raises(SnapshotIdError, match="invalid snapshot id"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE SnapshotIdError
+
+tests/test_sec4_hardening.py:152: Failed
+_____________________________ test_cli_length_cap ______________________________
+
+capsys = <_pytest.capture.CaptureFixture object at 0x11062d0d0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11062d3a0>
+
+    def test_cli_length_cap(
+        capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        def no_build(*a: object, **k: object) -> None:
+            # SystemExit, not an Exception: main() must not catch it, log a run or build anything.
+            raise SystemExit("the CLI accepted the id and would have started a real build")
+    
+        monkeypatch.setattr(refresh, "as_of_build", no_build)
+        monkeypatch.setattr(refresh, "nightly", no_build)
+        monkeypatch.setattr(refresh, "_log_run", lambda record: None)
+        with pytest.raises(SystemExit) as exc:
+            refresh.main(["--as-of", "2026-04-12", "--snapshot-id", LONG_ID])
+>       assert exc.value.code == 2
+E       AssertionError: assert 'the CLI accepted the id and would have started a real build' == 2
+E        +  where 'the CLI accepted the id and would have started a real build' = SystemExit('the CLI accepted the id and would have started a real build').code
+E        +    where SystemExit('the CLI accepted the id and would have started a real build') = <ExceptionInfo SystemExit('the CLI accepted the id and would have started a real build') tblen=3>.value
+
+tests/test_sec4_hardening.py:168: AssertionError
+____________________________ test_build_length_cap _____________________________
+
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_build_length_cap0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11062dee0>
+
+    def test_build_length_cap(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+        cfg = cfg_for(tmp_path)
+        _patch_build(monkeypatch)
+        snap = snapshots.build(cfg, snapshot_id=OK_ID, pinned=True)
+        assert snap.dir.name == OK_ID and snapshots.load(snap.dir).snapshot_id == OK_ID
+>       with pytest.raises(SnapshotIdError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SnapshotIdError
+
+tests/test_sec4_hardening.py:177: Failed
+----------------------------- Captured stderr call -----------------------------
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/tienhuynh/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/logging/__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+ValueError: I/O operation on closed file.
+Call stack:
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/bin/pytest", line 10, in <module>
+    sys.exit(_console_main())
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 253, in _console_main
+    code = _main(prog=_get_prog_name(sys.argv))
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 229, in _main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 377, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 330, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 384, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 408, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 139, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 249, in call_and_report
+    call = CallInfo.from_call(
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 361, in from_call
+    result: TResult | None = func()
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 250, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 184, in pytest_runtest_call
+    item.runtest()
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/python.py", line 1707, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/python.py", line 167, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/Users/tienhuynh/dev/nba-analytics/tests/test_sec4_hardening.py", line 175, in test_build_length_cap
+    snap = snapshots.build(cfg, snapshot_id=OK_ID, pinned=True)
+  File "/Users/tienhuynh/dev/nba-analytics/ingest/snapshots.py", line 326, in build
+    log.info(
+Message: 'snapshot built'
+Arguments: ()
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/tienhuynh/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/logging/__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+ValueError: I/O operation on closed file.
+Call stack:
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/bin/pytest", line 10, in <module>
+    sys.exit(_console_main())
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 253, in _console_main
+    code = _main(prog=_get_prog_name(sys.argv))
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 229, in _main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 377, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 330, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 384, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 408, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 139, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 249, in call_and_report
+    call = CallInfo.from_call(
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 361, in from_call
+    result: TResult | None = func()
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 250, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 184, in pytest_runtest_call
+    item.runtest()
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/python.py", line 1707, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/python.py", line 167, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/Users/tienhuynh/dev/nba-analytics/tests/test_sec4_hardening.py", line 178, in test_build_length_cap
+    snapshots.build(cfg, snapshot_id=LONG_ID, pinned=True)
+  File "/Users/tienhuynh/dev/nba-analytics/ingest/snapshots.py", line 326, in build
+    log.info(
+Message: 'snapshot built'
+Arguments: ()
+------------------------------ Captured log call -------------------------------
+INFO     ingest.snapshots:snapshots.py:326 snapshot built
+INFO     ingest.snapshots:snapshots.py:326 snapshot built
+_____________________________ test_open_length_cap _____________________________
+
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_open_length_cap0')
+
+    def test_open_length_cap(tmp_path: Path) -> None:
+        cfg = cfg_for(tmp_path)
+        d = _long_snapshot(cfg, LONG_ID)
+>       with pytest.raises(SnapshotIdError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SnapshotIdError
+
+tests/test_sec4_hardening.py:185: Failed
+____________________ test_prune_and_rollback_skip_long_ids _____________________
+
+tmp_path = PosixPath('/private/var/folders/j8/c5r2ywtx6pb2q163d23sw9t00000gn/T/pytest-of-tienhuynh/pytest-183/test_prune_and_rollback_skip_l0')
+
+    def test_prune_and_rollback_skip_long_ids(tmp_path: Path) -> None:
+        cfg = cfg_for(tmp_path)
+        good = fake_snapshot(cfg, "nba_20260928", age_days=2)
+        long_dir = _long_snapshot(cfg, LONG_ID, age_days=1)
+        cur = fake_snapshot(cfg, "nba_20260930")
+        snapshots.publish(cfg, cur)
+>       assert {s.snapshot_id for s in snapshots.published(cfg)} == {good.snapshot_id, cur.snapshot_id}
+E       AssertionError: assert {'aaaaaaaaaaa...nba_20260930'} == {'nba_2026092...nba_20260930'}
+E         
+E         Extra items in the left set:
+E         'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+E         Use -v to get more diff
+
+tests/test_sec4_hardening.py:199: AssertionError
+----------------------------- Captured stderr call -----------------------------
+--- Logging error ---
+Traceback (most recent call last):
+  File "/Users/tienhuynh/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/logging/__init__.py", line 1163, in emit
+    stream.write(msg + self.terminator)
+ValueError: I/O operation on closed file.
+Call stack:
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/bin/pytest", line 10, in <module>
+    sys.exit(_console_main())
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 253, in _console_main
+    code = _main(prog=_get_prog_name(sys.argv))
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/config/__init__.py", line 229, in _main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 377, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 330, in wrap_session
+    session.exitstatus = doit(config, session) or 0
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 384, in _main
+    config.hook.pytest_runtestloop(session=session)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/main.py", line 408, in pytest_runtestloop
+    item.config.hook.pytest_runtest_protocol(item=item, nextitem=nextitem)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 118, in pytest_runtest_protocol
+    runtestprotocol(item, nextitem=nextitem)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 139, in runtestprotocol
+    reports.append(call_and_report(item, "call", log))
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 249, in call_and_report
+    call = CallInfo.from_call(
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 361, in from_call
+    result: TResult | None = func()
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 250, in <lambda>
+    lambda: runtest_hook(item=item, **kwds),
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/runner.py", line 184, in pytest_runtest_call
+    item.runtest()
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/python.py", line 1707, in runtest
+    self.ihook.pytest_pyfunc_call(pyfuncitem=self)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/Users/tienhuynh/dev/nba-analytics/.venv/lib/python3.12/site-packages/_pytest/python.py", line 167, in pytest_pyfunc_call
+    result = testfunction(**testargs)
+  File "/Users/tienhuynh/dev/nba-analytics/tests/test_sec4_hardening.py", line 198, in test_prune_and_rollback_skip_long_ids
+    snapshots.publish(cfg, cur)
+  File "/Users/tienhuynh/dev/nba-analytics/ingest/snapshots.py", line 422, in publish
+    log.info("published", extra={"event": "published", "path": snap.snapshot_id})
+Message: 'published'
+Arguments: ()
+------------------------------ Captured log call -------------------------------
+INFO     ingest.snapshots:snapshots.py:422 published
+=========================== short test summary info ============================
+FAILED tests/test_sec4_hardening.py::test_query_over_memory_limit_spills_outside_sealed_snapshot
+FAILED tests/test_sec4_hardening.py::test_spill_paths_are_unique_per_instance
+FAILED tests/test_sec4_hardening.py::test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players USING SAMPLE 10%]
+FAILED tests/test_sec4_hardening.py::test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players USING SAMPLE 5 ROWS]
+FAILED tests/test_sec4_hardening.py::test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players USING SAMPLE reservoir(10 ROWS) REPEATABLE (1)]
+FAILED tests/test_sec4_hardening.py::test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players TABLESAMPLE RESERVOIR(5 ROWS)]
+FAILED tests/test_sec4_hardening.py::test_sample_clauses_are_rejected[SELECT player_id FROM semantic.players p TABLESAMPLE (10%) LIMIT 5]
+FAILED tests/test_sec4_hardening.py::test_sample_clauses_are_rejected[SELECT * FROM (SELECT player_id FROM semantic.players) USING SAMPLE 5]
+FAILED tests/test_sec4_hardening.py::test_sample_clauses_are_rejected[WITH t AS (SELECT player_id FROM semantic.players USING SAMPLE 10%) SELECT * FROM t]
+FAILED tests/test_sec4_hardening.py::test_nul_and_surrogates_are_guard_errors[SELECT 1\x00]
+FAILED tests/test_sec4_hardening.py::test_nul_and_surrogates_are_guard_errors[SELECT player_id FROM semantic.players\x00]
+FAILED tests/test_sec4_hardening.py::test_nul_and_surrogates_are_guard_errors[SELECT player_id FROM semantic.players WHERE player_id = 1 \x00]
+FAILED tests/test_sec4_hardening.py::test_nul_and_surrogates_are_guard_errors[SELECT '\ud800' AS a]
+FAILED tests/test_sec4_hardening.py::test_nul_and_surrogates_are_guard_errors[SELECT player_id FROM semantic.players WHERE player_name = '\udfff']
+FAILED tests/test_sec4_hardening.py::test_fallback_treats_unencodable_sql_as_a_failed_query
+FAILED tests/test_sec4_hardening.py::test_fallback_surrogate_sql_gives_up_cleanly
+FAILED tests/test_sec4_hardening.py::test_validate_id_length_cap - Failed: DI...
+FAILED tests/test_sec4_hardening.py::test_cli_length_cap - AssertionError: as...
+FAILED tests/test_sec4_hardening.py::test_build_length_cap - Failed: DID NOT ...
+FAILED tests/test_sec4_hardening.py::test_open_length_cap - Failed: DID NOT R...
+FAILED tests/test_sec4_hardening.py::test_prune_and_rollback_skip_long_ids - ...
+21 failed in 4.18s

@@ -1,0 +1,21 @@
+All checks passed!
+1 file already formatted
+(eval):1: .venv/bin/mypy: bad interpreter: /Users/tienhuynh/Desktop/nba-analytics/.venv/bin/python: no such file or directory
+
+tests/test_stats_path 2.py:155: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_stats_path 2.py::test_opinion_question_gets_stats_without_verdict
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+tests/test_snapshots_rollback.py:127: error: Module "ingest.snapshots" does not explicitly export attribute "os"  [attr-defined]
+tests/test_snapshots_rollback.py:128: error: Module "ingest.snapshots" does not explicitly export attribute "os"  [attr-defined]
+tests/test_snapshots_rollback.py:403: error: Module "ingest.snapshots" does not explicitly export attribute "generate_views"  [attr-defined]
+tests/test_snapshots_rollback.py:467: error: Module "ingest.snapshots" does not explicitly export attribute "generate_views"  [attr-defined]
+Found 4 errors in 1 file (checked 114 source files)
+E    +  where 25 = len([{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...])
+E    +    where [{'game_id': '0022401189', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 1... '0022401131', 'season': '2024-25', 'season_type': 'Regular Season', 'game_date': datetime.date(2025, 4, 5), ...}, ...] = ToolResult(tool='get_games', args={'season_types': ['Regular Season'], 'overtime_only': True, 'finals_only': False, 's...], source='games · 2024-25 regular season · overtime · data through 2025-06-22', not_tracked=[], notes=[], entities={}).rows
+E    +  and   60 = min(60, 100)
+
+/Users/tienhuynh/Desktop/nba-analytics/tests/test_tools_oracle.py:139: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_stats_path 2.py::test_opinion_question_gets_stats_without_verdict
+FAILED tests/test_tools_oracle.py::test_overtime_only_returns_only_overtime_games

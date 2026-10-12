@@ -1,0 +1,14 @@
+control clean: LANDED
+header quote      default: ContractError | validator=None: ContractError
+header space      default: ContractError | validator=None: ContractError
+header semicolon  default: ContractError | validator=None: ContractError
+header dquote     default: ContractError | validator=None: ContractError
+header backslash  default: ContractError | validator=None: ContractError
+header newline    default: ContractError | validator=None: ContractError
+header unicode    default: ContractError | validator=None: ContractError
+header empty      default: ContractError | validator=None: ContractError
+header dash       default: ContractError | validator=None: ContractError
+renamed column default: ContractError | none (should land: only header regex): LANDED
+short row default: ContractError | none: OTHER ValueError zip() argument 2 is shorter than argument 1
+type change default: ContractError
+quote in work path: LANDED

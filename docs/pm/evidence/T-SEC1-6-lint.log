@@ -1,0 +1,49 @@
+$ uv run ruff check .
+E501 Line too long (112 > 100)
+  --> ingest/refresh.py:81:101
+   |
+79 |     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
+80 |     ap.add_argument("--as-of", help="cutoff date YYYY-MM-DD (last included game date)")
+81 |     ap.add_argument("--snapshot-id", type=_snapshot_id, help="name for an as-of snapshot, e.g. eval_2025_26_rs")
+   |                                                                                                     ^^^^^^^^^^^^
+82 |     args = ap.parse_args(argv)
+   |
+
+E501 Line too long (102 > 100)
+   --> tests/test_sec3_hardening.py:280:101
+    |
+278 |     _write_raw(tmp_path / "raw", [evil], [])
+279 |     with pytest.raises(ContractError):
+280 |         land.land(tmp_path / "raw", tmp_path / "l.duckdb", tmp_path / "w", [KEY], validator=validator)
+    |                                                                                                     ^^
+281 |     assert not (tmp_path / "l.duckdb").exists()
+    |
+
+Found 2 errors.
+$ uv run ruff format --check .
+unformatted: File would be reformatted
+  --> ingest/refresh.py:81:21
+   |
+80 |     ap.add_argument("--as-of", help="cutoff date YYYY-MM-DD (last included game date)")
+   -     ap.add_argument("--snapshot-id", type=_snapshot_id, help="name for an as-of snapshot, e.g. eval_2025_26_rs")
+81 +     ap.add_argument(
+82 +         "--snapshot-id", type=_snapshot_id, help="name for an as-of snapshot, e.g. eval_2025_26_rs"
+83 +     )
+84 |     args = ap.parse_args(argv)
+   |
+
+unformatted: File would be reformatted
+   --> tests/test_sec3_hardening.py:280:19
+    |
+279 |     with pytest.raises(ContractError):
+    -         land.land(tmp_path / "raw", tmp_path / "l.duckdb", tmp_path / "w", [KEY], validator=validator)
+280 +         land.land(
+281 +             tmp_path / "raw", tmp_path / "l.duckdb", tmp_path / "w", [KEY], validator=validator
+282 +         )
+283 |     assert not (tmp_path / "l.duckdb").exists()
+    |
+
+2 files would be reformatted, 194 files already formatted
+$ uv run mypy
+ingest/snapshots.py:338: error: Argument 1 to "Snapshot" has incompatible type "Any | None"; expected "str"  [arg-type]
+Found 1 error in 1 file (checked 118 source files)

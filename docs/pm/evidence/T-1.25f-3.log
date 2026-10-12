@@ -1,0 +1,8 @@
+files: 3 bytes: 200648781
+sha256 uncached run 0: 0.123s
+sha256 uncached run 1: 0.099s
+sha256 uncached run 2: 0.098s
+sha256_cached first: 0.100s
+sha256_cached hit:   0.112ms
+old probe count(*) marts.games: 0.8ms
+scan alternative (count every column of 39 tables): 0.106s

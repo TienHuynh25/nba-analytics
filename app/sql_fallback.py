@@ -25,7 +25,7 @@ import duckdb
 
 from app.interfaces import LLMClient, Message, Retriever
 from app.snapshot import connect_read_only
-from app.sql_guard import GuardError, check
+from app.sql_guard import MAX_ROWS, GuardError, check
 
 TIMEOUT_S = 5.0
 CARDS_K = 12
@@ -53,7 +53,7 @@ def run_with_timeout(
     timer.start()
     try:
         cur = con.execute(sql)
-        rows = cur.fetchall()
+        rows = cur.fetchmany(MAX_ROWS)  # the guard's LIMIT is the first cap, this the second
         cols = [d[0] for d in cur.description]
         return cols, rows
     except duckdb.InterruptException as exc:
@@ -124,6 +124,8 @@ class SqlFallback:
                 safe = check(sql)
                 cols, rows = run_with_timeout(self.con, safe)
                 return FallbackResult(True, safe, cols, rows, attempt, None, cards)
-            except (GuardError, QueryTimeout, duckdb.Error) as exc:
+            except (GuardError, QueryTimeout, duckdb.Error, ValueError) as exc:
+                # ValueError covers UnicodeEncodeError from the driver: a failed query, never an
+                # uncaught exception (GuardError is a ValueError too, listed for clarity).
                 feedback = str(exc).splitlines()[0][:500]
         return FallbackResult(False, sql, attempts=2, error=feedback, cards=cards)

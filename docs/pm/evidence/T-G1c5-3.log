@@ -1,0 +1,72 @@
+[0m05:35:54  Running with dbt=1.12.5
+[0m05:35:54  Registered adapter: duckdb=1.11.0
+[0m05:35:54  Unable to do partial parsing because profile has changed
+[0m05:35:55  [[33mWARNING[0m]: 'stat_availability' is a seed node, but it is specified in the models section of
+models/marts/_marts.yml. To fix this error, place the `stat_availability`
+specification under the seeds key instead.
+[0m05:35:55  [[33mWARNING[0m][MissingArgumentsPropertyInGenericTestDeprecation]: Deprecated
+functionality
+Found top-level arguments to test `relationships` defined on 'player_aliases' in
+package 'nba' (models/marts/_marts.yml). Arguments to generic tests should be
+nested under the `arguments` property.
+[0m05:35:55  [[33mWARNING[0m][DuplicateNameDistinctNodeTypesDeprecation]: Deprecated
+functionality
+Found resources with the same name 'stat_availability' in package 'nba':
+'model.nba.stat_availability' and 'seed.nba.stat_availability'. Please update
+one of the resources to have a unique name.
+[0m05:35:55  Found 50 models, 84 data tests, 11 seeds, 16 sources, 514 macros
+[0m05:35:55  
+[0m05:35:55  Concurrency: 4 threads (target='build')
+[0m05:35:55  
+[0m05:35:55  1 of 1 START test relationships_player_game_player_id__player_id__ref_players_ . [RUN]
+[0m05:35:56  1 of 1 FAIL 1 relationships_player_game_player_id__player_id__ref_players_ ..... [[31mFAIL 1[0m in 0.03s]
+[0m05:35:56  
+[0m05:35:56  Finished running 1 test in 0 hours 0 minutes and 0.10 seconds (0.10s).
+[0m05:35:56  
+[0m05:35:56  [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m05:35:56  
+[0m05:35:56  [[31mERROR[0m]: in test relationships_player_game_player_id__player_id__ref_players_ (models/marts/_marts.yml)
+[0m05:35:56    Got 1 result, configured to fail if != 0
+[0m05:35:56  
+[0m05:35:56    compiled code at target/compiled/nba/models/marts/_marts.yml/relationships_player_game_player_id__player_id__ref_players_.sql
+[0m05:35:56  
+[0m05:35:56  Done. PASS=0 WARN=0 ERROR=1 SKIP=0 NO-OP=0 REUSED=0 TOTAL=1
+[0m05:35:56  [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- MissingArgumentsPropertyInGenericTestDeprecation: 26 occurrences
+- DuplicateNameDistinctNodeTypesDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m05:36:02  Running with dbt=1.12.5
+[0m05:36:02  Registered adapter: duckdb=1.11.0
+[0m05:36:02  [[33mWARNING[0m][DuplicateNameDistinctNodeTypesDeprecation]: Deprecated
+functionality
+Found resources with the same name 'stat_availability' in package 'nba':
+'model.nba.stat_availability' and 'seed.nba.stat_availability'. Please update
+one of the resources to have a unique name.
+[0m05:36:03  Found 50 models, 84 data tests, 11 seeds, 16 sources, 514 macros
+[0m05:36:03  
+[0m05:36:03  Concurrency: 4 threads (target='build')
+[0m05:36:03  
+[0m05:36:03  1 of 1 START test relationships_player_game_player_id__player_id__ref_players_ . [RUN]
+[0m05:36:03  1 of 1 FAIL 37 relationships_player_game_player_id__player_id__ref_players_ .... [[31mFAIL 37[0m in 0.03s]
+[0m05:36:03  
+[0m05:36:03  Finished running 1 test in 0 hours 0 minutes and 0.10 seconds (0.10s).
+[0m05:36:03  
+[0m05:36:03  [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m05:36:03  
+[0m05:36:03  [[31mERROR[0m]: in test relationships_player_game_player_id__player_id__ref_players_ (models/marts/_marts.yml)
+[0m05:36:03    Got 37 results, configured to fail if != 0
+[0m05:36:03  
+[0m05:36:03    compiled code at target/compiled/nba/models/marts/_marts.yml/relationships_player_game_player_id__player_id__ref_players_.sql
+[0m05:36:03  
+[0m05:36:03  Done. PASS=0 WARN=0 ERROR=1 SKIP=0 NO-OP=0 REUSED=0 TOTAL=1
+[0m05:36:03  [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- DuplicateNameDistinctNodeTypesDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.

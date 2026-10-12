@@ -1,0 +1,27 @@
+--- make check (as-is)
+166 files already formatted
+uv run mypy
+error: Failed to spawn: `mypy`
+  cause: No such file or directory (os error 2)
+make: *** [typecheck] Error 2
+--- ruff .
+All checks passed!
+166 files already formatted
+--- mypy
+Success: no issues found in 114 source files
+--- pytest not network
+=========================== short test summary info ============================
+FAILED tests/test_as_of.py::test_cutoff_inside_a_season_type_fails_the_build
+FAILED tests/test_domain_checks.py::test_clean_fixture_passes_every_domain_check
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[as_of_not_inside_season_type]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[careers_match_source]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[games_within_schedule_length]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[player_points_sum_to_team_points]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[stints_sum_to_season_total]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[team_record_matches_source]
+FAILED tests/test_domain_checks.py::test_planted_error_fails_its_check[untracked_stats_are_null]
+FAILED tests/test_stats_path 2.py::test_opinion_question_gets_stats_without_verdict
+FAILED tests/test_tools_oracle.py::test_overtime_only_returns_only_overtime_games
+ERROR tests/test_as_of.py::test_no_row_after_cutoff - FileNotFoundError: [Err...
+ERROR tests/test_as_of.py::test_manifest_as_of_date_is_day_after_cutoff - Fil...
+11 failed, 851 passed, 1 deselected, 2 xfailed, 2 errors in 48.86s

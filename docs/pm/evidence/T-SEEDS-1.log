@@ -1,0 +1,242 @@
+Q01 ok 1 
+     ['Shai Gilgeous-Alexander', '2025-26', 68, 31.1324]
+Q02 ok 1 
+     ['Nikola Jokić', 65, 27.6769, 12.8615, 10.7231, 1.4154, 0.8154, 0.5689, 0.3797, 0.8313, 34.8462]
+Q03 ok 1 
+     ['Nikola Jokić', 65, 34]
+Q04 ok 1 
+     ['Victor Wembanyama', 64, 3.0781]
+Q05 ok 1 
+     ['Cooper Flagg', '2025-26', True, 70, 21.0429, 6.6571, 4.5143, 1.2, 0.9143, 0.4682, 0.2951]
+Q06 ok 1 
+     ['Stephen Curry', 43, 190]
+Q07 ok 1 
+     ['LeBron James', 60, 20.9333, 6.0667, 7.2, 1.2, 0.5833, 0.5147, 0.3169, 0.7373, 33.15]
+Q08 ok 2 
+     ['Luka Dončić', '2024-25', 'Los Angeles Lakers', 28, 245, 0.4383]
+     ['Luka Dončić', '2025-26', 'Los Angeles Lakers', 64, 693, 0.4756]
+Q09 ok 1 
+     ['Anthony Edwards', 61, 35.0328]
+Q10 ok 1 
+     ['Giannis Antetokounmpo', 36, 232, 0.6499]
+Q11 ok 1 
+     ['Jayson Tatum', 16]
+Q12 ok 1 
+     ['Shai Gilgeous-Alexander', '2024-25', 'Playoffs', 23, 29.913, 5.3478, 6.5217, 1.6522, 0.8696, 0.4623, 0.2832]
+Q13 ok 5 
+     ['Luka Dončić', 'Los Angeles Lakers', 64, 33.4844]
+     ['Shai Gilgeous-Alexander', 'Oklahoma City Thunder', 68, 31.1324]
+     ['Anthony Edwards', 'Minnesota Timberwolves', 61, 28.8033]
+Q14 ok 5 
+     ['Nikola Jokić', 'Denver Nuggets', 65, 12.8615, 836]
+     ['Karl-Anthony Towns', 'New York Knicks', 75, 11.8533, 889]
+     ['Donovan Clingan', 'Portland Trail Blazers', 77, 11.5844, 892]
+Q15 ok 5 
+     ['Nikola Jokić', 'Denver Nuggets', 65, 10.7231]
+     ['Cade Cunningham', 'Detroit Pistons', 64, 9.9062]
+     ['Luka Dončić', 'Los Angeles Lakers', 64, 8.2812]
+Q16 ok 5 
+     ['Victor Wembanyama', 'San Antonio Spurs', 64, 197]
+     ['Jay Huff', 'Indiana Pacers', 82, 153]
+     ['Chet Holmgren', 'Oklahoma City Thunder', 69, 131]
+Q17 ok 5 
+     ['Luke Kennard', 'Los Angeles Lakers', 117, 245, 0.4776]
+     ['Bobby Portis Jr.', 'Milwaukee Bucks', 135, 296, 0.4561]
+     ['Cam Spencer', 'Memphis Grizzlies', 146, 325, 0.4492]
+Q18 ok 5 
+     ['Karl-Anthony Towns', 'New York Knicks', 75, 56]
+     ['Nikola Jokić', 'Denver Nuggets', 65, 55]
+     ['Jalen Johnson', 'Atlanta Hawks', 72, 49]
+Q19 ok 5 
+     ['Ausar Thompson', 'Detroit Pistons', 73, 2.0]
+     ['Dyson Daniels', 'Atlanta Hawks', 76, 1.9605]
+     ['Cason Wallace', 'Oklahoma City Thunder', 77, 1.9481]
+Q20 ok 5 
+     ['Cooper Flagg', 'Dallas Mavericks', 70, 21.0429]
+     ['Kon Knueppel', 'Charlotte Hornets', 81, 18.4938]
+     ['VJ Edgecombe', 'Philadelphia 76ers', 75, 15.9867]
+Q21 ok 5 
+     ['Luka Dončić', 'Los Angeles Lakers', 64, 16]
+     ['Anthony Edwards', 'Minnesota Timberwolves', 61, 10]
+     ['Shai Gilgeous-Alexander', 'Oklahoma City Thunder', 68, 8]
+Q22 ok 5 
+     ['Shai Gilgeous-Alexander', 'Oklahoma City Thunder', 68, 788]
+     ['Victor Wembanyama', 'San Antonio Spurs', 64, 682]
+     ['Chet Holmgren', 'Oklahoma City Thunder', 69, 678]
+Q23 ok 2 
+     ['Shai Gilgeous-Alexander', 68, 31.1324, 4.2941, 6.5882, 1.3971, 0.7647, 0.6652, 788]
+     ['Nikola Jokić', 65, 27.6769, 12.8615, 10.7231, 1.4154, 0.8154, 0.6697, 555]
+Q24 ok 2 
+     ['LeBron James', 'Playoffs', 302, 28.2152, 8.9238, 7.1788, 1.6755, 0.9503, 0.4954, 0.3324]
+     ['Michael Jordan', 'Playoffs', 179, 33.4469, 6.4358, 5.7095, 2.1006, 0.8827, 0.4865, 0.3318]
+Q25 ok 2 
+     ['Klay Thompson', 2899, 7089, 0.4089]
+     ['Stephen Curry', 4248, 10073, 0.4217]
+Q26 ok 2 
+     ['Bill Russell', 963, 21620]
+     ['Wilt Chamberlain', 1045, 23924]
+Q27 ok 2 
+     ['Tim Duncan', '1997-98', '1998-99', 132, 21.3258, 11.7273, 2.6136, 2.5152]
+     ['Victor Wembanyama', '2023-24', '2024-25', 117, 22.547, 10.7778, 3.7778, 3.6752]
+Q28 ok 2 
+     ['Ja Morant', 20, 389, 19.45]
+     ['Anthony Edwards', 61, 1757, 28.8033]
+Q29 ok 2 
+     ['Kobe Bryant', 33643, 5]
+     ['LeBron James', 43440, 4]
+Q30 ok 2 
+     ['Oklahoma City Thunder', '2025-26', 106.5]
+     ['Boston Celtics', '2025-26', 111.7]
+Q31 ok 3 
+     ['LeBron James', 43440, 1622]
+     ['Kareem Abdul-Jabbar', 38387, 1560]
+     ['Karl Malone', 36928, 1476]
+Q32 ok 3 
+     ['John Stockton', 15806, 1504]
+     ['Chris Paul', 12552, 1370]
+     ['Jason Kidd', 12091, 1391]
+Q33 ok 3 
+     ['Stephen Curry', 4248, 1069]
+     ['James Harden', 3390, 1221]
+     ['Ray Allen', 2973, 1300]
+Q34 ok 3 
+     ['Most points in a game', 'Wilt Chamberlain', 100.0, '1962-03-02', '1961-62']
+     ['Most points in a game', 'Bam Adebayo', 83.0, '2026-03-10', '2025-26']
+     ['Most points in a game', 'Kobe Bryant', 81.0, '2006-01-22', '2005-06']
+Q35 ok 5 
+     ['Russell Westbrook', 209, 1301]
+     ['Nikola Jokić', 198, 810]
+     ['Oscar Robertson', 179, 1040]
+Q36 ok 1 
+     ['LeBron James', 43440]
+Q37 ok 5 
+     ['Michael Jordan', 1072, 32292, 30.1231]
+     ['Wilt Chamberlain', 1045, 31419, 30.066]
+     ['Luka Dončić', 514, 15021, 29.2237]
+Q38 ok 5 
+     ['Hakeem Olajuwon', 3830, 1238]
+     ['Dikembe Mutombo', 3289, 1196]
+     ['Kareem Abdul-Jabbar', 3189, 1560]
+Q39 ok 3 
+     ['Boston Celtics', 18]
+     ['Los Angeles Lakers', 17]
+     ['Golden State Warriors', 7]
+Q40 ok 3 
+     ['Golden State Warriors', '2015-16', 73, 9, 0.8902]
+     ['Chicago Bulls', '1995-96', 72, 10, 0.878]
+     ['Chicago Bulls', '1996-97', 69, 13, 0.8415]
+Q41 ok 3 
+     ['LeBron James', 1622]
+     ['Robert Parish', 1611]
+     ['Kareem Abdul-Jabbar', 1560]
+Q42 ok 3 
+     ['Most 3-pointers made in a game', 'Klay Thompson', 14.0, '2018-10-29', '2018-19']
+     ['Most 3-pointers made in a game', 'Damian Lillard', 13.0, '2023-02-26', '2022-23']
+     ['Most 3-pointers made in a game', 'Zach LaVine', 13.0, '2019-11-23', '2019-20']
+Q43 ok 15 
+     [1, 'Oklahoma City Thunder', 64, 18, 0.7805]
+     [2, 'San Antonio Spurs', 62, 20, 0.7561]
+     [3, 'Denver Nuggets', 54, 28, 0.6585]
+Q44 ok 3 
+     ['Oklahoma City Thunder', 64, 18, 0.7805]
+     ['San Antonio Spurs', 62, 20, 0.7561]
+     ['Detroit Pistons', 60, 22, 0.7317]
+Q45 ok 3 
+     ['Denver Nuggets', 122.0732]
+     ['Miami Heat', 120.8659]
+     ['San Antonio Spurs', 119.8293]
+Q46 ok 1 
+     ['Los Angeles Lakers', 28, 13]
+Q47 ok 3 
+     ['Oklahoma City Thunder', 11.1]
+     ['San Antonio Spurs', 8.4]
+     ['Detroit Pistons', 8.4]
+Q48 ok 3 
+     ['Brandin Podziemski', 'Golden State Warriors', 82, 13.8171]
+     ['Moses Moody', 'Golden State Warriors', 60, 12.1333]
+     ['Gui Santos', 'Golden State Warriors', 68, 9.1912]
+Q49 ok 3 
+     ['Miami Heat', 104.22]
+     ['Utah Jazz', 103.54]
+     ['Chicago Bulls', 103.22]
+Q50 ok 1 
+     [8, '2026-01-21', '2026-02-04']
+Q51 ok 1 
+     ['2026-04-09', 'Regular Season', 'New York Knicks', 112, 'Boston Celtics', 106]
+Q52 ok 1 
+     ['Nikola Jokić', '2026-04-12', 'DEN @ SAS', 23]
+Q53 ok 1 
+     ['2025-06-22', '2024-25', 'Oklahoma City Thunder', 103, 'Indiana Pacers', 91]
+Q54 ok 3 
+     ['Bam Adebayo', 83, '2026-03-10', 'MIA vs. WAS']
+     ['Luka Dončić', 60, '2026-03-19', 'LAL @ MIA']
+     ['Nikola Jokić', 56, '2025-12-25', 'DEN vs. MIN']
+Q55 ok 15 
+     ['0022501186', 'Baylor Scheierman', 'BOS vs. ORL', 30, 7, 7]
+     ['0022501187', "Nae'Qwan Tomlin", 'CLE vs. WAS', 26, 8, 5]
+     ['0022501188', 'Paul Reed', 'DET @ IND', 26, 6, 3]
+Q56 ok 5 
+     ['2026-04-12', 'GSW @ LAC', 24]
+     ['2026-04-10', 'GSW @ SAC', 11]
+     ['2026-04-07', 'GSW vs. SAC', 17]
+Q57 ok 54 
+     ['2025-10-21', 'Oklahoma City Thunder', 125, 'Houston Rockets', 124, 6]
+     ['2025-10-23', 'Golden State Warriors', 137, 'Denver Nuggets', 131, 5]
+     ['2025-10-23', 'Indiana Pacers', 135, 'Oklahoma City Thunder', 141, 6]
+Q58 ok 3 
+     ['2026-01-10', 'Utah Jazz', 95, 'Charlotte Hornets', 150, 55]
+     ['2026-01-21', 'New York Knicks', 120, 'Brooklyn Nets', 66, 54]
+     ['2026-02-20', 'Portland Trail Blazers', 103, 'Denver Nuggets', 157, 54]
+Q59 ok 16 
+     ['2010-11', 0.2218]
+     ['2011-12', 0.2257]
+     ['2012-13', 0.2434]
+Q60 ok 3 
+     ['2023-24', 128, 394, 0.3249]
+     ['2024-25', 142, 403, 0.3524]
+     ['2025-26', 122, 350, 0.3486]
+Q61 ok 23 
+     ['2003-04', 'Cleveland Cavaliers', 79, 20.9367]
+     ['2004-05', 'Cleveland Cavaliers', 80, 27.1875]
+     ['2005-06', 'Cleveland Cavaliers', 79, 31.3671]
+Q62 ok 2 
+     ['2025-26', 115.6077, 1]
+     ['1990s', 100.0836, 10]
+Q63 ok 5 
+     ['2021-22', 'Oklahoma City Thunder', 24, 58]
+     ['2022-23', 'Oklahoma City Thunder', 40, 42]
+     ['2023-24', 'Oklahoma City Thunder', 57, 25]
+Q64 ok 11 
+     ['2015-16', 80, 2.3625, None]
+     ['2016-17', 73, 4.9178, 2.5553]
+     ['2017-18', 75, 6.1067, 1.1889]
+Q71 ok 5 
+     ['Jalen Duren', 'Detroit Pistons', 70, 522, 0.6879]
+     ['Deandre Ayton', 'Los Angeles Lakers', 72, 403, 0.6764]
+     ['Neemias Queta', 'Boston Celtics', 76, 326, 0.6736]
+Q72 ok 1 
+     [0.289, 0.1771, 52]
+Q73 ok 6 
+     ['Above the Break 3', 451, 172]
+     ['Restricted Area', 122, 84]
+     ['In The Paint (Non-RA)', 97, 51]
+Q74 ok 1 
+     ['Giannis Antetokounmpo', '2025-26', 0.7736]
+Q75 ok 5 
+     ['OG Anunoby', 'New York Knicks', 88]
+     ['Nickeil Alexander-Walker', 'Atlanta Hawks', 84]
+     ['Mikal Bridges', 'New York Knicks', 80]
+Q76 ok 1 
+     ['Luka Dončić', '2025-26', 0.3594]
+Q77 ok 1 
+     ['Shai Gilgeous-Alexander', '2024-25', 76, 32.6842, 4.9868, 6.3947]
+Q78 ok 3 
+     ['Kareem Abdul-Jabbar', 6]
+     ['Michael Jordan', 5]
+     ['Bill Russell', 5]
+Q79 ok 1 
+     ['Victor Wembanyama', '2023-24']
+Q80 ok 1 
+     ['LeBron James', 22]
+Q85 ok 1 
+     ['Wilt Chamberlain', None, None]

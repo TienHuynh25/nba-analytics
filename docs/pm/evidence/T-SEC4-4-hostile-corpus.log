@@ -1,0 +1,4 @@
+T-QA3 hostile 44 rejected 44
+T-QA4 hostile 27 rejected 27
+corpus 75 accepted 75 sample-using 0 nul/surrogate 0
+corpus before/after: byte-identical (75 entries, accept set + output SQL)

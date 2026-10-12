@@ -50,7 +50,16 @@ models:
       - name: game_id
         data_tests: [not_null, {relationships: {to: ref('games'), field: game_id}}]
       - name: player_id
-        data_tests: [not_null]
+        data_tests:
+          - not_null
+          # Excuses only class 'other' in known_player_career_gaps: player 79635 (1954-55, 63 games,
+          # not in marts.players), decision 0009 Amendment. ref() is not allowed in a test
+          # where, so the seed schema is named directly. Any other orphan id fails.
+          - relationships:
+              to: ref('players')
+              field: player_id
+              config:
+                where: "player_id not in (select player_id from seeds.known_player_career_gaps where class = 'other')"
       - name: season_type
         data_tests: [not_null]
   - name: player_season_stint
@@ -60,7 +69,7 @@ models:
       - name: player_id
         data_tests: [not_null, {relationships: {to: ref('players'), field: player_id}}]
       - name: team_id
-        data_tests: [not_null]
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]
   - name: player_season
     data_tests:
       - dbt_utils_unique_combination: {columns: [player_id, season, season_type]}
@@ -93,12 +102,17 @@ models:
         data_tests: [not_null]
   - name: records
     columns:
+      # player_id is null for team records; relationships ignores nulls.
+      - name: player_id
+        data_tests: [{relationships: {to: ref('players'), field: player_id}}]
       - name: record
         data_tests: [not_null]
       - name: value
         data_tests: [not_null]
       - name: valid_from
         data_tests: [not_null]
+  # Deviations (T-G1c5): records has no natural key (many records share a name across
+  # kinds/ranks), so no unique test; stat_availability has no foreign key (reference table).
   - name: stat_availability
     columns:
       - name: stat
@@ -108,9 +122,20 @@ models:
   - name: player_titles
     data_tests:
       - dbt_utils_unique_combination: {columns: [player_id, season]}
+    columns:
+      - name: player_id
+        data_tests: [not_null, {relationships: {to: ref('players'), field: player_id}}]
+      - name: franchise_id
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]
   - name: player_advanced
     data_tests:
       - dbt_utils_unique_combination: {columns: [player_id, season, season_type]}
+    columns:
+      - name: player_id
+        data_tests: [not_null, {relationships: {to: ref('players'), field: player_id}}]
   - name: team_aliases
     data_tests:
       - dbt_utils_unique_combination: {columns: [alias_norm, team_id]}
+    columns:
+      - name: team_id
+        data_tests: [not_null, {relationships: {to: ref('franchises'), field: franchise_id}}]

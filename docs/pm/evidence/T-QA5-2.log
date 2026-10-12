@@ -1,0 +1,27 @@
+sample clauses: 20 tried, 20 GuardError, 0 not rejected
+OK (no false positive): SELECT 'sample' AS s FROM semantic.players LIMIT 1
+OK (no false positive): SELECT player_id AS sample FROM semantic.players L
+corpus 75 byte-identical vs 4c08895: 75
+GuardError NUL                    the SQL contains a NUL character
+GuardError NUL in string          the SQL contains a NUL character
+GuardError lone high              the SQL contains text that is not valid UTF-8 (sur
+GuardError lone low               the SQL contains text that is not valid UTF-8 (sur
+GuardError reversed pair          the SQL contains text that is not valid UTF-8 (sur
+GuardError high+ascii             the SQL contains text that is not valid UTF-8 (sur
+guard OK   valid emoji            ('exec ok', 100)
+guard OK   zero-width in string   ('exec ok', 100)
+guard OK   zero-width in ident    ('duckdb.Error', 'BinderException')
+guard OK   bidi in string         ('exec ok', 100)
+guard OK   bidi in ident          ('duckdb.Error', 'BinderException')
+GuardError bom                    could not parse the SQL: Invalid expression / Unex
+GuardError overlong text          the SQL is 5031 characters; at most 4000 are allow
+GuardError zwj table              semantic.play‍ers is not a semantic-layer view; al
+guard OK   nbsp                   ('exec ok', 100)
+answer() ok  json-escaped lone surrogate    ok=False attempts=2 rows=0 err='the SQL contains text that is not valid '
+answer() ok  json NUL                       ok=False attempts=2 rows=0 err='the SQL contains a NUL character'
+answer() ok  raw lone surrogate (non-json)  ok=False attempts=2 rows=0 err='the SQL contains text that is not valid '
+answer() ok  high surrogate id              ok=False attempts=2 rows=0 err='the SQL contains text that is not valid '
+answer() ok  bidi                           ok=True attempts=1 rows=100 err='None'
+answer() ok  overlong                       ok=False attempts=2 rows=0 err='the SQL is 9009 characters; at most 4000'
+answer() ok  first bad then good            ok=True attempts=2 rows=3 err='None'
+answer() ok  not json at all                ok=False attempts=2 rows=0 err='the SQL contains a NUL character'

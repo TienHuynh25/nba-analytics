@@ -1,0 +1,68 @@
+'EXPLAIN SELECT 1' contains unsupported syntax. Falling back to parsing as a 'Command'.
+'CALL pragma_database_list()' contains unsupported syntax. Falling back to parsing as a 'Command'.
+OK   UNION                    rows= 100 tail='ntic.players LIMIT 100'
+OK   UNION lim5               rows=   5 tail='mantic.players LIMIT 5'
+OK   UNION lim5000            rows= 100 tail='ntic.players LIMIT 100'
+OK   UNION ORDER+LIM          rows=   7 tail='ers ORDER BY 1 LIMIT 7'
+OK   UNION ALL                rows= 100 tail='ntic.players LIMIT 100'
+OK   UNION ALL lim5           rows=   5 tail='mantic.players LIMIT 5'
+OK   UNION ALL lim5000        rows= 100 tail='ntic.players LIMIT 100'
+OK   UNION ALL ORDER+LIM      rows=   7 tail='ers ORDER BY 1 LIMIT 7'
+OK   INTERSECT                rows= 100 tail='ntic.players LIMIT 100'
+OK   INTERSECT lim5           rows=   5 tail='mantic.players LIMIT 5'
+OK   INTERSECT lim5000        rows= 100 tail='ntic.players LIMIT 100'
+OK   INTERSECT ORDER+LIM      rows=   7 tail='ers ORDER BY 1 LIMIT 7'
+OK   EXCEPT                   rows=   0 tail='ntic.players LIMIT 100'
+OK   EXCEPT lim5              rows=   0 tail='mantic.players LIMIT 5'
+OK   EXCEPT lim5000           rows=   0 tail='ntic.players LIMIT 100'
+OK   EXCEPT ORDER+LIM         rows=   0 tail='ers ORDER BY 1 LIMIT 7'
+OK   CTE+UNION                rows= 100 tail='er_id FROM t LIMIT 100'
+OK   CTE+UNION ALL lim5000    rows= 100 tail='er_id FROM t LIMIT 100'
+OK   3-way                    rows= 100 tail='ntic.players LIMIT 100'
+OK   plain select             rows= 100 tail='ntic.players LIMIT 100'
+OK   plain lim5000            rows= 100 tail='ntic.players LIMIT 100'
+rej  raw table in 2nd branch    marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  raw in 1st branch          marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  staging in INTERSECT       staging.stg_team_game is not a semantic-layer view; allowed views: sem
+rej  raw in EXCEPT inside CTE   marts.players is not a semantic-layer view; allowed views: semantic.aw
+rej  raw in subquery in WHERE   marts.player_season is not a semantic-layer view; allowed views: seman
+rej  raw in scalar subq         marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  landing                    landing.leaguegamelog_p__leaguegamelog is not a semantic-layer view; a
+rej  read_csv branch            reading READ_CSV('x.csv') is not allowed; query semantic views only
+rej  read_parquet branch        reading READ_PARQUET('x.parquet') is not allowed; query semantic views
+rej  quoted path branch         x.json is not a semantic-layer view; allowed views: semantic.awards, s
+rej  ATTACH                     only SELECT is allowed, not ATTACH
+rej  COPY                       only SELECT is allowed, not COPY
+rej  PRAGMA                     only SELECT is allowed, not PRAGMA
+rej  SET                        only SELECT is allowed, not SET
+rej  stacked                    exactly one statement is allowed
+rej  stacked select             exactly one statement is allowed
+rej  comment trick              marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  comment hides stack        exactly one statement is allowed
+rej  fn repeat                  function repeat() is not allowed; use aggregates, arithmetic, round/co
+rej  fn current_setting         function current_setting() is not allowed; use aggregates, arithmetic,
+rej  fn version                 function current_version() is not allowed; use aggregates, arithmetic,
+rej  fn read_text               function read_text() is not allowed; use aggregates, arithmetic, round
+rej  fn in branch               function generate_series() is not allowed; use aggregates, arithmetic,
+rej  schema-qualified raw       main.games is not a semantic-layer view; allowed views: semantic.award
+rej  catalog-qualified          database-qualified names are not allowed
+rej  quoted raw ident           marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  quoted upper raw           marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  case-mixed raw             marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  quoted dotted name         semantic.players.x is not a semantic-layer view; allowed views: semant
+rej  dot-in-quote bypass        marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  table func in CTE          reading GLOB('*') is not allowed; query semantic views only
+rej  lateral fn                 marts.games is not a semantic-layer view; allowed views: semantic.awar
+rej  paren union                only SELECT is allowed, not SUBQUERY
+rej  empty                      exactly one statement is allowed
+rej  VALUES                     only SELECT is allowed, not VALUES
+rej  DESCRIBE                   only SELECT is allowed, not DESCRIBE
+rej  SHOW                       only SELECT is allowed, not SHOW
+rej  EXPLAIN                    only SELECT is allowed, not COMMAND
+rej  INSTALL                    only SELECT is allowed, not INSTALL
+rej  CALL                       only SELECT is allowed, not COMMAND
+rej  COPY FROM                  only SELECT is allowed, not COPY
+rej  CREATE VIEW AS UNION       only SELECT is allowed, not CREATE
+rej  INSERT SELECT UNION        only SELECT is allowed, not INSERT
+rej  WITH INSERT                only SELECT is allowed, not INSERT
+hostile 44 rejected 44

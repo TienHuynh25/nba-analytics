@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/tienhuynh/dev/nba-analytics
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 14 items
+
+tests/test_incremental.py .......                                        [ 50%]
+tests/test_refresh.py .......                                            [100%]
+
+============================== 14 passed in 1.01s ==============================

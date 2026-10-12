@@ -1,0 +1,14 @@
+total cases 305 weighted 320
+by type Counter({'paraphrase': 170, 'seed': 85, 'entity_variant': 30, 'multi_turn': 10, 'hard_negative': 10})
+type weighted {<CaseType.hard_negative: 'hard_negative'>: 10, <CaseType.multi_turn: 'multi_turn'>: 25, <CaseType.seed: 'seed'>: 85, <CaseType.entity_variant: 'entity_variant'>: 30, <CaseType.paraphrase: 'paraphrase'>: 170}
+seed cat Counter({'Player season': 12, 'Records': 12, 'Leaders': 10, 'Comparison': 8, 'Team': 8, 'Game': 8, 'Definition': 8, 'Trend': 6, 'Scope limits': 5, 'Shooting': 4, 'Awards': 4})
+all cat Counter({'Player season': 61, 'Records': 37, 'Comparison': 35, 'Leaders': 33, 'Team': 29, 'Game': 26, 'Definition': 24, 'Trend': 18, 'Scope limits': 15, 'Shooting': 14, 'Awards': 13})
+path (units) Counter({'stats': 284, 'knowledge': 18, 'refuse': 12, 'mixed': 6})
+critical cases 51 seeds crit ['Q31', 'Q32', 'Q33', 'Q34', 'Q35', 'Q36', 'Q37', 'Q38', 'Q39', 'Q40', 'Q41', 'Q42', 'Q81', 'Q82', 'Q83', 'Q84', 'Q85']
+crit by type Counter({'paraphrase': 34, 'seed': 17})
+split Counter({'dev': 213, 'heldout': 92})
+seeds w/ !=2 para {}
+rel-time 199
+tags Counter({'relative-time': 199, 'paraphrase': 170, 'unreviewed': 170, 'default-season': 50, 'entity-variant': 30, 'multi-turn': 10, 'hard-negative': 10})
+entity_variant w/o entities ['Q48-v1']
+hn [('H01', 'clarify'), ('H02', 'clarify'), ('H03', 'clarify'), ('H04', 'clarify'), ('H05', 'no_verdict'), ('H06', 'no_verdict'), ('H07', 'no_verdict'), ('H08', 'not_tracked'), ('H09', 'not_tracked'), ('H10', 'not_tracked')]

@@ -1,0 +1,12 @@
+All checks passed!
+Success: no issues found in 117 source files
+........................................................................ [ 74%]
+........................................................................ [ 82%]
+........................................................................ [ 90%]
+........................................................................ [ 98%]
+..........                                                               [100%]
+873 passed, 1 skipped, 1 deselected in 80.07s (0:01:20)
+PASSED tests/test_career_gaps.py::test_partial_player_gets_a_missing_seasons_note_on_every_tool
+PASSED tests/test_career_gaps.py::test_other_class_player_with_no_rows_gets_the_sentence_and_the_missing_note
+PASSED tests/test_career_gaps.py::test_snapshot_without_the_seed_table_has_no_gaps
+19 passed in 4.35s

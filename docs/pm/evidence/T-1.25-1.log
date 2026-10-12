@@ -1,0 +1,16 @@
+ImportError while loading conftest '/Users/tienhuynh/dev/nba-analytics/tests/conftest.py'.
+tests/conftest.py:4: in <module>
+    import duckdb
+E   ModuleNotFoundError: No module named 'duckdb'
+
+--- rerun via python -m pytest (stale .venv/bin shebangs point at /Users/tienhuynh/Desktop/nba-analytics)
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/tienhuynh/dev/nba-analytics
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 6 items
+
+tests/test_snapshots.py ......                                           [100%]
+
+============================== 6 passed in 0.26s ===============================

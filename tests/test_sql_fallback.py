@@ -130,3 +130,22 @@ def test_tool_cards_regenerate_from_schemas() -> None:
     assert len(cards) == 10
     assert "metric (required)" in cards["tool:get_leaders"]
     assert "Example questions" in cards["tool:get_games"]
+
+
+def test_run_with_timeout_returns_at_most_max_rows(fixture_db_path: Path) -> None:
+    con = locked_connection(fixture_db_path, None)
+    cols, rows = run_with_timeout(con, "select player_id from semantic.player_game_log")
+    assert cols == ["player_id"] and len(rows) == 100
+
+
+def test_percent_limit_returns_100_rows(fixture_db_path: Path) -> None:
+    fb, _ = make(fixture_db_path, ["select player_id from semantic.player_game_log limit 100%"])
+    r = fb.answer("every game log row")
+    assert r.ok and len(r.rows) == 100 and r.sql and r.sql.endswith("LIMIT 100")
+
+
+def test_deep_nesting_is_a_guard_error_then_repaired(fixture_db_path: Path) -> None:
+    deep = "select " + "(" * 800 + "1" + ")" * 800 + " from semantic.games"
+    fb, llm = make(fixture_db_path, [deep, "select count(*) from semantic.games"])
+    r = fb.answer("how many games")
+    assert r.ok and r.attempts == 2 and "nested too deeply" in llm.seen[1][-1].content

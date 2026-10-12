@@ -45,6 +45,9 @@ def write_raw(
 
 
 def landed(tmp: Path, **kw: Any) -> tuple[dict[str, int], duckdb.DuckDBPyConnection]:
+    # The synthetic cache uses a 4-column CommonAllPlayers, not the real contract, so these
+    # flattening tests skip contract validation (covered in tests/test_sec3_hardening.py).
+    kw.setdefault("validator", None)
     counts = land.land(tmp / "raw", tmp / "landing.duckdb", tmp / "work", [KEY], **kw)
     return counts, duckdb.connect(str(tmp / "landing.duckdb"), read_only=True)
 
@@ -137,7 +140,9 @@ def test_rebuild_is_idempotent_and_cleans_work_files(tmp_path: Path) -> None:
 def test_ragged_row_fails_loudly_instead_of_shifting_cells(tmp_path: Path) -> None:
     write_raw(tmp_path / "raw", "2026-10-01", "2026-10-01T05:00:00+00:00", [[1, "A", 1]])  # 3 cells
     with pytest.raises(ValueError):
-        land.land(tmp_path / "raw", tmp_path / "landing.duckdb", tmp_path / "work", [KEY])
+        land.land(
+            tmp_path / "raw", tmp_path / "landing.duckdb", tmp_path / "work", [KEY], validator=None
+        )
 
 
 def test_awkward_strings_survive_roundtrip(tmp_path: Path) -> None:

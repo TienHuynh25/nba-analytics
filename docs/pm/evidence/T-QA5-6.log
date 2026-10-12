@@ -1,0 +1,5 @@
+hostile 44 rejected 44
+not-rejected: 0 (expect 0)
+queries 75 identical accepted output 75 diffs []
+over-100 results: 0
+CRASH not str None         TypeError: object of type 'NoneType' has no len()

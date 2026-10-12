@@ -1,0 +1,232 @@
+.........................................FF.F.....F.....F.....F.....F... [ 77%]
+..F...........F....FF                                                    [100%]
+=================================== FAILURES ===================================
+_________ test_varying_endpoint_lists_exact_variants[commonplayerinfo] _________
+
+key = 'commonplayerinfo'
+
+    @pytest.mark.parametrize("key", VARYING)
+    def test_varying_endpoint_lists_exact_variants(key: str) -> None:
+>       variants = _variants(key)
+                   ^^^^^^^^^^^^^^
+
+tests/test_contracts.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+key = 'commonplayerinfo'
+
+    def _variants(key: str) -> list[dict[str, Any]]:
+        schema = json.loads((SCHEMA_DIR / f"{key}.json").read_text())
+        name = SPECS[key].result_sets[0]
+        for part in schema["properties"]["resultSets"]["allOf"]:
+            item = part["contains"]
+            if item["properties"]["name"]["const"] == name:
+                variants: list[dict[str, Any]] = [
+>                   v["properties"] for v in item.get("anyOf", [item["properties"]])
+                    ^^^^^^^^^^^^^^^
+                ]
+E               KeyError: 'properties'
+
+tests/test_contracts.py:98: KeyError
+________ test_varying_endpoint_lists_exact_variants[leaguestandingsv3] _________
+
+key = 'leaguestandingsv3'
+
+    @pytest.mark.parametrize("key", VARYING)
+    def test_varying_endpoint_lists_exact_variants(key: str) -> None:
+>       variants = _variants(key)
+                   ^^^^^^^^^^^^^^
+
+tests/test_contracts.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+key = 'leaguestandingsv3'
+
+    def _variants(key: str) -> list[dict[str, Any]]:
+        schema = json.loads((SCHEMA_DIR / f"{key}.json").read_text())
+        name = SPECS[key].result_sets[0]
+        for part in schema["properties"]["resultSets"]["allOf"]:
+            item = part["contains"]
+            if item["properties"]["name"]["const"] == name:
+                variants: list[dict[str, Any]] = [
+>                   v["properties"] for v in item.get("anyOf", [item["properties"]])
+                    ^^^^^^^^^^^^^^^
+                ]
+E               KeyError: 'properties'
+
+tests/test_contracts.py:98: KeyError
+________________ test_cell_type_change_fails[commonplayerinfo] _________________
+
+key = 'commonplayerinfo'
+
+    @pytest.mark.parametrize("key", RESULT_SET_KEYS)
+    def test_cell_type_change_fails(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        rs = _first_set(body, key)
+        row = rs["rowSet"][0]
+        i = next(i for i, v in enumerate(row) if v is not None)
+        row[i] = 12345 if isinstance(row[i], str) else str(row[i])  # e.g. PERSON_ID 2544 -> "2544"
+>       with pytest.raises(ContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_contracts.py:121: Failed
+________________ test_cell_type_change_fails[leaguestandingsv3] ________________
+
+key = 'leaguestandingsv3'
+
+    @pytest.mark.parametrize("key", RESULT_SET_KEYS)
+    def test_cell_type_change_fails(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        rs = _first_set(body, key)
+        row = rs["rowSet"][0]
+        i = next(i for i, v in enumerate(row) if v is not None)
+        row[i] = 12345 if isinstance(row[i], str) else str(row[i])  # e.g. PERSON_ID 2544 -> "2544"
+>       with pytest.raises(ContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_contracts.py:121: Failed
+_________________ test_swapped_headers_fail[commonplayerinfo] __________________
+
+key = 'commonplayerinfo'
+
+    @pytest.mark.parametrize("key", RESULT_SET_KEYS)
+    def test_swapped_headers_fail(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        h = _first_set(body, key)["headers"]
+        h[0], h[1] = h[1], h[0]
+>       with pytest.raises(ContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_contracts.py:130: Failed
+_________________ test_swapped_headers_fail[leaguestandingsv3] _________________
+
+key = 'leaguestandingsv3'
+
+    @pytest.mark.parametrize("key", RESULT_SET_KEYS)
+    def test_swapped_headers_fail(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        h = _first_set(body, key)["headers"]
+        h[0], h[1] = h[1], h[0]
+>       with pytest.raises(ContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_contracts.py:130: Failed
+__________________ test_extra_column_fails[commonplayerinfo] ___________________
+
+key = 'commonplayerinfo'
+
+    @pytest.mark.parametrize("key", RESULT_SET_KEYS)
+    def test_extra_column_fails(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        rs = _first_set(body, key)
+        rs["headers"].append("EXTRA_COL")
+        for row in rs["rowSet"]:
+            row.append(0)
+>       with pytest.raises(ContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_contracts.py:141: Failed
+__________________ test_extra_column_fails[leaguestandingsv3] __________________
+
+key = 'leaguestandingsv3'
+
+    @pytest.mark.parametrize("key", RESULT_SET_KEYS)
+    def test_extra_column_fails(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        rs = _first_set(body, key)
+        rs["headers"].append("EXTRA_COL")
+        for row in rs["rowSet"]:
+            row.append(0)
+>       with pytest.raises(ContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_contracts.py:141: Failed
+___________________ test_short_row_fails[leaguestandingsv3] ____________________
+
+key = 'leaguestandingsv3'
+
+    @pytest.mark.parametrize("key", RESULT_SET_KEYS)
+    def test_short_row_fails(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        _first_set(body, key)["rowSet"][0].pop()
+>       with pytest.raises(ContractError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ContractError
+
+tests/test_contracts.py:149: Failed
+___ test_headers_of_one_variant_with_rows_of_another_fail[commonplayerinfo] ____
+
+key = 'commonplayerinfo'
+
+    @pytest.mark.parametrize("key", VARYING)
+    def test_headers_of_one_variant_with_rows_of_another_fail(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        rs = _first_set(body, key)
+>       other = next(v for v in _variants(key) if v["headers"]["const"] != rs["headers"])
+                                ^^^^^^^^^^^^^^
+
+tests/test_contracts.py:157: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+key = 'commonplayerinfo'
+
+    def _variants(key: str) -> list[dict[str, Any]]:
+        schema = json.loads((SCHEMA_DIR / f"{key}.json").read_text())
+        name = SPECS[key].result_sets[0]
+        for part in schema["properties"]["resultSets"]["allOf"]:
+            item = part["contains"]
+            if item["properties"]["name"]["const"] == name:
+                variants: list[dict[str, Any]] = [
+>                   v["properties"] for v in item.get("anyOf", [item["properties"]])
+                    ^^^^^^^^^^^^^^^
+                ]
+E               KeyError: 'properties'
+
+tests/test_contracts.py:98: KeyError
+___ test_headers_of_one_variant_with_rows_of_another_fail[leaguestandingsv3] ___
+
+key = 'leaguestandingsv3'
+
+    @pytest.mark.parametrize("key", VARYING)
+    def test_headers_of_one_variant_with_rows_of_another_fail(key: str) -> None:
+        body = copy.deepcopy(sample(key))
+        rs = _first_set(body, key)
+>       other = next(v for v in _variants(key) if v["headers"]["const"] != rs["headers"])
+                                ^^^^^^^^^^^^^^
+
+tests/test_contracts.py:157: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+key = 'leaguestandingsv3'
+
+    def _variants(key: str) -> list[dict[str, Any]]:
+        schema = json.loads((SCHEMA_DIR / f"{key}.json").read_text())
+        name = SPECS[key].result_sets[0]
+        for part in schema["properties"]["resultSets"]["allOf"]:
+            item = part["contains"]
+            if item["properties"]["name"]["const"] == name:
+                variants: list[dict[str, Any]] = [
+>                   v["properties"] for v in item.get("anyOf", [item["properties"]])
+                    ^^^^^^^^^^^^^^^
+                ]
+E               KeyError: 'properties'
+
+tests/test_contracts.py:98: KeyError
+=========================== short test summary info ============================
+FAILED tests/test_contracts.py::test_varying_endpoint_lists_exact_variants[commonplayerinfo]
+FAILED tests/test_contracts.py::test_varying_endpoint_lists_exact_variants[leaguestandingsv3]
+FAILED tests/test_contracts.py::test_cell_type_change_fails[commonplayerinfo]
+FAILED tests/test_contracts.py::test_cell_type_change_fails[leaguestandingsv3]
+FAILED tests/test_contracts.py::test_swapped_headers_fail[commonplayerinfo]
+FAILED tests/test_contracts.py::test_swapped_headers_fail[leaguestandingsv3]
+FAILED tests/test_contracts.py::test_extra_column_fails[commonplayerinfo] - F...
+FAILED tests/test_contracts.py::test_extra_column_fails[leaguestandingsv3] - ...
+FAILED tests/test_contracts.py::test_short_row_fails[leaguestandingsv3] - Fai...
+FAILED tests/test_contracts.py::test_headers_of_one_variant_with_rows_of_another_fail[commonplayerinfo]
+FAILED tests/test_contracts.py::test_headers_of_one_variant_with_rows_of_another_fail[leaguestandingsv3]
