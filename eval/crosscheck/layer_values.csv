@@ -1,0 +1,952 @@
+block,layer,key,metric,gold,recomputed,diff,gold_display,recomputed_display,result
+Q01,A-raw,shai gilgeous-alexander,points_per_game,31.132353,31.13235294117647,-0.0,31.1,31.1,OK
+Q01,B-nba,shai gilgeous-alexander,points_per_game,31.132353,31.13235294117647,-0.0,31.1,31.1,OK
+Q02,A-raw,nikola jokic,games_played,65,65,0,65.0,65.0,OK
+Q02,A-raw,nikola jokic,minutes_per_game,34.846154,34.84615384615385,-0.0,34.8,34.8,OK
+Q02,A-raw,nikola jokic,points_per_game,27.676923,27.676923076923078,0.0,27.7,27.7,OK
+Q02,A-raw,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+Q02,A-raw,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q02,A-raw,nikola jokic,steals_per_game,1.415385,1.4153846153846155,-0.0,1.4,1.4,OK
+Q02,A-raw,nikola jokic,blocks_per_game,0.815385,0.8153846153846154,-0.0,0.8,0.8,OK
+Q02,A-raw,nikola jokic,field_goal_pct,0.568905,0.568904593639576,-0.0,56.9,56.9,OK
+Q02,A-raw,nikola jokic,three_point_pct,0.379661,0.37966101694915255,0.0,38.0,38.0,OK
+Q02,A-raw,nikola jokic,free_throw_pct,0.83125,0.83125,0.0,83.1,83.1,OK
+Q02,B-nba,nikola jokic,games_played,65,65,0,65.0,65.0,OK
+Q02,B-nba,nikola jokic,minutes_per_game,34.846154,34.843923076923076,-0.002231,34.8,34.8,OK
+Q02,B-nba,nikola jokic,points_per_game,27.676923,27.676923076923078,0.0,27.7,27.7,OK
+Q02,B-nba,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+Q02,B-nba,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q02,B-nba,nikola jokic,steals_per_game,1.415385,1.4153846153846155,-0.0,1.4,1.4,OK
+Q02,B-nba,nikola jokic,blocks_per_game,0.815385,0.8153846153846154,-0.0,0.8,0.8,OK
+Q02,B-nba,nikola jokic,field_goal_pct,0.568905,0.568904593639576,-0.0,56.9,56.9,OK
+Q02,B-nba,nikola jokic,three_point_pct,0.379661,0.37966101694915255,0.0,38.0,38.0,OK
+Q02,B-nba,nikola jokic,free_throw_pct,0.83125,0.83125,0.0,83.1,83.1,OK
+Q03,A-raw,nikola jokic,triple_doubles,34,34,0,34.0,34.0,OK
+Q03,B-nba,nikola jokic,triple_doubles,34,34,0,34.0,34.0,OK
+Q04,A-raw,victor wembanyama,blocks_per_game,3.078125,3.078125,0.0,3.1,3.1,OK
+Q04,B-nba,victor wembanyama,blocks_per_game,3.078125,3.078125,0.0,3.1,3.1,OK
+Q05,A-raw,"cooper flagg, 2025-26",games_played,70,70,0,70.0,70.0,OK
+Q05,A-raw,"cooper flagg, 2025-26",minutes_per_game,33.485714,33.48571428571429,0.0,33.5,33.5,OK
+Q05,A-raw,"cooper flagg, 2025-26",points_per_game,21.042857,21.042857142857144,0.0,21.0,21.0,OK
+Q05,A-raw,"cooper flagg, 2025-26",rebounds_per_game,6.657143,6.6571428571428575,-0.0,6.7,6.7,OK
+Q05,A-raw,"cooper flagg, 2025-26",assists_per_game,4.514286,4.514285714285714,-0.0,4.5,4.5,OK
+Q05,A-raw,"cooper flagg, 2025-26",steals_per_game,1.2,1.2,0.0,1.2,1.2,OK
+Q05,A-raw,"cooper flagg, 2025-26",blocks_per_game,0.914286,0.9142857142857143,-0.0,0.9,0.9,OK
+Q05,A-raw,"cooper flagg, 2025-26",field_goal_pct,0.468174,0.46817420435510887,0.0,46.8,46.8,OK
+Q05,A-raw,"cooper flagg, 2025-26",three_point_pct,0.295082,0.29508196721311475,-0.0,29.5,29.5,OK
+Q05,A-raw,"cooper flagg, 2025-26",free_throw_pct,0.827485,0.827485380116959,0.0,82.7,82.7,OK
+Q05,B-nba,"cooper flagg, 2025-26",games_played,70,70,0,70.0,70.0,OK
+Q05,B-nba,"cooper flagg, 2025-26",minutes_per_game,33.485714,33.483690476190475,-0.002024,33.5,33.5,OK
+Q05,B-nba,"cooper flagg, 2025-26",points_per_game,21.042857,21.042857142857144,0.0,21.0,21.0,OK
+Q05,B-nba,"cooper flagg, 2025-26",rebounds_per_game,6.657143,6.6571428571428575,-0.0,6.7,6.7,OK
+Q05,B-nba,"cooper flagg, 2025-26",assists_per_game,4.514286,4.514285714285714,-0.0,4.5,4.5,OK
+Q05,B-nba,"cooper flagg, 2025-26",steals_per_game,1.2,1.2,0.0,1.2,1.2,OK
+Q05,B-nba,"cooper flagg, 2025-26",blocks_per_game,0.914286,0.9142857142857143,-0.0,0.9,0.9,OK
+Q05,B-nba,"cooper flagg, 2025-26",field_goal_pct,0.468174,0.46817420435510887,0.0,46.8,46.8,OK
+Q05,B-nba,"cooper flagg, 2025-26",three_point_pct,0.295082,0.29508196721311475,-0.0,29.5,29.5,OK
+Q05,B-nba,"cooper flagg, 2025-26",free_throw_pct,0.827485,0.827485380116959,0.0,82.7,82.7,OK
+Q06,A-raw,stephen curry,threes_made,190,190,0,190.0,190.0,OK
+Q06,B-nba,stephen curry,threes_made,190,190,0,190.0,190.0,OK
+Q07,A-raw,lebron james,games_played,60,60,0,60.0,60.0,OK
+Q07,A-raw,lebron james,minutes_per_game,33.15,33.15,0.0,33.2,33.2,OK
+Q07,A-raw,lebron james,points_per_game,20.933333,20.933333333333334,0.0,20.9,20.9,OK
+Q07,A-raw,lebron james,rebounds_per_game,6.066667,6.066666666666666,-0.0,6.1,6.1,OK
+Q07,A-raw,lebron james,assists_per_game,7.2,7.2,0.0,7.2,7.2,OK
+Q07,A-raw,lebron james,steals_per_game,1.2,1.2,0.0,1.2,1.2,OK
+Q07,A-raw,lebron james,blocks_per_game,0.583333,0.5833333333333334,0.0,0.6,0.6,OK
+Q07,A-raw,lebron james,field_goal_pct,0.51469,0.514689880304679,-0.0,51.5,51.5,OK
+Q07,A-raw,lebron james,three_point_pct,0.316872,0.3168724279835391,0.0,31.7,31.7,OK
+Q07,A-raw,lebron james,free_throw_pct,0.737342,0.7373417721518988,-0.0,73.7,73.7,OK
+Q07,B-nba,lebron james,games_played,60,60,0,60.0,60.0,OK
+Q07,B-nba,lebron james,minutes_per_game,33.15,33.15091666666667,0.000917,33.2,33.2,OK
+Q07,B-nba,lebron james,points_per_game,20.933333,20.933333333333334,0.0,20.9,20.9,OK
+Q07,B-nba,lebron james,rebounds_per_game,6.066667,6.066666666666666,-0.0,6.1,6.1,OK
+Q07,B-nba,lebron james,assists_per_game,7.2,7.2,0.0,7.2,7.2,OK
+Q07,B-nba,lebron james,steals_per_game,1.2,1.2,0.0,1.2,1.2,OK
+Q07,B-nba,lebron james,blocks_per_game,0.583333,0.5833333333333334,0.0,0.6,0.6,OK
+Q07,B-nba,lebron james,field_goal_pct,0.51469,0.514689880304679,-0.0,51.5,51.5,OK
+Q07,B-nba,lebron james,three_point_pct,0.316872,0.3168724279835391,0.0,31.7,31.7,OK
+Q07,B-nba,lebron james,free_throw_pct,0.737342,0.7373417721518988,-0.0,73.7,73.7,OK
+Q08,A-raw,"luka doncic, los angeles lakers",field_goal_pct,0.475635,0.4756348661633493,-0.0,47.6,47.6,OK
+Q08,B-nba,"luka doncic, los angeles lakers",field_goal_pct,0.475635,0.4756348661633493,-0.0,47.6,47.6,OK
+Q09,A-raw,anthony edwards,minutes_per_game,35.032787,35.032786885245905,-0.0,35.0,35.0,OK
+Q09,B-nba,anthony edwards,minutes_per_game,35.032787,35.02612021857924,-0.006667,35.0,35.0,OK
+Q10,A-raw,giannis antetokounmpo,free_throw_pct,0.64986,0.6498599439775911,-0.0,65.0,65.0,OK
+Q10,B-nba,giannis antetokounmpo,free_throw_pct,0.64986,0.6498599439775911,-0.0,65.0,65.0,OK
+Q11,A-raw,jayson tatum,games_played,16,16,0,16.0,16.0,OK
+Q11,B-nba,jayson tatum,games_played,16,16,0,16.0,16.0,OK
+Q12,A-raw,shai gilgeous-alexander,games_played,23,23,0,23.0,23.0,OK
+Q12,A-raw,shai gilgeous-alexander,minutes_per_game,37.0,37.0,0.0,37.0,37.0,OK
+Q12,A-raw,shai gilgeous-alexander,points_per_game,29.913043,29.91304347826087,0.0,29.9,29.9,OK
+Q12,A-raw,shai gilgeous-alexander,rebounds_per_game,5.347826,5.3478260869565215,0.0,5.3,5.3,OK
+Q12,A-raw,shai gilgeous-alexander,assists_per_game,6.521739,6.521739130434782,0.0,6.5,6.5,OK
+Q12,A-raw,shai gilgeous-alexander,steals_per_game,1.652174,1.6521739130434783,-0.0,1.7,1.7,OK
+Q12,A-raw,shai gilgeous-alexander,blocks_per_game,0.869565,0.8695652173913043,0.0,0.9,0.9,OK
+Q12,A-raw,shai gilgeous-alexander,field_goal_pct,0.462302,0.4623015873015873,-0.0,46.2,46.2,OK
+Q12,A-raw,shai gilgeous-alexander,three_point_pct,0.283186,0.2831858407079646,-0.0,28.3,28.3,OK
+Q12,A-raw,shai gilgeous-alexander,free_throw_pct,0.875576,0.8755760368663594,0.0,87.6,87.6,OK
+Q12,B-nba,shai gilgeous-alexander,games_played,23,23,0,23.0,23.0,OK
+Q12,B-nba,shai gilgeous-alexander,minutes_per_game,37.0,36.99949275362319,-0.000507,37.0,37.0,OK
+Q12,B-nba,shai gilgeous-alexander,points_per_game,29.913043,29.91304347826087,0.0,29.9,29.9,OK
+Q12,B-nba,shai gilgeous-alexander,rebounds_per_game,5.347826,5.3478260869565215,0.0,5.3,5.3,OK
+Q12,B-nba,shai gilgeous-alexander,assists_per_game,6.521739,6.521739130434782,0.0,6.5,6.5,OK
+Q12,B-nba,shai gilgeous-alexander,steals_per_game,1.652174,1.6521739130434783,-0.0,1.7,1.7,OK
+Q12,B-nba,shai gilgeous-alexander,blocks_per_game,0.869565,0.8695652173913043,0.0,0.9,0.9,OK
+Q12,B-nba,shai gilgeous-alexander,field_goal_pct,0.462302,0.4623015873015873,-0.0,46.2,46.2,OK
+Q12,B-nba,shai gilgeous-alexander,three_point_pct,0.283186,0.2831858407079646,-0.0,28.3,28.3,OK
+Q12,B-nba,shai gilgeous-alexander,free_throw_pct,0.875576,0.8755760368663594,0.0,87.6,87.6,OK
+Q13,A-raw,luka doncic,points_per_game,33.484375,33.484375,0.0,33.5,33.5,OK
+Q13,B-nba,luka doncic,points_per_game,33.484375,33.484375,0.0,33.5,33.5,OK
+Q14,A-raw,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+Q14,A-raw,karl-anthony towns,rebounds_per_game,11.853333,11.853333333333333,0.0,11.9,11.9,OK
+Q14,A-raw,donovan clingan,rebounds_per_game,11.584416,11.584415584415584,-0.0,11.6,11.6,OK
+Q14,A-raw,victor wembanyama,rebounds_per_game,11.5,11.5,0.0,11.5,11.5,OK
+Q14,A-raw,rudy gobert,rebounds_per_game,11.473684,11.473684210526315,0.0,11.5,11.5,OK
+Q14,B-nba,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+Q14,B-nba,karl-anthony towns,rebounds_per_game,11.853333,11.853333333333333,0.0,11.9,11.9,OK
+Q14,B-nba,donovan clingan,rebounds_per_game,11.584416,11.584415584415584,-0.0,11.6,11.6,OK
+Q14,B-nba,victor wembanyama,rebounds_per_game,11.5,11.5,0.0,11.5,11.5,OK
+Q14,B-nba,rudy gobert,rebounds_per_game,11.473684,11.473684210526315,0.0,11.5,11.5,OK
+Q15,A-raw,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q15,B-nba,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q16,A-raw,victor wembanyama,blocks,197,197,0,197.0,197.0,OK
+Q16,B-nba,victor wembanyama,blocks,197,197,0,197.0,197.0,OK
+Q17,A-raw,luke kennard,three_point_pct,0.477551,0.4775510204081633,0.0,47.8,47.8,OK
+Q17,B-nba,luke kennard,three_point_pct,0.477551,0.4775510204081633,0.0,47.8,47.8,OK
+Q18,A-raw,karl-anthony towns,double_doubles,56,56,0,56.0,56.0,OK
+Q18,B-nba,karl-anthony towns,double_doubles,56,56,0,56.0,56.0,OK
+Q19,A-raw,ausar thompson,steals_per_game,2.0,2.0,0.0,2.0,2.0,OK
+Q19,B-nba,ausar thompson,steals_per_game,2.0,2.0,0.0,2.0,2.0,OK
+Q20,A-raw,cooper flagg,points_per_game,21.042857,21.042857142857144,0.0,21.0,21.0,OK
+Q20,B-nba,cooper flagg,points_per_game,21.042857,21.042857142857144,0.0,21.0,21.0,OK
+Q21,A-raw,luka doncic,forty_point_games,16,16,0,16.0,16.0,OK
+Q21,B-nba,luka doncic,forty_point_games,16,16,0,16.0,16.0,OK
+Q22,A-raw,shai gilgeous-alexander,plus_minus,788,788,0,788.0,788.0,OK
+Q22,B-nba,shai gilgeous-alexander,plus_minus,788,788,0,788.0,788.0,OK
+Q23,A-raw,nikola jokic,games_played,65,65,0,65.0,65.0,OK
+Q23,A-raw,nikola jokic,minutes_per_game,34.846154,34.84615384615385,-0.0,34.8,34.8,OK
+Q23,A-raw,nikola jokic,points_per_game,27.676923,27.676923076923078,0.0,27.7,27.7,OK
+Q23,A-raw,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+Q23,A-raw,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q23,A-raw,nikola jokic,steals_per_game,1.415385,1.4153846153846155,-0.0,1.4,1.4,OK
+Q23,A-raw,nikola jokic,blocks_per_game,0.815385,0.8153846153846154,-0.0,0.8,0.8,OK
+Q23,A-raw,nikola jokic,field_goal_pct,0.568905,0.568904593639576,-0.0,56.9,56.9,OK
+Q23,A-raw,nikola jokic,three_point_pct,0.379661,0.37966101694915255,0.0,38.0,38.0,OK
+Q23,A-raw,nikola jokic,free_throw_pct,0.83125,0.83125,0.0,83.1,83.1,OK
+Q23,A-raw,shai gilgeous-alexander,games_played,68,68,0,68.0,68.0,OK
+Q23,A-raw,shai gilgeous-alexander,minutes_per_game,33.220588,33.220588235294116,0.0,33.2,33.2,OK
+Q23,A-raw,shai gilgeous-alexander,points_per_game,31.132353,31.13235294117647,-0.0,31.1,31.1,OK
+Q23,A-raw,shai gilgeous-alexander,rebounds_per_game,4.294118,4.294117647058823,-0.0,4.3,4.3,OK
+Q23,A-raw,shai gilgeous-alexander,assists_per_game,6.588235,6.588235294117647,0.0,6.6,6.6,OK
+Q23,A-raw,shai gilgeous-alexander,steals_per_game,1.397059,1.3970588235294117,-0.0,1.4,1.4,OK
+Q23,A-raw,shai gilgeous-alexander,blocks_per_game,0.764706,0.7647058823529411,-0.0,0.8,0.8,OK
+Q23,A-raw,shai gilgeous-alexander,field_goal_pct,0.553369,0.5533686601059803,-0.0,55.3,55.3,OK
+Q23,A-raw,shai gilgeous-alexander,three_point_pct,0.385906,0.3859060402684564,0.0,38.6,38.6,OK
+Q23,A-raw,shai gilgeous-alexander,free_throw_pct,0.879479,0.8794788273615635,-0.0,87.9,87.9,OK
+Q23,B-nba,nikola jokic,games_played,65,65,0,65.0,65.0,OK
+Q23,B-nba,nikola jokic,minutes_per_game,34.846154,34.843923076923076,-0.002231,34.8,34.8,OK
+Q23,B-nba,nikola jokic,points_per_game,27.676923,27.676923076923078,0.0,27.7,27.7,OK
+Q23,B-nba,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+Q23,B-nba,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q23,B-nba,nikola jokic,steals_per_game,1.415385,1.4153846153846155,-0.0,1.4,1.4,OK
+Q23,B-nba,nikola jokic,blocks_per_game,0.815385,0.8153846153846154,-0.0,0.8,0.8,OK
+Q23,B-nba,nikola jokic,field_goal_pct,0.568905,0.568904593639576,-0.0,56.9,56.9,OK
+Q23,B-nba,nikola jokic,three_point_pct,0.379661,0.37966101694915255,0.0,38.0,38.0,OK
+Q23,B-nba,nikola jokic,free_throw_pct,0.83125,0.83125,0.0,83.1,83.1,OK
+Q23,B-nba,shai gilgeous-alexander,games_played,68,68,0,68.0,68.0,OK
+Q23,B-nba,shai gilgeous-alexander,minutes_per_game,33.220588,33.21980392156863,-0.000784,33.2,33.2,OK
+Q23,B-nba,shai gilgeous-alexander,points_per_game,31.132353,31.13235294117647,-0.0,31.1,31.1,OK
+Q23,B-nba,shai gilgeous-alexander,rebounds_per_game,4.294118,4.294117647058823,-0.0,4.3,4.3,OK
+Q23,B-nba,shai gilgeous-alexander,assists_per_game,6.588235,6.588235294117647,0.0,6.6,6.6,OK
+Q23,B-nba,shai gilgeous-alexander,steals_per_game,1.397059,1.3970588235294117,-0.0,1.4,1.4,OK
+Q23,B-nba,shai gilgeous-alexander,blocks_per_game,0.764706,0.7647058823529411,-0.0,0.8,0.8,OK
+Q23,B-nba,shai gilgeous-alexander,field_goal_pct,0.553369,0.5533686601059803,-0.0,55.3,55.3,OK
+Q23,B-nba,shai gilgeous-alexander,three_point_pct,0.385906,0.3859060402684564,0.0,38.6,38.6,OK
+Q23,B-nba,shai gilgeous-alexander,free_throw_pct,0.879479,0.8794788273615635,-0.0,87.9,87.9,OK
+Q24,A-raw,michael jordan,games_played,179,179,0,179.0,179.0,OK
+Q24,A-raw,michael jordan,minutes_per_game,41.75419,41.754189944134076,-0.0,41.8,41.8,OK
+Q24,A-raw,michael jordan,points_per_game,33.446927,33.44692737430167,0.0,33.4,33.4,OK
+Q24,A-raw,michael jordan,rebounds_per_game,6.435754,6.435754189944134,0.0,6.4,6.4,OK
+Q24,A-raw,michael jordan,assists_per_game,5.709497,5.709497206703911,0.0,5.7,5.7,OK
+Q24,A-raw,michael jordan,steals_per_game,2.100559,2.100558659217877,-0.0,2.1,2.1,OK
+Q24,A-raw,michael jordan,blocks_per_game,0.882682,0.88268156424581,-0.0,0.9,0.9,OK
+Q24,A-raw,michael jordan,field_goal_pct,0.486547,0.48654658661329775,-0.0,48.7,48.7,OK
+Q24,A-raw,michael jordan,three_point_pct,0.331839,0.33183856502242154,-0.0,33.2,33.2,OK
+Q24,A-raw,michael jordan,free_throw_pct,0.828426,0.8284258210645526,-0.0,82.8,82.8,OK
+Q24,A-raw,lebron james,games_played,292,292,0,292.0,292.0,OK
+Q24,A-raw,lebron james,minutes_per_game,41.308219,41.30821917808219,0.0,41.3,41.3,OK
+Q24,A-raw,lebron james,points_per_game,28.386986,28.386986301369863,0.0,28.4,28.4,OK
+Q24,A-raw,lebron james,rebounds_per_game,9.0,9.0,0.0,9.0,9.0,OK
+Q24,A-raw,lebron james,assists_per_game,7.174658,7.174657534246576,-0.0,7.2,7.2,OK
+Q24,A-raw,lebron james,steals_per_game,1.688356,1.6883561643835616,0.0,1.7,1.7,OK
+Q24,A-raw,lebron james,blocks_per_game,0.972603,0.9726027397260274,-0.0,1.0,1.0,OK
+Q24,A-raw,lebron james,field_goal_pct,0.496491,0.49649064171123,-0.0,49.6,49.6,OK
+Q24,A-raw,lebron james,three_point_pct,0.33264,0.33264033264033266,0.0,33.3,33.3,OK
+Q24,A-raw,lebron james,free_throw_pct,0.741167,0.741167129813418,0.0,74.1,74.1,OK
+Q24,B-nba,michael jordan,games_played,179,179,0,179.0,179.0,OK
+Q24,B-nba,michael jordan,minutes_per_game,41.75419,41.754189944134076,-0.0,41.8,41.8,OK
+Q24,B-nba,michael jordan,points_per_game,33.446927,33.44692737430167,0.0,33.4,33.4,OK
+Q24,B-nba,michael jordan,rebounds_per_game,6.435754,6.435754189944134,0.0,6.4,6.4,OK
+Q24,B-nba,michael jordan,assists_per_game,5.709497,5.709497206703911,0.0,5.7,5.7,OK
+Q24,B-nba,michael jordan,steals_per_game,2.100559,2.100558659217877,-0.0,2.1,2.1,OK
+Q24,B-nba,michael jordan,blocks_per_game,0.882682,0.88268156424581,-0.0,0.9,0.9,OK
+Q24,B-nba,michael jordan,field_goal_pct,0.486547,0.48654658661329775,-0.0,48.7,48.7,OK
+Q24,B-nba,michael jordan,three_point_pct,0.331839,0.33183856502242154,-0.0,33.2,33.2,OK
+Q24,B-nba,michael jordan,free_throw_pct,0.828426,0.8284258210645526,-0.0,82.8,82.8,OK
+Q24,B-nba,lebron james,games_played,292,292,0,292.0,292.0,OK
+Q24,B-nba,lebron james,minutes_per_game,41.308219,41.30821917808219,0.0,41.3,41.3,OK
+Q24,B-nba,lebron james,points_per_game,28.386986,28.386986301369863,0.0,28.4,28.4,OK
+Q24,B-nba,lebron james,rebounds_per_game,9.0,9.0,0.0,9.0,9.0,OK
+Q24,B-nba,lebron james,assists_per_game,7.174658,7.174657534246576,-0.0,7.2,7.2,OK
+Q24,B-nba,lebron james,steals_per_game,1.688356,1.6883561643835616,0.0,1.7,1.7,OK
+Q24,B-nba,lebron james,blocks_per_game,0.972603,0.9726027397260274,-0.0,1.0,1.0,OK
+Q24,B-nba,lebron james,field_goal_pct,0.496491,0.49649064171123,-0.0,49.6,49.6,OK
+Q24,B-nba,lebron james,three_point_pct,0.33264,0.33264033264033266,0.0,33.3,33.3,OK
+Q24,B-nba,lebron james,free_throw_pct,0.741167,0.741167129813418,0.0,74.1,74.1,OK
+Q25,A-raw,stephen curry,three_point_pct,0.421721,0.4217214335351931,0.0,42.2,42.2,OK
+Q25,A-raw,klay thompson,three_point_pct,0.408943,0.4089434334885033,0.0,40.9,40.9,OK
+Q25,B-nba,stephen curry,three_point_pct,0.421721,0.4217214335351931,0.0,42.2,42.2,OK
+Q25,B-nba,klay thompson,three_point_pct,0.408943,0.4089434334885033,0.0,40.9,40.9,OK
+Q26,A-raw,wilt chamberlain,rebounds,23924,23924,0,23924.0,23924.0,OK
+Q26,A-raw,bill russell,rebounds,21620,21620,0,21620.0,21620.0,OK
+Q26,B-nba,wilt chamberlain,rebounds,23924,23924,0,23924.0,23924.0,OK
+Q26,B-nba,bill russell,rebounds,21620,21620,0,21620.0,21620.0,OK
+Q27,A-raw,"tim duncan, 1997-98",games_played,82,82,0,82.0,82.0,OK
+Q27,A-raw,"tim duncan, 1997-98",minutes_per_game,39.073171,39.073170731707314,-0.0,39.1,39.1,OK
+Q27,A-raw,"tim duncan, 1997-98",points_per_game,21.109756,21.109756097560975,0.0,21.1,21.1,OK
+Q27,A-raw,"tim duncan, 1997-98",rebounds_per_game,11.914634,11.914634146341463,0.0,11.9,11.9,OK
+Q27,A-raw,"tim duncan, 1997-98",assists_per_game,2.731707,2.731707317073171,0.0,2.7,2.7,OK
+Q27,A-raw,"tim duncan, 1997-98",steals_per_game,0.670732,0.6707317073170732,-0.0,0.7,0.7,OK
+Q27,A-raw,"tim duncan, 1997-98",blocks_per_game,2.512195,2.5121951219512195,0.0,2.5,2.5,OK
+Q27,A-raw,"tim duncan, 1997-98",field_goal_pct,0.548563,0.5485625485625486,-0.0,54.9,54.9,OK
+Q27,A-raw,"tim duncan, 1997-98",three_point_pct,0.0,0.0,0.0,0.0,0.0,OK
+Q27,A-raw,"tim duncan, 1997-98",free_throw_pct,0.661826,0.6618257261410788,-0.0,66.2,66.2,OK
+Q27,A-raw,"tim duncan, 1998-99",games_played,50,50,0,50.0,50.0,OK
+Q27,A-raw,"tim duncan, 1998-99",minutes_per_game,39.26,39.26,0.0,39.3,39.3,OK
+Q27,A-raw,"tim duncan, 1998-99",points_per_game,21.68,21.68,0.0,21.7,21.7,OK
+Q27,A-raw,"tim duncan, 1998-99",rebounds_per_game,11.42,11.42,0.0,11.4,11.4,OK
+Q27,A-raw,"tim duncan, 1998-99",assists_per_game,2.42,2.42,0.0,2.4,2.4,OK
+Q27,A-raw,"tim duncan, 1998-99",steals_per_game,0.9,0.9,0.0,0.9,0.9,OK
+Q27,A-raw,"tim duncan, 1998-99",blocks_per_game,2.52,2.52,0.0,2.5,2.5,OK
+Q27,A-raw,"tim duncan, 1998-99",field_goal_pct,0.494675,0.49467455621301776,-0.0,49.5,49.5,OK
+Q27,A-raw,"tim duncan, 1998-99",three_point_pct,0.142857,0.14285714285714285,0.0,14.3,14.3,OK
+Q27,A-raw,"tim duncan, 1998-99",free_throw_pct,0.689944,0.6899441340782123,0.0,69.0,69.0,OK
+Q27,A-raw,"victor wembanyama, 2023-24",games_played,71,71,0,71.0,71.0,OK
+Q27,A-raw,"victor wembanyama, 2023-24",minutes_per_game,29.661972,29.661971830985916,-0.0,29.7,29.7,OK
+Q27,A-raw,"victor wembanyama, 2023-24",points_per_game,21.43662,21.43661971830986,-0.0,21.4,21.4,OK
+Q27,A-raw,"victor wembanyama, 2023-24",rebounds_per_game,10.633803,10.633802816901408,-0.0,10.6,10.6,OK
+Q27,A-raw,"victor wembanyama, 2023-24",assists_per_game,3.859155,3.859154929577465,-0.0,3.9,3.9,OK
+Q27,A-raw,"victor wembanyama, 2023-24",steals_per_game,1.239437,1.2394366197183098,-0.0,1.2,1.2,OK
+Q27,A-raw,"victor wembanyama, 2023-24",blocks_per_game,3.577465,3.5774647887323945,-0.0,3.6,3.6,OK
+Q27,A-raw,"victor wembanyama, 2023-24",field_goal_pct,0.464587,0.4645868465430017,-0.0,46.5,46.5,OK
+Q27,A-raw,"victor wembanyama, 2023-24",three_point_pct,0.324873,0.3248730964467005,0.0,32.5,32.5,OK
+Q27,A-raw,"victor wembanyama, 2023-24",free_throw_pct,0.79564,0.7956403269754768,0.0,79.6,79.6,OK
+Q27,A-raw,"victor wembanyama, 2024-25",games_played,46,46,0,46.0,46.0,OK
+Q27,A-raw,"victor wembanyama, 2024-25",minutes_per_game,33.195652,33.19565217391305,0.0,33.2,33.2,OK
+Q27,A-raw,"victor wembanyama, 2024-25",points_per_game,24.26087,24.26086956521739,-0.0,24.3,24.3,OK
+Q27,A-raw,"victor wembanyama, 2024-25",rebounds_per_game,11.0,11.0,0.0,11.0,11.0,OK
+Q27,A-raw,"victor wembanyama, 2024-25",assists_per_game,3.652174,3.652173913043478,-0.0,3.7,3.7,OK
+Q27,A-raw,"victor wembanyama, 2024-25",steals_per_game,1.130435,1.1304347826086956,-0.0,1.1,1.1,OK
+Q27,A-raw,"victor wembanyama, 2024-25",blocks_per_game,3.826087,3.8260869565217392,-0.0,3.8,3.8,OK
+Q27,A-raw,"victor wembanyama, 2024-25",field_goal_pct,0.476079,0.47607934655775963,0.0,47.6,47.6,OK
+Q27,A-raw,"victor wembanyama, 2024-25",three_point_pct,0.352357,0.3523573200992556,0.0,35.2,35.2,OK
+Q27,A-raw,"victor wembanyama, 2024-25",free_throw_pct,0.835979,0.8359788359788359,-0.0,83.6,83.6,OK
+Q27,B-nba,"tim duncan, 1997-98",games_played,82,82,0,82.0,82.0,OK
+Q27,B-nba,"tim duncan, 1997-98",minutes_per_game,39.073171,39.073170731707314,-0.0,39.1,39.1,OK
+Q27,B-nba,"tim duncan, 1997-98",points_per_game,21.109756,21.109756097560975,0.0,21.1,21.1,OK
+Q27,B-nba,"tim duncan, 1997-98",rebounds_per_game,11.914634,11.914634146341463,0.0,11.9,11.9,OK
+Q27,B-nba,"tim duncan, 1997-98",assists_per_game,2.731707,2.731707317073171,0.0,2.7,2.7,OK
+Q27,B-nba,"tim duncan, 1997-98",steals_per_game,0.670732,0.6707317073170732,-0.0,0.7,0.7,OK
+Q27,B-nba,"tim duncan, 1997-98",blocks_per_game,2.512195,2.5121951219512195,0.0,2.5,2.5,OK
+Q27,B-nba,"tim duncan, 1997-98",field_goal_pct,0.548563,0.5485625485625486,-0.0,54.9,54.9,OK
+Q27,B-nba,"tim duncan, 1997-98",three_point_pct,0.0,0.0,0.0,0.0,0.0,OK
+Q27,B-nba,"tim duncan, 1997-98",free_throw_pct,0.661826,0.6618257261410788,-0.0,66.2,66.2,OK
+Q27,B-nba,"tim duncan, 1998-99",games_played,50,50,0,50.0,50.0,OK
+Q27,B-nba,"tim duncan, 1998-99",minutes_per_game,39.26,39.26,0.0,39.3,39.3,OK
+Q27,B-nba,"tim duncan, 1998-99",points_per_game,21.68,21.68,0.0,21.7,21.7,OK
+Q27,B-nba,"tim duncan, 1998-99",rebounds_per_game,11.42,11.42,0.0,11.4,11.4,OK
+Q27,B-nba,"tim duncan, 1998-99",assists_per_game,2.42,2.42,0.0,2.4,2.4,OK
+Q27,B-nba,"tim duncan, 1998-99",steals_per_game,0.9,0.9,0.0,0.9,0.9,OK
+Q27,B-nba,"tim duncan, 1998-99",blocks_per_game,2.52,2.52,0.0,2.5,2.5,OK
+Q27,B-nba,"tim duncan, 1998-99",field_goal_pct,0.494675,0.49467455621301776,-0.0,49.5,49.5,OK
+Q27,B-nba,"tim duncan, 1998-99",three_point_pct,0.142857,0.14285714285714285,0.0,14.3,14.3,OK
+Q27,B-nba,"tim duncan, 1998-99",free_throw_pct,0.689944,0.6899441340782123,0.0,69.0,69.0,OK
+Q27,B-nba,"victor wembanyama, 2023-24",games_played,71,71,0,71.0,71.0,OK
+Q27,B-nba,"victor wembanyama, 2023-24",minutes_per_game,29.661972,29.665281690140848,0.00331,29.7,29.7,OK
+Q27,B-nba,"victor wembanyama, 2023-24",points_per_game,21.43662,21.43661971830986,-0.0,21.4,21.4,OK
+Q27,B-nba,"victor wembanyama, 2023-24",rebounds_per_game,10.633803,10.633802816901408,-0.0,10.6,10.6,OK
+Q27,B-nba,"victor wembanyama, 2023-24",assists_per_game,3.859155,3.859154929577465,-0.0,3.9,3.9,OK
+Q27,B-nba,"victor wembanyama, 2023-24",steals_per_game,1.239437,1.2394366197183098,-0.0,1.2,1.2,OK
+Q27,B-nba,"victor wembanyama, 2023-24",blocks_per_game,3.577465,3.5774647887323945,-0.0,3.6,3.6,OK
+Q27,B-nba,"victor wembanyama, 2023-24",field_goal_pct,0.464587,0.4645868465430017,-0.0,46.5,46.5,OK
+Q27,B-nba,"victor wembanyama, 2023-24",three_point_pct,0.324873,0.3248730964467005,0.0,32.5,32.5,OK
+Q27,B-nba,"victor wembanyama, 2023-24",free_throw_pct,0.79564,0.7956403269754768,0.0,79.6,79.6,OK
+Q27,B-nba,"victor wembanyama, 2024-25",games_played,46,46,0,46.0,46.0,OK
+Q27,B-nba,"victor wembanyama, 2024-25",minutes_per_game,33.195652,33.201159420289855,0.005507,33.2,33.2,OK
+Q27,B-nba,"victor wembanyama, 2024-25",points_per_game,24.26087,24.26086956521739,-0.0,24.3,24.3,OK
+Q27,B-nba,"victor wembanyama, 2024-25",rebounds_per_game,11.0,11.0,0.0,11.0,11.0,OK
+Q27,B-nba,"victor wembanyama, 2024-25",assists_per_game,3.652174,3.652173913043478,-0.0,3.7,3.7,OK
+Q27,B-nba,"victor wembanyama, 2024-25",steals_per_game,1.130435,1.1304347826086956,-0.0,1.1,1.1,OK
+Q27,B-nba,"victor wembanyama, 2024-25",blocks_per_game,3.826087,3.8260869565217392,-0.0,3.8,3.8,OK
+Q27,B-nba,"victor wembanyama, 2024-25",field_goal_pct,0.476079,0.47607934655775963,0.0,47.6,47.6,OK
+Q27,B-nba,"victor wembanyama, 2024-25",three_point_pct,0.352357,0.3523573200992556,0.0,35.2,35.2,OK
+Q27,B-nba,"victor wembanyama, 2024-25",free_throw_pct,0.835979,0.8359788359788359,-0.0,83.6,83.6,OK
+Q28,A-raw,ja morant,points_per_game,19.45,19.45,0.0,19.5,19.5,OK
+Q28,A-raw,anthony edwards,points_per_game,28.803279,28.80327868852459,-0.0,28.8,28.8,OK
+Q28,B-nba,ja morant,points_per_game,19.45,19.45,0.0,19.5,19.5,OK
+Q28,B-nba,anthony edwards,points_per_game,28.803279,28.80327868852459,-0.0,28.8,28.8,OK
+Q29,A-raw,kobe bryant,points,33643,33643,0,33643.0,33643.0,OK
+Q29,A-raw,kobe bryant,player_championships,5,5,0,5.0,5.0,OK
+Q29,A-raw,lebron james,points,43440,43440,0,43440.0,43440.0,OK
+Q29,A-raw,lebron james,player_championships,4,4,0,4.0,4.0,OK
+Q29,B-nba,kobe bryant,points,33643,33643,0,33643.0,33643.0,OK
+Q29,B-nba,kobe bryant,player_championships,5,5,0,5.0,5.0,OK
+Q29,B-nba,lebron james,points,43440,43440,0,43440.0,43440.0,OK
+Q29,B-nba,lebron james,player_championships,4,4,0,4.0,4.0,OK
+Q30,A-raw,boston celtics,defensive_rating,111.7,111.7,0.0,111.7,111.7,OK
+Q30,A-raw,oklahoma city thunder,defensive_rating,106.5,106.5,0.0,106.5,106.5,OK
+Q30,B-nba,boston celtics,defensive_rating,111.7,111.7,0.0,111.7,111.7,OK
+Q30,B-nba,oklahoma city thunder,defensive_rating,106.5,106.5,0.0,106.5,106.5,OK
+Q31,A-raw,lebron james,points,43440,43440,0,43440.0,43440.0,OK
+Q31,B-nba,lebron james,points,43440,43440,0,43440.0,43440.0,OK
+Q32,A-raw,john stockton,assists,15806,15806,0,15806.0,15806.0,OK
+Q32,B-nba,john stockton,assists,15806,15806,0,15806.0,15806.0,OK
+Q33,A-raw,stephen curry,threes_made,4248,4248,0,4248.0,4248.0,OK
+Q33,B-nba,stephen curry,threes_made,4248,4248,0,4248.0,4248.0,OK
+Q34,A-raw,"wilt chamberlain, 1962-03-02",game_points,100.0,100,0.0,100.0,100.0,OK
+Q35,A-raw,russell westbrook,triple_doubles,209,209,0,209.0,209.0,OK
+Q35,B-nba,russell westbrook,triple_doubles,209,209,0,209.0,209.0,OK
+Q36,A-raw,lebron james,points,43440,43440,0,43440.0,43440.0,OK
+Q36,B-nba,lebron james,points,43440,43440,0,43440.0,43440.0,OK
+Q37,A-raw,michael jordan,points_per_game,30.123134,30.12313432835821,0.0,30.1,30.1,OK
+Q37,B-nba,michael jordan,points_per_game,30.123134,30.1,-0.023134,30.1,30.1,OK
+Q38,A-raw,hakeem olajuwon,blocks,3830,3830,0,3830.0,3830.0,OK
+Q38,B-nba,hakeem olajuwon,blocks,3830,3830,0,3830.0,3830.0,OK
+Q39,A-raw,boston celtics,championships,18,18,0,18.0,18.0,OK
+Q39,B-nba,boston celtics,championships,18,18,0,18.0,18.0,OK
+Q40,A-raw,"golden state warriors, 2015-16",wins,73,73,0,73.0,73.0,OK
+Q40,A-raw,"golden state warriors, 2015-16",losses,9,9,0,9.0,9.0,OK
+Q40,B-nba,"golden state warriors, 2015-16",wins,73,73,0,73.0,73.0,OK
+Q40,B-nba,"golden state warriors, 2015-16",losses,9,9,0,9.0,9.0,OK
+Q41,A-raw,lebron james,games_played,1622,1622,0,1622.0,1622.0,OK
+Q41,B-nba,lebron james,games_played,1622,1622,0,1622.0,1622.0,OK
+Q42,A-raw,"klay thompson, 2018-10-29",threes_made,14.0,14,0.0,14.0,14.0,OK
+Q42,B-nba,"klay thompson, 2018-10-29",threes_made,14.0,14,0.0,14.0,14.0,OK
+Q43,A-raw,oklahoma city thunder,wins,64,64,0,64.0,64.0,OK
+Q43,A-raw,oklahoma city thunder,losses,18,18,0,18.0,18.0,OK
+Q43,A-raw,san antonio spurs,wins,62,62,0,62.0,62.0,OK
+Q43,A-raw,san antonio spurs,losses,20,20,0,20.0,20.0,OK
+Q43,A-raw,denver nuggets,wins,54,54,0,54.0,54.0,OK
+Q43,A-raw,denver nuggets,losses,28,28,0,28.0,28.0,OK
+Q43,A-raw,los angeles lakers,wins,53,53,0,53.0,53.0,OK
+Q43,A-raw,los angeles lakers,losses,29,29,0,29.0,29.0,OK
+Q43,A-raw,houston rockets,wins,52,52,0,52.0,52.0,OK
+Q43,A-raw,houston rockets,losses,30,30,0,30.0,30.0,OK
+Q43,A-raw,minnesota timberwolves,wins,49,49,0,49.0,49.0,OK
+Q43,A-raw,minnesota timberwolves,losses,33,33,0,33.0,33.0,OK
+Q43,A-raw,phoenix suns,wins,45,45,0,45.0,45.0,OK
+Q43,A-raw,phoenix suns,losses,37,37,0,37.0,37.0,OK
+Q43,A-raw,portland trail blazers,wins,42,42,0,42.0,42.0,OK
+Q43,A-raw,portland trail blazers,losses,40,40,0,40.0,40.0,OK
+Q43,A-raw,la clippers,wins,42,42,0,42.0,42.0,OK
+Q43,A-raw,la clippers,losses,40,40,0,40.0,40.0,OK
+Q43,A-raw,golden state warriors,wins,37,37,0,37.0,37.0,OK
+Q43,A-raw,golden state warriors,losses,45,45,0,45.0,45.0,OK
+Q43,A-raw,new orleans pelicans,wins,26,26,0,26.0,26.0,OK
+Q43,A-raw,new orleans pelicans,losses,56,56,0,56.0,56.0,OK
+Q43,A-raw,dallas mavericks,wins,26,26,0,26.0,26.0,OK
+Q43,A-raw,dallas mavericks,losses,56,56,0,56.0,56.0,OK
+Q43,A-raw,memphis grizzlies,wins,25,25,0,25.0,25.0,OK
+Q43,A-raw,memphis grizzlies,losses,57,57,0,57.0,57.0,OK
+Q43,A-raw,sacramento kings,wins,22,22,0,22.0,22.0,OK
+Q43,A-raw,sacramento kings,losses,60,60,0,60.0,60.0,OK
+Q43,A-raw,utah jazz,wins,22,22,0,22.0,22.0,OK
+Q43,A-raw,utah jazz,losses,60,60,0,60.0,60.0,OK
+Q43,B-nba,oklahoma city thunder,wins,64,64,0,64.0,64.0,OK
+Q43,B-nba,oklahoma city thunder,losses,18,18,0,18.0,18.0,OK
+Q43,B-nba,san antonio spurs,wins,62,62,0,62.0,62.0,OK
+Q43,B-nba,san antonio spurs,losses,20,20,0,20.0,20.0,OK
+Q43,B-nba,denver nuggets,wins,54,54,0,54.0,54.0,OK
+Q43,B-nba,denver nuggets,losses,28,28,0,28.0,28.0,OK
+Q43,B-nba,los angeles lakers,wins,53,53,0,53.0,53.0,OK
+Q43,B-nba,los angeles lakers,losses,29,29,0,29.0,29.0,OK
+Q43,B-nba,houston rockets,wins,52,52,0,52.0,52.0,OK
+Q43,B-nba,houston rockets,losses,30,30,0,30.0,30.0,OK
+Q43,B-nba,minnesota timberwolves,wins,49,49,0,49.0,49.0,OK
+Q43,B-nba,minnesota timberwolves,losses,33,33,0,33.0,33.0,OK
+Q43,B-nba,phoenix suns,wins,45,45,0,45.0,45.0,OK
+Q43,B-nba,phoenix suns,losses,37,37,0,37.0,37.0,OK
+Q43,B-nba,portland trail blazers,wins,42,42,0,42.0,42.0,OK
+Q43,B-nba,portland trail blazers,losses,40,40,0,40.0,40.0,OK
+Q43,B-nba,la clippers,wins,42,42,0,42.0,42.0,OK
+Q43,B-nba,la clippers,losses,40,40,0,40.0,40.0,OK
+Q43,B-nba,golden state warriors,wins,37,37,0,37.0,37.0,OK
+Q43,B-nba,golden state warriors,losses,45,45,0,45.0,45.0,OK
+Q43,B-nba,new orleans pelicans,wins,26,26,0,26.0,26.0,OK
+Q43,B-nba,new orleans pelicans,losses,56,56,0,56.0,56.0,OK
+Q43,B-nba,dallas mavericks,wins,26,26,0,26.0,26.0,OK
+Q43,B-nba,dallas mavericks,losses,56,56,0,56.0,56.0,OK
+Q43,B-nba,memphis grizzlies,wins,25,25,0,25.0,25.0,OK
+Q43,B-nba,memphis grizzlies,losses,57,57,0,57.0,57.0,OK
+Q43,B-nba,sacramento kings,wins,22,22,0,22.0,22.0,OK
+Q43,B-nba,sacramento kings,losses,60,60,0,60.0,60.0,OK
+Q43,B-nba,utah jazz,wins,22,22,0,22.0,22.0,OK
+Q43,B-nba,utah jazz,losses,60,60,0,60.0,60.0,OK
+Q44,A-raw,oklahoma city thunder,wins,64,64,0,64.0,64.0,OK
+Q44,A-raw,oklahoma city thunder,losses,18,18,0,18.0,18.0,OK
+Q44,B-nba,oklahoma city thunder,wins,64,64,0,64.0,64.0,OK
+Q44,B-nba,oklahoma city thunder,losses,18,18,0,18.0,18.0,OK
+Q45,A-raw,denver nuggets,team_points_per_game,122.073171,122.07317073170732,-0.0,122.1,122.1,OK
+Q45,B-nba,denver nuggets,team_points_per_game,122.073171,122.07317073170732,-0.0,122.1,122.1,OK
+Q46,A-raw,los angeles lakers,home_wins,28,28,0,28.0,28.0,OK
+Q46,A-raw,los angeles lakers,home_losses,13,13,0,13.0,13.0,OK
+Q46,B-nba,los angeles lakers,home_wins,28,28,0,28.0,28.0,OK
+Q46,B-nba,los angeles lakers,home_losses,13,13,0,13.0,13.0,OK
+Q47,A-raw,oklahoma city thunder,net_rating,11.1,11.1,0.0,11.1,11.1,OK
+Q47,B-nba,oklahoma city thunder,net_rating,11.1,11.1,0.0,11.1,11.1,OK
+Q48,A-raw,stephen curry,points_per_game,26.55814,26.558139534883722,-0.0,26.6,26.6,OK
+Q48,B-nba,stephen curry,points_per_game,26.55814,26.558139534883722,-0.0,26.6,26.6,OK
+Q49,A-raw,miami heat,pace,104.22,104.22,0.0,104.2,104.2,OK
+Q49,B-nba,miami heat,pace,104.22,104.22,0.0,104.2,104.2,OK
+Q50,A-raw,2026-01-21,wins,8,8,0,8.0,8.0,OK
+Q50,B-nba,2026-01-21,wins,8,8,0,8.0,8.0,OK
+Q51,A-raw,2026-04-09,game_points,112,112,0,112.0,112.0,OK
+Q51,A-raw,2026-04-09,game_points,106,106,0,106.0,106.0,OK
+Q51,B-nba,2026-04-09,game_points,112,112.0,0.0,112.0,112.0,OK
+Q51,B-nba,2026-04-09,game_points,106,106,0,106.0,106.0,OK
+Q52,A-raw,2026-04-12,game_points,23,23,0,23.0,23.0,OK
+Q52,B-nba,2026-04-12,game_points,23,23,0,23.0,23.0,OK
+Q53,A-raw,2025-06-22,game_points,103,103,0,103.0,103.0,OK
+Q53,A-raw,2025-06-22,game_points,91,91,0,91.0,91.0,OK
+Q53,B-nba,2025-06-22,game_points,103,103,0,103.0,103.0,OK
+Q53,B-nba,2025-06-22,game_points,91,91.0,0.0,91.0,91.0,OK
+Q54,A-raw,"bam adebayo, 2026-03-10",game_points,83,83,0,83.0,83.0,OK
+Q54,B-nba,"bam adebayo, 2026-03-10",game_points,83,83,0,83.0,83.0,OK
+Q55,A-raw,"orlando magic, boston celtics",game_points,30,30,0,30.0,30.0,OK
+Q55,A-raw,"orlando magic, boston celtics",rebounds,12,12,0,12.0,12.0,OK
+Q55,A-raw,"orlando magic, boston celtics",assists,11,11,0,11.0,11.0,OK
+Q55,A-raw,"washington wizards, cleveland cavaliers",game_points,26,26,0,26.0,26.0,OK
+Q55,A-raw,"washington wizards, cleveland cavaliers",rebounds,11,11,0,11.0,11.0,OK
+Q55,A-raw,"washington wizards, cleveland cavaliers",assists,9,9,0,9.0,9.0,OK
+Q55,A-raw,"detroit pistons, indiana pacers",game_points,26,26,0,26.0,26.0,OK
+Q55,A-raw,"detroit pistons, indiana pacers",rebounds,11,11,0,11.0,11.0,OK
+Q55,A-raw,"detroit pistons, indiana pacers",assists,14,14,0,14.0,14.0,OK
+Q55,A-raw,"atlanta hawks, miami heat",game_points,31,31,0,31.0,31.0,OK
+Q55,A-raw,"atlanta hawks, miami heat",rebounds,11,11,0,11.0,11.0,OK
+Q55,A-raw,"atlanta hawks, miami heat",assists,9,9,0,9.0,9.0,OK
+Q55,A-raw,"charlotte hornets, new york knicks",game_points,21,21,0,21.0,21.0,OK
+Q55,A-raw,"charlotte hornets, new york knicks",rebounds,9,9,0,9.0,9.0,OK
+Q55,A-raw,"charlotte hornets, new york knicks",assists,7,7,0,7.0,7.0,OK
+Q55,A-raw,"milwaukee bucks, philadelphia 76ers",game_points,22,22,0,22.0,22.0,OK
+Q55,A-raw,"milwaukee bucks, philadelphia 76ers",rebounds,12,12,0,12.0,12.0,OK
+Q55,A-raw,"milwaukee bucks, philadelphia 76ers",assists,11,11,0,11.0,11.0,OK
+Q55,A-raw,"brooklyn nets, toronto raptors",game_points,26,26,0,26.0,26.0,OK
+Q55,A-raw,"brooklyn nets, toronto raptors",rebounds,13,13,0,13.0,13.0,OK
+Q55,A-raw,"brooklyn nets, toronto raptors",assists,12,12,0,12.0,12.0,OK
+Q55,A-raw,"chicago bulls, dallas mavericks",game_points,28,28,0,28.0,28.0,OK
+Q55,A-raw,"chicago bulls, dallas mavericks",rebounds,20,20,0,20.0,20.0,OK
+Q55,A-raw,"chicago bulls, dallas mavericks",assists,23,23,0,23.0,23.0,OK
+Q55,A-raw,"memphis grizzlies, houston rockets",game_points,26,26,0,26.0,26.0,OK
+Q55,A-raw,"memphis grizzlies, houston rockets",rebounds,13,13,0,13.0,13.0,OK
+Q55,A-raw,"memphis grizzlies, houston rockets",assists,11,11,0,11.0,11.0,OK
+Q55,A-raw,"new orleans pelicans, minnesota timberwolves",game_points,36,36,0,36.0,36.0,OK
+Q55,A-raw,"new orleans pelicans, minnesota timberwolves",rebounds,22,22,0,22.0,22.0,OK
+Q55,A-raw,"new orleans pelicans, minnesota timberwolves",assists,10,10,0,10.0,10.0,OK
+Q55,A-raw,"phoenix suns, oklahoma city thunder",game_points,27,27,0,27.0,27.0,OK
+Q55,A-raw,"phoenix suns, oklahoma city thunder",rebounds,14,14,0,14.0,14.0,OK
+Q55,A-raw,"phoenix suns, oklahoma city thunder",assists,14,14,0,14.0,14.0,OK
+Q55,A-raw,"denver nuggets, san antonio spurs",game_points,25,25,0,25.0,25.0,OK
+Q55,A-raw,"denver nuggets, san antonio spurs",rebounds,13,13,0,13.0,13.0,OK
+Q55,A-raw,"denver nuggets, san antonio spurs",assists,9,9,0,9.0,9.0,OK
+Q55,A-raw,"utah jazz, los angeles lakers",game_points,29,29,0,29.0,29.0,OK
+Q55,A-raw,"utah jazz, los angeles lakers",rebounds,17,17,0,17.0,17.0,OK
+Q55,A-raw,"utah jazz, los angeles lakers",assists,10,10,0,10.0,10.0,OK
+Q55,A-raw,"golden state warriors, la clippers",game_points,24,24,0,24.0,24.0,OK
+Q55,A-raw,"golden state warriors, la clippers",rebounds,9,9,0,9.0,9.0,OK
+Q55,A-raw,"golden state warriors, la clippers",assists,8,8,0,8.0,8.0,OK
+Q55,A-raw,"sacramento kings, portland trail blazers",game_points,27,27,0,27.0,27.0,OK
+Q55,A-raw,"sacramento kings, portland trail blazers",rebounds,11,11,0,11.0,11.0,OK
+Q55,A-raw,"sacramento kings, portland trail blazers",assists,10,10,0,10.0,10.0,OK
+Q55,B-nba,"orlando magic, boston celtics",game_points,30,30,0,30.0,30.0,OK
+Q55,B-nba,"orlando magic, boston celtics",rebounds,12,12,0,12.0,12.0,OK
+Q55,B-nba,"orlando magic, boston celtics",assists,11,11,0,11.0,11.0,OK
+Q55,B-nba,"washington wizards, cleveland cavaliers",game_points,26,26,0,26.0,26.0,OK
+Q55,B-nba,"washington wizards, cleveland cavaliers",rebounds,11,11,0,11.0,11.0,OK
+Q55,B-nba,"washington wizards, cleveland cavaliers",assists,9,9,0,9.0,9.0,OK
+Q55,B-nba,"detroit pistons, indiana pacers",game_points,26,26,0,26.0,26.0,OK
+Q55,B-nba,"detroit pistons, indiana pacers",rebounds,11,11,0,11.0,11.0,OK
+Q55,B-nba,"detroit pistons, indiana pacers",assists,14,14,0,14.0,14.0,OK
+Q55,B-nba,"atlanta hawks, miami heat",game_points,31,31,0,31.0,31.0,OK
+Q55,B-nba,"atlanta hawks, miami heat",rebounds,11,11,0,11.0,11.0,OK
+Q55,B-nba,"atlanta hawks, miami heat",assists,9,9,0,9.0,9.0,OK
+Q55,B-nba,"charlotte hornets, new york knicks",game_points,21,21,0,21.0,21.0,OK
+Q55,B-nba,"charlotte hornets, new york knicks",rebounds,9,9,0,9.0,9.0,OK
+Q55,B-nba,"charlotte hornets, new york knicks",assists,7,7,0,7.0,7.0,OK
+Q55,B-nba,"milwaukee bucks, philadelphia 76ers",game_points,22,22,0,22.0,22.0,OK
+Q55,B-nba,"milwaukee bucks, philadelphia 76ers",rebounds,12,12,0,12.0,12.0,OK
+Q55,B-nba,"milwaukee bucks, philadelphia 76ers",assists,11,11,0,11.0,11.0,OK
+Q55,B-nba,"brooklyn nets, toronto raptors",game_points,26,26,0,26.0,26.0,OK
+Q55,B-nba,"brooklyn nets, toronto raptors",rebounds,13,13,0,13.0,13.0,OK
+Q55,B-nba,"brooklyn nets, toronto raptors",assists,12,12,0,12.0,12.0,OK
+Q55,B-nba,"chicago bulls, dallas mavericks",game_points,28,28,0,28.0,28.0,OK
+Q55,B-nba,"chicago bulls, dallas mavericks",rebounds,20,20,0,20.0,20.0,OK
+Q55,B-nba,"chicago bulls, dallas mavericks",assists,23,23,0,23.0,23.0,OK
+Q55,B-nba,"memphis grizzlies, houston rockets",game_points,26,26,0,26.0,26.0,OK
+Q55,B-nba,"memphis grizzlies, houston rockets",rebounds,13,13,0,13.0,13.0,OK
+Q55,B-nba,"memphis grizzlies, houston rockets",assists,11,11,0,11.0,11.0,OK
+Q55,B-nba,"new orleans pelicans, minnesota timberwolves",game_points,36,36,0,36.0,36.0,OK
+Q55,B-nba,"new orleans pelicans, minnesota timberwolves",rebounds,22,22,0,22.0,22.0,OK
+Q55,B-nba,"new orleans pelicans, minnesota timberwolves",assists,10,10,0,10.0,10.0,OK
+Q55,B-nba,"phoenix suns, oklahoma city thunder",game_points,27,27,0,27.0,27.0,OK
+Q55,B-nba,"phoenix suns, oklahoma city thunder",rebounds,14,14,0,14.0,14.0,OK
+Q55,B-nba,"phoenix suns, oklahoma city thunder",assists,14,14,0,14.0,14.0,OK
+Q55,B-nba,"denver nuggets, san antonio spurs",game_points,25,25,0,25.0,25.0,OK
+Q55,B-nba,"denver nuggets, san antonio spurs",rebounds,13,13,0,13.0,13.0,OK
+Q55,B-nba,"denver nuggets, san antonio spurs",assists,9,9,0,9.0,9.0,OK
+Q55,B-nba,"utah jazz, los angeles lakers",game_points,29,29,0,29.0,29.0,OK
+Q55,B-nba,"utah jazz, los angeles lakers",rebounds,17,17,0,17.0,17.0,OK
+Q55,B-nba,"utah jazz, los angeles lakers",assists,10,10,0,10.0,10.0,OK
+Q55,B-nba,"golden state warriors, la clippers",game_points,24,24,0,24.0,24.0,OK
+Q55,B-nba,"golden state warriors, la clippers",rebounds,9,9,0,9.0,9.0,OK
+Q55,B-nba,"golden state warriors, la clippers",assists,8,8,0,8.0,8.0,OK
+Q55,B-nba,"sacramento kings, portland trail blazers",game_points,27,27,0,27.0,27.0,OK
+Q55,B-nba,"sacramento kings, portland trail blazers",rebounds,11,11,0,11.0,11.0,OK
+Q55,B-nba,"sacramento kings, portland trail blazers",assists,10,10,0,10.0,10.0,OK
+Q56,A-raw,2026-04-12,game_points,24,24,0,24.0,24.0,OK
+Q56,A-raw,2026-04-10,game_points,11,11,0,11.0,11.0,OK
+Q56,A-raw,2026-04-07,game_points,17,17,0,17.0,17.0,OK
+Q56,A-raw,2026-04-05,game_points,29,29,0,29.0,29.0,OK
+Q56,A-raw,2026-01-30,game_points,23,23,0,23.0,23.0,OK
+Q56,B-nba,2026-04-12,game_points,24,24,0,24.0,24.0,OK
+Q56,B-nba,2026-04-10,game_points,11,11,0,11.0,11.0,OK
+Q56,B-nba,2026-04-07,game_points,17,17,0,17.0,17.0,OK
+Q56,B-nba,2026-04-05,game_points,29,29,0,29.0,29.0,OK
+Q56,B-nba,2026-01-30,game_points,23,23,0,23.0,23.0,OK
+Q57,A-raw,,games_played,54,54,0,54.0,54.0,OK
+Q57,B-nba,,games_played,54,54,0,54.0,54.0,OK
+Q58,A-raw,2026-01-10,game_points,55,55,0,55.0,55.0,OK
+Q58,B-nba,2026-01-10,game_points,55,55.0,0.0,55.0,55.0,OK
+Q59,A-raw,2010-11,league_three_point_attempt_rate,0.221798,0.22179788778217127,-0.0,22.2,22.2,OK
+Q59,A-raw,2011-12,league_three_point_attempt_rate,0.22574,0.2257404248720732,0.0,22.6,22.6,OK
+Q59,A-raw,2012-13,league_three_point_attempt_rate,0.243377,0.24337703177933526,0.0,24.3,24.3,OK
+Q59,A-raw,2013-14,league_three_point_attempt_rate,0.259458,0.259457712125071,-0.0,25.9,25.9,OK
+Q59,A-raw,2014-15,league_three_point_attempt_rate,0.268215,0.26821520649900277,0.0,26.8,26.8,OK
+Q59,A-raw,2015-16,league_three_point_attempt_rate,0.284745,0.2847454205499666,0.0,28.5,28.5,OK
+Q59,A-raw,2016-17,league_three_point_attempt_rate,0.316119,0.3161188688045537,-0.0,31.6,31.6,OK
+Q59,A-raw,2017-18,league_three_point_attempt_rate,0.33697,0.3369704355547998,0.0,33.7,33.7,OK
+Q59,A-raw,2018-19,league_three_point_attempt_rate,0.358802,0.35880213981718595,0.0,35.9,35.9,OK
+Q59,A-raw,2019-20,league_three_point_attempt_rate,0.384082,0.384082162070212,0.0,38.4,38.4,OK
+Q59,A-raw,2020-21,league_three_point_attempt_rate,0.391773,0.39177308975144387,0.0,39.2,39.2,OK
+Q59,A-raw,2021-22,league_three_point_attempt_rate,0.39929,0.3992903350836556,0.0,39.9,39.9,OK
+Q59,A-raw,2022-23,league_three_point_attempt_rate,0.387466,0.3874661056353266,0.0,38.7,38.7,OK
+Q59,A-raw,2023-24,league_three_point_attempt_rate,0.394852,0.39485235617415476,0.0,39.5,39.5,OK
+Q59,A-raw,2024-25,league_three_point_attempt_rate,0.421151,0.42115092904289675,-0.0,42.1,42.1,OK
+Q59,A-raw,2025-26,league_three_point_attempt_rate,0.415087,0.4150867634913465,-0.0,41.5,41.5,OK
+Q59,B-nba,2010-11,league_three_point_attempt_rate,0.221798,0.22179788778217127,-0.0,22.2,22.2,OK
+Q59,B-nba,2011-12,league_three_point_attempt_rate,0.22574,0.2257404248720732,0.0,22.6,22.6,OK
+Q59,B-nba,2012-13,league_three_point_attempt_rate,0.243377,0.24337703177933526,0.0,24.3,24.3,OK
+Q59,B-nba,2013-14,league_three_point_attempt_rate,0.259458,0.259457712125071,-0.0,25.9,25.9,OK
+Q59,B-nba,2014-15,league_three_point_attempt_rate,0.268215,0.26821520649900277,0.0,26.8,26.8,OK
+Q59,B-nba,2015-16,league_three_point_attempt_rate,0.284745,0.2847454205499666,0.0,28.5,28.5,OK
+Q59,B-nba,2016-17,league_three_point_attempt_rate,0.316119,0.3161188688045537,-0.0,31.6,31.6,OK
+Q59,B-nba,2017-18,league_three_point_attempt_rate,0.33697,0.3369704355547998,0.0,33.7,33.7,OK
+Q59,B-nba,2018-19,league_three_point_attempt_rate,0.358802,0.35880213981718595,0.0,35.9,35.9,OK
+Q59,B-nba,2019-20,league_three_point_attempt_rate,0.384082,0.384082162070212,0.0,38.4,38.4,OK
+Q59,B-nba,2020-21,league_three_point_attempt_rate,0.391773,0.39177308975144387,0.0,39.2,39.2,OK
+Q59,B-nba,2021-22,league_three_point_attempt_rate,0.39929,0.3992903350836556,0.0,39.9,39.9,OK
+Q59,B-nba,2022-23,league_three_point_attempt_rate,0.387466,0.3874597182579873,-6e-06,38.7,38.7,OK
+Q59,B-nba,2023-24,league_three_point_attempt_rate,0.394852,0.3948559670781893,4e-06,39.5,39.5,OK
+Q59,B-nba,2024-25,league_three_point_attempt_rate,0.421151,0.42115092904289675,-0.0,42.1,42.1,OK
+Q59,B-nba,2025-26,league_three_point_attempt_rate,0.415087,0.4150848695017339,-2e-06,41.5,41.5,OK
+Q60,A-raw,2023-24,three_point_pct,0.324873,0.3248730964467005,0.0,32.5,32.5,OK
+Q60,A-raw,2024-25,three_point_pct,0.352357,0.3523573200992556,0.0,35.2,35.2,OK
+Q60,A-raw,2025-26,three_point_pct,0.348571,0.3485714285714286,0.0,34.9,34.9,OK
+Q60,B-nba,2023-24,three_point_pct,0.324873,0.3248730964467005,0.0,32.5,32.5,OK
+Q60,B-nba,2024-25,three_point_pct,0.352357,0.3523573200992556,0.0,35.2,35.2,OK
+Q60,B-nba,2025-26,three_point_pct,0.348571,0.3485714285714286,0.0,34.9,34.9,OK
+Q61,A-raw,2003-04,points_per_game,20.936709,20.936708860759495,-0.0,20.9,20.9,OK
+Q61,A-raw,2004-05,points_per_game,27.1875,27.1875,0.0,27.2,27.2,OK
+Q61,A-raw,2005-06,points_per_game,31.367089,31.367088607594937,-0.0,31.4,31.4,OK
+Q61,A-raw,2006-07,points_per_game,27.333333,27.333333333333332,0.0,27.3,27.3,OK
+Q61,A-raw,2007-08,points_per_game,30.0,30.0,0.0,30.0,30.0,OK
+Q61,A-raw,2008-09,points_per_game,28.444444,28.444444444444443,0.0,28.4,28.4,OK
+Q61,A-raw,2009-10,points_per_game,29.710526,29.710526315789473,0.0,29.7,29.7,OK
+Q61,A-raw,2010-11,points_per_game,26.721519,26.72151898734177,-0.0,26.7,26.7,OK
+Q61,A-raw,2011-12,points_per_game,27.145161,27.14516129032258,0.0,27.1,27.1,OK
+Q61,A-raw,2012-13,points_per_game,26.789474,26.789473684210527,-0.0,26.8,26.8,OK
+Q61,A-raw,2013-14,points_per_game,27.12987,27.12987012987013,0.0,27.1,27.1,OK
+Q61,A-raw,2014-15,points_per_game,25.26087,25.26086956521739,-0.0,25.3,25.3,OK
+Q61,A-raw,2015-16,points_per_game,25.263158,25.263157894736842,-0.0,25.3,25.3,OK
+Q61,A-raw,2016-17,points_per_game,26.405405,26.405405405405407,0.0,26.4,26.4,OK
+Q61,A-raw,2017-18,points_per_game,27.45122,27.451219512195124,-0.0,27.5,27.5,OK
+Q61,A-raw,2018-19,points_per_game,27.363636,27.363636363636363,0.0,27.4,27.4,OK
+Q61,A-raw,2019-20,points_per_game,25.343284,25.34328358208955,-0.0,25.3,25.3,OK
+Q61,A-raw,2020-21,points_per_game,25.022222,25.022222222222222,0.0,25.0,25.0,OK
+Q61,A-raw,2021-22,points_per_game,30.267857,30.267857142857142,0.0,30.3,30.3,OK
+Q61,A-raw,2022-23,points_per_game,28.909091,28.90909090909091,-0.0,28.9,28.9,OK
+Q61,A-raw,2023-24,points_per_game,25.661972,25.661971830985916,-0.0,25.7,25.7,OK
+Q61,A-raw,2024-25,points_per_game,24.428571,24.428571428571427,0.0,24.4,24.4,OK
+Q61,A-raw,2025-26,points_per_game,20.933333,20.933333333333334,0.0,20.9,20.9,OK
+Q61,B-nba,2003-04,points_per_game,20.936709,20.936708860759495,-0.0,20.9,20.9,OK
+Q61,B-nba,2004-05,points_per_game,27.1875,27.1875,0.0,27.2,27.2,OK
+Q61,B-nba,2005-06,points_per_game,31.367089,31.367088607594937,-0.0,31.4,31.4,OK
+Q61,B-nba,2006-07,points_per_game,27.333333,27.333333333333332,0.0,27.3,27.3,OK
+Q61,B-nba,2007-08,points_per_game,30.0,30.0,0.0,30.0,30.0,OK
+Q61,B-nba,2008-09,points_per_game,28.444444,28.444444444444443,0.0,28.4,28.4,OK
+Q61,B-nba,2009-10,points_per_game,29.710526,29.710526315789473,0.0,29.7,29.7,OK
+Q61,B-nba,2010-11,points_per_game,26.721519,26.72151898734177,-0.0,26.7,26.7,OK
+Q61,B-nba,2011-12,points_per_game,27.145161,27.14516129032258,0.0,27.1,27.1,OK
+Q61,B-nba,2012-13,points_per_game,26.789474,26.789473684210527,-0.0,26.8,26.8,OK
+Q61,B-nba,2013-14,points_per_game,27.12987,27.12987012987013,0.0,27.1,27.1,OK
+Q61,B-nba,2014-15,points_per_game,25.26087,25.26086956521739,-0.0,25.3,25.3,OK
+Q61,B-nba,2015-16,points_per_game,25.263158,25.263157894736842,-0.0,25.3,25.3,OK
+Q61,B-nba,2016-17,points_per_game,26.405405,26.405405405405407,0.0,26.4,26.4,OK
+Q61,B-nba,2017-18,points_per_game,27.45122,27.451219512195124,-0.0,27.5,27.5,OK
+Q61,B-nba,2018-19,points_per_game,27.363636,27.363636363636363,0.0,27.4,27.4,OK
+Q61,B-nba,2019-20,points_per_game,25.343284,25.34328358208955,-0.0,25.3,25.3,OK
+Q61,B-nba,2020-21,points_per_game,25.022222,25.022222222222222,0.0,25.0,25.0,OK
+Q61,B-nba,2021-22,points_per_game,30.267857,30.267857142857142,0.0,30.3,30.3,OK
+Q61,B-nba,2022-23,points_per_game,28.909091,28.90909090909091,-0.0,28.9,28.9,OK
+Q61,B-nba,2023-24,points_per_game,25.661972,25.661971830985916,-0.0,25.7,25.7,OK
+Q61,B-nba,2024-25,points_per_game,24.428571,24.428571428571427,0.0,24.4,24.4,OK
+Q61,B-nba,2025-26,points_per_game,20.933333,20.933333333333334,0.0,20.9,20.9,OK
+Q62,A-raw,1990-91,league_points_per_game,106.309846,106.30984643179765,0.0,106.3,106.3,OK
+Q62,A-raw,1991-92,league_points_per_game,105.308943,105.3089430894309,0.0,105.3,105.3,OK
+Q62,A-raw,1992-93,league_points_per_game,105.272358,105.27235772357723,-0.0,105.3,105.3,OK
+Q62,A-raw,1993-94,league_points_per_game,101.507227,101.50722673893405,-0.0,101.5,101.5,OK
+Q62,A-raw,1994-95,league_points_per_game,101.408311,101.40831074977416,-0.0,101.4,101.4,OK
+Q62,A-raw,1995-96,league_points_per_game,99.503364,99.50336417157276,0.0,99.5,99.5,OK
+Q62,A-raw,1996-97,league_points_per_game,96.902019,96.90201850294365,-0.0,96.9,96.9,OK
+Q62,A-raw,1997-98,league_points_per_game,95.571489,95.57148864592094,-0.0,95.6,95.6,OK
+Q62,A-raw,1998-99,league_points_per_game,91.58069,91.58068965517242,-0.0,91.6,91.6,OK
+Q62,A-raw,1999-00,league_points_per_game,97.472246,97.47224558452481,-0.0,97.5,97.5,OK
+Q62,A-raw,2025-26,league_points_per_game,115.607724,115.60772357723577,-0.0,115.6,115.6,OK
+Q62,B-nba,1990-91,league_points_per_game,106.309846,,,,,MISSING
+Q62,B-nba,1991-92,league_points_per_game,105.308943,,,,,MISSING
+Q62,B-nba,1992-93,league_points_per_game,105.272358,,,,,MISSING
+Q62,B-nba,1993-94,league_points_per_game,101.507227,,,,,MISSING
+Q62,B-nba,1994-95,league_points_per_game,101.408311,,,,,MISSING
+Q62,B-nba,1995-96,league_points_per_game,99.503364,,,,,MISSING
+Q62,B-nba,1996-97,league_points_per_game,96.902019,96.89907485281749,-0.002944,96.9,96.9,OK
+Q62,B-nba,1997-98,league_points_per_game,95.571489,95.57148864592094,-0.0,95.6,95.6,OK
+Q62,B-nba,1998-99,league_points_per_game,91.58069,91.58068965517242,-0.0,91.6,91.6,OK
+Q62,B-nba,1999-00,league_points_per_game,97.472246,97.47224558452481,-0.0,97.5,97.5,OK
+Q62,B-nba,2025-26,league_points_per_game,115.607724,115.60772357723577,-0.0,115.6,115.6,OK
+Q63,A-raw,2021-22,wins,24,24,0,24.0,24.0,OK
+Q63,A-raw,2022-23,wins,40,40,0,40.0,40.0,OK
+Q63,A-raw,2023-24,wins,57,57,0,57.0,57.0,OK
+Q63,A-raw,2024-25,wins,68,68,0,68.0,68.0,OK
+Q63,A-raw,2025-26,wins,64,64,0,64.0,64.0,OK
+Q63,B-nba,2021-22,wins,24,24,0,24.0,24.0,OK
+Q63,B-nba,2022-23,wins,40,40,0,40.0,40.0,OK
+Q63,B-nba,2023-24,wins,57,57,0,57.0,57.0,OK
+Q63,B-nba,2024-25,wins,68,68,0,68.0,68.0,OK
+Q63,B-nba,2025-26,wins,64,64,0,64.0,64.0,OK
+Q64,A-raw,2015-16,assists_per_game,2.3625,2.3625,0.0,2.4,2.4,OK
+Q64,A-raw,2016-17,assists_per_game,4.917808,4.917808219178082,0.0,4.9,4.9,OK
+Q64,A-raw,2017-18,assists_per_game,6.106667,6.1066666666666665,-0.0,6.1,6.1,OK
+Q64,A-raw,2018-19,assists_per_game,7.25,7.25,0.0,7.3,7.3,OK
+Q64,A-raw,2019-20,assists_per_game,7.013699,7.013698630136986,-0.0,7.0,7.0,OK
+Q64,A-raw,2020-21,assists_per_game,8.319444,8.319444444444445,0.0,8.3,8.3,OK
+Q64,A-raw,2021-22,assists_per_game,7.891892,7.891891891891892,-0.0,7.9,7.9,OK
+Q64,A-raw,2022-23,assists_per_game,9.826087,9.826086956521738,-0.0,9.8,9.8,OK
+Q64,A-raw,2023-24,assists_per_game,8.962025,8.962025316455696,0.0,9.0,9.0,OK
+Q64,A-raw,2024-25,assists_per_game,10.228571,10.228571428571428,0.0,10.2,10.2,OK
+Q64,A-raw,2025-26,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q64,B-nba,2015-16,assists_per_game,2.3625,2.3625,0.0,2.4,2.4,OK
+Q64,B-nba,2016-17,assists_per_game,4.917808,4.917808219178082,0.0,4.9,4.9,OK
+Q64,B-nba,2017-18,assists_per_game,6.106667,6.1066666666666665,-0.0,6.1,6.1,OK
+Q64,B-nba,2018-19,assists_per_game,7.25,7.25,0.0,7.3,7.3,OK
+Q64,B-nba,2019-20,assists_per_game,7.013699,7.013698630136986,-0.0,7.0,7.0,OK
+Q64,B-nba,2020-21,assists_per_game,8.319444,8.319444444444445,0.0,8.3,8.3,OK
+Q64,B-nba,2021-22,assists_per_game,7.891892,7.891891891891892,-0.0,7.9,7.9,OK
+Q64,B-nba,2022-23,assists_per_game,9.826087,9.826086956521738,-0.0,9.8,9.8,OK
+Q64,B-nba,2023-24,assists_per_game,8.962025,8.962025316455696,0.0,9.0,9.0,OK
+Q64,B-nba,2024-25,assists_per_game,10.228571,10.228571428571428,0.0,10.2,10.2,OK
+Q64,B-nba,2025-26,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+Q71,A-raw,jalen duren,true_shooting_pct,0.687865,0.6878653497278774,0.0,68.8,68.8,OK
+Q71,B-nba,jalen duren,true_shooting_pct,0.687865,0.6878653497278774,0.0,68.8,68.8,OK
+Q72,A-raw,nikola jokic,usage_rate,0.289,0.289,0.0,28.9,28.9,OK
+Q72,B-nba,nikola jokic,usage_rate,0.289,0.289,0.0,28.9,28.9,OK
+Q73,A-raw,above the break 3,shot_attempts,451,451,0,451.0,451.0,OK
+Q73,A-raw,restricted area,shot_attempts,122,122,0,122.0,122.0,OK
+Q73,A-raw,in the paint (non-ra),shot_attempts,97,97,0,97.0,97.0,OK
+Q73,A-raw,mid-range,shot_attempts,96,96,0,96.0,96.0,OK
+Q73,A-raw,left corner 3,shot_attempts,20,20,0,20.0,20.0,OK
+Q73,A-raw,right corner 3,shot_attempts,13,13,0,13.0,13.0,OK
+Q73,B-nba,above the break 3,shot_attempts,451,451,0,451.0,451.0,OK
+Q73,B-nba,restricted area,shot_attempts,122,122,0,122.0,122.0,OK
+Q73,B-nba,in the paint (non-ra),shot_attempts,97,97,0,97.0,97.0,OK
+Q73,B-nba,mid-range,shot_attempts,96,96,0,96.0,96.0,OK
+Q73,B-nba,left corner 3,shot_attempts,20,20,0,20.0,20.0,OK
+Q73,B-nba,right corner 3,shot_attempts,13,13,0,13.0,13.0,OK
+Q74,A-raw,giannis antetokounmpo,restricted_area_fg_pct,0.773632,0.7736318407960199,-0.0,77.4,77.4,OK
+Q74,B-nba,giannis antetokounmpo,restricted_area_fg_pct,0.773632,0.7736318407960199,-0.0,77.4,77.4,OK
+Q75,A-raw,og anunoby,corner_threes_made,88,88,0,88.0,88.0,OK
+Q75,B-nba,og anunoby,corner_threes_made,88,88,0,88.0,88.0,OK
+Q76,A-raw,luka doncic,step_back_three_pct,0.359375,0.359375,0.0,35.9,35.9,OK
+Q76,B-nba,luka doncic,step_back_three_pct,0.359375,0.359375,0.0,35.9,35.9,OK
+Q77,A-raw,shai gilgeous-alexander,games_played,76,76,0,76.0,76.0,OK
+Q77,A-raw,shai gilgeous-alexander,minutes_per_game,34.184211,34.18421052631579,-0.0,34.2,34.2,OK
+Q77,A-raw,shai gilgeous-alexander,points_per_game,32.684211,32.68421052631579,-0.0,32.7,32.7,OK
+Q77,A-raw,shai gilgeous-alexander,rebounds_per_game,4.986842,4.9868421052631575,0.0,5.0,5.0,OK
+Q77,A-raw,shai gilgeous-alexander,assists_per_game,6.394737,6.394736842105263,-0.0,6.4,6.4,OK
+Q77,A-raw,shai gilgeous-alexander,steals_per_game,1.723684,1.7236842105263157,0.0,1.7,1.7,OK
+Q77,A-raw,shai gilgeous-alexander,blocks_per_game,1.013158,1.013157894736842,-0.0,1.0,1.0,OK
+Q77,A-raw,shai gilgeous-alexander,field_goal_pct,0.519324,0.5193236714975845,-0.0,51.9,51.9,OK
+Q77,A-raw,shai gilgeous-alexander,three_point_pct,0.374713,0.37471264367816093,-0.0,37.5,37.5,OK
+Q77,A-raw,shai gilgeous-alexander,free_throw_pct,0.898356,0.898355754857997,-0.0,89.8,89.8,OK
+Q77,B-nba,shai gilgeous-alexander,games_played,76,76,0,76.0,76.0,OK
+Q77,B-nba,shai gilgeous-alexander,minutes_per_game,34.184211,34.17934210526316,-0.004869,34.2,34.2,OK
+Q77,B-nba,shai gilgeous-alexander,points_per_game,32.684211,32.68421052631579,-0.0,32.7,32.7,OK
+Q77,B-nba,shai gilgeous-alexander,rebounds_per_game,4.986842,4.9868421052631575,0.0,5.0,5.0,OK
+Q77,B-nba,shai gilgeous-alexander,assists_per_game,6.394737,6.394736842105263,-0.0,6.4,6.4,OK
+Q77,B-nba,shai gilgeous-alexander,steals_per_game,1.723684,1.7236842105263157,0.0,1.7,1.7,OK
+Q77,B-nba,shai gilgeous-alexander,blocks_per_game,1.013158,1.013157894736842,-0.0,1.0,1.0,OK
+Q77,B-nba,shai gilgeous-alexander,field_goal_pct,0.519324,0.5193236714975845,-0.0,51.9,51.9,OK
+Q77,B-nba,shai gilgeous-alexander,three_point_pct,0.374713,0.37471264367816093,-0.0,37.5,37.5,OK
+Q77,B-nba,shai gilgeous-alexander,free_throw_pct,0.898356,0.898355754857997,-0.0,89.8,89.8,OK
+Q78,A-raw,kareem abdul-jabbar,mvp_awards,6,6,0,6.0,6.0,OK
+Q78,B-nba,kareem abdul-jabbar,mvp_awards,6,6,0,6.0,6.0,OK
+Q80,A-raw,lebron james,all_star_selections,22,22,0,22.0,22.0,OK
+Q80,B-nba,lebron james,all_star_selections,22,22,0,22.0,22.0,OK
+M01.1,A-raw,luka doncic,points_per_game,33.484375,33.484375,0.0,33.5,33.5,OK
+M01.1,B-nba,luka doncic,points_per_game,33.484375,33.484375,0.0,33.5,33.5,OK
+M01.2,A-raw,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+M01.2,B-nba,nikola jokic,assists_per_game,10.723077,10.723076923076922,-0.0,10.7,10.7,OK
+M02.1,A-raw,nikola jokic,games_played,70,70,0,70.0,70.0,OK
+M02.1,A-raw,nikola jokic,minutes_per_game,36.728571,36.72857142857143,0.0,36.7,36.7,OK
+M02.1,A-raw,nikola jokic,points_per_game,29.585714,29.585714285714285,0.0,29.6,29.6,OK
+M02.1,A-raw,nikola jokic,rebounds_per_game,12.742857,12.742857142857142,0.0,12.7,12.7,OK
+M02.1,A-raw,nikola jokic,assists_per_game,10.228571,10.228571428571428,0.0,10.2,10.2,OK
+M02.1,A-raw,nikola jokic,steals_per_game,1.814286,1.8142857142857143,-0.0,1.8,1.8,OK
+M02.1,A-raw,nikola jokic,blocks_per_game,0.642857,0.6428571428571429,0.0,0.6,0.6,OK
+M02.1,A-raw,nikola jokic,field_goal_pct,0.576246,0.5762463343108505,0.0,57.6,57.6,OK
+M02.1,A-raw,nikola jokic,three_point_pct,0.416918,0.4169184290030212,0.0,41.7,41.7,OK
+M02.1,A-raw,nikola jokic,free_throw_pct,0.800443,0.8004434589800443,0.0,80.0,80.0,OK
+M02.1,B-nba,nikola jokic,games_played,70,70,0,70.0,70.0,OK
+M02.1,B-nba,nikola jokic,minutes_per_game,36.728571,36.72521428571429,-0.003357,36.7,36.7,OK
+M02.1,B-nba,nikola jokic,points_per_game,29.585714,29.585714285714285,0.0,29.6,29.6,OK
+M02.1,B-nba,nikola jokic,rebounds_per_game,12.742857,12.742857142857142,0.0,12.7,12.7,OK
+M02.1,B-nba,nikola jokic,assists_per_game,10.228571,10.228571428571428,0.0,10.2,10.2,OK
+M02.1,B-nba,nikola jokic,steals_per_game,1.814286,1.8142857142857143,-0.0,1.8,1.8,OK
+M02.1,B-nba,nikola jokic,blocks_per_game,0.642857,0.6428571428571429,0.0,0.6,0.6,OK
+M02.1,B-nba,nikola jokic,field_goal_pct,0.576246,0.5762463343108505,0.0,57.6,57.6,OK
+M02.1,B-nba,nikola jokic,three_point_pct,0.416918,0.4169184290030212,0.0,41.7,41.7,OK
+M02.1,B-nba,nikola jokic,free_throw_pct,0.800443,0.8004434589800443,0.0,80.0,80.0,OK
+M02.2,A-raw,nikola jokic,games_played,14,14,0,14.0,14.0,OK
+M02.2,A-raw,nikola jokic,minutes_per_game,40.214286,40.214285714285715,-0.0,40.2,40.2,OK
+M02.2,A-raw,nikola jokic,points_per_game,26.214286,26.214285714285715,-0.0,26.2,26.2,OK
+M02.2,A-raw,nikola jokic,rebounds_per_game,12.714286,12.714285714285714,-0.0,12.7,12.7,OK
+M02.2,A-raw,nikola jokic,assists_per_game,8.0,8.0,0.0,8.0,8.0,OK
+M02.2,A-raw,nikola jokic,steals_per_game,2.0,2.0,0.0,2.0,2.0,OK
+M02.2,A-raw,nikola jokic,blocks_per_game,0.857143,0.8571428571428571,-0.0,0.9,0.9,OK
+M02.2,A-raw,nikola jokic,field_goal_pct,0.488806,0.48880597014925375,-0.0,48.9,48.9,OK
+M02.2,A-raw,nikola jokic,three_point_pct,0.380282,0.38028169014084506,-0.0,38.0,38.0,OK
+M02.2,A-raw,nikola jokic,free_throw_pct,0.772277,0.7722772277227723,0.0,77.2,77.2,OK
+M02.2,B-nba,nikola jokic,games_played,14,14,0,14.0,14.0,OK
+M02.2,B-nba,nikola jokic,minutes_per_game,40.214286,40.20845238095238,-0.005834,40.2,40.2,OK
+M02.2,B-nba,nikola jokic,points_per_game,26.214286,26.214285714285715,-0.0,26.2,26.2,OK
+M02.2,B-nba,nikola jokic,rebounds_per_game,12.714286,12.714285714285714,-0.0,12.7,12.7,OK
+M02.2,B-nba,nikola jokic,assists_per_game,8.0,8.0,0.0,8.0,8.0,OK
+M02.2,B-nba,nikola jokic,steals_per_game,2.0,2.0,0.0,2.0,2.0,OK
+M02.2,B-nba,nikola jokic,blocks_per_game,0.857143,0.8571428571428571,-0.0,0.9,0.9,OK
+M02.2,B-nba,nikola jokic,field_goal_pct,0.488806,0.48880597014925375,-0.0,48.9,48.9,OK
+M02.2,B-nba,nikola jokic,three_point_pct,0.380282,0.38028169014084506,-0.0,38.0,38.0,OK
+M02.2,B-nba,nikola jokic,free_throw_pct,0.772277,0.7722772277227723,0.0,77.2,77.2,OK
+M03.1,A-raw,stephen curry,three_point_pct,0.421721,0.4217214335351931,0.0,42.2,42.2,OK
+M03.1,A-raw,klay thompson,three_point_pct,0.408943,0.4089434334885033,0.0,40.9,40.9,OK
+M03.1,B-nba,stephen curry,three_point_pct,0.421721,0.4217214335351931,0.0,42.2,42.2,OK
+M03.1,B-nba,klay thompson,three_point_pct,0.408943,0.4089434334885033,0.0,40.9,40.9,OK
+M03.2,A-raw,"stephen curry, 2023-24",three_point_pct,0.407534,0.4075342465753425,0.0,40.8,40.8,OK
+M03.2,A-raw,"stephen curry, 2024-25",three_point_pct,0.396684,0.39668367346938777,-0.0,39.7,39.7,OK
+M03.2,A-raw,"stephen curry, 2025-26",three_point_pct,0.392562,0.3925619834710744,-0.0,39.3,39.3,OK
+M03.2,A-raw,"klay thompson, 2023-24",three_point_pct,0.387283,0.3872832369942196,0.0,38.7,38.7,OK
+M03.2,A-raw,"klay thompson, 2024-25",three_point_pct,0.390597,0.39059674502712477,-0.0,39.1,39.1,OK
+M03.2,A-raw,"klay thompson, 2025-26",three_point_pct,0.383302,0.38330170777988615,-0.0,38.3,38.3,OK
+M03.2,B-nba,"stephen curry, 2023-24",three_point_pct,0.407534,0.4075342465753425,0.0,40.8,40.8,OK
+M03.2,B-nba,"stephen curry, 2024-25",three_point_pct,0.396684,0.39668367346938777,-0.0,39.7,39.7,OK
+M03.2,B-nba,"stephen curry, 2025-26",three_point_pct,0.392562,0.3925619834710744,-0.0,39.3,39.3,OK
+M03.2,B-nba,"klay thompson, 2023-24",three_point_pct,0.387283,0.3872832369942196,0.0,38.7,38.7,OK
+M03.2,B-nba,"klay thompson, 2024-25",three_point_pct,0.390597,0.39059674502712477,-0.0,39.1,39.1,OK
+M03.2,B-nba,"klay thompson, 2025-26",three_point_pct,0.383302,0.38330170777988615,-0.0,38.3,38.3,OK
+M04.1,A-raw,oklahoma city thunder,wins,64,64,0,64.0,64.0,OK
+M04.1,A-raw,oklahoma city thunder,losses,18,18,0,18.0,18.0,OK
+M04.1,B-nba,oklahoma city thunder,wins,64,64,0,64.0,64.0,OK
+M04.1,B-nba,oklahoma city thunder,losses,18,18,0,18.0,18.0,OK
+M04.2,A-raw,oklahoma city thunder,net_rating,11.1,11.1,0.0,11.1,11.1,OK
+M04.2,B-nba,oklahoma city thunder,net_rating,11.1,11.1,0.0,11.1,11.1,OK
+M05.2,A-raw,shai gilgeous-alexander,mvp_awards,1,1,0,1.0,1.0,OK
+M05.2,B-nba,shai gilgeous-alexander,mvp_awards,1,1,0,1.0,1.0,OK
+M06.1,A-raw,boston celtics,team_points_per_game,114.853659,114.85365853658537,-0.0,114.9,114.9,OK
+M06.1,B-nba,boston celtics,team_points_per_game,114.853659,114.85365853658537,-0.0,114.9,114.9,OK
+M06.2,A-raw,boston celtics,defensive_rating,111.7,111.7,0.0,111.7,111.7,OK
+M06.2,B-nba,boston celtics,defensive_rating,111.7,111.7,0.0,111.7,111.7,OK
+M06.3,A-raw,"boston celtics, 2024-25",defensive_rating,110.1,110.1,0.0,110.1,110.1,OK
+M06.3,B-nba,"boston celtics, 2024-25",defensive_rating,110.1,110.1,0.0,110.1,110.1,OK
+M07.1,A-raw,victor wembanyama,games_played,71,71,0,71.0,71.0,OK
+M07.1,A-raw,victor wembanyama,minutes_per_game,29.661972,29.661971830985916,-0.0,29.7,29.7,OK
+M07.1,A-raw,victor wembanyama,points_per_game,21.43662,21.43661971830986,-0.0,21.4,21.4,OK
+M07.1,A-raw,victor wembanyama,rebounds_per_game,10.633803,10.633802816901408,-0.0,10.6,10.6,OK
+M07.1,A-raw,victor wembanyama,assists_per_game,3.859155,3.859154929577465,-0.0,3.9,3.9,OK
+M07.1,A-raw,victor wembanyama,steals_per_game,1.239437,1.2394366197183098,-0.0,1.2,1.2,OK
+M07.1,A-raw,victor wembanyama,blocks_per_game,3.577465,3.5774647887323945,-0.0,3.6,3.6,OK
+M07.1,A-raw,victor wembanyama,field_goal_pct,0.464587,0.4645868465430017,-0.0,46.5,46.5,OK
+M07.1,A-raw,victor wembanyama,three_point_pct,0.324873,0.3248730964467005,0.0,32.5,32.5,OK
+M07.1,A-raw,victor wembanyama,free_throw_pct,0.79564,0.7956403269754768,0.0,79.6,79.6,OK
+M07.1,B-nba,victor wembanyama,games_played,71,71,0,71.0,71.0,OK
+M07.1,B-nba,victor wembanyama,minutes_per_game,29.661972,29.665281690140848,0.00331,29.7,29.7,OK
+M07.1,B-nba,victor wembanyama,points_per_game,21.43662,21.43661971830986,-0.0,21.4,21.4,OK
+M07.1,B-nba,victor wembanyama,rebounds_per_game,10.633803,10.633802816901408,-0.0,10.6,10.6,OK
+M07.1,B-nba,victor wembanyama,assists_per_game,3.859155,3.859154929577465,-0.0,3.9,3.9,OK
+M07.1,B-nba,victor wembanyama,steals_per_game,1.239437,1.2394366197183098,-0.0,1.2,1.2,OK
+M07.1,B-nba,victor wembanyama,blocks_per_game,3.577465,3.5774647887323945,-0.0,3.6,3.6,OK
+M07.1,B-nba,victor wembanyama,field_goal_pct,0.464587,0.4645868465430017,-0.0,46.5,46.5,OK
+M07.1,B-nba,victor wembanyama,three_point_pct,0.324873,0.3248730964467005,0.0,32.5,32.5,OK
+M07.1,B-nba,victor wembanyama,free_throw_pct,0.79564,0.7956403269754768,0.0,79.6,79.6,OK
+M07.2,A-raw,victor wembanyama,games_played,46,46,0,46.0,46.0,OK
+M07.2,A-raw,victor wembanyama,minutes_per_game,33.195652,33.19565217391305,0.0,33.2,33.2,OK
+M07.2,A-raw,victor wembanyama,points_per_game,24.26087,24.26086956521739,-0.0,24.3,24.3,OK
+M07.2,A-raw,victor wembanyama,rebounds_per_game,11.0,11.0,0.0,11.0,11.0,OK
+M07.2,A-raw,victor wembanyama,assists_per_game,3.652174,3.652173913043478,-0.0,3.7,3.7,OK
+M07.2,A-raw,victor wembanyama,steals_per_game,1.130435,1.1304347826086956,-0.0,1.1,1.1,OK
+M07.2,A-raw,victor wembanyama,blocks_per_game,3.826087,3.8260869565217392,-0.0,3.8,3.8,OK
+M07.2,A-raw,victor wembanyama,field_goal_pct,0.476079,0.47607934655775963,0.0,47.6,47.6,OK
+M07.2,A-raw,victor wembanyama,three_point_pct,0.352357,0.3523573200992556,0.0,35.2,35.2,OK
+M07.2,A-raw,victor wembanyama,free_throw_pct,0.835979,0.8359788359788359,-0.0,83.6,83.6,OK
+M07.2,B-nba,victor wembanyama,games_played,46,46,0,46.0,46.0,OK
+M07.2,B-nba,victor wembanyama,minutes_per_game,33.195652,33.201159420289855,0.005507,33.2,33.2,OK
+M07.2,B-nba,victor wembanyama,points_per_game,24.26087,24.26086956521739,-0.0,24.3,24.3,OK
+M07.2,B-nba,victor wembanyama,rebounds_per_game,11.0,11.0,0.0,11.0,11.0,OK
+M07.2,B-nba,victor wembanyama,assists_per_game,3.652174,3.652173913043478,-0.0,3.7,3.7,OK
+M07.2,B-nba,victor wembanyama,steals_per_game,1.130435,1.1304347826086956,-0.0,1.1,1.1,OK
+M07.2,B-nba,victor wembanyama,blocks_per_game,3.826087,3.8260869565217392,-0.0,3.8,3.8,OK
+M07.2,B-nba,victor wembanyama,field_goal_pct,0.476079,0.47607934655775963,0.0,47.6,47.6,OK
+M07.2,B-nba,victor wembanyama,three_point_pct,0.352357,0.3523573200992556,0.0,35.2,35.2,OK
+M07.2,B-nba,victor wembanyama,free_throw_pct,0.835979,0.8359788359788359,-0.0,83.6,83.6,OK
+M07.3,A-raw,2023-24,blocks_per_game,3.577465,3.5774647887323945,-0.0,3.6,3.6,OK
+M07.3,A-raw,2024-25,blocks_per_game,3.826087,3.8260869565217392,-0.0,3.8,3.8,OK
+M07.3,B-nba,2023-24,blocks_per_game,3.577465,3.5774647887323945,-0.0,3.6,3.6,OK
+M07.3,B-nba,2024-25,blocks_per_game,3.826087,3.8260869565217392,-0.0,3.8,3.8,OK
+M08.1,A-raw,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+M08.1,B-nba,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+M08.2,A-raw,domantas sabonis,rebounds_per_game,13.885714,13.885714285714286,0.0,13.9,13.9,OK
+M08.2,B-nba,domantas sabonis,rebounds_per_game,13.885714,13.885714285714286,0.0,13.9,13.9,OK
+M08.3,A-raw,giannis antetokounmpo,rebounds_per_game,15.4,15.4,0.0,15.4,15.4,OK
+M08.3,B-nba,giannis antetokounmpo,rebounds_per_game,15.4,15.4,0.0,15.4,15.4,OK
+M09.1,A-raw,joel embiid,points_per_game,26.868421,26.86842105263158,0.0,26.9,26.9,OK
+M09.1,A-raw,nikola jokic,points_per_game,27.676923,27.676923076923078,0.0,27.7,27.7,OK
+M09.1,B-nba,joel embiid,points_per_game,26.868421,26.86842105263158,0.0,26.9,26.9,OK
+M09.1,B-nba,nikola jokic,points_per_game,27.676923,27.676923076923078,0.0,27.7,27.7,OK
+M09.2,A-raw,joel embiid,rebounds_per_game,7.710526,7.7105263157894735,0.0,7.7,7.7,OK
+M09.2,A-raw,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+M09.2,B-nba,joel embiid,rebounds_per_game,7.710526,7.7105263157894735,0.0,7.7,7.7,OK
+M09.2,B-nba,nikola jokic,rebounds_per_game,12.861538,12.861538461538462,0.0,12.9,12.9,OK
+M09.3,A-raw,joel embiid,games_played,38,38,0,38.0,38.0,OK
+M09.3,A-raw,nikola jokic,games_played,65,65,0,65.0,65.0,OK
+M09.3,B-nba,joel embiid,games_played,38,38,0,38.0,38.0,OK
+M09.3,B-nba,nikola jokic,games_played,65,65,0,65.0,65.0,OK
+M10.1,A-raw,lebron james,points,8289,8289,0,8289.0,8289.0,OK
+M10.1,A-raw,lebron james,rebounds,2628,2628,0,2628.0,2628.0,OK
+M10.1,A-raw,lebron james,assists,2095,2095,0,2095.0,2095.0,OK
+M10.1,A-raw,lebron james,games_played,292,292,0,292.0,292.0,OK
+M10.1,B-nba,lebron james,points,8289,8289,0,8289.0,8289.0,OK
+M10.1,B-nba,lebron james,rebounds,2628,2628,0,2628.0,2628.0,OK
+M10.1,B-nba,lebron james,assists,2095,2095,0,2095.0,2095.0,OK
+M10.1,B-nba,lebron james,games_played,292,292,0,292.0,292.0,OK
+M10.2,A-raw,lebron james,points,8289,8289,0,8289.0,8289.0,OK
+M10.2,A-raw,lebron james,rebounds,2628,2628,0,2628.0,2628.0,OK
+M10.2,A-raw,lebron james,assists,2095,2095,0,2095.0,2095.0,OK
+M10.2,A-raw,lebron james,games_played,292,292,0,292.0,292.0,OK
+M10.2,A-raw,kevin durant,points,4985,4985,0,4985.0,4985.0,OK
+M10.2,A-raw,kevin durant,rebounds,1327,1327,0,1327.0,1327.0,OK
+M10.2,A-raw,kevin durant,assists,709,709,0,709.0,709.0,OK
+M10.2,A-raw,kevin durant,games_played,170,170,0,170.0,170.0,OK
+M10.2,B-nba,lebron james,points,8289,8289,0,8289.0,8289.0,OK
+M10.2,B-nba,lebron james,rebounds,2628,2628,0,2628.0,2628.0,OK
+M10.2,B-nba,lebron james,assists,2095,2095,0,2095.0,2095.0,OK
+M10.2,B-nba,lebron james,games_played,292,292,0,292.0,292.0,OK
+M10.2,B-nba,kevin durant,points,4985,4985,0,4985.0,4985.0,OK
+M10.2,B-nba,kevin durant,rebounds,1327,1327,0,1327.0,1327.0,OK
+M10.2,B-nba,kevin durant,assists,709,709,0,709.0,709.0,OK
+M10.2,B-nba,kevin durant,games_played,170,170,0,170.0,170.0,OK
+H05,A-raw,michael jordan,games_played,1072,1072,0,1072.0,1072.0,OK
+H05,A-raw,michael jordan,minutes_per_game,38.255597,38.25559701492537,0.0,38.3,38.3,OK
+H05,A-raw,michael jordan,points_per_game,30.123134,30.12313432835821,0.0,30.1,30.1,OK
+H05,A-raw,michael jordan,rebounds_per_game,6.223881,6.223880597014926,-0.0,6.2,6.2,OK
+H05,A-raw,michael jordan,assists_per_game,5.254664,5.254664179104478,0.0,5.3,5.3,OK
+H05,A-raw,michael jordan,steals_per_game,2.345149,2.345149253731343,0.0,2.3,2.3,OK
+H05,A-raw,michael jordan,blocks_per_game,0.833022,0.8330223880597015,0.0,0.8,0.8,OK
+H05,A-raw,michael jordan,field_goal_pct,0.496882,0.4968822594449199,0.0,49.7,49.7,OK
+H05,A-raw,michael jordan,three_point_pct,0.326772,0.32677165354330706,-0.0,32.7,32.7,OK
+H05,A-raw,michael jordan,free_throw_pct,0.835271,0.8352713178294574,0.0,83.5,83.5,OK
+H05,A-raw,lebron james,games_played,1622,1622,0,1622.0,1622.0,OK
+H05,A-raw,lebron james,minutes_per_game,37.625771,37.62577065351418,-0.0,37.6,37.6,OK
+H05,A-raw,lebron james,points_per_game,26.781751,26.781750924784216,-0.0,26.8,26.8,OK
+H05,A-raw,lebron james,rebounds_per_game,7.456843,7.4568434032059185,0.0,7.5,7.5,OK
+H05,A-raw,lebron james,assists_per_game,7.408138,7.408138101109741,0.0,7.4,7.4,OK
+H05,A-raw,lebron james,steals_per_game,1.490136,1.4901356350184958,-0.0,1.5,1.5,OK
+H05,A-raw,lebron james,blocks_per_game,0.73058,0.7305795314426634,-0.0,0.7,0.7,OK
+H05,A-raw,lebron james,field_goal_pct,0.506666,0.5066662434131166,0.0,50.7,50.7,OK
+H05,A-raw,lebron james,three_point_pct,0.348447,0.3484467944481163,-0.0,34.8,34.8,OK
+H05,A-raw,lebron james,free_throw_pct,0.737034,0.7370342710148535,0.0,73.7,73.7,OK
+H05,B-nba,michael jordan,games_played,1072,1072,0,1072.0,1072.0,OK
+H05,B-nba,michael jordan,minutes_per_game,38.255597,38.25373134328358,-0.001866,38.3,38.3,OK
+H05,B-nba,michael jordan,points_per_game,30.123134,30.12313432835821,0.0,30.1,30.1,OK
+H05,B-nba,michael jordan,rebounds_per_game,6.223881,6.223880597014926,-0.0,6.2,6.2,OK
+H05,B-nba,michael jordan,assists_per_game,5.254664,5.254664179104478,0.0,5.3,5.3,OK
+H05,B-nba,michael jordan,steals_per_game,2.345149,2.345149253731343,0.0,2.3,2.3,OK
+H05,B-nba,michael jordan,blocks_per_game,0.833022,0.8330223880597015,0.0,0.8,0.8,OK
+H05,B-nba,michael jordan,field_goal_pct,0.496882,0.4968822594449199,0.0,49.7,49.7,OK
+H05,B-nba,michael jordan,three_point_pct,0.326772,0.32677165354330706,-0.0,32.7,32.7,OK
+H05,B-nba,michael jordan,free_throw_pct,0.835271,0.8352713178294574,0.0,83.5,83.5,OK
+H05,B-nba,lebron james,games_played,1622,1622,0,1622.0,1622.0,OK
+H05,B-nba,lebron james,minutes_per_game,37.625771,37.62577065351418,-0.0,37.6,37.6,OK
+H05,B-nba,lebron james,points_per_game,26.781751,26.781750924784216,-0.0,26.8,26.8,OK
+H05,B-nba,lebron james,rebounds_per_game,7.456843,7.4568434032059185,0.0,7.5,7.5,OK
+H05,B-nba,lebron james,assists_per_game,7.408138,7.408138101109741,0.0,7.4,7.4,OK
+H05,B-nba,lebron james,steals_per_game,1.490136,1.4901356350184958,-0.0,1.5,1.5,OK
+H05,B-nba,lebron james,blocks_per_game,0.73058,0.7305795314426634,-0.0,0.7,0.7,OK
+H05,B-nba,lebron james,field_goal_pct,0.506666,0.5066662434131166,0.0,50.7,50.7,OK
+H05,B-nba,lebron james,three_point_pct,0.348447,0.3484467944481163,-0.0,34.8,34.8,OK
+H05,B-nba,lebron james,free_throw_pct,0.737034,0.7370342710148535,0.0,73.7,73.7,OK
+H07,A-raw,shaquille o'neal,games_played,1207,1207,0,1207.0,1207.0,OK
+H07,A-raw,shaquille o'neal,minutes_per_game,34.728252,34.72825186412593,-0.0,34.7,34.7,OK
+H07,A-raw,shaquille o'neal,points_per_game,23.691798,23.691797845898922,-0.0,23.7,23.7,OK
+H07,A-raw,shaquille o'neal,rebounds_per_game,10.852527,10.852526926263463,-0.0,10.9,10.9,OK
+H07,A-raw,shaquille o'neal,assists_per_game,2.507042,2.507042253521127,0.0,2.5,2.5,OK
+H07,A-raw,shaquille o'neal,steals_per_game,0.612262,0.6122618061309031,-0.0,0.6,0.6,OK
+H07,A-raw,shaquille o'neal,blocks_per_game,2.263463,2.263463131731566,0.0,2.3,2.3,OK
+H07,A-raw,shaquille o'neal,field_goal_pct,0.58231,0.5823097085881688,-0.0,58.2,58.2,OK
+H07,A-raw,shaquille o'neal,three_point_pct,0.045455,0.045454545454545456,-0.0,4.5,4.5,OK
+H07,A-raw,shaquille o'neal,free_throw_pct,0.527462,0.5274617845716317,-0.0,52.7,52.7,OK
+H07,A-raw,wilt chamberlain,games_played,1045,1045,0,1045.0,1045.0,OK
+H07,A-raw,wilt chamberlain,minutes_per_game,45.798086,45.79808612440191,0.0,45.8,45.8,OK
+H07,A-raw,wilt chamberlain,points_per_game,30.066029,30.06602870813397,-0.0,30.1,30.1,OK
+H07,A-raw,wilt chamberlain,rebounds_per_game,22.89378,22.89377990430622,-0.0,22.9,22.9,OK
+H07,A-raw,wilt chamberlain,assists_per_game,4.443062,4.443062200956938,0.0,4.4,4.4,OK
+H07,A-raw,wilt chamberlain,field_goal_pct,0.539686,0.5396859173511512,-0.0,54.0,54.0,OK
+H07,A-raw,wilt chamberlain,free_throw_pct,0.510622,0.5106221547799696,0.0,51.1,51.1,OK
+H07,A-raw,wilt chamberlain,steals_per_game,,,,,,"OK (NULL, not stated)"
+H07,A-raw,wilt chamberlain,blocks_per_game,,,,,,"OK (NULL, not stated)"
+H07,A-raw,wilt chamberlain,three_point_pct,,,,,,"OK (NULL, not stated)"
+H07,B-nba,shaquille o'neal,games_played,1207,1207,0,1207.0,1207.0,OK
+H07,B-nba,shaquille o'neal,minutes_per_game,34.728252,34.72742336371168,-0.000829,34.7,34.7,OK
+H07,B-nba,shaquille o'neal,points_per_game,23.691798,23.691797845898922,-0.0,23.7,23.7,OK
+H07,B-nba,shaquille o'neal,rebounds_per_game,10.852527,10.852526926263463,-0.0,10.9,10.9,OK
+H07,B-nba,shaquille o'neal,assists_per_game,2.507042,2.507042253521127,0.0,2.5,2.5,OK
+H07,B-nba,shaquille o'neal,steals_per_game,0.612262,0.6122618061309031,-0.0,0.6,0.6,OK
+H07,B-nba,shaquille o'neal,blocks_per_game,2.263463,2.263463131731566,0.0,2.3,2.3,OK
+H07,B-nba,shaquille o'neal,field_goal_pct,0.58231,0.5823097085881688,-0.0,58.2,58.2,OK
+H07,B-nba,shaquille o'neal,three_point_pct,0.045455,0.045454545454545456,-0.0,4.5,4.5,OK
+H07,B-nba,shaquille o'neal,free_throw_pct,0.527462,0.5274617845716317,-0.0,52.7,52.7,OK
+H07,B-nba,wilt chamberlain,games_played,1045,1045,0,1045.0,1045.0,OK
+H07,B-nba,wilt chamberlain,minutes_per_game,45.798086,45.79808612440191,0.0,45.8,45.8,OK
+H07,B-nba,wilt chamberlain,points_per_game,30.066029,30.06602870813397,-0.0,30.1,30.1,OK
+H07,B-nba,wilt chamberlain,rebounds_per_game,22.89378,22.89377990430622,-0.0,22.9,22.9,OK
+H07,B-nba,wilt chamberlain,assists_per_game,4.443062,4.443062200956938,0.0,4.4,4.4,OK
+H07,B-nba,wilt chamberlain,field_goal_pct,0.539686,0.5396859173511512,-0.0,54.0,54.0,OK
+H07,B-nba,wilt chamberlain,free_throw_pct,0.510622,0.5106221547799696,0.0,51.1,51.1,OK
+H07,B-nba,wilt chamberlain,steals_per_game,,,,,,"OK (NULL, not stated)"
+H07,B-nba,wilt chamberlain,blocks_per_game,,,,,,"OK (NULL, not stated)"
+H07,B-nba,wilt chamberlain,three_point_pct,,,,,,"OK (NULL, not stated)"
