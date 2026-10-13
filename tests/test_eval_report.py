@@ -167,6 +167,45 @@ def test_git_sha_ignores_reports_dir_and_gitignored_files(tmp_path: Path) -> Non
     assert not report.git_sha(root).endswith("+dirty")
 
 
+def _put(root: Path, rel: str, text: str) -> None:
+    (root / rel).parent.mkdir(parents=True, exist_ok=True)
+    (root / rel).write_text(text)
+
+
+def _commit_all(root: Path) -> None:
+    subprocess.run(["git", "add", "."], cwd=root, check=True, capture_output=True)
+    subprocess.run(["git", "commit", "-qm", "more"], cwd=root, check=True, capture_output=True)
+
+
+def test_git_sha_ignores_untracked_docs_pm_evidence(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    _put(root, "docs/pm/evidence/T-1.log", "x")
+    assert not report.git_sha(root).endswith("+dirty")
+
+
+def test_git_sha_ignores_modified_tracked_docs_pm(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    _put(root, "docs/pm/BOARD.md", "a")
+    _commit_all(root)
+    _put(root, "docs/pm/BOARD.md", "b")
+    assert not report.git_sha(root).endswith("+dirty")
+
+
+@pytest.mark.parametrize("rel", ["app/x.py", "eval/cases.yaml", "docs/other.md"])
+def test_git_sha_flags_modified_tracked_result_inputs(tmp_path: Path, rel: str) -> None:
+    root = _repo(tmp_path)
+    _put(root, rel, "a")
+    _commit_all(root)
+    _put(root, rel, "b")
+    assert report.git_sha(root).endswith("+dirty")
+
+
+def test_git_sha_flags_untracked_root_file(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    _put(root, "notes.txt", "n")
+    assert report.git_sha(root).endswith("+dirty")
+
+
 def test_short_sha_keeps_the_dirty_flag() -> None:
     assert report.short_sha("a" * 40 + "+dirty") == "a" * 12 + "+dirty"
     assert report.short_sha("a" * 40) == "a" * 12
