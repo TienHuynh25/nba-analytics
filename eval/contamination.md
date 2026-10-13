@@ -23,3 +23,7 @@ Held-out seeds viewed: Q07, Q08, Q10, Q15, Q16, Q18, Q22, Q26, Q29, Q30, Q32, Q3
 ## 2026-10-12, T-2.6 (gold values)
 
 The developer computed gold values for **all 320 case units, held-out included** (`eval/gold/compute_gold.py` on `eval_2025_26_rs`), as the plan requires (2.6). Held-out question text and gold rows were read while writing `eval/gold/gold.sql` and reviewing `eval/gold/gold_report.md`. Gold is deterministic SQL on the semantic views; no prompt, tool, registry, verifier, semantic view or config was changed or tuned because of it. The app tools were run once on every gold tool call (sanity cross-check, scratch only, not saved) and agreed with gold; nothing was changed as a result. Also seen on dev: n/a (no tuning).
+
+## 2026-10-12, T-GATE2RUN (Gate 2 held-out run)
+
+Run `gate2-0e22b45f`: Gate 2 held-out run with the stub answerer (no model, no retrieval); results not used to change any prompt, tool, registry or gold; one run approved by the owner (D-032). Per-case held-out results were not inspected for tuning. Also seen on dev: n/a (no tuning).
