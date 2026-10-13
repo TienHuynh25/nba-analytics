@@ -66,7 +66,7 @@ def main(path: Path = CASES_PATH) -> None:
     path.write_text(header + yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=100))
     load(path)  # validate
     n = {s: sum(weight(c) for c in doc["cases"] if c["split"] == s) for s in ("dev", "heldout")}
-    print(f"dev {n['dev']} cases, held-out {n['heldout']} cases")
+    print(f"dev {n['dev']} turn-units, held-out {n['heldout']} turn-units")
 
 
 if __name__ == "__main__":

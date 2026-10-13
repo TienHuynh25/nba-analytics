@@ -1,0 +1,15 @@
+$ after-fix: bogus pinned id
+UsageError: eval aborted, pinned snapshot not usable: pinned snapshot eval_bogus_snapshot not found at /Users/tienhuynh/dev/nba-analytics/data/snapshots/eval_bogus_snapshot (build it: make refresh AS_OF=... SNAPSHOT_ID=eval_bogus_snapshot)
+$ make eval SPLIT=heldout (no HELDOUT_OK)
+ERROR: --split heldout includes the held-out split, which runs only at plan gates on the user's approval. Set HELDOUT_OK=1 to confirm.
+
+make: *** [eval] Error 4
+exit=${PIPESTATUS[0]}
+$ make gate2
+........................................................................ [ 67%]
+.....................................................................    [100%]eval report: /Users/tienhuynh/dev/nba-analytics/eval/reports/gate2-da58e845.md
+
+213 passed in 0.66s
+GATE2 INCOMPLETE: held-out not run, by policy. It runs only at the plan gate on the user's approval: make gate2 HELDOUT_OK=1.
+make: *** [gate2] Error 1
+exit=

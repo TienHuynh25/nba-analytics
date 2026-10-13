@@ -2,10 +2,11 @@
 
 import json
 import shutil
+import threading
 import time
 from collections.abc import Sequence
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar
 
 import duckdb
 import pytest
@@ -149,3 +150,38 @@ def test_deep_nesting_is_a_guard_error_then_repaired(fixture_db_path: Path) -> N
     fb, llm = make(fixture_db_path, [deep, "select count(*) from semantic.games"])
     r = fb.answer("how many games")
     assert r.ok and r.attempts == 2 and "nested too deeply" in llm.seen[1][-1].content
+
+
+class _LingeringTimer:
+    """A watchdog Timer whose thread has not exited yet: it is still referenced after the call,
+    as the real one is for a moment after ``cancel()`` (and in a cycle after that)."""
+
+    kept: ClassVar[list["_LingeringTimer"]] = []
+
+    def __init__(self, interval: float, function: Any) -> None:
+        self.function = function
+        self.kept.append(self)
+
+    def start(self) -> None:
+        pass
+
+    def cancel(self) -> None:
+        pass
+
+
+def test_run_with_timeout_does_not_keep_the_connection_alive(
+    fixture_db_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """T-FLAKE: the watchdog Timer's callback closed over the connection, so a Timer thread that
+    was still winding down (or sat in a reference cycle) kept the connection alive. DuckDB then
+    refused the next connection to the same file with another config ("different configuration
+    than existing connections"), failing whichever test ran next, depending on thread timing."""
+    _LingeringTimer.kept.clear()
+    monkeypatch.setattr(threading, "Timer", _LingeringTimer)
+    con = locked_connection(fixture_db_path, None)
+    run_with_timeout(con, "select 1")
+    del con
+    try:
+        duckdb.connect(str(fixture_db_path), read_only=True).close()  # raises if con leaked
+    finally:
+        _LingeringTimer.kept.clear()

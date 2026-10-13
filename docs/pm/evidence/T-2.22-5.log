@@ -1,0 +1,26 @@
+case items 305 units 320
+units by split {'dev': 223, 'heldout': 97} items Counter({'dev': 213, 'heldout': 92})
+families 103 spanning []
+M01 -> Q13 dev
+M05 -> Q77 heldout
+MT in shared fam ['M01:Q13', 'M05:Q77']
+mismatch vs recompute []
+Awards         dev   9 held   5 share 0.36
+Comparison     dev  27 held  13 share 0.33
+Definition     dev  18 held   6 share 0.25
+Game           dev  19 held   7 share 0.27
+Leaders        dev  24 held  12 share 0.33
+Player season  dev  45 held  19 share 0.30
+Records        dev  25 held  12 share 0.32
+Scope limits   dev  12 held   3 share 0.20
+Shooting       dev  10 held   4 share 0.29
+Team           dev  22 held  10 share 0.31
+Trend          dev  12 held   6 share 0.33
+now ('2de9f092f3bb2df1', 305)
+029998f ('2de9f092f3bb2df1', 305)
+2aef171 ('2de9f092f3bb2df1', 305)
+HEAD ('2de9f092f3bb2df1', 305)
+no gold single: []
+non-refuse answer w/o value: []
+51 critical: ['Q31', 'Q32', 'Q33', 'Q34', 'Q35', 'Q36', 'Q37', 'Q38', 'Q39', 'Q40', 'Q41', 'Q42', 'Q81', 'Q82', 'Q83', 'Q84', 'Q85', 'Q31-p1', 'Q31-p2', 'Q32-p1', 'Q32-p2', 'Q33-p1', 'Q33-p2', 'Q34-p1', 'Q34-p2', 'Q35-p1', 'Q35-p2', 'Q36-p1', 'Q36-p2', 'Q37-p1', 'Q37-p2', 'Q38-p1', 'Q38-p2', 'Q39-p1', 'Q39-p2', 'Q40-p1', 'Q40-p2', 'Q41-p1', 'Q41-p2', 'Q42-p1', 'Q42-p2', 'Q81-p1', 'Q81-p2', 'Q82-p1', 'Q82-p2', 'Q83-p1', 'Q83-p2', 'Q84-p1', 'Q84-p2', 'Q85-p1', 'Q85-p2']
+Counter({'Records': 36, 'Scope limits': 15})

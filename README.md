@@ -5,7 +5,6 @@ A fully local assistant that answers natural-language NBA questions with correct
 ## Architecture diagrams
 
 - [System architecture (Figma board)](https://www.figma.com/board/aWEQ5Oc8WauiAaFaUK2ACB/NBA-Analytics-RAG---System-Architecture?node-id=0-1&p=f&t=lKtRkEuG6CXvZMZl-0)
-- [System architecture (Figma board, second view)](https://www.figma.com/board/aWEQ5Oc8WauiAaFaUK2ACB/NBA-Analytics-RAG---System-Architecture?node-id=0-1&p=f&t=wc5NKPnPVkSNCNNd-0)
 
 ## Documents
 

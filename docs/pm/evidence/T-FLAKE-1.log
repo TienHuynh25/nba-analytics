@@ -1,0 +1,33 @@
+........................................................................ [  5%]
+..............................................s......................... [ 11%]
+........................................................................ [ 17%]
+........................................................................ [ 23%]
+.......s................................................................ [ 29%]
+........................................................................ [ 35%]
+........................................................................ [ 41%]
+........................................................................ [ 47%]
+......................F
+=================================== FAILURES ===================================
+_____________________ test_percent_limit_returns_100_rows ______________________
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+
+    def test_percent_limit_returns_100_rows(fixture_db_path: Path) -> None:
+>       fb, _ = make(fixture_db_path, ["select player_id from semantic.player_game_log limit 100%"])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_sql_fallback.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+fixture_db_path = PosixPath('/Users/tienhuynh/dev/nba-analytics/tests/fixtures/nba_fixture.duckdb')
+replies = ['select player_id from semantic.player_game_log limit 100%']
+
+    def make(fixture_db_path: Path, replies: list[str]) -> tuple[SqlFallback, ScriptedLLM]:
+>       con = duckdb.connect(str(fixture_db_path), read_only=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       _duckdb.ConnectionException: Connection Error: Can't open a connection to same database file with a different configuration than existing connections
+
+tests/test_sql_fallback.py:76: ConnectionException
+=========================== short test summary info ============================
+FAILED tests/test_sql_fallback.py::test_percent_limit_returns_100_rows - _duc...
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!

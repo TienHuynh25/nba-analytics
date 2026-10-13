@@ -1,0 +1,11 @@
+uv run pytest eval/harness -q -p no:cacheprovider --split dev --answerer stub 
+........................................................................ [ 33%]
+........................................................................ [ 67%]
+.....................................................................    [100%]eval report: /Users/tienhuynh/dev/nba-analytics/eval/reports/stub-9edb0d02.md
+
+........................................................................ [ 67%]
+.....................................................................    [100%]eval report: /Users/tienhuynh/dev/nba-analytics/eval/reports/stub-40f2ad6c.md
+accepted as baseline: stub-40f2ad6c.json
+
+identical results: True 213
+{'run_id': 'stub-40f2ad6c', 'snapshot_id': 'eval_2025_26_rs', 'prompt_version': 'none', 'model': 'none', 'index_version': 'none', 'git_sha': 'da58e84501d1154712b42369b540dede6c8b6ae1', 'answerer': 'stub', 'split': 'dev', 'routing': 'gold-path', 'manifest_sha256': '6305f368c785e28575769b5c38a3bedb24f13a756bf3805fd496db44b45301e8', 'db_sha256': '1b51001b04c66ae3139eb0ea5cd55232e84d18503b0bce0084d178651e544d59', 'snapshot_status': 'VERIFIED', 'registry_version': '0.4.0', 'started_at': '2026-10-13T01:10:50.386319+00:00'}

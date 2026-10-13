@@ -1,0 +1,4 @@
+a ordinary x12: False 0.0002 ['significant drop: McNemar one-sided p = 0.0002 < 0.05']
+a2 ordinary x1: True 0.5
+b critical Q31 False ['critical cases moved pass -> fail: Q31']
+c unverified: False ['1 unverified number(s) shown']

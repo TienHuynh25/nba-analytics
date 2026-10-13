@@ -1,0 +1,11 @@
+Set up job: success
+Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262: success
+Run astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e: success
+Run uv sync --locked: success
+Run uv run ruff check .: success
+Run uv run ruff format --check .: success
+Run uv run mypy: success
+Run uv run pytest -m "not network": success
+Post Run astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e: success
+Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262: success
+Complete job: success
