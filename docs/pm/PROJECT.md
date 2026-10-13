@@ -20,7 +20,7 @@ Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Bask
 | G3 | Gate 3: stats path | ⬜ |
 | G4 | Gate 4: release | ⬜ |
 
-## Repo state (2026-10-12, after G1)
+## Repo state (2026-10-12, after PR #12; main 0e22b45)
 
 - Phase 1 code and tests are in; PR #8 (branch chore/gate1-closeout) is open and unmerged (user merges). Last green CI head f961f25; final head 11cb9ed CI running.
 - Backfill: all stages complete; players 15509 + 220 documented source gaps = 15729 (decision 0009 and Amendment: 242 seed rows, 265 player-seasons, 211 players). Full dbt build PASS=134. No published snapshot exists (T-2.1 not started).

@@ -48,3 +48,11 @@ Check their terms of use first (decision 0008). NBA.com could not verify these:
 | E3 | 51 stray Finder duplicates | DONE: analysed (33 identical, 18 stale, 0 with unique content; `records_curated 2.csv` is header-only) and moved to `data/quarantine/finder_duplicates_20261012/`. You may delete that folder whenever you like |
 | E4 | Sourcing pass (task 2.4): Google Trends, People-also-ask, r/nba threads need web research my agents cannot do | Skip for v1 (nothing in the gold depends on it) |
 | E5 | Acknowledgements already given in chat: D-014 (partial-career note) and D-019 (three low security items deferred to Phase 3) | Nothing to do |
+
+## Owner decisions recorded (2026-10-12, chat: "approve all - resume")
+
+Approved as recommended: A1 to A17 (gold interpretations, including Q48 Curry, Q62 requires only the 11 compared seasons, clarify sets list every resolvable player in any era); the 170 paraphrases including the 14 with pre-screen flags; the `make gate2` reading of Gate 2 box 1 ("in CI"); ONE held-out gate run with the stub (no LLM, no tuning); E1 anomaly floor stays as is; E2 update the plan filenames; E4 skip the sourcing pass for v1; E5 acknowledgements stand.
+
+NOT covered by "approve all" and still open:
+- B: the manual Basketball-Reference check of Q34 (Wilt, 100 points, 1962-03-02) and Q35 (Westbrook, 209 triple-doubles). Tell me the values you found, or that they match.
+- D: the records list for T-REC and confirmation that you checked Basketball-Reference's terms.
