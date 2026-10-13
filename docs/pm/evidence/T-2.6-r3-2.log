@@ -1,0 +1,18 @@
+# semantic diff of eval/cases.yaml, before vs after rework 3 (every changed field)
+H01 1 entities {'players': [201950, 1628988]} -> {'players': [201950, 203200, 1628988]}
+H01 1 rule None -> "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's share
+H01 1 sql 'SELECT player_id, name AS player_name, from_year, to_year\nFROM semantic.players WHERE pl -> "SELECT player_id, name AS player_name, from_year, to_year\nFROM semantic.players WHERE lower(strip_accents(last_name)) 
+H01 1 value.candidates [(201950, 'Jrue Holiday'), (1628988, 'Aaron Holiday')] -> [(201950, 'Jrue Holiday'), (203200, 'Justin Holiday'), (1628988, 'Aaron Holiday')]
+H02 1 entities {'players': [1630163, 1628366]} -> {'players': [76090, 1628366, 1630163]}
+H02 1 rule None -> "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's share
+H02 1 sql 'SELECT player_id, name AS player_name, from_year, to_year\nFROM semantic.players WHERE pl -> "SELECT player_id, name AS player_name, from_year, to_year\nFROM semantic.players WHERE lower(strip_accents(last_name)) 
+H02 1 value.candidates [(1628366, 'Lonzo Ball'), (1630163, 'LaMelo Ball')] -> [(76090, 'Cedric Ball'), (1628366, 'Lonzo Ball'), (1630163, 'LaMelo Ball')]
+H03 1 entities {'players': [203507, 203648, 1630828]} -> {'players': [203507, 203648, 1628961, 1630828]}
+H03 1 rule None -> "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's share
+H03 1 sql 'SELECT player_id, name AS player_name, from_year, to_year\nFROM semantic.players WHERE pl -> "SELECT player_id, name AS player_name, from_year, to_year\nFROM semantic.players WHERE lower(strip_accents(last_name)) 
+H03 1 value.candidates [(203507, 'Giannis Antetokounmpo'), (203648, 'Thanasis Antetokounmpo'), (1630828, 'Alex Antetokounmpo')] -> [(203507, 'Giannis Antetokounmpo'), (203648, 'Thanasis Antetokounmpo'), (1628961, 'Kostas Antetokounmpo'), (1630828, 'Alex Antetokounmpo')]
+H04 1 entities None -> {'players': [420, 966, 1715, 2398, 78554, 101214, 200818, 202716, 1629140, 1631114, 1631119]}
+H04 1 rule None -> "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's share
+H04 1 sql "SELECT player_id, player_name, team_name, games_played\nFROM semantic.player_season_stats -> "SELECT player_id, name AS player_name, from_year, to_year\nFROM semantic.players\nWHERE lower(strip_accents(last_name))
+H04 1 value.candidates [(1631114, 'Jalen Williams'), (1631119, 'Jaylin Williams')] -> [(420, 'Jayson Williams'), (966, 'Jerome Williams'), (1715, 'Jason Williams'), (2398, 'Jay Williams'), (78554, 'John Williams'), (101214, 'Jawad Williams'), (200818, 'Justin Williams'), (202716, 'Jordan Williams'), (1629140, 'Johnathan Williams'), (1631114, 'Jalen Williams'), (1631119, 'Jaylin Williams')]
+changed fields 16 ; split changes: 0

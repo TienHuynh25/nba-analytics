@@ -1,0 +1,12 @@
+vars: {'as_of': '2026-04-12'} target db: see path below elapsed 7.1
+('model', 'success') 50
+('seed', 'success') 11
+('test', 'pass') 84
+total nodes 145
+relationship tests: 17 Counter({'pass': 17})
+non-pass: []
+row_counts identical to leaky manifest: True
+shot checksums identical: False
+{'snapshot_id': 'eval_2025_26_rs', 'as_of_date': '2026-04-13', 'as_of_cutoff': '2026-04-12', 'latest_game_date': '2026-04-12', 'built_at': '2026-10-12T20:34:44.155965+00:00', 'pinned': True, 'registry_version': '0.4.0', 'git_sha': '16a5c0e085e51d4b1a6ef3e6d141efd27ce9f686'}
+db sha ebae5c6b018131f59feb712b23ca056c9c1364211982f38ad6dc4d534dabad9f n checksums 31
+92ba54289ed201bdbafb2d4ee06d49c35e8edc5e57830322d4410d2b74a70ad2  data/snapshots/eval_2025_26_rs/manifest.json

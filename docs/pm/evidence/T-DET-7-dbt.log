@@ -1,0 +1,2 @@
+check vars {'as_of': '2026-04-12'} nodes 145 {'success': 61, 'pass': 84} non-pass []
+final vars {'as_of': '2026-04-12'} nodes 145 {'success': 61, 'pass': 84} non-pass []

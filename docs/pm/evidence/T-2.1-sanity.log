@@ -1,0 +1,103 @@
+-- 2025-26 games by season type
+   select season_type, is_cup_final, count(*), min(game_date), max(game_date) from marts.games where season='2025-26' group by all order by 1,2
+   ('Cup Final', True, 1, datetime.date(2025, 12, 16), datetime.date(2025, 12, 16))
+   ('Regular Season', False, 1230, datetime.date(2025, 10, 21), datetime.date(2026, 4, 12))
+-- latest game date per table
+   select 'games', max(game_date) from marts.games union all
+ select 'player_game', max(game_date) from marts.player_game union all
+ select 'shots', max(game_date) from marts.shots union all
+ select 'records.valid_from', max(valid_from) from marts.records
+   ('games', datetime.date(2026, 4, 12))
+   ('player_game', datetime.date(2026, 4, 12))
+   ('shots', datetime.date(2026, 4, 12))
+   ('records.valid_from', datetime.date(2026, 3, 10))
+-- games: 2025-26 Playoffs/PlayIn rows
+   select count(*) from marts.games where season='2025-26' and season_type in ('Playoffs','PlayIn')
+   (0,)
+-- player_game: 2025-26 Playoffs/PlayIn rows
+   select count(*) from marts.player_game where season='2025-26' and season_type in ('Playoffs','PlayIn')
+   (0,)
+-- player_season: 2025-26 Playoffs/PlayIn rows
+   select count(*) from marts.player_season where season='2025-26' and season_type in ('Playoffs','PlayIn')
+   (0,)
+-- player_season_stint: 2025-26 Playoffs/PlayIn rows
+   select count(*) from marts.player_season_stint where season='2025-26' and season_type in ('Playoffs','PlayIn')
+   (0,)
+-- team_season: 2025-26 Playoffs/PlayIn rows
+   select count(*) from marts.team_season where season='2025-26' and season_type in ('Playoffs','PlayIn')
+   (0,)
+-- rows after cutoff
+   select (select count(*) from marts.games where game_date > date '2026-04-12'), (select count(*) from marts.player_game where game_date > date '2026-04-12'), (select count(*) from marts.shots where game_date > date '2026-04-12'), (select count(*) from marts.records where valid_from > date '2026-04-12')
+   (0, 0, 0, 0)
+-- 2025-26 team titles
+   select count(*) from marts.team_titles where season='2025-26'
+   (0,)
+-- 2025-26 player titles
+   select count(*) from marts.player_titles where season='2025-26'
+   (0,)
+-- 2025-26 awards kept (in-season only expected)
+   select award, count(*) from marts.awards where season='2025-26' group by 1 order by 1
+   ('NBA All-Star', 28)
+   ('NBA All-Star Most Valuable Player', 1)
+   ('NBA Cup Most Valuable Player', 1)
+   ('NBA Player of the Month', 10)
+   ('NBA Player of the Week', 40)
+   ('NBA Rookie of the Month', 10)
+-- 2025-26 season awards needing playoffs (expect 0)
+   select count(*) from marts.awards where season='2025-26' and award in ('NBA Most Valuable Player','NBA Rookie of the Year','NBA Champion','NBA Finals Most Valuable Player','All-NBA','NBA Defensive Player of the Year','NBA Sixth Man of the Year','NBA Most Improved Player','All-Defensive Team','All-Rookie Team','NBA Clutch Player of the Year')
+   (0,)
+-- 2024-25 titles still present
+   select season, champion_name from marts.team_titles where season in ('2023-24','2024-25') order by 1
+   ('2023-24', 'Boston Celtics')
+   ('2024-25', 'Oklahoma City Thunder')
+-- 2025-26 RS row counts
+   select 'player_season', count(*) from marts.player_season where season='2025-26' and season_type='Regular Season' union all
+ select 'player_season_stint', count(*) from marts.player_season_stint where season='2025-26' and season_type='Regular Season' union all
+ select 'team_season', count(*) from marts.team_season where season='2025-26' and season_type='Regular Season' union all
+ select 'player_game', count(*) from marts.player_game where season='2025-26' and season_type='Regular Season' union all
+ select 'shots', count(*) from marts.shots where season='2025-26'
+   ('player_season', 581)
+   ('player_season_stint', 660)
+   ('team_season', 30)
+   ('player_game', 26651)
+   ('shots', 219160)
+-- team_season 2025-26 RS: sum wins = sum losses = 1230, gp all 82
+   select sum(wins), sum(losses), min(gp), max(gp), count(*) from marts.team_season where season='2025-26' and season_type='Regular Season'
+   (1230, 1230, 82, 82, 30)
+-- 2025-26 RS leaders pts/g (gp>=58 approx 70%)
+   select p.name, ps.gp, round(ps.pts/ps.gp,1) from marts.player_season ps join marts.players p using(player_id)
+     where season='2025-26' and season_type='Regular Season' and gp >= 58 order by ps.pts/ps.gp desc limit 3
+   ('Luka Dončić', 64, 33.5)
+   ('Shai Gilgeous-Alexander', 68, 31.1)
+   ('Anthony Edwards', 61, 28.8)
+-- 2025-26 RS leaders reb/g (gp>=58 approx 70%)
+   select p.name, ps.gp, round(ps.reb/ps.gp,1) from marts.player_season ps join marts.players p using(player_id)
+     where season='2025-26' and season_type='Regular Season' and gp >= 58 order by ps.reb/ps.gp desc limit 3
+   ('Nikola Jokić', 65, 12.9)
+   ('Karl-Anthony Towns', 75, 11.9)
+   ('Donovan Clingan', 77, 11.6)
+-- 2025-26 RS leaders ast/g (gp>=58 approx 70%)
+   select p.name, ps.gp, round(ps.ast/ps.gp,1) from marts.player_season ps join marts.players p using(player_id)
+     where season='2025-26' and season_type='Regular Season' and gp >= 58 order by ps.ast/ps.gp desc limit 3
+   ('Nikola Jokić', 65, 10.7)
+   ('Cade Cunningham', 64, 9.9)
+   ('Luka Dončić', 64, 8.3)
+-- semantic player_career_stats LeBron
+   select season_type, seasons, last_season, games_played, points, rebounds, assists from semantic.player_career_stats where player_id=2544 order by 1
+   ('Playoffs', 18, '2024-25', 292, 8289, 2628, 2095)
+   ('Regular Season', 23, '2025-26', 1622, 43440, 12095, 12016)
+-- sum(player_season) LeBron
+   select season_type, count(*), max(season), sum(gp), sum(pts), sum(reb), sum(ast) from marts.player_season where player_id=2544 group by 1 order by 1
+   ('Playoffs', 18, '2024-25', 292, 8289, 2628, 2095)
+   ('Regular Season', 23, '2025-26', 1622, 43440, 12095, 12016)
+-- dev build (all cached data): LeBron playoffs through 2024-25
+   select season_type, count(*), max(season), sum(gp), sum(pts), sum(reb), sum(ast) from marts.player_season where player_id=2544 and season <= '2024-25' and season_type='Playoffs' group by 1
+   ('Playoffs', 18, '2024-25', 292, 8289, 2628, 2095)
+-- dev build: LeBron playoffs, all seasons
+   select season_type, count(*), max(season), sum(gp), sum(pts), sum(reb), sum(ast) from marts.player_season where player_id=2544 and season_type='Playoffs' group by 1
+   ('Playoffs', 19, '2025-26', 302, 8521, 2695, 2168)
+-- career identity: all players, semantic career vs sum(player_season) mismatches
+   with s as (select player_id, season_type, sum(gp) gp, sum(pts) pts, sum(reb) reb, sum(ast) ast from marts.player_season group by all)
+ select count(*) filter (where c.games_played is distinct from s.gp or c.points is distinct from s.pts or c.rebounds is distinct from s.reb or c.assists is distinct from s.ast), count(*)
+ from semantic.player_career_stats c join s using (player_id, season_type)
+   (0, 7842)

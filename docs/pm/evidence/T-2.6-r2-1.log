@@ -1,0 +1,17 @@
+$ T-2.15b hashes (docs/pm/evidence/T-2.15b-1.log)
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  gold_report.md
+$ uv run python -m eval.gold.compute_gold --check
+gold up to date
+exit 0
+$ uv run python -m eval.gold.compute_gold --out <scratch>/r2a
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  <scratch>/r2a/cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  <scratch>/r2a/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ uv run python -m eval.gold.compute_gold --out <scratch>/r2b --threads 1
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  <scratch>/r2b/cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  <scratch>/r2b/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ shasum -a 256 eval/cases.yaml eval/gold/gold_report.md
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  eval/cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  eval/gold/gold_report.md

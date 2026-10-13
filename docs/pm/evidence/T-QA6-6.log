@@ -1,0 +1,28 @@
+== modes
+drwxr-xr-x data/snapshots
+dr-xr-xr-x data/snapshots/eval_2025_26_rs
+-r--r--r-- data/snapshots/eval_2025_26_rs/manifest.json
+-r--r--r-- data/snapshots/eval_2025_26_rs/eval_2025_26_rs.duckdb
+files not 0444:
+       0
+dirs not 0555:
+       1
+== current link
+ls: data/snapshots/current: No such file or directory
+== hashes now
+5b0aab5bdd77e729388d367799e556e1005cf53264ce10cf936f111f19742229  data/build/dev.duckdb
+c38343a9d63140d67db4b25eed2686a398409160168c05e952288375ffec7258  data/build/landing.duckdb
+== before-log
+5b0aab5bdd77e729388d367799e556e1005cf53264ce10cf936f111f19742229  data/build/dev.duckdb
+c38343a9d63140d67db4b25eed2686a398409160168c05e952288375ffec7258  data/build/landing.duckdb
+total 2079840
+drwxr-xr-x@ 10 tienhuynh  staff        320 Oct 12 15:08 .
+drwxr-xr-x   9 tienhuynh  staff        288 Oct 12 01:02 ..
+-rw-r--r--@  1 tienhuynh  staff  475541504 Oct 11 22:53 dev.duckdb
+-rw-r--r--@  1 tienhuynh  staff  200552448 Oct 11 22:50 dev.duckdb.pre-T-1.19
+drwxr-xr-x@ 32 tienhuynh  staff       1024 Oct 11 22:52 dev_shots
+drwxr-xr-x@  7 tienhuynh  staff        224 Oct  7 21:59 fixture
+-rw-r--r--@  1 tienhuynh  staff  264777728 Oct 11 22:52 landing.duckdb
+-rw-r--r--@  1 tienhuynh  staff  113782784 Oct 11 22:50 landing.duckdb.pre-T-1.19
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 11 22:52 landing_work
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 12 15:08 landing_work_eval_2025_26_rs

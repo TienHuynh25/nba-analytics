@@ -1,0 +1,35 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/tienhuynh/dev/nba-analytics
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 1 item
+
+eval/crosscheck/test_boxscore_crosscheck.py 0022501186: 18 NBA.com lines, 18 snapshot lines
+0022501187: 18 NBA.com lines, 18 snapshot lines
+0022501188: 24 NBA.com lines, 24 snapshot lines
+0022501189: 22 NBA.com lines, 22 snapshot lines
+0022501190: 24 NBA.com lines, 24 snapshot lines
+0022501191: 23 NBA.com lines, 23 snapshot lines
+0022501192: 23 NBA.com lines, 23 snapshot lines
+0022501193: 19 NBA.com lines, 19 snapshot lines
+0022501194: 18 NBA.com lines, 18 snapshot lines
+0022501195: 16 NBA.com lines, 16 snapshot lines
+0022501196: 17 NBA.com lines, 17 snapshot lines
+0022501197: 21 NBA.com lines, 21 snapshot lines
+0022501198: 22 NBA.com lines, 22 snapshot lines
+0022501199: 23 NBA.com lines, 23 snapshot lines
+0022501200: 23 NBA.com lines, 23 snapshot lines
+0022500938: 21 NBA.com lines, 21 snapshot lines
+0022500547: 21 NBA.com lines, 21 snapshot lines
+0042400407: 24 NBA.com lines, 24 snapshot lines
+0041500407: 18 NBA.com lines, 18 snapshot lines
+0040900407: 19 NBA.com lines, 19 snapshot lines
+0040500406: 19 NBA.com lines, 19 snapshot lines
+0040000087: 22 NBA.com lines, 22 snapshot lines
+0049700088: 20 NBA.com lines, 20 snapshot lines
+requests=23 games=23 lines=475
+.
+
+============================== 1 passed in 14.03s ==============================
+exit=0 elapsed=14s

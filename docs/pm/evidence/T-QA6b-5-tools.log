@@ -1,0 +1,21 @@
+SAME  get_player_stats {"player_ids": [1628983], "season": "2025-26", "metrics": ["points_per_game", "assists_per rows [{'player_id': 1628983, 'player_name': 'Shai Gilgeous-Alexander', 'sea
+SAME  get_leaders {"metric": "points_per_game", "season": "2025-26", "limit": 10} rows [{'player_id': 1629029, 'player_name': 'Luka Dončić', 'team_name': 'Lo
+SAME  get_leaders {"metric": "games_played", "season": "2025-26", "limit": 25, "qualified": false} rows [{'player_id': 1627739, 'player_name': 'Kris Dunn', 'team_name': 'LA C
+SAME  get_leaders {"metric": "three_point_pct", "season": "2025-26", "limit": 10} rows [{'player_id': 1628379, 'player_name': 'Luke Kennard', 'team_name': 'L
+SAME  get_leaders {"metric": "wins", "entity": "team", "season": "2025-26", "limit": 5} rows [{'team_id': 1610612760, 'team_name': 'Oklahoma City Thunder', 'gp': 8
+SAME  get_leaders {"metric": "points", "scope": "career", "limit": 10} rows [{'player_id': 2544, 'player_name': 'LeBron James', 'games_played': 16
+SAME  get_standings {"season": "2025-26"} rows [{'team_id': 1610612760, 'team_name': 'Oklahoma City Thunder', 'confer
+SAME  get_standings {"season": "2025-26", "conference": "West"} rows [{'team_id': 1610612760, 'team_name': 'Oklahoma City Thunder', 'confer
+SAME  get_games {"player_ids": [1628983], "season": "2025-26", "last_n": 5} rows [{'game_id': '0022501163', 'player_id': 1628983, 'player_name': 'Shai 
+SAME  get_games {"season": "2025-26", "sort": "player_points_desc", "limit": 5} rows [{'game_id': '0022500938', 'player_id': 1628389, 'player_name': 'Bam A
+SAME  get_games {"season": "2025-26", "sort": "margin_desc", "limit": 5} rows [{'game_id': '0022500547', 'season': '2025-26', 'season_type': 'Regula
+SAME  get_games {"team_ids": [1610612760], "season": "2025-26", "streak": "win"} rows [{'team_id': 1610612760, 'streak': 16, 'from': datetime.date(2025, 11,
+SAME  get_record {"record": "most_points_game", "limit": 5} rows [{'record': 'Most points in a game', 'player_id': 76375, 'player_name'
+SAME  get_record {"record": "career_triple_doubles", "limit": 5} rows [{'player_id': 201566, 'player_name': 'Russell Westbrook', 'value': 20
+SAME  get_trend {"metric": "points_per_game", "entity": "player", "player_ids": [1628983]} rows [{'player_id': 1628983, 'player_name': 'Shai Gilgeous-Alexander', 'sea
+SAME  get_awards {"award": "NBA Most Valuable Player", "mode": "count_by_player"} rows [{'player_id': 76003, 'player_name': 'Kareem Abdul-Jabbar', 'awards': 
+SAME  compare {"team_ids": [1610612760, 1610612738], "metrics": ["wins"], "season": "2025-26"} rows [{'team_id': 1610612760, 'team_name': 'Oklahoma City Thunder', 'season
+  ERR get_career {'player_ids': [2544]} []: 'metrics' is a required property
+SAME  get_career {"player_ids": [2544]} rows []: 'metrics' is a required property
+calls 18 non-identical 0
+[('Luka Dončić', 33.484375), ('Shai Gilgeous-Alexander', 31.13235294117647), ('Anthony Edwards', 28.80327868852459)]

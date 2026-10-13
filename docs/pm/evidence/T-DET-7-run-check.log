@@ -1,0 +1,5 @@
+uv run python -m ingest.refresh --as-of 2026-04-12 --snapshot-id eval_det_check_a
+{"ts": "2026-10-12T21:01:10.918630+00:00", "level": "INFO", "logger": "ingest.land", "msg": "landing built", "run_id": "92b13d3a721a", "snapshot_id": null, "rows": 8057232, "event": "land_done"}
+{"ts": "2026-10-12T21:01:22.237676+00:00", "level": "INFO", "logger": "ingest.snapshots", "msg": "snapshot built", "run_id": "92b13d3a721a", "snapshot_id": null, "rows": 0, "path": "/Users/tienhuynh/dev/nba-analytics/data/snapshots/eval_det_check_a", "event": "snapshot_built"}
+{"status": "ok", "snapshot_id": "eval_det_check_a"}
+exit=0

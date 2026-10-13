@@ -1,0 +1,28 @@
+content changed vs every before-build: marts.player_season
+content changed vs every before-build: semantic.player_season_stats
+after: [(76418, '1980-81', 1610612764), (77136, '1982-83', 1610612755), (78538, '1984-85', 1610612746)]
+before_b1: [(76418, '1980-81', 1610612764), (77136, '1982-83', 1610612755), (78538, '1984-85', 1610612765)]
+before_b2: [(76418, '1980-81', 1610612764), (77136, '1982-83', 1610612755), (78538, '1984-85', 1610612746)]
+before_b3: [(76418, '1980-81', 1610612764), (77136, '1982-83', 1610612755), (78538, '1984-85', 1610612765)]
+before_b4: [(76418, '1980-81', 1610612764), (77136, '1982-83', 1610612754), (78538, '1984-85', 1610612746)]
+alias after: [(201142, 'Durant', 'best-known holder')] [[(201142, 'Durant', 'best-known holder')], [(201142, 'Durant', 'best-known holder')], [(201142, 'Durant', 'last name')], [(201142, 'Durant', 'best-known holder')]]
+player_season rows differing from before_b1: 3  aliases: 1
+player_season rows differing from before_b2: 1  aliases: 0
+player_season rows differing from before_b3: 2  aliases: 1
+player_season rows differing from before_b4: 3  aliases: 0
+tied player-seasons (latest date has >1 team):
+  (76418, '1980-81', 'Regular Season', datetime.date(1981, 3, 29), [1610612737, 1610612764], ['0028000934', '0028000943'])
+  (76444, '1982-83', 'Regular Season', datetime.date(1983, 4, 17), [1610612747, 1610612746], ['0028200939', '0028200940'])
+  (77136, '1982-83', 'Regular Season', datetime.date(1983, 4, 17), [1610612754, 1610612755], ['0028200937', '0028200942'])
+  (77167, '1981-82', 'Regular Season', datetime.date(1982, 4, 17), [1610612765, 1610612760], ['0028100932', '0028100934'])
+  (78538, '1984-85', 'Regular Season', datetime.date(1985, 4, 12), [1610612765, 1610612746], ['0028400772', '0028400931'])
+   76418 1980-81 Regular Season after 1610612764 before b1..b4 [1610612764, 1610612764, 1610612764, 1610612764]
+   76444 1982-83 Regular Season after 1610612746 before b1..b4 [1610612747, 1610612747, 1610612747, 1610612747]
+   77136 1982-83 Regular Season after 1610612755 before b1..b4 [1610612755, 1610612755, 1610612755, 1610612754]
+   77167 1981-82 Regular Season after 1610612760 before b1..b4 [1610612765, 1610612760, 1610612760, 1610612765]
+   78538 1984-85 Regular Season after 1610612746 before b1..b4 [1610612765, 1610612746, 1610612765, 1610612746]
+77136 1982-83 source stint order: [('IND', 1610612754, 51), ('PHL', 1610612755, 32), ('TOT', 0, 83)]
+76418 1980-81 source stint order: [('ATL', 1610612737, 47), ('WAS', 1610612764, 34), ('TOT', 0, 81)]
+78538 1984-85 source stint order: [('DET', 1610612765, 2), ('LAC', 1610612746, 10), ('TOT', 0, 12)]
+77167 1981-82 source stint order: [('SEA', 1610612760, 7), ('DET', 1610612765, 67), ('TOT', 0, 74)]
+76444 1982-83 source stint order: [('LAL', 1610612747, 82)]

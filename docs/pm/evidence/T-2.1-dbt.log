@@ -1,0 +1,6 @@
+args vars: {'as_of': '2026-04-12'} elapsed 7.2
+('model', 'success') 50
+('seed', 'success') 11
+('test', 'pass') 84
+relationship tests: 17 Counter({'pass': 17})
+non-pass: []

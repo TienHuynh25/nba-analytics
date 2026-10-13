@@ -1,0 +1,44 @@
+A: eval_2025_26_rs_r1_20261012 B: eval_2025_26_rs
+shot file differs: shots/season=1996-97/data_0.parquet
+shot file differs: shots/season=1997-98/data_0.parquet
+shot file differs: shots/season=1998-99/data_0.parquet
+shot file differs: shots/season=1999-00/data_0.parquet
+shot file differs: shots/season=2000-01/data_0.parquet
+shot file differs: shots/season=2001-02/data_0.parquet
+shot file differs: shots/season=2002-03/data_0.parquet
+shot file differs: shots/season=2003-04/data_0.parquet
+shot file differs: shots/season=2004-05/data_0.parquet
+shot file differs: shots/season=2005-06/data_0.parquet
+shot file differs: shots/season=2006-07/data_0.parquet
+shot file differs: shots/season=2007-08/data_0.parquet
+shot file differs: shots/season=2008-09/data_0.parquet
+shot file differs: shots/season=2009-10/data_0.parquet
+shot file differs: shots/season=2010-11/data_0.parquet
+shot file differs: shots/season=2011-12/data_0.parquet
+shot file differs: shots/season=2012-13/data_0.parquet
+shot file differs: shots/season=2013-14/data_0.parquet
+shot file differs: shots/season=2014-15/data_0.parquet
+shot file differs: shots/season=2015-16/data_0.parquet
+shot file differs: shots/season=2016-17/data_0.parquet
+shot file differs: shots/season=2017-18/data_0.parquet
+shot file differs: shots/season=2018-19/data_0.parquet
+shot file differs: shots/season=2019-20/data_0.parquet
+shot file differs: shots/season=2020-21/data_0.parquet
+shot file differs: shots/season=2021-22/data_0.parquet
+shot file differs: shots/season=2022-23/data_0.parquet
+shot file differs: shots/season=2023-24/data_0.parquet
+shot file differs: shots/season=2024-25/data_0.parquet
+shot file differs: shots/season=2025-26/data_0.parquet
+shot files identical (sha256): False 30
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/det/snap_compare.py", line 12, in <module>
+    dba = ma["checksums"][f"{a_dir.name}.duckdb"]; dbb = mb["checksums"][f"{b_dir.name}.duckdb"]
+          ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'eval_2025_26_rs_r1_20261012.duckdb'
+player_season rows only in r1: [(76418, '1980-81', 1980, 'Regular Season', 2, 1610612737, 22, 81, None, 1845.0, 360, 811, 0, 6, 211, 272, 129, 139, 268, 190, 104, 25, 174, 259, 931), (76444, '1982-83', 1982, 'Regular Season', 1, 1610612746, 27, 82, 3, 2148.0, 266, 497, 5, 21, 102, 130, 82, 192, 274, 315, 115, 50, 128, 208, 639), (77167, '1981-82', 1981, 'Regular Season', 2, 1610612760, 25, 74, 15, 1295.0, 217, 444, 3, 12, 107, 142, 82, 77, 159, 171, 56, 25, 96, 101, 544)]
+player_season rows only in final: [(76444, '1982-83', 1982, 'Regular Season', 1, 1610612747, 27, 82, 3, 2148.0, 266, 497, 5, 21, 102, 130, 82, 192, 274, 315, 115, 50, 128, 208, 639), (77167, '1981-82', 1981, 'Regular Season', 2, 1610612765, 25, 74, 15, 1295.0, 217, 444, 3, 12, 107, 142, 82, 77, 159, 171, 56, 25, 96, 101, 544), (76418, '1980-81', 1980, 'Regular Season', 2, 1610612764, 22, 81, None, 1845.0, 360, 811, 0, 6, 211, 272, 129, 139, 268, 190, 104, 25, 174, 259, 931)]
+player_aliases rows only in r1: []
+player_aliases rows only in final: []
+team_aliases rows only in r1: []
+team_aliases rows only in final: []
+shots content r1 (6314195, '48917959006562254488350951') final (6314195, '48917959006562254488350951') equal (order-insensitive): True

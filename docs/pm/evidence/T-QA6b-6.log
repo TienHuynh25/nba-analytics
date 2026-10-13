@@ -1,0 +1,31 @@
+== seal
+files-not-0444: 0 dirs-not-0555-inside-snapshot: 0 total-files: 32
+total 0
+drwxr-xr-x@  3 tienhuynh  staff   96 Oct 12 16:13 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 16:12 eval_2025_26_rs
+ls: data/snapshots/current: No such file or directory
+== hashes
+5b0aab5bdd77e729388d367799e556e1005cf53264ce10cf936f111f19742229  data/build/dev.duckdb
+c38343a9d63140d67db4b25eed2686a398409160168c05e952288375ffec7258  data/build/landing.duckdb
+5b0aab5bdd77e729388d367799e556e1005cf53264ce10cf936f111f19742229  data/build/dev.duckdb
+c38343a9d63140d67db4b25eed2686a398409160168c05e952288375ffec7258  data/build/landing.duckdb
+eval_2025_26_rs_leaky_20261012
+eval_2025_26_rs_r1_20261012
+eval_det_check_a_20261012
+== tests
+.........................                                                [100%]
+25 passed in 9.24s
+== full
+........................................................................ [ 87%]
+........................................................................ [ 94%]
+....................................................................     [100%]
+1147 passed, 1 skipped, 1 deselected in 105.00s (0:01:45)
+== ruff
+All checks passed!
+209 files already formatted
+== mypy
+Success: no issues found in 122 source files
+== after tests hashes
+1b51001b04c66ae3139eb0ea5cd55232e84d18503b0bce0084d178651e544d59  data/snapshots/eval_2025_26_rs/eval_2025_26_rs.duckdb
+6305f368c785e28575769b5c38a3bedb24f13a756bf3805fd496db44b45301e8  data/snapshots/eval_2025_26_rs/manifest.json

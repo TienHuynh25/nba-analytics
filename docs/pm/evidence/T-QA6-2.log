@@ -1,0 +1,40 @@
+--- scan: any date/timestamp col > 2026-04-12, and varchar cols containing 2026-04-1[3-9]|2026-0[5-9]|2026-1
+SKIP varchar marts shots game_id
+SKIP varchar marts shots season_type
+SKIP varchar marts shots action_type
+SKIP varchar marts shots shot_type
+SKIP varchar marts shots zone
+SKIP varchar marts shots zone_area
+SKIP varchar marts shots zone_range
+SKIP varchar marts shots season
+HIT marts teams valid_to 30 2026-07-31
+HIT seeds known_player_career_gaps note 15 Maxi Kleber: playercareerstats returned a successful but empty response (re-fetched 2026-10-11, still empty); 74 game-log games in 2019-20 Regular Season
+HIT seeds known_player_career_gaps reviewed 242 2026-10-11
+SKIP varchar semantic shots game_id
+SKIP varchar semantic shots season_type
+SKIP varchar semantic shots action_type
+SKIP varchar semantic shots shot_type
+SKIP varchar semantic shots zone
+SKIP varchar semantic shots zone_area
+SKIP varchar semantic shots zone_range
+SKIP varchar semantic shots season
+SKIP varchar semantic shots player_name
+HIT semantic teams valid_to 30 2026-07-31
+HIT staging int_season_type_status first_game_date 2 2026-04-18
+HIT staging int_season_type_status last_game_date 2 2026-06-13
+HIT staging stg_player_game game_date 2047 2026-06-13
+HIT staging stg_player_game fetched_at 1482565 2026-09-30 17:41:03.233942-05:00
+HIT staging stg_player_season_rows fetched_at 42826 2026-09-30 19:00:56.376945-05:00
+SKIP varchar staging stg_shots game_id
+SKIP varchar staging stg_shots season
+SKIP varchar staging stg_shots season_type
+HIT staging stg_shots game_date 14473 2026-06-13
+SKIP varchar staging stg_shots action_type
+SKIP varchar staging stg_shots shot_type
+SKIP varchar staging stg_shots zone
+SKIP varchar staging stg_shots zone_area
+SKIP varchar staging stg_shots zone_range
+HIT staging stg_team_game game_date 182 2026-06-13
+HIT staging stg_team_game fetched_at 146352 2026-09-30 17:41:01.776448-05:00
+scanned
+['marts', 'seeds', 'semantic', 'staging']

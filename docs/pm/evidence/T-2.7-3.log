@@ -1,0 +1,112 @@
+# T-2.7 Layer B: NBA.com requests (final run log) and per-block results
+{
+ "requests_this_run": 0,
+ "requests_previous_runs": 22,
+ "failed": [],
+ "leagueleaders": "leagueleaders returned the NBA.com HTML page (HTTP 200, not JSON) on 6 attempts in run 1 plus 1 manual probe; endpoint unusable on 2026-10-12",
+ "new_requests_logged": 0,
+ "net_secs": 0,
+ "wall_secs": 0.1
+}
+Q01 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q02 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q03 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q04 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q05 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q06 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q07 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q09 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q10 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q11 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q23 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q28 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+M09.1 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+M09.2 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+M09.3 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q16 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | next: Jay Huff 153, Chet Holmgren 131 
+Q18 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | next: Nikola Jokić 55, Jalen Johnson 49 
+Q22 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | next: Victor Wembanyama 682, Chet Holmgren 678 
+Q17 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | next Bobby Portis Jr. 
+Q71 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | next Deandre Ayton 
+Q08 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00", "TeamID": 1610612747} | 
+Q13 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | registry rule on leaguedashplayerstats totals; leagueleaders unavailable;
+M01.1 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | registry rule on leaguedashplayerstats totals; leagueleaders unavailable;
+Q14 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | registry rule on leaguedashplayerstats totals; leagueleaders unavailable;
+Q15 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | registry rule on leaguedashplayerstats totals; leagueleaders unavailable;
+M01.2 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | registry rule on leaguedashplayerstats totals; leagueleaders unavailable;
+Q19 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | registry rule on leaguedashplayerstats totals; leagueleaders unavailable;
+M08.1 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | registry rule on leaguedashplayerstats totals; leagueleaders unavailable;
+Q20 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00", "PlayerExperience": "Rookie"} | 
+Q48 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00", "TeamID": 1610612744} | 
+M02.1 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} | 
+M07.2 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} | 
+Q77 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} | 
+M07.1 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2023-24", "SeasonType": "Regular Season", "LeagueID": "00"} | 
+Q12 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Playoffs", "LeagueID": "00"} | 
+M02.2 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Playoffs", "LeagueID": "00"} | 
+M08.2 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} | leagueleaders unavailable;
+M08.3 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Playoffs", "LeagueID": "00"} | 
+M03.2 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2023-24", "SeasonType": "Regular Season", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season",  | 
+Q27 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2023-24", "SeasonType": "Regular Season", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 1495, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 1495, "PerMode" | 
+M07.3 | leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2023-24", "SeasonType": "Regular Season", "LeagueID": "00"} ; leaguedashplayerstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} | 
+Q24 | playerprofilev2 {"PlayerID": 893, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 2544, "PerMode": "Totals", "LeagueID": "00"} | sum of SeasonTotalsPostSeason through 2024-25 (as-of) sum of SeasonTotalsPostSeason through 2024-25 (as-of) 
+Q25 | playerprofilev2 {"PlayerID": 201939, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 202691, "PerMode": "Totals", "LeagueID": "00"} | CareerTotalsRegularSeason (live; no 2026-27 games yet) CareerTotalsRegularSeason (live; no 2026-27 games yet) 
+M03.1 | playerprofilev2 {"PlayerID": 201939, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 202691, "PerMode": "Totals", "LeagueID": "00"} | CareerTotalsRegularSeason (live; no 2026-27 games yet) CareerTotalsRegularSeason (live; no 2026-27 games yet) 
+Q26 | playerprofilev2 {"PlayerID": 76375, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 78049, "PerMode": "Totals", "LeagueID": "00"} | CareerTotalsRegularSeason (live; no 2026-27 games yet) CareerTotalsRegularSeason (live; no 2026-27 games yet) 
+H05 | playerprofilev2 {"PlayerID": 893, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 2544, "PerMode": "Totals", "LeagueID": "00"} | CareerTotalsRegularSeason (live; no 2026-27 games yet) CareerTotalsRegularSeason (live; no 2026-27 games yet) 
+H07 | playerprofilev2 {"PlayerID": 406, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 76375, "PerMode": "Totals", "LeagueID": "00"} | CareerTotalsRegularSeason (live; no 2026-27 games yet) CareerTotalsRegularSeason (live; no 2026-27 games yet) 
+M10.1 | playerprofilev2 {"PlayerID": 2544, "PerMode": "Totals", "LeagueID": "00"} | sum of SeasonTotalsPostSeason through 2024-25 (as-of) 
+M10.2 | playerprofilev2 {"PlayerID": 2544, "PerMode": "Totals", "LeagueID": "00"} ; playerprofilev2 {"PlayerID": 201142, "PerMode": "Totals", "LeagueID": "00"} | sum of SeasonTotalsPostSeason through 2024-25 (as-of) sum of SeasonTotalsPostSeason through 2024-25 (as-of) 
+Q36 | playerprofilev2 {"PlayerID": 2544, "PerMode": "Totals", "LeagueID": "00"} | CareerTotalsRegularSeason (live; no 2026-27 games yet) 
+Q29 | playerprofilev2 {"PlayerID": [977, 2544]} ; playerawards {"PlayerID": 977} ; playerawards {"PlayerID": 2544} | Kobe Bryant NBA Champion awards ['1999-00', '2000-01', '2001-02', '2008-09', '2009-10']; LeBron James NBA Champion awards ['2011-12', '2012-13', '2015-16', '2019-20']; 
+Q60 | playerprofilev2 {"PlayerID": 1641705, "PerMode": "Totals", "LeagueID": "00"} | 
+Q61 | playerprofilev2 {"PlayerID": 2544, "PerMode": "Totals", "LeagueID": "00"} | 
+Q64 | playerprofilev2 {"PlayerID": 203999, "PerMode": "Totals", "LeagueID": "00"} | 
+Q85 | playerprofilev2 {"PlayerID": 76375, "PerMode": "Totals", "LeagueID": "00"} | FG3M: {'rows': 16, 'non_null': 0, 'career': None} 
+H08 | playerprofilev2 {"PlayerID": 78049, "PerMode": "Totals", "LeagueID": "00"} | STL: {'rows': 13, 'non_null': 0, 'career': None} 
+H10 | playerprofilev2 {"PlayerID": 78497, "PerMode": "Totals", "LeagueID": "00"} | BLK: {'rows': 1, 'non_null': 0, 'career': 23} 
+Q31 | alltimeleadersgrids {"LeagueID": "00", "PerMode": "Totals", "SeasonType": "Regular Season", "TopX": 10} | #2 Kareem Abdul-Jabbar 38387; 
+Q32 | alltimeleadersgrids {"LeagueID": "00", "PerMode": "Totals", "SeasonType": "Regular Season", "TopX": 10} | #2 Chris Paul 12552; 
+Q33 | alltimeleadersgrids {"LeagueID": "00", "PerMode": "Totals", "SeasonType": "Regular Season", "TopX": 10} | #2 James Harden 3390; 
+Q38 | alltimeleadersgrids {"LeagueID": "00", "PerMode": "Totals", "SeasonType": "Regular Season", "TopX": 10} | #2 Dikembe Mutombo 3289; 
+Q41 | alltimeleadersgrids {"LeagueID": "00", "PerMode": "Totals", "SeasonType": "Regular Season", "TopX": 10} | #2 Robert Parish 1611; 
+Q37 | alltimeleadersgrids {"LeagueID": "00", "PerMode": "PerGame", "SeasonType": "Regular Season", "TopX": 10} | NBA.com publishes PTS per game at 1 decimal (30.1); #2 Wilt Chamberlain 30.1; 
+Q35 | playerdashboardbyyearoveryear {"PlayerID": 201566, "MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "LeagueID": "00"} | sum of TD3 over 18 seasons; Jokic TD3 sum 198 over 11 seasons;
+Q45 | leaguedashteamstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+M06.1 | leaguedashteamstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q44 | leaguedashteamstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q43 | leaguedashteamstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} ; leaguestandingsv3 {"LeagueID": "00", "Season": "2025-26", "SeasonType": "Regular Season"} | W-L from leaguedashteamstats; order from leaguestandingsv3 PlayoffRank (same endpoint as ingest, re-fetched); 
+M04.1 | leaguedashteamstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q46 | leaguedashteamstats {"MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00", "Location": "Home"} | 
+Q30 | leaguedashteamstats {"MeasureType": "Advanced", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+M06.2 | leaguedashteamstats {"MeasureType": "Advanced", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+M06.3 | leaguedashteamstats {"MeasureType": "Advanced", "PerMode": "Totals", "Season": "2024-25", "SeasonType": "Regular Season", "LeagueID": "00"} | 
+M04.2 | leaguedashteamstats {"MeasureType": "Advanced", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | 
+Q47 | leaguedashteamstats {"MeasureType": "Advanced", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | #2 Detroit Pistons 8.4; 
+Q49 | leaguedashteamstats {"MeasureType": "Advanced", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | #2 Utah Jazz 103.54; 
+Q59 | leaguedashteamstats {"Season": "2010-11", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "2011-12", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "2012-13", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "2013-14", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "2014-15", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "2015-16", "MeasureType": "Base"}  | 
+Q62 | leaguedashteamstats {"Season": "1996-97", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "1997-98", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "1998-99", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "1999-00", "MeasureType": "Base"} ; leaguedashteamstats {"Season": "2025-26", "MeasureType": "Base"} | 1990-91: no rows from leaguedashteamstats;1991-92: no rows from leaguedashteamstats;1992-93: no rows from leaguedashteamstats;1993-94: no rows from leaguedashteamstats;1994-95: no rows from leaguedashteamstats;1995-96: no rows from leaguedashteamstats;
+Q63 | leaguedashteamstats {"Season": "2021-22"} ; leaguedashteamstats {"Season": "2022-23"} ; leaguedashteamstats {"Season": "2023-24"} ; leaguedashteamstats {"Season": "2024-25"} ; leaguedashteamstats {"Season": "2025-26"} | 
+Q57 | leaguegamefinder {"PlayerOrTeam": "T", "DateTo": "04/12/2026", "LeagueID": "00", "Season": "2025-26", "SeasonType": "Regular Season"} | 1230 games, 2460 team rows; team MIN >= 255 (regulation 237-243 after rounding, one OT adds 25); 
+Q58 | leaguegamefinder {"PlayerOrTeam": "T", "DateTo": "04/12/2026", "LeagueID": "00", "Season": "2025-26", "SeasonType": "Regular Season"} | CHA @ UTA; 
+Q50 | leaguegamefinder {"PlayerOrTeam": "T", "DateTo": "04/12/2026", "LeagueID": "00", "Season": "2025-26", "SeasonType": "Regular Season"} | 82 Knicks games; 
+Q51 | leaguegamefinder {"PlayerOrTeam": "T", "DateTo": "04/12/2026", "LeagueID": "00", "TeamID": 1610612738, "VsTeamID": 1610612752} | BOS @ NYK L 0022501168; 
+Q53 | leaguegamefinder {"PlayerOrTeam": "T", "LeagueID": "00", "Season": "2024-25", "SeasonType": "Playoffs", "TeamID": 1610612760, "VsTeamID": 1610612754} | OKC vs. IND 0042400407; 
+Q21 | leaguegamefinder {"PlayerOrTeam": "P", "DateTo": "04/12/2026", "GtPTS": 39, "LeagueID": "00", "Season": "2025-26", "SeasonType": "Regular Season"} | next ((1630162, 'Anthony Edwards'), 10); 
+Q54 | leaguegamefinder {"PlayerOrTeam": "P", "DateTo": "04/12/2026", "GtPTS": 39, "LeagueID": "00", "Season": "2025-26", "SeasonType": "Regular Season"} | 0022500938; 
+Q42 | leaguegamefinder {"PlayerOrTeam": "P", "GtFG3M": 11, "LeagueID": "00", "SeasonType": "Regular Season"} | all seasons in gamefinder; next [('Stephen Curry', 13), ('Zach LaVine', 13), ('Damian Lillard', 13)]; earliest season returned 21995; 
+Q52 | playergamelogs {"DateTo": "04/12/2026", "LeagueID": "00", "PlayerID": 203999, "Season": "2025-26", "SeasonType": "Regular Season"} | 
+Q56 | playergamelogs {"DateTo": "04/12/2026", "LeagueID": "00", "PlayerID": 201939, "Season": "2025-26", "SeasonType": "Regular Season"} | 
+Q73 | leaguedashplayershotlocations {"DistanceRange": "By Zone", "MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | zones=['Restricted Area', 'In The Paint (Non-RA)', 'Mid-Range', 'Left Corner 3', 'Right Corner 3', 'Above the Break 3', 'Backcourt', 'Corner 3']; cols=['PLAYER_ID', 'PLAYER_NAME', 'TEAM_ID', 'TEAM_ABBREVIATION', 'AGE', 'NICKNAME'] 
+Q74 | leaguedashplayershotlocations {"DistanceRange": "By Zone", "MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | RA (311, 402); 
+Q75 | leaguedashplayershotlocations {"DistanceRange": "By Zone", "MeasureType": "Base", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | next Nickeil Alexander-Walker 84; 
+Q76 | shotchartdetail {"PlayerID": 1629029, "ContextMeasure": "FGA", "LeagueID": "00", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "Season": "2025-26"} | player-level shotchartdetail (ingest uses team-level calls of the same endpoint); attempts 320; 
+Q72 | playerdashboardbygeneralsplits {"PlayerID": 203999, "MeasureType": "Advanced", "PerMode": "Totals", "Season": "2025-26", "SeasonType": "Regular Season", "DateTo": "04/12/2026", "LeagueID": "00"} | GP 65; 
+Q78 | playerawards {"PlayerID": [76003, 893, 78049, 2544, 203999]} | Jordan 5, Russell 5, LeBron 4, Jokic 3 (re-fetch of the ingest endpoint); 
+M05.2 | playerawards {"PlayerID": 1628983} | live all seasons 2; seasons ['2024-25', '2025-26']; 
+M05.1 | playerawards {"PlayerID": 1628983} | SGA MVP 2024-25: True; 
+Q79 | playerawards {"PlayerID": 1641705} | Wembanyama ROY 2023-24: True; 
+Q80 | playerawards {"PlayerID": 2544} | seasons 2004-05..2025-26; 
+Q39 | franchisehistory {"LeagueID": "00"} | live; #2 Los Angeles Lakers 17; live includes the 2025-26 champion if any; 
+Q40 | leaguestandingsv3 {"LeagueID": "00", "Season": "2015-16", "SeasonType": "Regular Season"} | W-L only; 'best of all time' ranking from Layer A (raw teamyearbyyearstats); 
+{"H09": {"params": {"LeagueID": "00", "PlayerID": 893, "Season": "1991-92", "SeasonType": "Regular Season"}, "games": 80, "non_null_pm": 0, "values_sample": [null, null, null, null, null]}, "Q34": {"params": {"PlayerOrTeam": "P", "GtPTS": 69, "LeagueID": "00", "PlayerID": 76375}, "rows": []}, "requests": 2, "secs": 1.6}

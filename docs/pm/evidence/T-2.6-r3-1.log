@@ -1,0 +1,17 @@
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  r3before/cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  r3before/gold_report.md
+# before (T-2.15b / rework 2):
+$ uv run python -m eval.gold.compute_gold --check
+gold up to date
+$ compute_gold --out <scratch>/r3a
+952c7c6cab07b46c841812f154c16af2107befdbb101d2dc3f89597c83265cdc  <scratch>/r3a/cases.yaml
+4cfe26280d762b2ab382dfc3255d0c24e4576555c7db3dbcdcce6c7c726ad099  <scratch>/r3a/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ compute_gold --out <scratch>/r3b --threads 1
+952c7c6cab07b46c841812f154c16af2107befdbb101d2dc3f89597c83265cdc  <scratch>/r3b/cases.yaml
+4cfe26280d762b2ab382dfc3255d0c24e4576555c7db3dbcdcce6c7c726ad099  <scratch>/r3b/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ shasum -a 256 eval/cases.yaml eval/gold/gold_report.md
+952c7c6cab07b46c841812f154c16af2107befdbb101d2dc3f89597c83265cdc  eval/cases.yaml
+4cfe26280d762b2ab382dfc3255d0c24e4576555c7db3dbcdcce6c7c726ad099  eval/gold/gold_report.md
+IDENTICAL

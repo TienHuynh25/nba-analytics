@@ -1,0 +1,53 @@
+== AFTER T-DET 2026-10-12T21:14:31Z
+data/build:
+total 2079840
+drwxr-xr-x@ 11 tienhuynh  staff        352 Oct 12 16:12 .
+drwxr-xr-x  10 tienhuynh  staff        320 Oct 12 15:23 ..
+-rw-r--r--@  1 tienhuynh  staff  475541504 Oct 11 22:53 dev.duckdb
+-rw-r--r--@  1 tienhuynh  staff  200552448 Oct 11 22:50 dev.duckdb.pre-T-1.19
+drwxr-xr-x@ 32 tienhuynh  staff       1024 Oct 11 22:52 dev_shots
+drwxr-xr-x@  7 tienhuynh  staff        224 Oct  7 21:59 fixture
+-rw-r--r--@  1 tienhuynh  staff  264777728 Oct 11 22:52 landing.duckdb
+-rw-r--r--@  1 tienhuynh  staff  113782784 Oct 11 22:50 landing.duckdb.pre-T-1.19
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 11 22:52 landing_work
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 12 16:12 landing_work_eval_2025_26_rs
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 12 16:01 landing_work_eval_det_check_a
+
+data/quarantine:
+total 0
+drwxr-xr-x   5 tienhuynh  staff  160 Oct 12 16:13 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:08 eval_2025_26_rs_leaky_20261012
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:34 eval_2025_26_rs_r1_20261012
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 16:01 eval_det_check_a_20261012
+
+data/snapshots:
+total 0
+drwxr-xr-x@  3 tienhuynh  staff   96 Oct 12 16:13 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 16:12 eval_2025_26_rs
+
+data/snapshots/eval_2025_26_rs:
+total 77864
+dr-xr-xr-x@  5 tienhuynh  staff       160 Oct 12 16:12 .
+drwxr-xr-x@  3 tienhuynh  staff        96 Oct 12 16:13 ..
+-r--r--r--@  1 tienhuynh  staff  39858176 Oct 12 16:12 eval_2025_26_rs.duckdb
+-r--r--r--@  1 tienhuynh  staff      4100 Oct 12 16:12 manifest.json
+dr-xr-xr-x@ 32 tienhuynh  staff      1024 Oct 12 16:12 shots
+5b0aab5bdd77e729388d367799e556e1005cf53264ce10cf936f111f19742229  data/build/dev.duckdb
+c38343a9d63140d67db4b25eed2686a398409160168c05e952288375ffec7258  data/build/landing.duckdb
+{"run_id": "92b13d3a721a", "started_at": "2026-10-12T16:50:21.370231-04:00", "mode": "as_of", "season": "2026-27", "status": "ok", "snapshot_id": "eval_det_check_a", "as_of_date": "2026-04-13", "latest_game_date": "2026-04-12", "duration_s": 660.9}
+{"run_id": "360031430253", "started_at": "2026-10-12T17:01:22.983370-04:00", "mode": "as_of", "season": "2026-27", "status": "ok", "snapshot_id": "eval_2025_26_rs", "as_of_date": "2026-04-13", "latest_game_date": "2026-04-12", "duration_s": 657.4}
+ls: data/snapshots/current: No such file or directory
+-- modes:
+  32 444
+  32 555
+-- health/current/publish:
+health_check full: OK 31 checksums
+{'snapshot_id': 'eval_2025_26_rs', 'as_of_date': '2026-04-13', 'as_of_cutoff': '2026-04-12', 'latest_game_date': '2026-04-12', 'built_at': '2026-10-12T21:12:20.241763+00:00', 'pinned': True, 'git_sha': '16a5c0e085e51d4b1a6ef3e6d141efd27ce9f686'}
+current: None
+published: ['eval_2025_26_rs']
+publish refused: eval_2025_26_rs is pinned (eval snapshot) and is never made current
+current link exists after: False
+6305f368c785e28575769b5c38a3bedb24f13a756bf3805fd496db44b45301e8  data/snapshots/eval_2025_26_rs/manifest.json
+1b51001b04c66ae3139eb0ea5cd55232e84d18503b0bce0084d178651e544d59  data/snapshots/eval_2025_26_rs/eval_2025_26_rs.duckdb

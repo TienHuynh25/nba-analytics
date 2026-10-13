@@ -1,0 +1,50 @@
+== AFTER r1 2026-10-12T20:36:20Z
+data/build:
+total 2079840
+drwxr-xr-x@ 10 tienhuynh  staff        320 Oct 12 15:34 .
+drwxr-xr-x  10 tienhuynh  staff        320 Oct 12 15:23 ..
+-rw-r--r--@  1 tienhuynh  staff  475541504 Oct 11 22:53 dev.duckdb
+-rw-r--r--@  1 tienhuynh  staff  200552448 Oct 11 22:50 dev.duckdb.pre-T-1.19
+drwxr-xr-x@ 32 tienhuynh  staff       1024 Oct 11 22:52 dev_shots
+drwxr-xr-x@  7 tienhuynh  staff        224 Oct  7 21:59 fixture
+-rw-r--r--@  1 tienhuynh  staff  264777728 Oct 11 22:52 landing.duckdb
+-rw-r--r--@  1 tienhuynh  staff  113782784 Oct 11 22:50 landing.duckdb.pre-T-1.19
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 11 22:52 landing_work
+drwxr-xr-x@  2 tienhuynh  staff         64 Oct 12 15:34 landing_work_eval_2025_26_rs
+
+data/quarantine:
+total 0
+drwxr-xr-x   3 tienhuynh  staff   96 Oct 12 15:23 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:08 eval_2025_26_rs_leaky_20261012
+
+data/snapshots:
+total 0
+drwxr-xr-x@  3 tienhuynh  staff   96 Oct 12 15:23 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:34 eval_2025_26_rs
+
+data/snapshots/eval_2025_26_rs:
+total 95784
+dr-xr-xr-x@  5 tienhuynh  staff       160 Oct 12 15:34 .
+drwxr-xr-x@  3 tienhuynh  staff        96 Oct 12 15:23 ..
+-r--r--r--@  1 tienhuynh  staff  49033216 Oct 12 15:34 eval_2025_26_rs.duckdb
+-r--r--r--@  1 tienhuynh  staff      4100 Oct 12 15:34 manifest.json
+dr-xr-xr-x@ 32 tienhuynh  staff      1024 Oct 12 15:34 shots
+5b0aab5bdd77e729388d367799e556e1005cf53264ce10cf936f111f19742229  data/build/dev.duckdb
+c38343a9d63140d67db4b25eed2686a398409160168c05e952288375ffec7258  data/build/landing.duckdb
+{"run_id": "c319d2c328c0", "started_at": "2026-10-12T16:23:42.395559-04:00", "mode": "as_of", "season": "2026-27", "status": "ok", "snapshot_id": "eval_2025_26_rs", "as_of_date": "2026-04-13", "latest_game_date": "2026-04-12", "duration_s": 661.9}
+-- git status transform metrics:
+ls: data/snapshots/current: No such file or directory
+-- modes:
+  32 444
+  32 555
+       0
+-- health/current/publish:
+health_check full: OK 31 checksums
+current: None
+published: ['eval_2025_26_rs']
+publish refused: eval_2025_26_rs is pinned (eval snapshot) and is never made current
+current link exists after: False
+92ba54289ed201bdbafb2d4ee06d49c35e8edc5e57830322d4410d2b74a70ad2  data/snapshots/eval_2025_26_rs/manifest.json
+ebae5c6b018131f59feb712b23ca056c9c1364211982f38ad6dc4d534dabad9f  data/snapshots/eval_2025_26_rs/eval_2025_26_rs.duckdb

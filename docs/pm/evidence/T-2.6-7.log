@@ -1,0 +1,3 @@
+$ PYTHONPATH=. uv run python <scratch>/xcheck.py eval/cases.yaml  # gold numbers vs app tools on gold tool calls (sanity, read-only)
+Q57 MISSING in tool rows: ['/overtime_games=54'] tool rows: [{'game_id': '0022501147', 'season': '2025-26', 'season_type': 'Regular Season', 'game_date': datetime.date(2026, 4, 6), 'home_team_name': '
+agree 97 differ 1

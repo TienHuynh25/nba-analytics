@@ -1,0 +1,35 @@
+$ scratch mutant: numeric.score drops unverified numbers (scratchpad/mut/loosen.py; repo untouched)
+        assert score("He averages 27.3 points.", [(27.33, ONE)]).passed
+>       assert not r.passed and r.missing == [27.33] and r.unverified == ["27.4"]
+E        +  where False = NumericResult(passed=False, missing=[27.33], unverified=[]).passed
+>       assert not r.passed and r.unverified == ["52%"]
+E        +  where True = NumericResult(passed=True, missing=[], unverified=[]).passed
+>       assert not r.passed and r.unverified == ["2024-25"]
+E        +  where True = NumericResult(passed=True, missing=[], unverified=[]).passed
+>       assert not r.passed and r.unverified == ["17.8%"]
+E        +  where True = NumericResult(passed=True, missing=[], unverified=[]).passed
+>       assert not r.passed and r.unverified == ["41"]
+E        +  where True = NumericResult(passed=True, missing=[], unverified=[]).passed
+>       assert not r.passed and r.unverified == ["2025-26"]
+E        +  where True = NumericResult(passed=True, missing=[], unverified=[]).passed
+        assert r.passed, r
+>       assert not r.passed and r.unverified == ["12"]
+E        +  where True = NumericResult(passed=True, missing=[], unverified=[]).passed
+        assert score("The 76ers won 24 games.", [(24, INT)], names=names).passed
+>       assert not score("The 76ers won 24 games.", [(24, INT)]).passed  # unmasked: 76 counts
+E        +  where True = NumericResult(passed=True, missing=[], unverified=[]).passed
+E        +    where NumericResult(passed=True, missing=[], unverified=[]) = score('The 76ers won 24 games.', [(24, Rounding(decimals=0, display='number'))])
+        assert answer(gold, r).passed
+>       assert not s.passed and "unverified ['3']" in s.detail
+E        +  where True = Score(applicable=True, passed=True, detail='').passed
+FAILED tests/test_numeric.py::test_plan_example_one_decimal_metric - Assertio...
+FAILED tests/test_numeric.py::test_unverified_number_fails - assert (not True)
+FAILED tests/test_numeric.py::test_wrong_season_is_unverified - assert (not T...
+FAILED tests/test_numeric.py::test_allowed_number_still_needs_its_rounding - ...
+FAILED tests/test_numeric.py::test_unrelated_number_is_unverified_even_with_allowed_and_literals
+FAILED tests/test_numeric.py::test_season_and_date_literals_from_gold_rows - ...
+FAILED tests/test_numeric.py::test_number_repeating_a_resolved_argument_passes
+FAILED tests/test_numeric.py::test_names_with_digits_are_masked_but_bare_numbers_are_not
+FAILED tests/test_scorers.py::test_gold_numbers_reads_required_allowed_and_row_literals
+FAILED tests/test_scorer_selfcheck.py::test_perfect_answers_pass_and_mutations_fail
+10 failed, 40 passed in 1.80s

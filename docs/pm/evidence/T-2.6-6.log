@@ -1,0 +1,10 @@
+$ uv run ruff check .
+All checks passed!
+$ uv run ruff format --check eval/gold tests/test_gold.py tests/test_cases.py
+6 files already formatted
+$ uv run mypy
+Success: no issues found in 125 source files
+$ uv run pytest tests/test_cases.py tests/test_gold.py -rA
+28 passed in 13.96s
+$ uv run python -m eval.gold.compute_gold --check
+gold up to date

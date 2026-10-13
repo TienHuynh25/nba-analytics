@@ -1,0 +1,14 @@
+A: eval_det_check_a B: eval_2025_26_rs
+shot files identical (sha256): True 30
+db file sha256 A 7ad326586556581f B 1b51001b04c66ae3 equal: False
+row_counts equal: True
+objects compared: 46; differing (order-sensitive for tables, content for views): []
+seed queries: 75; identical (exact, ordered): 68
+  Q23: DIFF [('Shai Gilgeous-Alexander', 68, 31.13235294117647, 4.294117647058823, 6.588235294117647, 1.3970588235294117, 0.7647058823529411, 0.6652379396163804, 788), ('Nikola Jokić', 65, 27.676923076923078, 12.861538461538462, 10.723076923076922, 1.4153846153846155, 0.8153846153846154, 0.6696694460988684, 555)] vs [('Nikola Jokić', 65, 27.676923076923078, 12.861538461538462, 10.723076923076922, 1.4153846153846155, 0.8153846153846154, 0.6696694460988684, 555), ('Shai Gilgeous-Alexander', 68, 31.13235294117647, 4.294117647058823, 6.588235294117647, 1.3970588235294117, 0.7647058823529411, 0.6652379396163804, 788)]
+  Q25: DIFF [('Stephen Curry', 4248, 10073, 0.4217214335351931), ('Klay Thompson', 2899, 7089, 0.4089434334885033)] vs [('Klay Thompson', 2899, 7089, 0.4089434334885033), ('Stephen Curry', 4248, 10073, 0.4217214335351931)]
+  Q27: DIFF [('Tim Duncan', '1997-98', '1998-99', 132, 21.325757575757574, 11.727272727272727, 2.6136363636363638, 2.515151515151515), ('Victor Wembanyama', '2023-24', '2024-25', 117, 22.54700854700855, 10.777777777777779, 3.7777777777777777, 3.675213675213675)] vs [('Victor Wembanyama', '2023-24', '2024-25', 117, 22.54700854700855, 10.777777777777779, 3.7777777777777777, 3.675213675213675), ('Tim Duncan', '1997-98', '1998-99', 132, 21.325757575757574, 11.727272727272727, 2.6136363636363638, 2.515151515151515)]
+  Q29: DIFF [('LeBron James', 43440, 4), ('Kobe Bryant', 33643, 5)] vs [('Kobe Bryant', 33643, 5), ('LeBron James', 43440, 4)]
+  Q40: DIFF [('Golden State Warriors', '2015-16', 73, 9, 0.8902439024390244), ('Chicago Bulls', '1995-96', 72, 10, 0.8780487804878049), ('Los Angeles Lakers', '1971-72', 69, 13, 0.8414634146341463)] vs [('Golden State Warriors', '2015-16', 73, 9, 0.8902439024390244), ('Chicago Bulls', '1995-96', 72, 10, 0.8780487804878049), ('Chicago Bulls', '1996-97', 69, 13, 0.8414634146341463)]
+  Q73: shots view (path-bound), compared via Parquet sha
+  Q75: DIFF [('OG Anunoby', 'New York Knicks', 88), ('Nickeil Alexander-Walker', 'Atlanta Hawks', 84), ('Mikal Bridges', 'New York Knicks', 80)] vs [('OG Anunoby', 'New York Knicks', 88), ('Nickeil Alexander-Walker', 'Atlanta Hawks', 84), ('Mikal Bridges', 'New York Knicks', 80)]
+  Q78: DIFF [('Kareem Abdul-Jabbar', 6), ('Michael Jordan', 5), ('Bill Russell', 5)] vs [('Kareem Abdul-Jabbar', 6), ('Bill Russell', 5), ('Michael Jordan', 5)]

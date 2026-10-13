@@ -1,0 +1,13 @@
+queries 75
+r1-log row counts known 48
+ran OK 75 of 75
+row-count mismatch vs T-2.1-r1-scan.log: []
+within-file 20x classification: Counter({'stable': 63, 'row-order-only': 8, 'DIFFERENT-ROWS': 2, 'float-digit-only': 2})
+{'Q23': 'row-order-only', 'Q24': 'row-order-only', 'Q25': 'row-order-only', 'Q27': 'row-order-only', 'Q28': 'row-order-only', 'Q29': 'row-order-only', 'Q30': 'row-order-only', 'Q40': 'DIFFERENT-ROWS', 'Q62': 'float-digit-only', 'Q72': 'float-digit-only', 'Q75': 'DIFFERENT-ROWS', 'Q78': 'row-order-only'}
+pinned vs rework-1 file: Counter({'ERR': 48, 'identical': 23, 'rows': 2, 'order': 1, 'float': 1}) {'Q01': 'ERR', 'Q02': 'ERR', 'Q03': 'ERR', 'Q04': 'ERR', 'Q05': 'ERR', 'Q06': 'ERR', 'Q07': 'ERR', 'Q09': 'ERR', 'Q10': 'ERR', 'Q11': 'ERR', 'Q12': 'ERR', 'Q13': 'ERR', 'Q14': 'ERR', 'Q15': 'ERR', 'Q16': 'ERR', 'Q17': 'ERR', 'Q18': 'ERR', 'Q19': 'ERR', 'Q20': 'ERR', 'Q21': 'ERR', 'Q22': 'ERR', 'Q23': 'ERR', 'Q24': 'ERR', 'Q25': 'ERR', 'Q26': 'ERR', 'Q27': 'ERR', 'Q28': 'ERR', 'Q29': 'ERR', 'Q31': 'ERR', 'Q32': 'ERR', 'Q33': 'ERR', 'Q35': 'ERR', 'Q36': 'ERR', 'Q37': 'ERR', 'Q38': 'ERR', 'Q40': 'rows', 'Q41': 'ERR', 'Q42': 'rows', 'Q57': 'order', 'Q60': 'ERR', 'Q61': 'ERR', 'Q62': 'float', 'Q64': 'ERR', 'Q71': 'ERR', 'Q72': 'ERR', 'Q73': 'ERR', 'Q74': 'ERR', 'Q75': 'ERR', 'Q76': 'ERR', 'Q77': 'ERR', 'Q80': 'ERR', 'Q85': 'ERR'}
+pinned vs scratch dbt build b1: Counter({'identical': 70, 'order': 2, 'rows': 2, 'float': 1}) {'Q25': 'order', 'Q30': 'order', 'Q40': 'rows', 'Q62': 'float', 'Q75': 'rows'}
+queries with no ORDER BY: ['Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q07', 'Q09', 'Q10', 'Q11', 'Q12', 'Q23', 'Q24', 'Q25', 'Q26', 'Q28', 'Q29', 'Q30', 'Q36', 'Q46', 'Q62', 'Q72', 'Q74', 'Q76', 'Q77', 'Q79', 'Q80', 'Q85']
+need handling (any non-stable in any comparison): ['Q01', 'Q02', 'Q03', 'Q04', 'Q05', 'Q06', 'Q07', 'Q09', 'Q10', 'Q11', 'Q12', 'Q13', 'Q14', 'Q15', 'Q16', 'Q17', 'Q18', 'Q19', 'Q20', 'Q21', 'Q22', 'Q23', 'Q24', 'Q25', 'Q26', 'Q27', 'Q28', 'Q29', 'Q30', 'Q31', 'Q32', 'Q33', 'Q35', 'Q36', 'Q37', 'Q38', 'Q40', 'Q41', 'Q42', 'Q57', 'Q60', 'Q61', 'Q62', 'Q64', 'Q71', 'Q72', 'Q73', 'Q74', 'Q75', 'Q76', 'Q77', 'Q78', 'Q80', 'Q85']
+Q40 SELECT team_name, season, wins, losses, win_pct FROM semantic.team_season_stats WHERE season_type = 'Regular Season' ORDER BY win_pct DESC LIMIT 3
+Q42 SELECT record, player_name, value, game_date, season FROM semantic.records WHERE stat = 'fg3m' AND record_kind = 'single_game' ORDER BY value DESC LIMIT 3
+Q75 SELECT player_name, team_name, corner_threes_made FROM semantic.player_season_stats WHERE season = '2025-26' AND season_type = 'Regular Season' ORDER BY corner_threes_made DESC LIMIT 5

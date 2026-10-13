@@ -1,0 +1,9 @@
+runs: ['after3_b1', 'after3_b2', 'after3_b3', 'after3_b4'] objects: 91
+rows      differs in 0: []
+unordered differs in 0: []
+ordered   differs in 0: []
+sha256    differs in 0: []
+[0m20:46:39  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145
+[0m20:46:50  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145
+[0m20:47:01  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145
+[0m20:47:11  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145

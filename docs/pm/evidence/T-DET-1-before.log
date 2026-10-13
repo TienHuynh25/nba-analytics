@@ -1,0 +1,13 @@
+before_b1 dbt rc 0 [0m20:41:52  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145
+before_b1 91 objects hashed
+before_b2 dbt rc 0 [0m20:42:04  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145
+before_b2 91 objects hashed
+before_b3 dbt rc 0 [0m20:42:15  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145
+before_b3 91 objects hashed
+before_b4 dbt rc 0 [0m20:42:26  Done. PASS=145 WARN=0 ERROR=0 SKIP=0 NO-OP=0 REUSED=0 TOTAL=145
+before_b4 91 objects hashed
+runs: ['before_b1', 'before_b2', 'before_b3', 'before_b4'] objects: 91
+rows      differs in 0: []
+unordered differs in 4: ['marts.player_aliases', 'marts.player_season', 'semantic.player_aliases', 'semantic.player_season_stats']
+ordered   differs in 20: ['marts.franchises', 'marts.games', 'marts.player_aliases', 'marts.player_game', 'marts.player_season', 'marts.player_season_stint', 'marts.player_titles', 'marts.players', 'marts.records', 'marts.team_aliases', 'marts.team_season', 'marts.teams', 'staging.int_season_type_status', 'staging.stg_franchise_history', 'staging.stg_player_career_totals', 'staging.stg_player_game', 'staging.stg_player_season_rows', 'staging.stg_players', 'staging.stg_shots', 'staging.stg_team_game']
+sha256    differs in 30: ['file:season=1996-97/data_0.parquet', 'file:season=1997-98/data_0.parquet', 'file:season=1998-99/data_0.parquet', 'file:season=1999-00/data_0.parquet', 'file:season=2000-01/data_0.parquet', 'file:season=2001-02/data_0.parquet', 'file:season=2002-03/data_0.parquet', 'file:season=2003-04/data_0.parquet', 'file:season=2004-05/data_0.parquet', 'file:season=2005-06/data_0.parquet', 'file:season=2006-07/data_0.parquet', 'file:season=2007-08/data_0.parquet', 'file:season=2008-09/data_0.parquet', 'file:season=2009-10/data_0.parquet', 'file:season=2010-11/data_0.parquet', 'file:season=2011-12/data_0.parquet', 'file:season=2012-13/data_0.parquet', 'file:season=2013-14/data_0.parquet', 'file:season=2014-15/data_0.parquet', 'file:season=2015-16/data_0.parquet', 'file:season=2016-17/data_0.parquet', 'file:season=2017-18/data_0.parquet', 'file:season=2018-19/data_0.parquet', 'file:season=2019-20/data_0.parquet', 'file:season=2020-21/data_0.parquet', 'file:season=2021-22/data_0.parquet', 'file:season=2022-23/data_0.parquet', 'file:season=2023-24/data_0.parquet', 'file:season=2024-25/data_0.parquet', 'file:season=2025-26/data_0.parquet']

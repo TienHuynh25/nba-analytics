@@ -1,0 +1,14 @@
+Q30 distinct results over 20 runs: 2
+   SQL: SELECT team_name, season, defensive_rating FROM semantic.team_season_stats WHERE (team_name LIKE '%Celtics' OR team_name LIKE '%Thunder') AND season = '2025-26' AND season_type = 'Regular Season'
+Q42 distinct results over 20 runs: 1
+   SQL: SELECT record, player_name, value, game_date, season FROM semantic.records WHERE stat = 'fg3m' AND record_kind = 'single_game' ORDER BY value DESC LIMIT 3
+Q62 distinct results over 20 runs: 2
+   SQL: SELECT CASE WHEN season_start BETWEEN 1990 AND 1999 THEN '1990s' ELSE season END AS period, AVG(league_points_per_game) AS avg_ppg, COUNT(*) AS seasons FROM semantic.league_season_stats WHERE season_type = 'Regular Season' AND (season_start BETWEEN 1990 AND 1999 OR season = '2025-26') GROUP BY 1
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/det/float_repeat.py", line 12, in <module>
+    res.add(repr(c.execute(blocks[q]).fetchall())); c.close()
+                 ^^^^^^^^^^^^^^^^^^^^
+_duckdb.IOException: IO Error: No files found that match the pattern "/Users/tienhuynh/dev/nba-analytics/data/snapshots/eval_2025_26_rs/shots/*/*.parquet"
+
+LINE 1: -- Stats half only; the definition is glossary text. Centers = players.position starts with Center.
+                                                 ^

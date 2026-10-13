@@ -15,12 +15,12 @@ Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Bask
 | PM gate | Plan gate | Status |
 |---|---|---|
 | G0 charter approved | n/a | ✅ 2026-10-11 |
-| G1 | Gate 1: data foundation | ⏳ governance final verdict APPROVE-WITH-CONDITIONS (T-G1-GOV2); all six checkboxes and conditions 1-5 MET; security 0 Critical/High/Medium; remaining: user pushes the 30 changes and CI must be green on the new head (condition 1), then PM marks G1 passed |
-| G2 | Gate 2: test set and baseline | ⬜ entry criterion proposed by governance: re-run the box-score check on the published snapshot (R-022) |
+| G1 | Gate 1: data foundation | ✅ passed 2026-10-12: governance APPROVE-WITH-CONDITIONS (G1-governance.md + T-G1-GOV2), conditions 1-5 met; security 0 Critical/High/Medium; CI green on PR #9 head 16a5c0e and on main c0d1a9b; PRs #8, #9, #4 merged |
+| G2 | Gate 2: test set and baseline | ⏳ Phase 2 starting; entry criterion: box-score check re-run on the published snapshot (R-022) |
 | G3 | Gate 3: stats path | ⬜ |
 | G4 | Gate 4: release | ⬜ |
 
-## Repo state (2026-10-12)
+## Repo state (2026-10-12, after G1)
 
 - Phase 1 code and tests are in; PR #8 (branch chore/gate1-closeout) is open and unmerged (user merges). Last green CI head f961f25; final head 11cb9ed CI running.
 - Backfill: all stages complete; players 15509 + 220 documented source gaps = 15729 (decision 0009 and Amendment: 242 seed rows, 265 player-seasons, 211 players). Full dbt build PASS=134. No published snapshot exists (T-2.1 not started).

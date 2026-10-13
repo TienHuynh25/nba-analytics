@@ -1,0 +1,28 @@
+.
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_boxscore_match.py::test_twenty_box_scores_match_nba_com
+1 passed in 11.97s
+0020900934 2010-03-07 2009 Regular Season 21
+0022101032 2022-03-15 2021 Regular Season 22
+0020300008 2003-10-29 2003 Regular Season 19
+0022201061 2023-03-18 2022 Regular Season 23
+0022400418 2024-12-26 2024 Regular Season 21
+0020100711 2002-02-13 2001 Regular Season 21
+0020600787 2007-02-14 2006 Regular Season 21
+0022500764 2026-02-09 2025 Regular Season 26
+0021500422 2015-12-22 2015 Regular Season 19
+0022500085 2025-10-22 2025 Regular Season 21
+0021300808 2014-02-19 2013 Regular Season 19
+0020900062 2009-11-04 2009 Regular Season 18
+0029600241 1996-12-04 1996 Regular Season 23
+0020101028 2002-03-28 2001 Regular Season 23
+0021200862 2013-02-28 2012 Regular Season 18
+0020100167 2001-11-22 2001 Regular Season 21
+0020800326 2008-12-12 2008 Regular Season 21
+0022000726 2021-03-31 2020 Regular Season 20
+0021300171 2013-11-20 2013 Regular Season 22
+0020300643 2004-01-27 2003 Regular Season 18
+lines 417
+[('Regular Season', 20)]
+overlap 20

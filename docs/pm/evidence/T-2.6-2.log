@@ -1,0 +1,7 @@
+$ uv run python -m eval.gold.compute_gold
+1cbdac2680911feb612fe1552c8d449958601f71cc9465ba19a6e7e57d8e0187  /Users/tienhuynh/dev/nba-analytics/eval/cases.yaml
+41064ee1009997c6da2b30ab6ec0bcde16e1ff72b9aa3770ff8d5fc6ec48f9e3  /Users/tienhuynh/dev/nba-analytics/eval/gold/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ uv run python -m eval.gold.compute_gold --check
+gold up to date
+units 320 None values []

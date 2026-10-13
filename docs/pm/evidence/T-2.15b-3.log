@@ -1,0 +1,48 @@
+$ uv run pytest tests/test_scorers.py tests/test_numeric.py tests/test_scorer_selfcheck.py tests/test_gold.py tests/test_cases.py tests/test_regression.py tests/test_eval_report.py -v
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/tienhuynh/dev/nba-analytics
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 97 items
+
+tests/test_scorers.py .................                                  [ 17%]
+tests/test_numeric.py ................................                   [ 50%]
+tests/test_scorer_selfcheck.py .                                         [ 51%]
+tests/test_gold.py ............                                          [ 63%]
+tests/test_cases.py ..................                                   [ 82%]
+tests/test_regression.py ......                                          [ 88%]
+tests/test_eval_report.py ...........                                    [100%]
+
+============================= 97 passed in 17.58s ==============================
+
+$ uv run python -c "from tests.test_scorer_selfcheck import run_selfcheck, table; print(table(run_selfcheck()))"
+Perfect answers by gold kind:
+  answer: answer applicable 272, answer passed 272, answer: judge pending (2.20) 4, entities applicable 155, entities passed 155, recall_at_6 applicable 6, recall_at_6 passed 6, refusals applicable 276, refusals passed 276, router applicable 276, router passed 276, sql_rows applicable 276, sql_rows passed 276, tool_args applicable 276, tool_args passed 276, units 276
+  clarify: answer applicable 5, answer passed 5, entities applicable 4, entities passed 4, refusals applicable 5, refusals passed 5, router applicable 5, router passed 5, sql_rows applicable 5, sql_rows passed 5, units 5
+  decline: answer applicable 12, answer passed 12, refusals applicable 12, refusals passed 12, router applicable 12, router passed 12, units 12
+  knowledge: answer: judge pending (2.20) 18, recall_at_6 applicable 18, recall_at_6 passed 18, refusals applicable 18, refusals passed 18, router applicable 18, router passed 18, units 18
+  no_verdict: answer applicable 3, answer passed 3, entities applicable 2, entities passed 2, refusals applicable 3, refusals passed 3, router applicable 3, router passed 3, sql_rows applicable 2, sql_rows passed 2, tool_args applicable 2, tool_args passed 2, units 3
+  not_tracked: answer applicable 6, answer passed 6, entities applicable 6, entities passed 6, refusals applicable 6, refusals passed 6, router applicable 6, router passed 6, sql_rows applicable 6, sql_rows passed 6, tool_args applicable 6, tool_args passed 6, units 6
+  carry_over (multi-turn): {'applicable': 8, 'passed': 8}
+
+| Mutation | Stage | Expected | Cases | As expected |
+| --- | --- | --- | --- | --- |
+| allowed context numbers added | answer | pass | 272 | 272 |
+| answered instead of declining | refusals | fail | 12 | 12 |
+| behaviour answer instead of clarify | answer | fail | 5 | 5 |
+| behaviour answer instead of no_verdict | answer | fail | 3 | 3 |
+| behaviour answer instead of not_tracked | answer | fail | 6 | 6 |
+| behaviour clarify instead of decline | answer | fail | 12 | 12 |
+| columns permuted | sql_rows | pass | 289 | 289 |
+| extra row | sql_rows | fail | 289 | 289 |
+| extra unrelated number | answer | fail | 272 | 272 |
+| missing row | sql_rows | fail | 289 | 289 |
+| more precision than the rule | answer | fail | 272 | 272 |
+| repeats a resolved argument | answer | pass | 266 | 266 |
+| required number missing | answer | fail | 272 | 272 |
+| rows reversed (ordered gold) | sql_rows | fail | 31 | 31 |
+| rows reversed (unordered gold) | sql_rows | pass | 49 | 49 |
+| wrong number | answer | fail | 272 | 272 |
+
+Unexpected outcomes: 0

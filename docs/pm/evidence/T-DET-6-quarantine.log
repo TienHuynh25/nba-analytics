@@ -1,0 +1,46 @@
+== 2026-10-12T20:50:01Z before
+data/quarantine:
+total 0
+drwxr-xr-x   3 tienhuynh  staff   96 Oct 12 15:23 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:08 eval_2025_26_rs_leaky_20261012
+
+data/snapshots:
+total 0
+drwxr-xr-x@  3 tienhuynh  staff   96 Oct 12 15:23 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:34 eval_2025_26_rs
+92ba54289ed201bdbafb2d4ee06d49c35e8edc5e57830322d4410d2b74a70ad2  data/snapshots/eval_2025_26_rs/manifest.json
+ebae5c6b018131f59feb712b23ca056c9c1364211982f38ad6dc4d534dabad9f  data/snapshots/eval_2025_26_rs/eval_2025_26_rs.duckdb
+mv rc=0
+== after
+data/quarantine:
+total 0
+drwxr-xr-x   4 tienhuynh  staff  128 Oct 12 15:50 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:08 eval_2025_26_rs_leaky_20261012
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:34 eval_2025_26_rs_r1_20261012
+
+data/snapshots:
+total 0
+drwxr-xr-x@  2 tienhuynh  staff   64 Oct 12 15:50 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+92ba54289ed201bdbafb2d4ee06d49c35e8edc5e57830322d4410d2b74a70ad2  data/quarantine/eval_2025_26_rs_r1_20261012/manifest.json
+5b0aab5bdd77e729388d367799e556e1005cf53264ce10cf936f111f19742229  data/build/dev.duckdb
+c38343a9d63140d67db4b25eed2686a398409160168c05e952288375ffec7258  data/build/landing.duckdb
+== 2026-10-12T21:13:23Z move scratch check snapshot
+9fae33950b9f3573a9cc508720b47594d50ba80d7634bf714355aa79a9325847  data/snapshots/eval_det_check_a/manifest.json
+mv rc=0
+data/quarantine:
+total 0
+drwxr-xr-x   5 tienhuynh  staff  160 Oct 12 16:13 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:08 eval_2025_26_rs_leaky_20261012
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:34 eval_2025_26_rs_r1_20261012
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 16:01 eval_det_check_a_20261012
+
+data/snapshots:
+total 0
+drwxr-xr-x@  3 tienhuynh  staff   96 Oct 12 16:13 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 16:12 eval_2025_26_rs

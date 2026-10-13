@@ -1,0 +1,26 @@
+Q23 distinct results over 20 runs: as returned 2 | ignoring row order 1
+   SQL: SELECT player_name, games_played, points_per_game, rebounds_per_game, assists_per_game, steals_per_game, blocks_per_game, true_shooting_pct, plus_minus FROM semantic.player_season_stats WHERE (lower(player_name) LIKE 'nikola joki%' OR lower(player_name) LIKE 'shai gilgeous%') AND season = '2025-26' 
+Q25 distinct results over 20 runs: as returned 2 | ignoring row order 1
+   SQL: SELECT player_name, threes_made, threes_attempted, three_point_pct FROM semantic.player_career_stats WHERE lower(player_name) IN ('stephen curry', 'klay thompson') AND season_type = 'Regular Season'
+Q27 distinct results over 20 runs: as returned 2 | ignoring row order 1
+   SQL: WITH r AS ( SELECT player_name, season, games_played, points, rebounds, assists, blocks, ROW_NUMBER() OVER (PARTITION BY player_id ORDER BY season_start) AS n FROM semantic.player_season_stats WHERE lower(player_name) IN ('victor wembanyama', 'tim duncan') AND season_type = 'Regular Season' ) SELECT
+Q29 distinct results over 20 runs: as returned 2 | ignoring row order 1
+   SQL: SELECT player_name, points, player_championships FROM semantic.player_career_stats WHERE lower(player_name) IN ('kobe bryant', 'lebron james') AND season_type = 'Regular Season'
+Q30 distinct results over 20 runs: as returned 2 | ignoring row order 1
+   SQL: SELECT team_name, season, defensive_rating FROM semantic.team_season_stats WHERE (team_name LIKE '%Celtics' OR team_name LIKE '%Thunder') AND season = '2025-26' AND season_type = 'Regular Season'
+Q40 distinct results over 20 runs: as returned 2 | ignoring row order 2
+   values: ["[('Chicago Bulls', '1995-96', 72, 10, 0.8780487804878049), ('Chicago Bulls', '1996-97', 69, 13, 0.8414634146341463), ('Golden State Warriors', '2015-16', 73, 9, 0.8902439024390244)]", "[('Chicago Bulls', '1995-96', 72, 10, 0.8780487804878049), ('Golden State Warriors', '2015-16', 73, 9, 0.8902439024390244), ('Los Angeles Lakers', '1971-72', 69, 13, 0.8414634146341463)]"]
+   SQL: SELECT team_name, season, wins, losses, win_pct FROM semantic.team_season_stats WHERE season_type = 'Regular Season' ORDER BY win_pct DESC LIMIT 3
+Q42 distinct results over 20 runs: as returned 1 | ignoring row order 1
+   SQL: SELECT record, player_name, value, game_date, season FROM semantic.records WHERE stat = 'fg3m' AND record_kind = 'single_game' ORDER BY value DESC LIMIT 3
+Q62 distinct results over 20 runs: as returned 3 | ignoring row order 3
+   values: ["[('1990s', 100.08364912936484, 10), ('2025-26', 115.60772357723577, 1)]", "[('1990s', 100.08364912936486, 10), ('2025-26', 115.60772357723577, 1)]"]
+   SQL: SELECT CASE WHEN season_start BETWEEN 1990 AND 1999 THEN '1990s' ELSE season END AS period, AVG(league_points_per_game) AS avg_ppg, COUNT(*) AS seasons FROM semantic.league_season_stats WHERE season_type = 'Regular Season' AND (season_start BETWEEN 1990 AND 1999 OR season = '2025-26') GROUP BY 1
+Q72 distinct results over 20 runs: as returned 3 | ignoring row order 3
+   values: ['[(0.289, 0.1770961538461538, 52)]', '[(0.289, 0.17709615384615385, 52)]']
+   SQL: -- Stats half only; the definition is glossary text. Centers = players.position starts with Center. -- (A UNION ALL form is rejected by a guard bug when it has no LIMIT: see DEF in T-SEEDS.md.) WITH j AS ( SELECT usage_rate AS jokic_usage FROM semantic.player_season_stats WHERE lower(player_name) LI
+Q75 distinct results over 20 runs: as returned 2 | ignoring row order 2
+   values: ["[('Harrison Barnes', 'San Antonio Spurs', 76), ('Julian Champagnie', 'San Antonio Spurs', 75), ('Mikal Bridges', 'New York Knicks', 80), ('Nickeil Alexander-Walker', 'Atlanta Hawks', 84), ('OG Anunoby', 'New York Knicks', 88)]", "[('Harrison Barnes', 'San Antonio Spurs', 76), ('Max Christie', 'Dallas Mavericks', 75), ('Mikal Bridges', 'New York Knicks', 80), ('Nickeil Alexander-Walker', 'Atlanta Hawks', 84), ('OG Anunoby', 'New York Knicks', 88)]"]
+   SQL: SELECT player_name, team_name, corner_threes_made FROM semantic.player_season_stats WHERE season = '2025-26' AND season_type = 'Regular Season' ORDER BY corner_threes_made DESC LIMIT 5
+Q78 distinct results over 20 runs: as returned 2 | ignoring row order 1
+   SQL: -- season <= 2024-25 keeps the answer at the pinned snapshot (dev also holds the 2025-26 award). SELECT player_name, COUNT(*) AS mvps FROM semantic.awards WHERE award = 'NBA Most Valuable Player' AND season_start <= 2024 GROUP BY player_id, player_name ORDER BY mvps DESC LIMIT 3

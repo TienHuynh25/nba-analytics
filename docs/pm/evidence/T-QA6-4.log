@@ -1,0 +1,88 @@
+== 3 post-cutoff artifacts
+games [('Cup Final', 1), ('Regular Season', 1230)]
+player_season [('Regular Season', 581)]
+team_season [('Cup Final', 2), ('Regular Season', 30)]
+player_game [('Cup Final', 18), ('Regular Season', 26651)]
+player_season_stint [('Regular Season', 660)]
+games max date [(datetime.date(2026, 4, 12),)]
+player_game max date [(datetime.date(2026, 4, 12),)]
+shots max date [(datetime.date(2026, 4, 12),)]
+awards 2025-26 [('NBA All-Star', 28), ('NBA All-Star Most Valuable Player', 1), ('NBA Cup Most Valuable Player', 1), ('NBA Player of the Month', 10), ('NBA Player of the Week', 40), ('NBA Rookie of the Month', 10)]
+awards max season [(2025,)]
+PASS team_titles 2025-26 
+PASS player_titles 2025-26 
+team_titles max [('2024-25',)]
+PASS records > cutoff [(datetime.date(2026, 3, 10), datetime.date(2026, 3, 10))]
+PASS semantic.player_season_stats 2025-26 playoff/playin rows 0
+PASS semantic.team_season_stats 2025-26 playoff/playin rows 0
+PASS semantic.player_game_log 2025-26 playoff/playin rows 0
+PASS semantic.games 2025-26 playoff/playin rows 0
+PASS semantic.player_stint_stats 2025-26 playoff/playin rows 0
+PASS semantic.player_career_stats 2025-26 playoff/playin rows 2942
+semantic games max [(datetime.date(2026, 4, 12),)] shots max [(datetime.date(2026, 4, 12),)]
+parquet 2025-26 max date [(datetime.date(2026, 4, 12), 219160)]
+== 4 LeBron
+lebron files 1 /Users/tienhuynh/dev/nba-analytics/data/raw/playercareerstats/_all/2026-09-30/4f6cd68fbfada5de.20260930T223110300143Z.json
+raw post thru 2024-25 {'GP': 292, 'PTS': 8289, 'REB': 2628, 'AST': 2095, 'STL': 493, 'BLK': 284, 'TOV': 1047, 'FGM': 2971, 'FG3M': 480, 'FTM': 1867, 'MIN': 12062, 'n': 18, 'last': '2024-25'}
+raw reg thru 2025-26 {'GP': 1622, 'PTS': 43440, 'REB': 12095, 'AST': 12016, 'STL': 2417, 'BLK': 1185, 'TOV': 5650, 'FGM': 15961, 'FG3M': 2636, 'FTM': 8882, 'MIN': 61029, 'n': 23, 'last': '2025-26'}
+raw post incl later seasons 2025-26
+PASS LeBron Playoffs marts vs raw (18, 292, 8289, 2628, 2095, 493, 284, 1047, 2971, 480, 1867, '2024-25') vs (18, 292, 8289, 2628, 2095, 493, 284, 1047, 2971, 480, 1867, '2024-25')
+PASS LeBron Playoffs semantic career (18, 292, 8289, 2628, 2095, '2024-25')
+PASS LeBron Regular Season marts vs raw (23, 1622, 43440, 12095, 12016, 2417, 1185, 5650, 15961, 2636, 8882, '2025-26') vs (23, 1622, 43440, 12095, 12016, 2417, 1185, 5650, 15961, 2636, 8882, '2025-26')
+PASS LeBron Regular Season semantic career (23, 1622, 43440, 12095, 12016, '2025-26')
+== 5 stat lines from raw game log
+raw RS rows player 26651 team 2460
+PASS line Kawhi Leonard 2025-11-03 LAC vs. MIA 27pts []
+PASS line Isaac Okoro 2026-01-10 CHI vs. DAL 13pts []
+PASS line Franz Wagner 2026-01-18 ORL @ MEM 14pts []
+PASS line Derik Queen 2025-11-21 NOP @ DAL 20pts []
+PASS line Larry Nance Jr. 2026-02-11 CLE vs. WAS 3pts []
+PASS line Ja'Kobe Walter 2026-01-03 TOR vs. ATL 5pts []
+PASS line Jalen Suggs 2025-12-05 ORL vs. MIA 22pts []
+PASS line Pelle Larsson 2026-03-12 MIA vs. MIL 28pts []
+PASS line Royce O'Neale 2026-01-20 PHX @ PHI 9pts []
+PASS line Cody Williams 2026-02-05 UTA @ ATL 5pts []
+player_game RS rows marts 26651 raw 26651
+== team records
+PASS raw teams 
+PASS team 1610612758 (82, 22, 60, 9102, 41) vs [82, 22, 60, 9102, 41]
+PASS team 1610612742 (82, 26, 56, 9358, 41) vs [82, 26, 56, 9358, 41]
+PASS team 1610612740 (82, 26, 56, 9473, 41) vs [82, 26, 56, 9473, 41]
+PASS team 1610612760 (82, 64, 18, 9760, 41) vs [82, 64, 18, 9760, 41]
+PASS team 1610612756 (82, 45, 37, 9232, 41) vs [82, 45, 37, 9232, 41]
+PASS 30 teams: gp 82, home+road+neutral=82, home=41-(neutral share) (see neutral note) 
+teams with home==41 25 teams with neutral>0 [(1610612759, 40, 41, 1), (1610612760, 41, 40, 1), (1610612753, 40, 39, 3), (1610612752, 40, 41, 1), (1610612742, 41, 40, 1), (1610612765, 40, 41, 1), (1610612763, 40, 40, 2)]
+PASS every team has 41 raw "vs." home-matchup rows or fewer only when neutral 
+PASS all 30 teams match raw gp/W/L/pts 
+games RS 2025-26 [(1230,)]
+PASS games: 1230 RS; home+away per team = 82; 5 neutral-site games [(5,)]
+Cup final games 2025-26 [('0062500001', 'Cup Final', True)]
+season types 2025-26 in games [('Cup Final', 1), ('Regular Season', 1230)]
+== 6 traded players
+traded count 72
+1630631 [('Jose Alvarado',)] player_season (69, 510, 2) raw TOT [(69, 510)] raw stints [('NOP', 41, 324), ('NYK', 28, 186)] mart stint sum (69, 510, 2)
+PASS traded 1630631 player_season==raw TOT 
+1629012 [('Collin Sexton',)] player_season (68, 1050, 2) raw TOT [(68, 1050)] raw stints [('CHA', 42, 596), ('CHI', 26, 454)] mart stint sum (68, 1050, 2)
+PASS traded 1629012 player_season==raw TOT 
+1631165 [('Keon Ellis',)] player_season (72, 480, 2) raw TOT [(72, 480)] raw stints [('SAC', 43, 239), ('CLE', 29, 241)] mart stint sum (72, 480, 2)
+PASS traded 1631165 player_season==raw TOT 
+203937 [('Kyle Anderson',)] player_season (43, 266, 3) raw TOT [(43, 266)] raw stints [('UTA', 20, 142), ('MEM', 4, 37), ('MIN', 19, 87)] mart stint sum (43, 266, 3)
+PASS traded 203937 player_season==raw TOT 
+1627741 [('Buddy Hield',)] player_season (51, 390, 2) raw TOT [(51, 390)] raw stints [('GSW', 44, 354), ('ATL', 7, 36)] mart stint sum (51, 390, 2)
+PASS traded 1627741 player_season==raw TOT 
+2025-26 RS player_season vs stint sum differences [(0,)]
+== NULL rules
+PASS player_season stl/blk NULL before 1973-74 [(5627, 0)]
+PASS player_season fg3a NULL before 1979-80 
+PASS player_game plus_minus NULL before 1996-97 
+player_game pre-1996 rows [(694960,)]
+PASS player_game plus_minus present 2025-26 [(26669, 26669)]
+PASS semantic steals NULL pre-1973 in season stats 
+PASS semantic threes NULL pre-1979 
+PASS semantic career stl: players w/ only pre-73 seasons NULL 
+PASS semantic plus_minus pre-1996 season NULL 
+stat_availability [('pts', '1946-47', 1946, None), ('fgm', '1946-47', 1946, None), ('fga', '1946-47', 1946, None), ('ftm', '1946-47', 1946, None), ('fta', '1946-47', 1946, None), ('ast', '1946-47', 1946, None), ('pf', '1946-47', 1946, None), ('reb', '1950-51', 1950, 'Rebounds first recorded in 1950-51'), ('minutes', '1951-52', 1951, 'Player minutes first recorded in 1951-52'), ('oreb', '1973-74', 1973, 'Offensive and defensive rebounds split from 1973-74'), ('dreb', '1973-74', 1973, None), ('stl', '1973-74', 1973, None), ('blk', '1973-74', 1973, None), ('tov', '1977-78', 1977, 'Turnovers first recorded in 1977-78'), ('fg3m', '1979-80', 1979, '3-point line introduced 1979-80'), ('fg3a', '1979-80', 1979, None), ('gs', '1981-82', 1981, 'Games started first recorded in 1981-82'), ('plus_minus', '1996-97', 1996, None), ('advanced', '1996-97', 1996, 'Usage rate and ratings on NBA.com'), ('shots', '1996-97', 1996, 'Shot charts on NBA.com'), ('tracking', '2013-14', 2013, 'Player tracking')]
+== per-game leader check (PPG gp>=58)
+[('Luka Dončić', 64, 33.484375), ('Shai Gilgeous-Alexander', 68, 31.13235294117647), ('Anthony Edwards', 61, 28.80327868852459)]
+raw gamelog PPG top [(33.48, 1629029, 64), (31.13, 1628983, 68), (28.8, 1630162, 61)]
+FAILS []
