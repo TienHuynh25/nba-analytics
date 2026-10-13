@@ -40,6 +40,10 @@ def locked_connection(db: Path, shots_dir: Path | None) -> duckdb.DuckDBPyConnec
     return connect_read_only(db, shots_dir if shots_dir is not None else Path("/nonexistent"))
 
 
+def _noop() -> None:
+    return None
+
+
 def run_with_timeout(
     con: duckdb.DuckDBPyConnection, sql: str, timeout_s: float = TIMEOUT_S
 ) -> tuple[list[str], list[tuple[Any, ...]]]:
@@ -64,6 +68,12 @@ def run_with_timeout(
         raise
     finally:
         timer.cancel()
+        # The Timer sits in a reference cycle that outlives this call and its ``stop`` closure
+        # holds ``con``. Drop the closure so the connection frees on refcount, not whenever the
+        # cyclic GC runs: DuckDB refuses a same-file connection with a different config while
+        # any earlier one is still alive (T-FLAKE).
+        timer.function = _noop
+        del stop
 
 
 SQL_SCHEMA = {

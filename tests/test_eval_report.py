@@ -5,6 +5,7 @@ Reports go to a temp directory; nothing here runs the real pipeline or reads eva
 
 import json
 import re
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -97,15 +98,16 @@ def test_markdown_lists_failures_and_family_bootstrap(reports: Path) -> None:
     path, _ = report.write(meta(), rs)
     md = path.with_suffix(".md").read_text()
     assert "| a2 | answer | wrong number |" in md
-    assert re.search(r"dev: 66\.7% \(3 cases; family bootstrap 95% CI", md)
+    assert re.search(r"dev: 66\.7% \(3 items, 3 turn-units; family bootstrap 95% CI", md)
     assert "unverified numbers shown: 0" in md
 
 
 def test_dev_vs_heldout_gap_needs_both_splits(reports: Path) -> None:
     only_dev = report.markdown(meta(), [case("a", True)], None, None)
-    assert "dev - held-out" not in only_dev
+    assert "- held-out: not run" in only_dev
+    assert "- dev - held-out: not run (needs both splits)" in only_dev
     both = report.markdown(meta(), [case("a", True), case("b", False, split="heldout")], None, None)
-    assert "dev - held-out" in both and "held-out" in both
+    assert "dev - held-out: 95% CI" in both and "not run" not in both
 
 
 def test_round_trip_outcomes(reports: Path) -> None:
@@ -123,7 +125,51 @@ def test_accepted_pointer_to_a_missing_run_is_ignored(reports: Path) -> None:
 
 
 def test_git_sha_is_a_sha_or_unknown() -> None:
-    assert re.fullmatch(r"[0-9a-f]{40}|unknown", report.git_sha())
+    assert re.fullmatch(r"[0-9a-f]{40}(\+dirty)?|unknown", report.git_sha())
+
+
+def _repo(tmp_path: Path) -> Path:
+    def g(*a: str) -> None:
+        subprocess.run(["git", *a], cwd=tmp_path, check=True, capture_output=True)
+
+    g("init", "-q")
+    g("config", "user.email", "t@example.com")
+    g("config", "user.name", "t")
+    g("config", "commit.gpgsign", "false")
+    (tmp_path / "a.py").write_text("x = 1\n")
+    (tmp_path / ".gitignore").write_text("ignored.txt\n")
+    g("add", ".")
+    g("commit", "-qm", "init")
+    return tmp_path
+
+
+def test_git_sha_clean_tree_has_no_flag(tmp_path: Path) -> None:
+    assert re.fullmatch(r"[0-9a-f]{40}", report.git_sha(_repo(tmp_path)))
+
+
+def test_git_sha_flags_a_modified_tracked_file(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    (root / "a.py").write_text("x = 2\n")
+    assert re.fullmatch(r"[0-9a-f]{40}\+dirty", report.git_sha(root))
+
+
+def test_git_sha_flags_an_untracked_file(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    (root / "new.py").write_text("y = 1\n")
+    assert report.git_sha(root).endswith("+dirty")
+
+
+def test_git_sha_ignores_reports_dir_and_gitignored_files(tmp_path: Path) -> None:
+    root = _repo(tmp_path)
+    (root / "eval" / "reports").mkdir(parents=True)
+    (root / "eval" / "reports" / "run.json").write_text("{}")
+    (root / "ignored.txt").write_text("z")
+    assert not report.git_sha(root).endswith("+dirty")
+
+
+def test_short_sha_keeps_the_dirty_flag() -> None:
+    assert report.short_sha("a" * 40 + "+dirty") == "a" * 12 + "+dirty"
+    assert report.short_sha("a" * 40) == "a" * 12
 
 
 def test_stub_answerer_answers_nothing_but_keeps_the_gold_path() -> None:
@@ -135,3 +181,19 @@ def test_stub_answerer_answers_nothing_but_keeps_the_gold_path() -> None:
 def test_eval_db_env_override(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     monkeypatch.setenv("NBA_EVAL_DB", str(tmp_path / "x.duckdb"))
     assert eval_db() == tmp_path / "x.duckdb"
+
+
+def test_header_carries_snapshot_hashes_and_status(reports: Path) -> None:
+    m = meta()
+    m.manifest_sha256, m.db_sha256 = "m" * 64, "d" * 64
+    m.snapshot_status, m.registry_version = "VERIFIED", "0.4.0"
+    md = report.markdown(m, [case("a", True)], None, None)
+    assert "**VERIFIED**" in md and "m" * 64 in md and "d" * 64 in md and "0.4.0" in md
+    assert "**NOT VERIFIED**" in report.markdown(meta(), [case("a", True)], None, None)
+
+
+def test_turn_units_are_counted_apart_from_items(reports: Path) -> None:
+    conv = case("m1", True)
+    conv.units = 3
+    md = report.markdown(meta(), [conv, case("b", True)], None, None)
+    assert "(2 items, 4 turn-units;" in md

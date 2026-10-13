@@ -2,7 +2,10 @@
 
 Each run writes ``eval/reports/<run_id>.json`` (every case's stage scores) and
 ``eval/reports/<run_id>.md``. The header records the five versions every run must carry:
-snapshot ID, prompt version, model, index version and git SHA. The diff is against the last
+snapshot ID, prompt version, model, index version and git SHA, plus the snapshot's manifest and
+database sha256, whether the harness verified them (VERIFIED / NOT VERIFIED) and the registry
+version. Counts are in "items" (one entry of cases.yaml; a multi-turn conversation is one item)
+and "turn-units" (every question asked; eval/split.py counts these). The diff is against the last
 accepted run named in ``eval/reports/accepted.json``.
 """
 
@@ -28,13 +31,32 @@ REPORTS = Path(__file__).resolve().parent.parent / "reports"
 ACCEPTED = REPORTS / "accepted.json"
 
 
-def git_sha() -> str:
+DIRTY = "+dirty"
+
+
+REPO = REPORTS.parent.parent
+
+
+def _git(*args: str, root: Path) -> str:
+    return subprocess.run(
+        ["git", *args], capture_output=True, text=True, check=True, cwd=root
+    ).stdout
+
+
+def git_sha(root: Path = REPO) -> str:
+    """HEAD, plus ``+dirty`` when tracked files differ from HEAD or untracked, non-ignored files
+    exist outside ``eval/reports/`` (run output must not make its own tree dirty)."""
     try:
-        return subprocess.run(
-            ["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True
-        ).stdout.strip()
+        sha = _git("rev-parse", "HEAD", root=root).strip()
+        status = _git("status", "--porcelain", "--", ".", ":(exclude)eval/reports", root=root)
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
+    return sha + DIRTY if status.strip() else sha
+
+
+def short_sha(sha: str) -> str:
+    """12 characters of the SHA, keeping the dirty flag visible."""
+    return sha.removesuffix(DIRTY)[:12] + (DIRTY if sha.endswith(DIRTY) else "")
 
 
 @dataclass
@@ -48,6 +70,10 @@ class RunMeta:
     answerer: str
     split: str
     routing: str = "gold-path"  # gold-path until the router exists (G11), then "router"
+    manifest_sha256: str = "n/a"
+    db_sha256: str = "n/a"
+    snapshot_status: str = "NOT VERIFIED"  # VERIFIED only after eval.harness.snapshot_check
+    registry_version: str = "unknown"
     started_at: str = field(default_factory=lambda: datetime.now(UTC).isoformat())
 
 
@@ -60,6 +86,7 @@ class CaseResult:
     tags: list[str]
     stages: dict[str, dict[str, Any]]  # stage -> {applicable, passed, detail}
     unverified_numbers: int = 0
+    units: int = 1  # turn-units: questions asked in this item (1 unless multi-turn)
 
     @property
     def passed(self) -> bool:
@@ -120,7 +147,13 @@ def markdown(
         "| Snapshot | Prompt version | Model | Index version | Git SHA | Answerer | Split |",
         "| --- | --- | --- | --- | --- | --- | --- |",
         f"| {meta.snapshot_id} | {meta.prompt_version} | {meta.model} | {meta.index_version} "
-        f"| {meta.git_sha[:12]} | {meta.answerer} | {meta.split} |",
+        f"| {short_sha(meta.git_sha)} | {meta.answerer} | {meta.split} |",
+        "",
+        f"- Snapshot check: **{meta.snapshot_status}**",
+        f"- Manifest sha256: {meta.manifest_sha256}",
+        f"- Database sha256: {meta.db_sha256}",
+        f"- Registry version: {meta.registry_version}",
+        "- Counts are items (cases.yaml entries); turn-units count every question asked.",
         "",
         *(
             ["Routing uses each case's gold path (G11), so the router stage is not measured."]
@@ -142,13 +175,17 @@ def markdown(
     outs = [r.outcome() for r in results]
     lines += ["", "## Accuracy (end to end)", ""]
     for split in ("dev", "heldout", None):
-        sub = [r.outcome() for r in results if r.split == split]
-        if not sub:
+        sel = [r for r in results if r.split == split]
+        name = {"heldout": "held-out", None: "unsplit"}.get(split, split)
+        if not sel:
+            if split is not None:
+                lines.append(f"- {name}: not run")
             continue
+        sub = [r.outcome() for r in sel]
         lo, hi = family_bootstrap(sub)
-        name = split or "unsplit"
         lines.append(
-            f"- {name}: {_pct(accuracy(sub))} ({len(sub)} cases; "
+            f"- {name}: {_pct(accuracy(sub))} ({len(sub)} items, "
+            f"{sum(r.units for r in sel)} turn-units; "
             f"family bootstrap 95% CI {_pct(lo)} to {_pct(hi)})"
         )
     dev = [r.outcome() for r in results if r.split == "dev"]
@@ -156,6 +193,8 @@ def markdown(
     if dev and held:
         lo, hi = difference_bootstrap(dev, held)
         lines.append(f"- dev - held-out: 95% CI {100 * lo:+.1f} to {100 * hi:+.1f} points")
+    else:
+        lines.append("- dev - held-out: not run (needs both splits)")
     lines.append(f"- unverified numbers shown: {sum(o.unverified_numbers for o in outs)}")
     lines += ["", "## Against the last accepted run", ""]
     if verdict is None:
