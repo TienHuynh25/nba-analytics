@@ -43,3 +43,6 @@ qualify row_number() over (
     order by (coalesce(o.pts, 0) + coalesce(r.pts, 0) = t.pts) desc nulls last,
              r.pts desc nulls last, r.minutes desc nulls last, r.team_id
 ) = 1
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

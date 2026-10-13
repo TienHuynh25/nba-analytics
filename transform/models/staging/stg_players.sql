@@ -23,3 +23,6 @@ select
     nullif(i.DRAFT_YEAR, 'Undrafted') as draft_year
 from roster r
 left join info i on i.PERSON_ID = r.PERSON_ID
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

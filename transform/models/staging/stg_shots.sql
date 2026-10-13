@@ -21,3 +21,6 @@ select
 from {{ source('landing', 'shotchartdetail__shot_chart_detail') }}
 where GAME_ID is not null
 {{ latest_file_per('_params') }}
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

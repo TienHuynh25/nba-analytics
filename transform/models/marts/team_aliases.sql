@@ -4,7 +4,8 @@ with cur as (
     from {{ ref('teams') }} t where t.is_current
 ),
 abbr as (
-    select team_id, any_value(team_abbreviation) as abbreviation
+    -- The abbreviation of the team's latest game (DEF-021: was any_value).
+    select team_id, arg_max(team_abbreviation, game_id) as abbreviation
     from {{ ref('stg_team_game') }}
     where season = (select max(season) from {{ ref('stg_team_game') }})
     group by 1
@@ -22,5 +23,9 @@ select team_id, alias, lower(alias) as alias_norm, kind from (
 qualify row_number() over (
     partition by team_id, lower(alias)
     order by case kind when 'full name' then 0 when 'name' then 1 when 'city' then 2
-                       when 'abbreviation' then 3 else 4 end
+                       when 'abbreviation' then 3 else 4 end,
+             alias  -- tie-break (DEF-021): two nicknames that differ only in case
 ) = 1
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

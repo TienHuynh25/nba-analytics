@@ -27,3 +27,6 @@ select
 from a
 join status s using (season)
 where case a.known_at when 'regular_season_end' then s.rs_done else s.po_done end
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

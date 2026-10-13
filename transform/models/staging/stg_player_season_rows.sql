@@ -30,3 +30,6 @@ select
     {{ int_('TOV') }} as tov, {{ int_('PF') }} as pf, {{ int_('PTS') }} as pts,
     cast(_fetched_at as timestamptz) as fetched_at
 from latest
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

@@ -22,10 +22,21 @@ curated as (
     from {{ ref('player_alias_seed') }} s
     join {{ ref('players') }} p on p.name = s.player_name
     -- A curated alias maps to the best-known holder of the name: the one with most seasons.
-    qualify row_number() over (partition by s.alias order by (p.to_year - p.from_year) desc) = 1
+    -- Tie-break (DEF-021): the lower player_id.
+    qualify row_number() over (partition by s.alias
+                               order by (p.to_year - p.from_year) desc, p.player_id) = 1
 )
 select player_id, alias, lower(strip_accents(alias)) as alias_norm, kind
-from (select * from base union all select * from curated)
+from (
+    select *, false as is_curated from base
+    union all
+    select *, true from curated
+)
 -- One row per (player, normalized alias); the full name wins over derived spellings.
+-- Tie-break (DEF-021) for the same spelling from two sources (e.g. 'Durant' as a derived
+-- 'last name' and a curated 'best-known holder'): the curated row, then kind.
 qualify row_number() over (partition by player_id, lower(strip_accents(alias))
-                           order by kind = 'full name' desc, alias) = 1
+                           order by kind = 'full name' desc, alias, is_curated desc, kind) = 1
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

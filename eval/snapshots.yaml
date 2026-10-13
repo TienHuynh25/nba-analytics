@@ -1,0 +1,25 @@
+# Pinned evaluation snapshots (task 2.1). Pinned snapshots are never made current and never
+# pruned (ingest/snapshots.publish refuses them). Paths are relative to the repo root.
+# Built with: make refresh AS_OF=2026-04-12 SNAPSHOT_ID=eval_2025_26_rs (from the raw cache)
+# manifest_sha256 is sha256 of manifest.json, whose "checksums" cover the database and every
+# shots Parquet file. tests/test_eval_snapshots.py checks it against the built snapshot.
+# Rebuilt 2026-10-12 (T-2.1 rework): the database holds only marts, seeds and semantic, copied
+# into a fresh file; the first build (staging leaked post-cutoff rows) is in data/quarantine/.
+# Rebuilt again 2026-10-12 (T-DET, DEF-021): deterministic marts (tie-breaks, ORDER BY ALL) and
+# sorted shots. Two full builds give identical table content (row order included) and identical
+# shot Parquet bytes; the .duckdb file bytes differ per build (DuckDB storage layout), so
+# db_sha256 pins this file only. Earlier builds are in data/quarantine/.
+# git_sha is HEAD at build time; the copy step and T-DET changes were not yet committed then.
+eval:
+  snapshot_id: eval_2025_26_rs
+  path: data/snapshots/eval_2025_26_rs
+  db: data/snapshots/eval_2025_26_rs/eval_2025_26_rs.duckdb
+  shots: data/snapshots/eval_2025_26_rs/shots
+  pinned: true
+  as_of_cutoff: "2026-04-12"   # last 2025-26 regular-season game date (AS_OF)
+  as_of_date: "2026-04-13"     # "today" on this snapshot; "last night" = 2026-04-12
+  built_at: "2026-10-12T21:12:20.241763+00:00"
+  git_sha: 16a5c0e085e51d4b1a6ef3e6d141efd27ce9f686
+  registry_version: 0.4.0
+  manifest_sha256: 6305f368c785e28575769b5c38a3bedb24f13a756bf3805fd496db44b45301e8
+  db_sha256: 1b51001b04c66ae3139eb0ea5cd55232e84d18503b0bce0084d178651e544d59

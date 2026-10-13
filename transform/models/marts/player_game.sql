@@ -22,3 +22,6 @@ select
     {{ tracked_counting('g.') }},
     {{ tracked("g.plus_minus", "plus_minus") }} as plus_minus
 from g cross join sa
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

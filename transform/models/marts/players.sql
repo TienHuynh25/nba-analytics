@@ -20,3 +20,6 @@ left join (
     group by 1
 ) r using (player_id)
 where p.played or r.rookie_season is not null
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

@@ -17,12 +17,32 @@ totals as (
     qualify row_number() over (partition by player_id, season, season_type
                                order by is_total_row desc) = 1
 ),
+stint_teams as (
+    select distinct player_id, season, season_type, team_id
+    from {{ ref('stg_player_season_rows') }}
+    where not is_total_row
+),
+team_games as (
+    select g.player_id, g.season, g.season_type, g.team_id, g.game_date, g.game_id,
+           s.team_id is not null as is_stint_team,
+           min(g.game_date) over (partition by g.player_id, g.season, g.season_type, g.team_id)
+               as team_first_date
+    from {{ ref('stg_player_game') }} g
+    left join stint_teams s using (player_id, season, season_type, team_id)
+),
 last_team as (
-    -- The team of the player's latest game in that season type.
+    -- The team of the player's latest game in that season type. Tie-break rule (DEF-021), used
+    -- only when the latest date has games for two teams (5 player-seasons, 1980-81..1984-85):
+    -- 1. a team the source lists as one of the player's stints for that season (player 76444
+    --    in 1982-83 has one stint, LAL, but a same-day game logged for LAC);
+    -- 2. the stint the player joined later (later first game that season; this matches the
+    --    source's own chronological stint order in playercareerstats);
+    -- 3. the higher game_id. game_id is unique per player and season type: a total order.
     select player_id, season, season_type, team_id
-    from {{ ref('stg_player_game') }}
+    from team_games
     qualify row_number() over (partition by player_id, season, season_type
-                               order by game_date desc) = 1
+                               order by game_date desc, is_stint_team desc,
+                                        team_first_date desc, game_id desc) = 1
 )
 select
     t.player_id,
@@ -38,3 +58,6 @@ select
 from totals t
 cross join sa
 left join last_team lt using (player_id, season, season_type)
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

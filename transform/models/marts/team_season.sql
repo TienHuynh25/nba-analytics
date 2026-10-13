@@ -67,3 +67,6 @@ left join st on st.team_id = wl.team_id and st.season = wl.season
 left join {{ ref('stg_team_year') }} ty on ty.team_id = wl.team_id and ty.season = wl.season
 left join {{ ref('stg_team_advanced') }} adv
   on adv.team_id = wl.team_id and adv.season = wl.season and adv.season_type = wl.season_type
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

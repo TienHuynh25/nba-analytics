@@ -8,3 +8,6 @@ select distinct
 from {{ ref('player_season_stint') }} s
 join {{ ref('team_titles') }} t on t.team_id = s.team_id and t.season = s.season
 where s.season_type = 'Playoffs' and s.gp >= 1
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

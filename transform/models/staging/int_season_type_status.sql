@@ -19,3 +19,6 @@ select
     {% endif %}
 from {{ ref('stg_team_game') }}
 group by all
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all
