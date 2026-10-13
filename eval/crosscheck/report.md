@@ -4,15 +4,17 @@ Author: `qa-tester` agent (independent of the gold builder). Saved by the PM bec
 
 Snapshot: `eval_2025_26_rs` (cutoff 2026-04-12). Gold computed by `eval/gold/compute_gold.py` (T-2.6).
 
-## Result for all 320 gold units
+## Result for all 320 gold units (final, after T-2.7b)
+
+Counts are those of `crosscheck.csv` (320 rows, 0 MISMATCH).
 
 | Status | Units | Meaning |
 |---|---|---|
-| MATCH (raw recomputation and NBA.com) | 275 | Layer A and Layer B agree with gold |
-| MATCH-RAW, NBA.com has no data for part | 3 | Q62 seasons 1990-91 to 1995-96: `leaguedashteamstats` has no rows; two raw sources agree |
-| OWNER-MANUAL | 6 | Q34 (+p1, p2), Q35 (+p1, p2): need a manual Basketball-Reference check |
-| CLASS-CHECKED (no number) | 35 | decline, not_tracked, clarify, no_verdict, knowledge: class checked against stat_availability, the Spec scope rules and the glossary chunks |
-| MISMATCH | 1 | H03 (clarify candidates incomplete), DEF-024 |
+| MATCH-NBA | 275 | Layer A (raw recomputation) and Layer B (NBA.com) agree with gold |
+| MATCH-RAW | 7 | Q62 seasons 1990-91 to 1995-96 (NBA.com `leaguedashteamstats` has no rows; two raw sources agree) and the four clarify units H01 to H04 after the DEF-024 fix |
+| OWNER-MANUAL | 6 | Q34 (+p1, p2), Q35 (+p1, p2): need the owner's manual Basketball-Reference check |
+| NOT-APPLICABLE | 32 | decline, not_tracked, clarify (M10.3), no_verdict and knowledge units: class checked against stat_availability, the Spec scope rules and the glossary chunks, no number to verify |
+| MISMATCH | 0 | H03 was the one mismatch in the first pass (DEF-024); fixed in T-2.6 rework 3 and re-verified in T-2.7b |
 
 ## Layers
 
@@ -29,7 +31,7 @@ Snapshot: `eval_2025_26_rs` (cutoff 2026-04-12). Gold computed by `eval/gold/com
 
 ## Findings
 
-- **H03 (DEF-024, S3):** the clarify candidates for "Antetokounmpo's career rebounds" omit Kostas Antetokounmpo (id 1628961, 22 NBA games, DAL/LAL 2018-21). PM decision D-027: list every resolvable player; the T-2.6 developer fixes it and audits all clarify units.
+- **H03 (DEF-024, S3) - FIXED and VERIFIED (T-2.7b):** the clarify candidates for "Antetokounmpo's career rebounds" omit Kostas Antetokounmpo (id 1628961, 22 NBA games, DAL/LAL 2018-21). PM decision D-027: list every resolvable player; the T-2.6 developer fixes it and audits all clarify units.
 - **Q37 (owner note):** NBA.com shows Jordan and Chamberlain both at 30.1 career points per game; Jordan leads on exact values (30.123 vs 30.066). Should the answer wording reflect the tie at one decimal?
 - **Independence limits:** `playerprofilev2` answers from the same backend as `playercareerstats`, and `playerawards`, the standings order and the advanced team ratings were re-fetches of ingest endpoints; those checks are weaker evidence than Layer A and the box scores.
 - **Qualification rule not independently confirmed:** the `leagueleaders` endpoint returns HTML, so our leader picks could not be compared with NBA.com's official qualified list. The registry rule was applied to NBA.com totals instead. Recheck in plan task 3.2.
