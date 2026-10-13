@@ -71,5 +71,14 @@ def test_case(case: Case, answerer: Answerer, results: list[CaseResult]) -> None
         }
         unverified = sum(r.unverified_numbers for r in recs)
     results.append(
-        CaseResult(case.id, case.seed_id, case.split, case.critical, case.tags, stages, unverified)
+        CaseResult(
+            case.id,
+            case.seed_id,
+            case.split,
+            case.critical,
+            case.tags,
+            stages,
+            unverified,
+            units=len(case.turns) if case.turns else 1,
+        )
     )
