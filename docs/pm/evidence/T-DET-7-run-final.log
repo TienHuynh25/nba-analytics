@@ -1,0 +1,6 @@
+uv run python -m ingest.refresh --as-of 2026-04-12 --snapshot-id eval_2025_26_rs
+{"ts": "2026-10-12T21:12:09.297950+00:00", "level": "INFO", "logger": "ingest.land", "msg": "landing built", "run_id": "360031430253", "snapshot_id": null, "rows": 8057232, "event": "land_done"}
+{"ts": "2026-10-12T21:12:20.364209+00:00", "level": "INFO", "logger": "ingest.snapshots", "msg": "snapshot built", "run_id": "360031430253", "snapshot_id": null, "path": "/Users/tienhuynh/dev/nba-analytics/data/snapshots/eval_2025_26_rs", "rows": 0, "event": "snapshot_built"}
+{"status": "ok", "snapshot_id": "eval_2025_26_rs"}
+exit=0
+ALLDONE

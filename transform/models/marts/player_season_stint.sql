@@ -19,3 +19,6 @@ select
     {{ tracked('r.gs', 'gs') }} as gs,
     {{ tracked_counting('r.') }}
 from r cross join sa
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

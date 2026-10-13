@@ -1,0 +1,95 @@
+sentinel ids: 91 post-cutoff game ids (004/005 + 25), e.g. 0042500101, 0052500211
+
+== 1. schemas and objects in the new file
+[('marts', 16), ('seeds', 11)] tables
+[('marts', 1), ('semantic', 20)] views
+
+== 2. all-schema scan: date/timestamp/ISO-date varchar > cutoff, 2025-26 Playoffs/PlayIn season types
+hits (excluding metadata cols valid_to/reviewed/fetched_at): []
+metadata columns with later dates (not games/awards/titles/standings/shots): [('marts', 'teams', 'valid_to', (30, datetime.date(2026, 7, 31))), ('seeds', 'known_player_career_gaps', 'reviewed', (241, '2026-10-11')), ('semantic', 'teams', 'valid_to', (30, datetime.date(2026, 7, 31)))]
+2025-26 awards: [('NBA All-Star', 28), ('NBA All-Star Most Valuable Player', 1), ('NBA Cup Most Valuable Player', 1), ('NBA Player of the Month', 10), ('NBA Player of the Week', 40), ('NBA Rookie of the Month', 10)]
+seeds.known_player_career_gaps 2025-26 rows: [('Regular Season', 1)]
+any table with game_id in sentinel set:
+  marts.games: 0
+  marts.player_game: 0
+  marts.records: 0
+  marts.shots: 0
+  seeds.known_boxscore_gaps: 0
+  seeds.tiebreaker_games: 0
+  semantic.games: 0
+  semantic.player_game_log: 0
+  semantic.records: 0
+  semantic.shots: 0
+
+== 3. EXPORT DATABASE -> /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/t21/export_r1a
+27 csv files exported
+sentinel ids found in export: none
+'NBA Champion' + 2025-26 lines in export: none
+'Finals Most Valuable Player' + 2025-26 lines in export: 0
+'NBA Most Valuable Player' + 2025-26 lines in export: 0
+'PlayIn' + 2025-26 lines in export: 0
+'Playoffs' + 2025-26 lines in export: 0
+export files with any ISO date after 2026-04-12: {'marts_teams.csv': ['2026-07-31'], 'seeds_known_player_career_gaps.csv': ['2026-10-11']}
+
+== 4. raw byte check (plain-string sentinels)
+new: 0/91 sentinel ids present; 'NBA Champion' present: True; 'stg_player_game' present: False
+leaky (positive control): 87/91 sentinel ids present; 'NBA Champion' present: True; 'stg_player_game' present: True
+
+== 5. seed queries through connect_read_only (new vs leaky: identical results?)
+  Q01 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q02 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q03 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q04 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q05 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q06 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q07 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q09 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q10 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q11 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q12 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q13 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q14 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q15 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q16 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q17 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q18 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q19 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q20 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q21 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q22 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q23 ran on new (2 rows); leaky copy not comparable: PermissionException
+  Q24 ran on new (2 rows); leaky copy not comparable: PermissionException
+  Q25 ran on new (2 rows); leaky copy not comparable: PermissionException
+  Q26 ran on new (2 rows); leaky copy not comparable: PermissionException
+  Q27 ran on new (2 rows); leaky copy not comparable: PermissionException
+  Q28 ran on new (2 rows); leaky copy not comparable: PermissionException
+  Q29 ran on new (2 rows); leaky copy not comparable: PermissionException
+  Q30 differs from leaky snapshot: 2 vs 2 rows
+  Q31 ran on new (3 rows); leaky copy not comparable: PermissionException
+  Q32 ran on new (3 rows); leaky copy not comparable: PermissionException
+  Q33 ran on new (3 rows); leaky copy not comparable: PermissionException
+  Q35 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q36 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q37 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q38 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q41 ran on new (3 rows); leaky copy not comparable: PermissionException
+  Q42 differs from leaky snapshot: 3 vs 3 rows
+  Q60 ran on new (3 rows); leaky copy not comparable: PermissionException
+  Q61 ran on new (23 rows); leaky copy not comparable: PermissionException
+  Q64 ran on new (11 rows); leaky copy not comparable: PermissionException
+  Q71 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q72 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q73 ran on new (6 rows); leaky copy not comparable: PermissionException
+  Q74 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q75 ran on new (5 rows); leaky copy not comparable: PermissionException
+  Q76 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q77 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q78 differs from leaky snapshot: 3 vs 3 rows
+  Q80 ran on new (1 rows); leaky copy not comparable: PermissionException
+  Q85 ran on new (1 rows); leaky copy not comparable: PermissionException
+seed queries: 75 total, 75 ran, 24 identical to the leaky snapshot
+
+== 6. app/career_gaps.py on the new snapshot
+720 [('played-in-gamelogs', '', '')]
+79635 [('other', '1954-55', 'Regular Season')]
+1628467 [('empty-response', '2017-18', 'Regular Season'), ('empty-response', '2018-19', 'Regular Season'), ('empty-response', '2019-20', 'Playoffs'), ('empty-response', '2019-20', 'Regular Season'), ('empty-response', '2020-21', 'Playoffs'), ('empty-response', '2020-21', 'Regular Season'), ('empty-response', '2021-22', 'Playoffs'), ('empty-response', '2021-22', 'Regular Season'), ('empty-response', '2022-23', 'Regular Season'), ('empty-response', '2023-24', 'Playoffs'), ('empty-response', '2023-24', 'Regular Season'), ('empty-response', '2024-25', 'Playoffs'), ('empty-response', '2024-25', 'Regular Season'), ('empty-response', '2025-26', 'Regular Season')]

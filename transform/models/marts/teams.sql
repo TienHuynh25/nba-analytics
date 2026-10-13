@@ -28,3 +28,6 @@ select
     -- e.g. the 1949-50 Denver Nuggets, are never current).
     last_season_start = (select max(season_start) from {{ ref('stg_team_year') }}) as is_current
 from eras
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

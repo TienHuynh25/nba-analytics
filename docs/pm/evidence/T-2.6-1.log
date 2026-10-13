@@ -1,0 +1,14 @@
+$ uv run python -m eval.gold.compute_gold --out <scratch>/d1   (default threads = 10)
+1cbdac2680911feb612fe1552c8d449958601f71cc9465ba19a6e7e57d8e0187  <scratch>/d1/cases.yaml
+41064ee1009997c6da2b30ab6ec0bcde16e1ff72b9aa3770ff8d5fc6ec48f9e3  <scratch>/d1/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ uv run python -m eval.gold.compute_gold --out <scratch>/d2
+1cbdac2680911feb612fe1552c8d449958601f71cc9465ba19a6e7e57d8e0187  <scratch>/d2/cases.yaml
+41064ee1009997c6da2b30ab6ec0bcde16e1ff72b9aa3770ff8d5fc6ec48f9e3  <scratch>/d2/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ uv run python -m eval.gold.compute_gold --out <scratch>/d3 --threads 1
+1cbdac2680911feb612fe1552c8d449958601f71cc9465ba19a6e7e57d8e0187  <scratch>/d3/cases.yaml
+41064ee1009997c6da2b30ab6ec0bcde16e1ff72b9aa3770ff8d5fc6ec48f9e3  <scratch>/d3/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+$ cmp d1 d2 d3
+IDENTICAL

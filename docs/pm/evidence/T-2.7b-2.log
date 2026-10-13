@@ -1,0 +1,50 @@
+# T-2.7b candidate recompute (cands.py)
+H01 {'raw_n': 3, 'snap_n': 3, 'gold_n': 3, 'raw==gold': True, 'snap==gold': True, 'entities==cands': True, 'raw-gold': [], 'gold-raw': [], 'names_ok': True, 'rule': "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): a bare surname matches every player with that last name, accent- and case-insensitive, any era and any number of games."}
+    {'id': 201950, 'name': 'Jrue Holiday', 'seasons': 17, 'gp': 1090, 'first': '2009-10', 'last': '2025-26', 'log_games': 1187}
+    {'id': 203200, 'name': 'Justin Holiday', 'seasons': 11, 'gp': 680, 'first': '2012-13', 'last': '2023-24', 'log_games': 701}
+    {'id': 1628988, 'name': 'Aaron Holiday', 'seasons': 8, 'gp': 505, 'first': '2018-19', 'last': '2025-26', 'log_games': 522}
+H02 {'raw_n': 3, 'snap_n': 3, 'gold_n': 3, 'raw==gold': True, 'snap==gold': True, 'entities==cands': True, 'raw-gold': [], 'gold-raw': [], 'names_ok': True, 'rule': "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): a bare surname matches every player with that last name, accent- and case-insensitive, any era and any number of games."}
+    {'id': 76090, 'name': 'Cedric Ball', 'seasons': 1, 'gp': 7, 'first': '1990-91', 'last': '1990-91', 'log_games': 7}
+    {'id': 1628366, 'name': 'Lonzo Ball', 'seasons': 7, 'gp': 322, 'first': '2017-18', 'last': '2025-26', 'log_games': 322}
+    {'id': 1630163, 'name': 'LaMelo Ball', 'seasons': 6, 'gp': 303, 'first': '2020-21', 'last': '2025-26', 'log_games': 303}
+H03 {'raw_n': 4, 'snap_n': 4, 'gold_n': 4, 'raw==gold': True, 'snap==gold': True, 'entities==cands': True, 'raw-gold': [], 'gold-raw': [], 'names_ok': True, 'rule': "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): a bare surname matches every player with that last name, accent- and case-insensitive, any era and any number of games."}
+    {'id': 203507, 'name': 'Giannis Antetokounmpo', 'seasons': 13, 'gp': 895, 'first': '2013-14', 'last': '2025-26', 'log_games': 979}
+    {'id': 203648, 'name': 'Thanasis Antetokounmpo', 'seasons': 7, 'gp': 232, 'first': '2015-16', 'last': '2025-26', 'log_games': 257}
+    {'id': 1628961, 'name': 'Kostas Antetokounmpo', 'seasons': 3, 'gp': 22, 'first': '2018-19', 'last': '2020-21', 'log_games': 22}
+    {'id': 1630828, 'name': 'Alex Antetokounmpo', 'seasons': 1, 'gp': 6, 'first': '2025-26', 'last': '2025-26', 'log_games': 6}
+H04 {'raw_n': 11, 'snap_n': 11, 'gold_n': 11, 'raw==gold': True, 'snap==gold': True, 'entities==cands': True, 'raw-gold': [], 'gold-raw': [], 'names_ok': True, 'rule': "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): an initial plus surname matches every player with that last name whose name starts with the initial, any era; 'this season' does not narrow the set."}
+    {'id': 420, 'name': 'Jayson Williams', 'seasons': 9, 'gp': 475, 'first': '1990-91', 'last': '1998-99', 'log_games': 484}
+    {'id': 966, 'name': 'Jerome Williams', 'seasons': 9, 'gp': 587, 'first': '1996-97', 'last': '2004-05', 'log_games': 612}
+    {'id': 1715, 'name': 'Jason Williams', 'seasons': 12, 'gp': 788, 'first': '1998-99', 'last': '2010-11', 'log_games': 855}
+    {'id': 2398, 'name': 'Jay Williams', 'seasons': 1, 'gp': 75, 'first': '2002-03', 'last': '2002-03', 'log_games': 75}
+    {'id': 78554, 'name': 'John Williams', 'seasons': 8, 'gp': 435, 'first': '1986-87', 'last': '1994-95', 'log_games': 448}
+    {'id': 101214, 'name': 'Jawad Williams', 'seasons': 3, 'gp': 90, 'first': '2008-09', 'last': '2010-11', 'log_games': 93}
+    {'id': 200818, 'name': 'Justin Williams', 'seasons': 2, 'gp': 49, 'first': '2006-07', 'last': '2007-08', 'log_games': 49}
+    {'id': 202716, 'name': 'Jordan Williams', 'seasons': 1, 'gp': 43, 'first': '2011-12', 'last': '2011-12', 'log_games': 43}
+    {'id': 1629140, 'name': 'Johnathan Williams', 'seasons': 2, 'gp': 39, 'first': '2018-19', 'last': '2019-20', 'log_games': 39}
+    {'id': 1631114, 'name': 'Jalen Williams', 'seasons': 4, 'gp': 248, 'first': '2022-23', 'last': '2025-26', 'log_games': 281}
+    {'id': 1631119, 'name': 'Jaylin Williams', 'seasons': 4, 'gp': 230, 'first': '2022-23', 'last': '2025-26', 'log_games': 257}
+M10.3 {'entities': [2544, 201142]}
+    2544
+    201142
+# gold diff vs T-2.7-checked gold (diff.py)
+units old/new 320 320 set()
+changed units {'Q43': ['value'], 'Q57': ['value'], 'Q62': ['value'], 'Q72': ['value'], 'Q73': ['value'], 'M03.2': ['value'], 'H01': ['entities', 'rule', 'sql', 'value'], 'H02': ['entities', 'rule', 'sql', 'value'], 'H03': ['entities', 'rule', 'sql', 'value'], 'H04': ['entities', 'rule', 'sql', 'value'], 'Q43-p1': ['value'], 'Q43-p2': ['value'], 'Q57-p1': ['value'], 'Q57-p2': ['value'], 'Q62-p1': ['value'], 'Q62-p2': ['value'], 'Q72-p1': ['value'], 'Q72-p2': ['value'], 'Q73-p1': ['value'], 'Q73-p2': ['value']}
+answer items compared 1316 diffs []
+Q43 allowed None -> [{'metric': 'games_played', 'value': 1, 'column': 'conference_rank', 'key': 'Oklahoma City Thunder'}, {'metric': 'win_pct', 'value': 0.780488, 'column
+Q57 allowed None -> [{'metric': 'game_points', 'value': 125, 'column': 'home_pts', 'key': '2025-10-21'}, {'metric': 'game_points', 'value': 124, 'column': 'away_pts', 'ke
+Q62 allowed None -> [{'metric': 'league_points_per_game', 'value': 94.810345, 'column': 'league_points_per_game', 'key': '2000-01'}, {'metric': 'league_points_per_game', 
+Q72 allowed None -> [{'metric': 'usage_rate', 'value': 0.177096, 'column': 'centers_avg_usage_rate', 'key': 'Nikola Jokić'}, {'metric': 'games_played', 'value': 52, 'colu
+Q73 allowed None -> [{'metric': 'field_goals_made', 'value': 172, 'column': 'made', 'key': 'Above the Break 3'}, {'metric': 'shot_fg_pct', 'value': 0.564456, 'column': 's
+M03.2 allowed None -> [{'metric': 'threes_made', 'value': 357, 'column': 'threes_made', 'key': 'Stephen Curry, 2023-24'}, {'metric': 'threes_attempted', 'value': 876, 'colu
+---allowed check
+Q43 30 allowed items; not found in rows: []
+Q57 108 allowed items; not found in rows: []
+Q62 25 allowed items; not found in rows: []
+Q72 2 allowed items; not found in rows: []
+Q73 12 allowed items; not found in rows: []
+M03.2 18 allowed items; not found in rows: []
+952c7c6cab07b46c841812f154c16af2107befdbb101d2dc3f89597c83265cdc  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/xc7b/recompute/cases.yaml
+4cfe26280d762b2ab382dfc3255d0c24e4576555c7db3dbcdcce6c7c726ad099  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/xc7b/recompute/gold_report.md
+952c7c6cab07b46c841812f154c16af2107befdbb101d2dc3f89597c83265cdc  eval/cases.yaml
+4cfe26280d762b2ab382dfc3255d0c24e4576555c7db3dbcdcce6c7c726ad099  eval/gold/gold_report.md

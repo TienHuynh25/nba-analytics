@@ -1,0 +1,17 @@
+$ uv run ruff check .   (eval/crosscheck/ is untracked work from another task; shown separately)
+Found 153 errors.
+[*] 15 fixable with the `--fix` option (10 hidden fixes can be enabled with the `--unsafe-fixes` option).
+$ uv run ruff check . --exclude eval/crosscheck
+All checks passed!
+$ uv run ruff format --check . --exclude eval/crosscheck
+217 files already formatted
+
+$ uv run mypy .
+   1 Found 282 errors in 4 files (checked 132 source files)
+   9 eval/crosscheck/scripts/compare_a.py
+ 241 eval/crosscheck/scripts/layer_a.py
+  15 eval/crosscheck/scripts/load_raw.py
+  17 eval/crosscheck/scripts/load_raw2.py
+Found 282 errors in 4 files (checked 132 source files)
+$ uv run mypy . --exclude eval/crosscheck
+Success: no issues found in 126 source files

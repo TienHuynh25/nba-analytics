@@ -1,0 +1,25 @@
+$ uv run pytest tests/test_gold.py tests/test_cases.py -v
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/tienhuynh/dev/nba-analytics
+configfile: pyproject.toml
+plugins: platformdirs-4.12.2, anyio-4.15.1
+collected 37 items
+
+tests/test_gold.py ...................                                   [ 51%]
+tests/test_cases.py ..................                                   [100%]
+
+============================= 37 passed in 22.81s ==============================
+$ uv run pytest -m 'not dbt and not network'
+tests/test_stats_path 2.py:155: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_stats_path 2.py::test_opinion_question_gets_stats_without_verdict
+1 failed, 1197 passed, 1 skipped, 16 deselected in 89.24s (0:01:29)
+$ uv run ruff check .
+All checks passed!
+$ uv run ruff format --check .
+222 files already formatted
+$ uv run mypy
+Success: no issues found in 127 source files
+--- failing test detail:
+FAILED tests/test_stats_path 2.py::test_opinion_question_gets_stats_without_verdict (untracked stray duplicate file; assert 'do not say who is better' in router/stat prompt)

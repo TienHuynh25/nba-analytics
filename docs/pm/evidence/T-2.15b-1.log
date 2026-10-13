@@ -1,0 +1,23 @@
+$ uv run python -m eval.gold.compute_gold --check
+gold up to date
+exit=0
+
+$ compute_gold --out run1 (default threads); --out run2 --threads 1
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run1/cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run1/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run2/cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run2/gold_report.md
+values by kind: answer 276, clarify 5, decline 12, knowledge 18, no_verdict 3, not_tracked 6
+
+$ shasum -a 256 (repo, run1, run2)
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  eval/cases.yaml
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run1/cases.yaml
+b4679bd5dd7ef5bc0f9bc940a2bc8e24502b320af532f89927710ba63ae826dc  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run2/cases.yaml
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  eval/gold/gold_report.md
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run1/gold_report.md
+be742693a4530d18c5e3f58dc9dac10b64ac4f6aafb557527e37d618084f4666  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/run2/gold_report.md
+
+$ before (T-2.6) hashes
+1cbdac2680911feb612fe1552c8d449958601f71cc9465ba19a6e7e57d8e0187  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/before/cases.yaml
+41064ee1009997c6da2b30ab6ec0bcde16e1ff72b9aa3770ff8d5fc6ec48f9e3  /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/before/gold_report.md

@@ -17,3 +17,6 @@ select
 from {{ source('landing', 'teamyearbyyearstats__teamstats') }}
 where TEAM_ID is not null
 {{ latest_file_per('TEAM_ID') }}
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

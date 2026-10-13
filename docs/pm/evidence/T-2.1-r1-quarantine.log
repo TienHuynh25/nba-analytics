@@ -1,0 +1,31 @@
+== 2026-10-12T20:23:30Z before move
+ls: data/quarantine: No such file or directory
+data/snapshots:
+total 0
+drwxr-xr-x@ 3 tienhuynh  staff   96 Oct 12 14:57 .
+drwxr-xr-x  9 tienhuynh  staff  288 Oct 12 01:02 ..
+dr-xr-xr-x@ 5 tienhuynh  staff  160 Oct 12 15:08 eval_2025_26_rs
+d266ec877ae8e09c86eea3989a38cf9103aa5dea7d49628345110a4213800967  data/snapshots/eval_2025_26_rs/manifest.json
+mv rc=0
+== after move
+data/quarantine:
+total 0
+drwxr-xr-x   3 tienhuynh  staff   96 Oct 12 15:23 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+dr-xr-xr-x@  5 tienhuynh  staff  160 Oct 12 15:08 eval_2025_26_rs_leaky_20261012
+
+data/quarantine/eval_2025_26_rs_leaky_20261012:
+total 683048
+dr-xr-xr-x@  5 tienhuynh  staff        160 Oct 12 15:08 .
+drwxr-xr-x   3 tienhuynh  staff         96 Oct 12 15:23 ..
+-r--r--r--@  1 tienhuynh  staff  349712384 Oct 12 15:08 eval_2025_26_rs.duckdb
+-r--r--r--@  1 tienhuynh  staff       4100 Oct 12 15:08 manifest.json
+dr-xr-xr-x@ 32 tienhuynh  staff       1024 Oct 12 15:08 shots
+
+data/snapshots:
+total 0
+drwxr-xr-x@  2 tienhuynh  staff   64 Oct 12 15:23 .
+drwxr-xr-x  10 tienhuynh  staff  320 Oct 12 15:23 ..
+d266ec877ae8e09c86eea3989a38cf9103aa5dea7d49628345110a4213800967  data/quarantine/eval_2025_26_rs_leaky_20261012/manifest.json
+0b77db14d07271e843dbbf6107248de799c6162fa074042554f0298d1ae2d14f  data/quarantine/eval_2025_26_rs_leaky_20261012/eval_2025_26_rs.duckdb
+.gitignore:2:/data/	data/quarantine/x

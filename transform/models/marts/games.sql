@@ -54,3 +54,6 @@ select
     is_neutral,
     season_type = 'Cup Final' as is_cup_final
 from paired
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

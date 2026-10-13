@@ -1,0 +1,95 @@
+sentinel ids 91 0042500101 0052500211
+===== final /Users/tienhuynh/dev/nba-analytics/data/snapshots/eval_2025_26_rs/eval_2025_26_rs.duckdb
+schemas Counter({'semantic': 20, 'marts': 17, 'seeds': 11})
+columns scanned
+  187
+  HITS
+  ('marts', 'teams', 'valid_to', 30, '2026-07-31')
+  ('seeds', 'known_player_career_gaps', 'note', 14, 'Maxi Kleber: playercareerstats returned a successful but emp')
+  ('seeds', 'known_player_career_gaps', 'reviewed', 241, '2026-10-11')
+  ('semantic', 'teams', 'valid_to', 30, '2026-07-31')
+  marts games [('Cup Final', 1), ('Regular Season', 1230)]
+  marts player_advanced [('Regular Season', 582)]
+  marts player_game [('Regular Season', 26651), ('Cup Final', 18)]
+  marts player_season [('Regular Season', 581)]
+  marts player_season_stint [('Regular Season', 660)]
+  marts records [('Regular Season', 3)]
+  marts shots [('Regular Season', 219160)]
+  marts team_season [('Cup Final', 2), ('Regular Season', 30)]
+  semantic games [('Cup Final', 1), ('Regular Season', 1230)]
+  semantic league_season_stats [('Regular Season', 1), ('Cup Final', 1)]
+  semantic player_game_log [('Cup Final', 18), ('Regular Season', 26651)]
+  semantic player_season_stats [('Regular Season', 581)]
+  semantic player_stint_stats [('Regular Season', 660)]
+  semantic records [('Regular Season', 3)]
+  semantic shots [('Regular Season', 219160)]
+  semantic team_season_stats [('Cup Final', 2), ('Regular Season', 30)]
+awards 2025-26 [('NBA All-Star', 28), ('NBA All-Star Most Valuable Player', 1), ('NBA Cup Most Valuable Player', 1), ('NBA Player of the Month', 10), ('NBA Player of the Week', 40), ('NBA Rookie of the Month', 10)]
+titles 2025-26 [(0, 0, '2024-25')]
+export files containing sentinel ids: NONE
+Champion/Finals MVP lines in awards csv: /private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/qa6b/work/export_final/marts_awards.csv:1020
+2025-26 awards lines with champion/mvp/finals/all-nba: []
+csv lines 2025-26+Playoffs/PlayIn: 0
+raw .duckdb bytes: ids found 17 / 91 total occurrences 17
+  match 0042500201 at 2093305 context b'0100426002010042500201004240020100'
+  match 0042500202 at 2081415 context b'0200426002020042500202004240020200'
+  match 0042500203 at 2069525 context b'0300426002030042500203004240020300'
+  match 0042500204 at 2057635 context b'0400426002040042500204004240020400'
+  match 0042500205 at 533371 context b'0500426002050042500205004240020500'
+  match 0042500206 at 521071 context b'0600426002060042500206004240020600'
+  match 0042500207 at 508771 context b'0700426002070042500207004240020700'
+  match 0042500211 at 782525 context b'1100426002110042500211004240021100'
+  match 0042500212 at 772625 context b'1200426002120042500212004240021200'
+  match 0042500213 at 760335 context b'1300426002130042500213004240021300'
+  match 0042500214 at 748035 context b'1400426002140042500214004240021400'
+  match 0042500221 at 257687 context b'2100426002210042500221004240022100'
+  match 0042500222 at 245387 context b'2200426002220042500222004240022200'
+  match 0042500223 at 233087 context b'2300426002230042500223004240022300'
+  match 0042500224 at 220787 context b'2400426002240042500224004240022400'
+  match 0052500201 at 2092305 context b'0100526002010052500201005240020100'
+  match 0052500211 at 781525 context b'1100526002110052500211005240021100'
+===== leaky_control /Users/tienhuynh/dev/nba-analytics/data/quarantine/eval_2025_26_rs_leaky_20261012/eval_2025_26_rs.duckdb
+schemas Counter({'semantic': 20, 'marts': 17, 'staging': 13, 'seeds': 11})
+columns scanned
+  245
+  HITS
+  ('marts', 'teams', 'valid_to', 30, '2026-07-31')
+  ('seeds', 'known_player_career_gaps', 'season_type', 1, 'Playoffs')
+  ('seeds', 'known_player_career_gaps', 'note', 15, 'Maxi Kleber: playercareerstats returned a successful but emp')
+  ('seeds', 'known_player_career_gaps', 'reviewed', 242, '2026-10-11')
+  ('semantic', 'teams', 'valid_to', 30, '2026-07-31')
+  ('staging', 'int_season_type_status', 'season_type', 2, 'Playoffs')
+  ('staging', 'int_season_type_status', 'first_game_date', 2, '2026-04-18')
+  ('staging', 'int_season_type_status', 'last_game_date', 2, '2026-06-13')
+  ('staging', 'stg_player_advanced', 'season_type', 230, 'Playoffs')
+  ('staging', 'stg_player_game', 'game_id', 2047, '0052500211')
+  ('staging', 'stg_player_game', 'season_type', 2047, 'Playoffs')
+  ('staging', 'stg_player_game', 'game_date', 2047, '2026-06-13')
+  ('staging', 'stg_player_game', 'fetched_at', 1482565, '2026-09-30 17:41:03.233942-05:00')
+  ('staging', 'stg_player_season_rows', 'season_type', 229, 'Playoffs')
+  ('staging', 'stg_player_season_rows', 'fetched_at', 42826, '2026-09-30 19:00:56.376945-05:00')
+  ('staging', 'stg_shots', 'game_date', 14473, '2026-06-13')
+  ('staging', 'stg_team_advanced', 'season_type', 16, 'Playoffs')
+  ('staging', 'stg_team_game', 'game_id', 182, '0052500211')
+  ('staging', 'stg_team_game', 'season_type', 182, 'Playoffs')
+  ('staging', 'stg_team_game', 'game_date', 182, '2026-06-13')
+  ('staging', 'stg_team_game', 'fetched_at', 146352, '2026-09-30 17:41:01.776448-05:00')
+  marts games [('Cup Final', 1), ('Regular Season', 1230)]
+  marts player_advanced [('Regular Season', 582)]
+  marts player_game [('Cup Final', 18), ('Regular Season', 26651)]
+  marts player_season [('Regular Season', 581)]
+  marts player_season_stint [('Regular Season', 660)]
+  marts records [('Regular Season', 3)]
+  marts shots [('Regular Season', 219160)]
+  marts team_season [('Regular Season', 30), ('Cup Final', 2)]
+  semantic games [('Regular Season', 1230), ('Cup Final', 1)]
+  semantic league_season_stats [('Regular Season', 1), ('Cup Final', 1)]
+  semantic player_game_log [('Cup Final', 18), ('Regular Season', 26651)]
+  semantic player_season_stats [('Regular Season', 581)]
+  semantic player_stint_stats [('Regular Season', 660)]
+  semantic records [('Regular Season', 3)]
+  semantic shots [('Regular Season', 219160)]
+  semantic team_season_stats [('Cup Final', 2), ('Regular Season', 30)]
+awards 2025-26 [('NBA All-Star', 28), ('NBA All-Star Most Valuable Player', 1), ('NBA Cup Most Valuable Player', 1), ('NBA Player of the Month', 10), ('NBA Player of the Week', 40), ('NBA Rookie of the Month', 10)]
+titles 2025-26 [(0, 0, '2024-25')]
+raw .duckdb bytes: ids found 87 / 91 total occurrences 230

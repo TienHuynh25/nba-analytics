@@ -1,0 +1,106 @@
+# T-2.7 Layer A: recomputation from data/raw vs gold (compare_a.py output)
+Counter({'MATCH': 98, 'NAME-ONLY': 2})
+## Q79 NAME-ONLY ROY 2023-24 = ['Victor Wembanyama']
+## M05.1 NAME-ONLY MVP 2024-25 = Shai Gilgeous-Alexander
+Q01 MATCH maxdiff 5.882352738240115e-08 | 
+Q02 MATCH maxdiff 4.615384625594743e-07 | 
+Q03 MATCH maxdiff 0.0 | 
+Q04 MATCH maxdiff 0.0 | 
+Q05 MATCH maxdiff 3.801169590200715e-07 | 
+Q06 MATCH maxdiff 0.0 | 
+Q07 MATCH maxdiff 4.2798353910855624e-07 | 
+Q08 MATCH maxdiff 1.3383665065092032e-07 | 
+Q09 MATCH maxdiff 1.1475409422700977e-07 | 
+Q10 MATCH maxdiff 5.602240893409771e-08 | 
+Q11 MATCH maxdiff 0.0 | 
+Q12 MATCH maxdiff 4.782608726827675e-07 | 
+Q13 MATCH maxdiff 0.0 | Luka Dončić gp=64 min=58
+Q14 MATCH maxdiff 4.615384625594743e-07 | Nikola Jokić gp=65 min=58; Karl-Anthony Towns gp=75 min=58; Donovan Clingan gp=77 min=58; Victor Wembanyama gp=64 min=58; Rudy Gobert gp=76 min=58
+Q15 MATCH maxdiff 7.692307768536466e-08 | Nikola Jokić gp=65 min=58
+Q16 MATCH maxdiff 0.0 | [(1641705, 197), (1630643, 153), (1631096, 131)]
+Q17 MATCH maxdiff 2.0408163270424495e-08 | [(1628379, 0.4775510204081633, 117), (1626171, 0.4560810810810811, 135), (1642285, 0.4492307692307692, 146)]
+Q18 MATCH maxdiff 0.0 | [(1626157, 56), (203999, 55), (1630552, 49)]
+Q19 MATCH maxdiff 0.0 | Ausar Thompson gp=73 min=58
+Q20 MATCH maxdiff 1.4285714300399377e-07 | Cooper Flagg gp=70 min=58
+Q21 MATCH maxdiff 0.0 | [(1629029, 16), (1630162, 10), (1628983, 8)]
+Q22 MATCH maxdiff 0.0 | [(1628983, 788), (1641705, 682), (1631096, 678)]
+Q23 MATCH maxdiff 4.615384625594743e-07 | 
+Q24 MATCH maxdiff 4.657534242724637e-07 | 
+Q25 MATCH maxdiff 4.3353519307842703e-07 | 
+Q26 MATCH maxdiff 0.0 | 
+Q27 MATCH maxdiff 4.5143745142084413e-07 | 
+Q28 MATCH maxdiff 3.11475410796902e-07 | 
+Q29 MATCH maxdiff 0.0 | 
+Q30 MATCH maxdiff 0.0 | 
+Q31 MATCH maxdiff 0.0 | [('LeBron James', 43440), ('Kareem Abdul-Jabbar', 38387), ('Karl Malone', 36928)]
+Q32 MATCH maxdiff 0.0 | [('John Stockton', 15806), ('Chris Paul', 12552), ('Jason Kidd', 12091)]
+Q33 MATCH maxdiff 0.0 | [('Stephen Curry', 4248), ('James Harden', 3390), ('Ray Allen', 2973)]
+Q34 MATCH maxdiff 0.0 | box-score max (records seed not used): [(76375, datetime.date(1962, 3, 2), 100), (1628389, datetime.date(2026, 3, 10), 83), (977, datetime.date(2006, 1, 22), 81)]
+Q35 MATCH maxdiff 0.0 | box scores, regular season, partial before 1996-97: [(201566, 209), (203999, 198), (600015, 179)]
+Q36 MATCH maxdiff 0.0 | 
+Q37 MATCH maxdiff 3.283582081792247e-07 | OR-rule top3 [('Michael Jordan', 30.123), ('Wilt Chamberlain', 30.066), ('Luka Dončić', 29.224)]; AND-rule leader Michael Jordan
+Q38 MATCH maxdiff 0.0 | [('Hakeem Olajuwon', 3830), ('Dikembe Mutombo', 3289), ('Kareem Abdul-Jabbar', 3189)]
+Q39 MATCH maxdiff 0.0 | [(1610612738, 18), (1610612747, 17), (1610612744, 7)]
+Q40 MATCH maxdiff 0.0 | [(1610612744, '2015-16', 73, 9, 0.8902439024390244), (1610612741, '1995-96', 72, 10, 0.8780487804878049), (1610612741, '1996-97', 69, 13, 0.8414634146341463)]
+Q41 MATCH maxdiff 0.0 | [('LeBron James', 1622), ('Robert Parish', 1611), ('Kareem Abdul-Jabbar', 1560)]
+Q42 MATCH maxdiff 0.0 | box-score max: [(202691, datetime.date(2018, 10, 29), 14), (201939, datetime.date(2016, 11, 7), 13), (203897, datetime.date(2019, 11, 23), 13), (203081, datetime.date(2023, 2, 26), 13)]
+Q43 MATCH maxdiff 0.0 | W-L from team game logs; order from leaguestandingsv3 PlayoffRank; standings W-L agree: True
+Q44 MATCH maxdiff 0.0 | [(1610612760, (64, 18)), (1610612759, (62, 20))]
+Q45 MATCH maxdiff 2.682926805164243e-07 | [(1610612743, 122.07317073170732, 82), (1610612748, 120.86585365853658, 82), (1610612759, 119.82926829268293, 82)]
+Q46 MATCH maxdiff 0.0 | standings HOME=28-13
+Q47 MATCH maxdiff 0.0 | [(1610612760, 11.1), (1610612765, 8.4), (1610612759, 8.4)]
+Q48 MATCH maxdiff 4.651162797131292e-07 | Stephen Curry gp=43 min=58
+Q49 MATCH maxdiff 0.0 | [(1610612748, 104.22), (1610612762, 103.54), (1610612741, 103.22)]
+Q50 MATCH maxdiff 0.0 | [(8, datetime.date(2026, 1, 21), datetime.date(2026, 2, 4))]
+Q51 MATCH maxdiff 0.0 | (datetime.date(2026, 4, 9), '0022501168', 'Regular Season', 106, 112, False)
+Q52 MATCH maxdiff 0.0 | (datetime.date(2026, 4, 12), 23, 'Regular Season')
+Q53 MATCH maxdiff 0.0 | Oklahoma City Thunder vs Indiana Pacers (datetime.date(2025, 6, 22), 103, 91, True)
+Q54 MATCH maxdiff 0.0 | [(1628389, datetime.date(2026, 3, 10), 83), (1629029, datetime.date(2026, 3, 19), 60), (203999, datetime.date(2025, 12, 25), 56)]
+Q55 MATCH maxdiff 0.0 | 0022501186 ast-leader Paolo Banchero; 0022501187 ast-leader Bub Carrington; 0022501188 ast-leader Cade Cunningham; 0022501189 ast-leader Keshon Gilbert; 0022501190 ast-leader Jose Alvarado; 0022501191 ast-leader VJ Edgecombe; 0022501192 ast-leader Sc
+Q56 MATCH maxdiff 0.0 | 
+Q57 MATCH maxdiff 0.0 | 
+Q58 MATCH maxdiff 0.0 | [(datetime.date(2026, 1, 10), '0022500547', 55), (datetime.date(2026, 2, 20), '0022500810', 54), (datetime.date(2026, 1, 21), '0022500622', 54)]
+Q59 MATCH maxdiff 4.3555479978252265e-07 | 
+Q60 MATCH maxdiff 4.285714285678921e-07 | 
+Q61 MATCH maxdiff 4.878048756040698e-07 | 
+Q62 MATCH maxdiff 4.970563480810597e-07 | league ppg from team game logs: sum(team pts)/team-games
+Q63 MATCH maxdiff 0.0 | 
+Q64 MATCH maxdiff 4.4444444391444904e-07 | 
+Q71 MATCH maxdiff 3.4972787743559053e-07 | [('Jalen Duren', 0.6879), ('Deandre Ayton', 0.6764), ('Neemias Queta', 0.6736)]
+Q72 MATCH maxdiff 0.0 | GP=65
+Q73 MATCH maxdiff 0.0 | 
+Q74 MATCH maxdiff 1.5920398011015635e-07 | attempts=402
+Q75 MATCH maxdiff 0.0 | [(1628384, 88), (1629638, 84), (1628969, 80)]
+Q76 MATCH maxdiff 0.0 | attempts=320
+Q77 MATCH maxdiff 4.7368421007831785e-07 | MVP 2024-25 = Shai Gilgeous-Alexander
+Q78 MATCH maxdiff 0.0 | [('Kareem Abdul-Jabbar', 6), ('Michael Jordan', 5), ('Bill Russell', 5)]
+Q79 NAME-ONLY maxdiff 0.0 | ROY 2023-24 = ['Victor Wembanyama']
+Q80 MATCH maxdiff 0.0 | distinct seasons 22
+M01.1 MATCH maxdiff 0.0 | Luka Dončić gp=64 min=58
+M01.2 MATCH maxdiff 7.692307768536466e-08 | Nikola Jokić gp=65 min=58
+M02.1 MATCH maxdiff 4.589800443044467e-07 | 
+M02.2 MATCH maxdiff 3.098591549455243e-07 | 
+M03.1 MATCH maxdiff 4.3353519307842703e-07 | 
+M03.2 MATCH maxdiff 3.265306122157696e-07 | 
+M04.1 MATCH maxdiff 0.0 | 
+M04.2 MATCH maxdiff 0.0 | 
+M05.1 NAME-ONLY maxdiff 0.0 | MVP 2024-25 = Shai Gilgeous-Alexander
+M05.2 MATCH maxdiff 0.0 | all seasons in raw: (2, '2024-25,2025-26') (2025-26 award is after the cutoff)
+M06.1 MATCH maxdiff 4.634146222315394e-07 | 
+M06.2 MATCH maxdiff 0.0 | 
+M06.3 MATCH maxdiff 0.0 | 
+M07.1 MATCH maxdiff 3.8028169013770707e-07 | 
+M07.2 MATCH maxdiff 4.347826099149188e-07 | 
+M07.3 MATCH maxdiff 2.1126760563205949e-07 | 
+M08.1 MATCH maxdiff 4.615384625594743e-07 | Nikola Jokić gp=65 min=58
+M08.2 MATCH maxdiff 2.8571428600798754e-07 | Domantas Sabonis gp=70 min=58
+M08.3 MATCH maxdiff 0.0 | Giannis Antetokounmpo gp=5 min=4
+M09.1 MATCH maxdiff 7.69230794617215e-08 | 
+M09.2 MATCH maxdiff 4.615384625594743e-07 | 
+M09.3 MATCH maxdiff 0.0 | 
+M10.1 MATCH maxdiff 0.0 | 
+M10.2 MATCH maxdiff 0.0 | 
+H05 MATCH maxdiff 4.685573365970086e-07 | 
+H07 MATCH maxdiff 4.5454545454653994e-07 | 
+not_tracked raw (rows, non-null): {'Q85': [16, 0], 'H08': [13, 0], 'H10': [1, 0, 79], 'H09': [80, 0]}
+clarify raw: {'H01': [['1628988', 'Aaron Holiday', '2018', '2025'], ['201950', 'Jrue Holiday', '2009', '2026'], ['203200', 'Justin Holiday', '2012', '2023']], 'H02': [['1628366', 'Lonzo Ball', '2017', '2025'], ['1630163', 'LaMelo Ball', '2020', '2026'], ['76090', 'Cedric Ball', '1990', '1990']], 'H03': [['1628961', 'Kostas Antetokounmpo', '2018', '2020'], ['1630828', 'Alex Antetokounmpo', '2025', '2025'], ['203507', 'Giannis Antetokounmpo', '2013', '2026'], ['203648', 'Thanasis Antetokounmpo', '2015', '2025']], 'H04': [['1631114', 'Jalen Williams'], ['1631119', 'Jaylin Williams']], 'H04_ps': [['1631114', '33'], ['1631119', '65']]}

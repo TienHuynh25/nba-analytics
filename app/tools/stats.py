@@ -120,7 +120,7 @@ class GetPlayerStats(BaseTool):
         sql = (
             f"select zone, {', '.join(parts)} from semantic.shots "
             "where player_id = ? and season = ? and season_type = ? "
-            f"group by zone order by {metrics[0]} desc"
+            f"group by zone order by {metrics[0]} desc, zone"
         )
         rows = _rows(store, sql, [a["player_ids"][0], a["season"], a["season_type"]])
         total = sum(r[metrics[0]] or 0 for r in rows)
@@ -187,7 +187,7 @@ class GetLeaders(BaseTool):
                 store,
                 f"select team_id, team_name, gp, {m.name} from {TEAM_VIEW} "
                 f"where season = ? and season_type = ? and {m.name} is not null "
-                f"order by {m.name} {order} limit ?",
+                f"order by {m.name} {order}, team_id limit ?",
                 [season, st, limit],
             )
             src = source_line([m.label.lower()], season_phrase(season, st), [], store)
@@ -217,7 +217,9 @@ class GetLeaders(BaseTool):
                     extra += f", {s}"
         sql = (
             f"select player_id, player_name{', team_name' if scope != 'career' else ''}"
-            f"{extra}, {m.name} from {view} where {where} and {m.name} is not null"
+            f"{extra}, {m.name} from {view} where {where} and {m.name} is not null "
+            # DEF-021: the stable sorts below keep this order for ties: lower player_id first.
+            "order by player_id"
         )
         cands = _rows(store, sql, params)
 
@@ -454,7 +456,8 @@ class GetStandings(BaseTool):
         if "conference" in a:
             where += " and conference = ?"
             params.append(a["conference"])
-        order = "conference_rank nulls last" if "conference" in a else "win_pct desc, wins desc"
+        order = "conference_rank nulls last, " if "conference" in a else ""
+        order += "win_pct desc, wins desc, team_id"  # DEF-021: team_id breaks ties
         sql = (
             f"select team_id, team_name, conference, conference_rank, wins, losses, win_pct "
             f"from {TEAM_VIEW} where {where} order by {order}"
@@ -492,7 +495,7 @@ class GetGames(BaseTool):
             sql = (
                 f"select game_id, player_id, player_name, game_date, matchup, wl, minutes, pts, "
                 f"reb, ast, fg3m from semantic.player_game_log where {pwhere} "
-                f"order by game_date desc limit ?"
+                f"order by game_date desc, game_id desc limit ?"
             )
             rows = _rows(store, sql, [*pparams, a.get("last_n", limit)])
             src = source_line(
@@ -515,7 +518,7 @@ class GetGames(BaseTool):
             sql = (
                 f"select game_id, player_id, player_name, game_date, matchup, pts "
                 f"from semantic.player_game_log where season = ? and season_type in "
-                f"({tmarks}) order by pts desc nulls last, game_date limit ?"
+                f"({tmarks}) order by pts desc nulls last, game_date, game_id, player_id limit ?"
             )
             rows = _rows(store, sql, [a["season"], *types, limit])
             src = source_line(["points in a game"], season_phrase(a["season"], types[0]), [], store)
@@ -541,7 +544,11 @@ class GetGames(BaseTool):
                  and greatest(g.home_team_id, g.away_team_id)
                      = greatest(t.team_id, t.opponent_team_id)
                 where g.season_type = 'Playoffs')""")
-        order = "margin desc, game_date" if a.get("sort") == "margin_desc" else "game_date desc"
+        order = (
+            "margin desc, game_date, game_id"
+            if a.get("sort") == "margin_desc"
+            else "game_date desc, game_id desc"
+        )
         sql = (
             f"select game_id, season, season_type, game_date, home_team_name, away_team_name, "
             f"home_pts, away_pts, margin, periods from semantic.games where "
@@ -558,7 +565,7 @@ class GetGames(BaseTool):
                         store,
                         f"select player_name, {stat} from "
                         "semantic.player_game_log where game_id = ? "
-                        f"order by {stat} desc nulls last limit 1",
+                        f"order by {stat} desc nulls last, player_id limit 1",
                         [r["game_id"]],
                     )
                     if lead:
@@ -592,7 +599,7 @@ class GetGames(BaseTool):
             store,
             f"select game_date, winner_team_id = ? as won from semantic.games "
             f"where season = ? and season_type in ({','.join('?' * len(types))}) "
-            "and ? in (home_team_id, away_team_id) order by game_date",
+            "and ? in (home_team_id, away_team_id) order by game_date, game_id",
             [tid, a["season"], *types, tid],
         )
         want = a["streak"] == "win"
@@ -675,7 +682,7 @@ class GetRecord(BaseTool):
                 store,
                 "select record, player_id, player_name, value, game_id, "
                 "game_date, season from semantic.records where stat = ? "
-                "order by value desc, game_date limit ?",
+                "order by value desc, game_date, game_id, player_id limit ?",
                 [self.SINGLE_GAME[rec], limit],
             )
             label = rows[0]["record"].lower() if rows else rec
@@ -684,7 +691,7 @@ class GetRecord(BaseTool):
                 store,
                 "select record, player_id, player_name, value, valid_from from "
                 "semantic.records where record_kind = 'career_count' and record ilike "
-                "'%triple-double%' order by value desc limit ?",
+                "'%triple-double%' order by value desc, player_id limit ?",
                 [limit],
             )
             label = "career triple-doubles"
@@ -694,7 +701,7 @@ class GetRecord(BaseTool):
                     store,
                     f"select player_id, player_name, triple_doubles as value "
                     f"from {CAREER_VIEW} where season_type = 'Regular Season' and "
-                    "triple_doubles is not null order by value desc limit ?",
+                    "triple_doubles is not null order by value desc, player_id limit ?",
                     [limit],
                 )
                 notes.append(
@@ -706,7 +713,7 @@ class GetRecord(BaseTool):
                 store,
                 f"select team_id, team_name, season, wins, losses, win_pct "
                 f"from {TEAM_VIEW} where season_type = 'Regular Season' "
-                "order by win_pct desc, wins desc limit ?",
+                "order by win_pct desc, wins desc, season, team_id limit ?",
                 [limit],
             )
             label = "best regular-season record"
@@ -715,7 +722,7 @@ class GetRecord(BaseTool):
                 store,
                 f"select franchise_id, team_name, championships from "
                 f"{TEAM_ALL_TIME_VIEW} where season_type = 'Regular Season' and "
-                "championships is not null order by championships desc limit ?",
+                "championships is not null order by championships desc, franchise_id limit ?",
                 [limit],
             )
             label = "championships"
@@ -803,7 +810,7 @@ class GetAwards(BaseTool):
                 "select player_id, player_name, count(*) as awards, "
                 "min(season) as first_season, max(season) as last_season "
                 f"from semantic.awards where {' and '.join(where)} "
-                "group by all order by awards desc, last_season limit 10",
+                "group by all order by awards desc, last_season, player_id limit 10",
                 params,
             )
             src = source_line([f"{award} awards"], "all time", [], store)
@@ -812,7 +819,7 @@ class GetAwards(BaseTool):
             store,
             "select player_id, player_name, season, team_name, team_number "
             f"from semantic.awards where {' and '.join(where)} order by season desc, "
-            "team_number nulls first, player_name",
+            "team_number nulls first, player_name, player_id",
             params,
         )
         metrics: list[str] = []

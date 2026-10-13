@@ -8,3 +8,6 @@ select
     defunct
 from {{ ref('stg_franchise_history') }}
 where is_franchise_row
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

@@ -1,0 +1,8 @@
+$ uv run pytest -m "not network" --ignore-glob="* [23].py"
+1200 passed, 1 skipped, 1 deselected in 134.41s (0:02:14)
+$ uv run ruff check .
+All checks passed!
+$ uv run ruff format --check .
+222 files already formatted
+$ uv run mypy
+Success: no issues found in 127 source files

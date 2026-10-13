@@ -1,0 +1,29 @@
+$ compare T-2.6 cases.yaml with new: values minus `allowed`, splits
+cases 305 305 split assignments identical: True
+units with allowed: 16
+   ('Q43', 'Q43', 30)
+   ('Q57', 'Q57', 108)
+   ('Q62', 'Q62', 25)
+   ('Q72', 'Q72', 2)
+   ('Q73', 'Q73', 12)
+   ('M03', 'M03.2', 18)
+   ('Q43-p1', 'Q43', 30)
+   ('Q43-p2', 'Q43', 30)
+   ('Q57-p1', 'Q57', 108)
+   ('Q57-p2', 'Q57', 108)
+   ('Q62-p1', 'Q62', 25)
+   ('Q62-p2', 'Q62', 25)
+   ('Q72-p1', 'Q72', 2)
+   ('Q72-p2', 'Q72', 2)
+   ('Q73-p1', 'Q73', 12)
+   ('Q73-p2', 'Q73', 12)
+every other field identical (values, sql, splits): True
+
+$ diff T-2.6 report vs new
+24a25
+> 10. Allowed numbers (`allowed`) are context columns of the result rows that an answer may state but need not (Q43 rank and win percentage, Q57 game scores, Q62 the other seasons, Q72 the centers' average and count, Q73 makes and share, M03 turn 2 makes, attempts and pooled 3P%); they carry a registry metric for rounding like required numbers.
+
+$ git diff --stat (out-of-scope paths)
+ app/tools/stats.py | 39 +++++++++++++++++++++++----------------
+ 1 file changed, 23 insertions(+), 16 deletions(-)
+(app/tools/stats.py was modified before this session per session-start git status; untouched here)

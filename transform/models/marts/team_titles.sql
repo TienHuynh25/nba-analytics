@@ -18,3 +18,6 @@ select
 from fin c
 left join fin o on o.season = c.season and o.finals_result = 'FINALS APPEARANCE'
 where c.finals_result = 'LEAGUE CHAMPION'
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

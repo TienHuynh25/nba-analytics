@@ -1,0 +1,8 @@
+seed rows pinned/scratch (241,) (242,)
+
+only in scratch: [(1628467, '2025-26', 'Playoffs')]
+76418 1980-81 pinned last_team [(1610612764, 'WAS')] raw source rows in order [(1610612737, 'ATL', 47), (1610612764, 'WAS', 34), (0, 'TOT', 81)] last games [(datetime.date(1981, 3, 29), 1610612764, 'WAS vs. CLE'), (datetime.date(1981, 3, 29), 1610612737, 'ATL vs. MIL'), (datetime.date(1981, 3, 28), 1610612764, 'WAS vs. DET')]
+76444 1982-83 pinned last_team [(1610612747, 'LAL')] raw source rows in order [(1610612747, 'LAL', 82)] last games [(datetime.date(1983, 4, 17), 1610612746, 'SDC @ PHX'), (datetime.date(1983, 4, 17), 1610612747, 'LAL vs. POR'), (datetime.date(1983, 4, 15), 1610612747, 'LAL vs. SEA')]
+77136 1982-83 pinned last_team [(1610612755, 'PHL')] raw source rows in order [(1610612754, 'IND', 51), (1610612755, 'PHL', 32), (0, 'TOT', 83)] last games [(datetime.date(1983, 4, 17), 1610612755, 'PHL @ BOS'), (datetime.date(1983, 4, 17), 1610612754, 'IND vs. NJN'), (datetime.date(1983, 4, 15), 1610612755, 'PHL @ NJN')]
+77167 1981-82 pinned last_team [(1610612765, 'DET')] raw source rows in order [(1610612760, 'SEA', 7), (1610612765, 'DET', 67), (0, 'TOT', 74)] last games [(datetime.date(1982, 4, 17), 1610612760, 'SEA @ GOS'), (datetime.date(1982, 4, 17), 1610612765, 'DET vs. NJN'), (datetime.date(1982, 4, 15), 1610612765, 'DET vs. CLE')]
+78538 1984-85 pinned last_team [(1610612746, 'LAC')] raw source rows in order [(1610612765, 'DET', 2), (1610612746, 'LAC', 10), (0, 'TOT', 12)] last games [(datetime.date(1985, 4, 12), 1610612746, 'LAC @ HOU'), (datetime.date(1985, 4, 12), 1610612765, 'DET vs. WAS'), (datetime.date(1985, 4, 5), 1610612746, 'LAC @ DAL')]

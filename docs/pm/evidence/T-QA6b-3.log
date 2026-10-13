@@ -1,0 +1,11 @@
+objects {'pinned': 48, 'b1': 48, 'b2': 48, 'b3': 48}
+b1 vs b2: order/content differ 0 []; rowcount differ []; unordered-content differ []
+b1 vs b3: order/content differ 0 []; rowcount differ []; unordered-content differ []
+b2 vs b3: order/content differ 0 []; rowcount differ []; unordered-content differ []
+pinned vs b1: order/content differ 1 ['seeds.known_player_career_gaps']; rowcount differ ['seeds.known_player_career_gaps']; unordered-content differ ['seeds.known_player_career_gaps']
+pinned vs b2: order/content differ 1 ['seeds.known_player_career_gaps']; rowcount differ ['seeds.known_player_career_gaps']; unordered-content differ ['seeds.known_player_career_gaps']
+pinned vs b3: order/content differ 1 ['seeds.known_player_career_gaps']; rowcount differ ['seeds.known_player_career_gaps']; unordered-content differ ['seeds.known_player_career_gaps']
+{'pinned': 30, 'b1': 30, 'b2': 30, 'b3': 30}
+shots pinned vs b1 identical 0
+shots pinned vs b2 identical 0
+shots pinned vs b3 identical 0

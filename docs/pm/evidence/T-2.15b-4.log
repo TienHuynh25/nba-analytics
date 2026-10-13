@@ -1,0 +1,7 @@
+$ uv run pytest eval/harness -p no:cacheprovider --split dev --answerer stub   (stub: no LLM, no Ollama; dev split only)
+........................................................................ [ 33%]
+........................................................................ [ 67%]
+.....................................................................    [100%]eval report: /Users/tienhuynh/dev/nba-analytics/eval/reports/stub-ce07df8e.md
+
+213 passed in 0.68s
+(stub report copied to docs/pm/evidence/T-2.15b-stub-report.md and removed from eval/reports: not an accepted baseline)

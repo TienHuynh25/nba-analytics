@@ -10,3 +10,5 @@ select s.*
 from {{ ref('stg_shots') }} s
 join {{ ref('int_season_type_status') }} x using (season, season_type)
 where x.included and {{ as_of_date_filter('s.game_date') }}
+-- Deterministic file content (DEF-021): (game_id, game_event_id) is unique.
+order by s.season, s.game_id, s.game_event_id

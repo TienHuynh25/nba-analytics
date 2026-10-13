@@ -1,0 +1,10 @@
+[('Playoffs', 1921, datetime.date(2026, 4, 18), datetime.date(2026, 6, 13)), ('PlayIn', 126, datetime.date(2026, 4, 14), datetime.date(2026, 4, 17))]
+[('Playoffs', 170, datetime.date(2026, 6, 13)), ('PlayIn', 12, datetime.date(2026, 4, 17))]
+[(14473,)]
+[('2025-26', 2025, 'PlayIn', datetime.date(2026, 4, 14), datetime.date(2026, 4, 17), 6, False, False), ('2025-26', 2025, 'Regular Season', datetime.date(2025, 10, 21), datetime.date(2026, 4, 12), 1230, True, False), ('2025-26', 2025, 'Cup Final', datetime.date(2025, 12, 16), datetime.date(2025, 12, 16), 1, True, False), ('2025-26', 2025, 'Playoffs', datetime.date(2026, 4, 18), datetime.date(2026, 6, 13), 85, False, False)]
+['player_id', 'season', 'season_start', 'season_type', 'team_id', 'team_abbreviation', 'is_total_row', 'player_age']
+[('Playoffs', 229), ('Regular Season', 732)]
+[(162,)] [(90,)]
+
+stint-vs-total differences all history [(5,)]
+[('NBA Champion', 18), ('All-NBA', 15), ('NBA Defensive Player of the Month', 10), ('All-Rookie Team', 10), ('All-Defensive Team', 10), ('NBA Rookie of the Year', 1), ('Eastern Conference Finals Most Valuable Player', 1), ('NBA Finals Most Valuable Player', 1), ('NBA Clutch Player of the Year', 1), ('Western Conference Finals Most Valuable Player', 1), ('NBA Most Valuable Player', 1), ('NBA Most Improved Player', 1), ('NBA Defensive Player of the Year', 1), ('NBA Sixth Man of the Year', 1)]

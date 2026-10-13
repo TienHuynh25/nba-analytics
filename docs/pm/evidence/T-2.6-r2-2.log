@@ -1,0 +1,10 @@
+$ uv run pytest -m "not network" --ignore-glob="* [23].py"
+..............................................                           [100%]
+1197 passed, 1 skipped, 1 deselected in 129.54s (0:02:09)
+$ uv run ruff check .
+Found 2 errors.
+$ uv run ruff format --check .
+1 file would be reformatted, 219 files already formatted
+$ uv run mypy
+Success: no issues found in 127 source files
+$ ruff check / format --check: all findings are in eval/crosscheck/test_boxscore_crosscheck.py (T-2.7, not mine; not touched); eval/gold and tests clean

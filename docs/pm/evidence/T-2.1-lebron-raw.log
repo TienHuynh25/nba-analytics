@@ -1,0 +1,2 @@
+data/raw/playercareerstats/_all/2026-09-30/4f6cd68fbfada5de.20260930T223110300143Z.json seasons<=2024-25: 18 {'GP': 292, 'PTS': 8289, 'REB': 2628, 'AST': 2095}
+CareerTotalsPostSeason (fetch date incl. later seasons): {'PLAYER_ID': 2544, 'LEAGUE_ID': '00', 'TEAM_ID': 0, 'GP': 302, 'GS': 302, 'MIN': 12445, 'FGM': 3055, 'FGA': 6167, 'FG_PCT': 0.495378628182, 'FG3M': 497, 'FG3A': 1495, 'FG3_PCT': 0.332441471571, 'FTM': 1914, 'FTA': 2582, 'FT_PCT': 0.741285824941, 'OREB': 446, 'DREB': 2249, 'REB': 2695, 'AST': 2168, 'STL': 506, 'BLK': 287, 'TOV': 1085, 'PF': 679, 'PTS': 8521}

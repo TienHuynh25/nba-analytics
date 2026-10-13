@@ -465,6 +465,12 @@ def test_as_of_manifest_date_is_day_after_last_game(
     )
     assert snap.manifest["as_of_date"] == "2026-04-13"
     assert snap.manifest["pinned"] is True
+    # T-2.1 rework: dbt's full build file is gone; the published file is a fresh copy.
+    assert not (snap.dir / snapshots.STAGING_DIR).exists()
+    assert set(snap.manifest["checksums"]) == {
+        "eval_test.duckdb",
+        "shots/season=2025-26/data_0.parquet",
+    }
     with pytest.raises(snapshots.BuildError):
         snapshots.publish(cfg, snap)
     assert not _link(cfg).exists()

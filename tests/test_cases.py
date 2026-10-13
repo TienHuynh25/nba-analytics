@@ -1,4 +1,5 @@
 from collections import Counter
+from typing import Any
 
 import pytest
 import yaml
@@ -110,3 +111,103 @@ def test_split_is_deterministic(tmp_path: object) -> None:
 
     raw = yaml.safe_load(CASES_PATH.read_text())["cases"]
     assert assign(raw) == assign(list(reversed(raw)))
+
+
+# ---- gold values (task 2.6) ------------------------------------------------------------------
+
+
+def _units() -> list[tuple[str, Case, Any]]:
+    """(unit id, case, gold) for every single case and every turn."""
+    out: list[tuple[str, Case, Any]] = []
+    for c in load().cases:
+        if c.turns:
+            out += [(f"{c.id}.{i}", c, t.gold) for i, t in enumerate(c.turns, 1)]
+        else:
+            assert c.gold is not None
+            out.append((c.id, c, c.gold))
+    return out
+
+
+def test_every_case_has_a_gold_value() -> None:
+    units = _units()
+    assert len(units) == 320
+    kinds: Counter[str] = Counter()
+    for uid, _c, g in units:
+        assert isinstance(g.value, dict), uid
+        kind = g.value["kind"]
+        kinds[kind] += 1
+        if g.expect.value == "decline":
+            assert kind == "decline" and g.value["reason"], uid
+        elif g.path.value == "knowledge":
+            assert kind == "knowledge" and g.value["facts"], uid
+        elif g.expect.value in ("clarify", "not_tracked", "no_verdict"):
+            assert kind == g.expect.value, uid
+        else:
+            assert kind == "answer", uid
+            assert g.sql and g.value["rows"], uid  # gold SQL ran and returned rows
+    assert kinds == {
+        "answer": 276,
+        "knowledge": 18,
+        "decline": 12,
+        "not_tracked": 6,
+        "clarify": 5,
+        "no_verdict": 3,
+    }
+
+
+def test_answers_have_required_numbers_under_registry_rounding() -> None:
+    from eval.harness.scorers import gold_numbers
+
+    no_number = {"Q79", "M05.1"}  # name-only answers, scored by the judge
+    for uid, _c, g in _units():
+        if g.value.get("kind") != "answer":
+            continue
+        nums = gold_numbers(g).required  # raises KeyError on a non-registry metric
+        assert nums or uid.split("-")[0] in no_number, uid
+        assert all(n["value"] is not None for n in g.value["answer"]), uid
+
+
+def test_not_tracked_values_are_null_not_zero() -> None:
+    for uid, _c, g in _units():
+        if g.value.get("kind") == "not_tracked":
+            col = g.value["column"]
+            assert g.value["rows"] and all(r[col] is None for r in g.value["rows"]), uid
+            assert g.value["first_season_tracked"], uid
+
+
+def test_inheriting_cases_share_their_seeds_gold() -> None:
+    by_id = {c.id: c for c in load().cases}
+    for c in load().cases:
+        if c.type.value in ("paraphrase", "entity_variant"):
+            seed = by_id[c.seed_id]
+            assert c.gold is not None and seed.gold is not None
+            if c.gold.tool_call == seed.gold.tool_call:
+                assert c.gold.value == seed.gold.value, c.id
+                assert c.gold.sql == seed.gold.sql, c.id
+
+
+def test_gold_provenance_matches_the_pinned_snapshot() -> None:
+    from metrics.schema import registry
+
+    pin = yaml.safe_load((CASES_PATH.parent / "snapshots.yaml").read_text())["eval"]
+    for uid, _c, g in _units():
+        src = g.value.get("source")
+        if src and "snapshot" in src:
+            assert src["snapshot"] == pin["snapshot_id"], uid
+            assert src["manifest_sha256"] == pin["manifest_sha256"], uid
+            assert src["registry_version"] == registry().version, uid
+
+
+def test_q48_family_names_the_warriors() -> None:
+    # R-003: the team is an entity of the question, not only a tool argument.
+    for c in load().cases:
+        if c.seed_id == "Q48":
+            assert c.gold is not None and c.gold.entities == {"teams": [1610612744]}, c.id
+
+
+def test_split_unchanged_by_gold_work() -> None:
+    from eval.split import assign
+
+    raw = yaml.safe_load(CASES_PATH.read_text())["cases"]
+    split = assign(raw)
+    assert all(c["split"] == split[c["seed_id"]] for c in raw)

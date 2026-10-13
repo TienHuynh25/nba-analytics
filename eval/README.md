@@ -10,6 +10,10 @@ SNAPSHOT_ID=eval_2025_26_rs`). It holds no game, award or title after the last r
 of 2025-26. Play-In, playoffs, the 2025-26 MVP and the 2026 title are all excluded. Careers stop at
 the cutoff. Its `as_of_date` is the day after that last game.
 
+Built 2026-10-12 from the raw cache with `AS_OF=2026-04-12` (the last game ID prefixed `002` in
+the cached 2025-26 schedule and team game log; the Play-In starts 2026-04-14), so
+`as_of_date` is **2026-04-13** and "last night" is **2026-04-12**.
+
 Relative time resolves against the snapshot, in US Eastern time:
 
 | Phrase | Means on `eval_2025_26_rs` |

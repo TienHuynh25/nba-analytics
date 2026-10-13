@@ -3,3 +3,6 @@ select a.*, {{ season_start('a.season') }} as season_start
 from {{ ref('stg_player_advanced') }} a
 join {{ ref('int_season_type_status') }} x using (season, season_type)
 where x.included
+-- Deterministic row order (DEF-021): a total order, so every build stores the same rows in
+-- the same order.
+order by all

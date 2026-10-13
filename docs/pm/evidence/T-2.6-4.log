@@ -1,0 +1,32 @@
+............................                                             [100%]
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_cases.py::test_cases_validate
+PASSED tests/test_cases.py::test_seed_category_mix_matches_spec
+PASSED tests/test_cases.py::test_ambiguous_seeds_carry_their_rule
+PASSED tests/test_cases.py::test_critical_cases
+PASSED tests/test_cases.py::test_multi_turn_families_and_m10_clarify
+PASSED tests/test_cases.py::test_date_dependent_cases_are_tagged
+PASSED tests/test_cases.py::test_case_needs_question_or_turns
+PASSED tests/test_cases.py::test_duplicate_ids_rejected
+PASSED tests/test_cases.py::test_definition_cases_name_existing_gold_chunks
+PASSED tests/test_cases.py::test_split_by_family_without_leakage
+PASSED tests/test_cases.py::test_split_is_deterministic
+PASSED tests/test_cases.py::test_every_case_has_a_gold_value
+PASSED tests/test_cases.py::test_answers_have_required_numbers_under_registry_rounding
+PASSED tests/test_cases.py::test_not_tracked_values_are_null_not_zero
+PASSED tests/test_cases.py::test_inheriting_cases_share_their_seeds_gold
+PASSED tests/test_cases.py::test_gold_provenance_matches_the_pinned_snapshot
+PASSED tests/test_cases.py::test_q48_family_names_the_warriors
+PASSED tests/test_cases.py::test_split_unchanged_by_gold_work
+PASSED tests/test_gold.py::test_parse_blocks_reads_directives
+PASSED tests/test_gold.py::test_parse_blocks_rejects_bad_blocks[-- @Q01\nSELECT 1\n]
+PASSED tests/test_gold.py::test_parse_blocks_rejects_bad_blocks[-- @Q01\nSELECT 1; SELECT 2;\n]
+PASSED tests/test_gold.py::test_parse_blocks_rejects_bad_blocks[-- @Q01\nSELECT 1;\n-- @Q01\nSELECT 1;\n]
+PASSED tests/test_gold.py::test_answer_numbers_tags_registry_metrics
+PASSED tests/test_gold.py::test_gold_sql_in_cases_matches_gold_sql_file
+PASSED tests/test_gold.py::test_knowledge_facts_are_glossary_text
+PASSED tests/test_gold.py::test_gold_sql_reads_only_semantic_views
+PASSED tests/test_gold.py::test_registry_constants_match_gold_sql
+PASSED tests/test_gold.py::test_compute_gold_reproduces_stored_gold
+28 passed in 15.11s

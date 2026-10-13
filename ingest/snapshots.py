@@ -15,6 +15,10 @@ a failed or killed build never touches a published snapshot. Publishing repoints
 crash at any point leaves ``current`` pointing at a complete snapshot. Nightly snapshots beyond the
 newest ``keep`` (7) are pruned; pinned snapshots (the eval snapshot) and the one ``current`` points
 at are never pruned.
+
+An as-of build runs dbt (and its tests, which read staging) into ``_dbt_build/`` inside the
+folder, then publishes a fresh file holding only the marts, seeds and semantic schemas
+(:func:`copy_published`), because staging keeps rows after the cutoff (T-2.1 rework).
 """
 
 from __future__ import annotations
@@ -175,6 +179,95 @@ def run_dbt(
         raise BuildError(f"dbt build failed:\n{tail}")
 
 
+# Schemas an as-of snapshot publishes. Staging keeps every fetched row (Play-In, playoffs and
+# awards after the cutoff); the as-of filter applies in the marts, so staging is left out.
+PUBLISHED_SCHEMAS = ("marts", "seeds", "semantic")
+STAGING_DIR = "_dbt_build"  # inside the BUILDING folder; removed before the manifest is written
+
+
+def copy_published(src: Path, dst: Path, schemas: tuple[str, ...] = PUBLISHED_SCHEMAS) -> None:
+    """Write ``schemas`` of ``src`` into a fresh database file ``dst`` (T-2.1 rework).
+
+    Tables are copied with ``CREATE TABLE AS``; views are re-created from their stored SQL. The
+    new file never held the left-out schemas, so no dropped rows survive in free blocks. ``dst``
+    must have the same file stem as ``src``: dbt qualifies view SQL with the catalog name.
+    """
+    if src.stem != dst.stem:
+        raise BuildError(f"copy_published: {src.name} and {dst.name} must share a stem")
+    if dst.exists():
+        raise BuildError(f"copy_published: {dst} already exists")
+    con = duckdb.connect(str(dst))
+    try:
+        con.execute(f"ATTACH {_sql_lit(str(src))} AS src (READ_ONLY)")
+        names = ", ".join(_sql_lit(s) for s in schemas)
+        tables = con.execute(
+            "select schema_name, table_name from duckdb_tables() "
+            f"where database_name = 'src' and schema_name in ({names}) order by 1, 2"
+        ).fetchall()
+        views = con.execute(
+            "select schema_name, view_name, sql from duckdb_views() "
+            f"where database_name = 'src' and not internal and schema_name in ({names}) "
+            "order by 1, 2"
+        ).fetchall()
+        for s in schemas:
+            con.execute(f'CREATE SCHEMA IF NOT EXISTS "{s}"')
+        for s, t in tables:
+            where = _seed_filter(con, s, t)
+            con.execute(f'CREATE TABLE "{s}"."{t}" AS SELECT * FROM src."{s}"."{t}" {where}')
+            n_src = con.execute(f'select count(*) from src."{s}"."{t}" {where}').fetchone()
+            n_dst = con.execute(f'select count(*) from "{s}"."{t}"').fetchone()
+            if n_src != n_dst:
+                raise BuildError(f"copy_published: {s}.{t} has {n_dst} rows, source {n_src}")
+        # A view binds on creation, so one that reads another view waits for the next pass.
+        pending = list(views)
+        while pending:
+            failed = []
+            for s, v, sql in pending:
+                try:
+                    con.execute(sql)
+                except duckdb.CatalogException:
+                    failed.append((s, v, sql))
+            if len(failed) == len(pending):
+                raise BuildError(f"copy_published: cannot re-create views {failed[:3]}")
+            pending = failed
+        con.execute("DETACH src")
+        con.execute("CHECKPOINT")
+    except BaseException:
+        con.close()
+        dst.unlink(missing_ok=True)
+        raise
+    con.close()
+
+
+def _seed_filter(con: duckdb.DuckDBPyConnection, schema: str, table: str) -> str:
+    """WHERE clause dropping seed rows for a (season, season type) the marts do not hold.
+
+    Seeds are reviewed source facts for every fetched season, e.g. a career-gap row for the
+    2025-26 playoffs; the as-of marts leave such season types out, so their seed rows go too.
+    Rows with no season (player-level) are kept.
+    """
+    if schema != "seeds":
+        return ""
+    cols = {
+        r[0]
+        for r in con.execute(
+            "select column_name from duckdb_columns() where database_name = 'src' "
+            "and schema_name = ? and table_name = ?",
+            [schema, table],
+        ).fetchall()
+    }
+    if not {"season", "season_type"} <= cols:
+        return ""
+    return (
+        "where coalesce(season, '') = '' or (season, season_type) in "
+        "(select distinct season, season_type from src.marts.games)"
+    )
+
+
+def _sql_lit(s: str) -> str:
+    return "'" + s.replace("'", "''") + "'"
+
+
 def _checksums(snap_dir: Path, snapshot_id: str) -> dict[str, str]:
     files = [snap_dir / f"{snapshot_id}.duckdb", *sorted((snap_dir / "shots").rglob("*.parquet"))]
     return {str(p.relative_to(snap_dir)): sha256(p) for p in files}
@@ -310,7 +403,16 @@ def build(
     try:
         generate_views.write()  # semantic views always match the registry being built
         land(cfg.resolve(cfg.paths.raw), landing, build_dir / f"landing_work_{sid}")
-        run_dbt(work / f"{sid}.duckdb", work / "shots", landing, as_of)
+        if as_of is None:
+            run_dbt(work / f"{sid}.duckdb", work / "shots", landing, as_of)
+        else:
+            # dbt builds and tests a full file (tests read staging); only the published
+            # schemas are copied into a fresh final file, so nothing after the cutoff ships.
+            staged = work / STAGING_DIR / f"{sid}.duckdb"
+            staged.parent.mkdir()
+            run_dbt(staged, work / "shots", landing, as_of)
+            copy_published(staged, work / f"{sid}.duckdb")
+            shutil.rmtree(staged.parent)
         prev = current(cfg)
         linked = link_unchanged_shots(work, prev.dir if prev else None)
         manifest = write_manifest(work, sid, as_of, today, pinned)

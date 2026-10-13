@@ -1,0 +1,21 @@
+== leaguegamelog_t 2025-26 (team game log) ==
+data/raw/leaguegamelog_t/2025-26/2026-09-30/166a2194bbcc860a.20260930T223554901491Z.json {'Counter': 0, 'Direction': 'ASC', 'LeagueID': '00', 'PlayerOrTeam': 'T', 'Season': '2025-26', 'SeasonType': 'PlayIn', 'Sorter': 'DATE', 'DateFrom': '', 'DateTo': ''} 12
+data/raw/leaguegamelog_t/2025-26/2026-09-30/5b2f34b1ae969f22.20260930T223556172738Z.json {'Counter': 0, 'Direction': 'ASC', 'LeagueID': '00', 'PlayerOrTeam': 'T', 'Season': '2025-26', 'SeasonType': 'IST', 'Sorter': 'DATE', 'DateFrom': '', 'DateTo': ''} 134
+data/raw/leaguegamelog_t/2025-26/2026-09-30/634bb8b24b9807a4.20260930T223553756473Z.json {'Counter': 0, 'Direction': 'ASC', 'LeagueID': '00', 'PlayerOrTeam': 'T', 'Season': '2025-26', 'SeasonType': 'Playoffs', 'Sorter': 'DATE', 'DateFrom': '', 'DateTo': ''} 170
+data/raw/leaguegamelog_t/2025-26/2026-09-30/c4cc44aa39226621.20260930T223550709899Z.json {'Counter': 0, 'Direction': 'ASC', 'LeagueID': '00', 'PlayerOrTeam': 'T', 'Season': '2025-26', 'SeasonType': 'Regular Season', 'Sorter': 'DATE', 'DateFrom': '', 'DateTo': ''} 2460
+CupFinal  games=    1 first=2025-12-16 last=2025-12-16
+PlayIn    games=    6 first=2026-04-14 last=2026-04-17
+Playoffs  games=   85 first=2026-04-18 last=2026-06-13
+Regular   games= 1230 first=2025-10-21 last=2026-04-12
+== scheduleleaguev2 2025-26 ==
+Traceback (most recent call last):
+  File "/private/tmp/claude-501/-Users-tienhuynh-dev-nba-analytics/bb1d3a71-4e8f-41b0-b4b5-4d0c344a4c1b/scratchpad/cutoff.py", line 17, in <module>
+    d = json.load(open(f)); rs = d["response"]["resultSets"]
+                                 ~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: 'resultSets'
+schedule prefix 001: games=71 first=2025-10-02 last=2025-10-17
+schedule prefix 002: games=1230 first=2025-10-21 last=2026-04-12
+schedule prefix 003: games=7 first=2026-02-13 last=2026-02-15
+schedule prefix 004: games=85 first=2026-04-18 last=2026-06-13
+schedule prefix 005: games=6 first=2026-04-14 last=2026-04-17
+schedule prefix 006: games=1 first=2025-12-16 last=2025-12-16
