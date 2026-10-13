@@ -1,0 +1,9 @@
+real seed=1 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 132.18s (0:02:12)
+real seed=2 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 130.99s (0:02:10)
+real seed=3 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 130.88s (0:02:10)
+real seed=4 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 130.58s (0:02:10)
+real seed=5 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 130.57s (0:02:10)
+real seed=6 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 130.73s (0:02:10)
+real seed=7 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 130.64s (0:02:10)
+real seed=8 gc_off=0: 1237 passed, 2 skipped, 1 deselected in 130.75s (0:02:10)
+isolated: pass=100 fail=0

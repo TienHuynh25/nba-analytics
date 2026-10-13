@@ -45,10 +45,19 @@ def _git(*args: str, root: Path) -> str:
 
 def git_sha(root: Path = REPO) -> str:
     """HEAD, plus ``+dirty`` when tracked files differ from HEAD or untracked, non-ignored files
-    exist outside ``eval/reports/`` (run output must not make its own tree dirty)."""
+    exist outside ``eval/reports/`` (run output must not make its own tree dirty) and ``docs/pm/``
+    (PM state and evidence never affect results)."""
     try:
         sha = _git("rev-parse", "HEAD", root=root).strip()
-        status = _git("status", "--porcelain", "--", ".", ":(exclude)eval/reports", root=root)
+        status = _git(
+            "status",
+            "--porcelain",
+            "--",
+            ".",
+            ":(exclude)eval/reports",
+            ":(exclude)docs/pm",
+            root=root,
+        )
     except (OSError, subprocess.CalledProcessError):
         return "unknown"
     return sha + DIRTY if status.strip() else sha

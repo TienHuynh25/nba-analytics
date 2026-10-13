@@ -15,7 +15,7 @@ Cases live in `cases.yaml` (schema: `schema.py`). Every run uses the pinned snap
   the report then says `NOT VERIFIED`.
 - Report header: snapshot ID, prompt version, model, index version, git SHA (the five required
   items; `<sha>+dirty` when tracked files differ from HEAD or untracked, non-ignored files exist
-  outside `eval/reports/`), plus answerer, split, snapshot check (`VERIFIED` / `NOT VERIFIED`), manifest sha256,
+  outside `eval/reports/` and `docs/pm/`, which never affect results), plus answerer, split, snapshot check (`VERIFIED` / `NOT VERIFIED`), manifest sha256,
   database sha256 and registry version.
 - **Counts.** An *item* is one entry in `cases.yaml` (305). A *turn-unit* is one question asked
   (320: a multi-turn conversation is one item, several units). Reports and `python -m eval.split`

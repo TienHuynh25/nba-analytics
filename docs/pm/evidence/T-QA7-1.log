@@ -1,0 +1,36 @@
+# oldcode = HEAD tree with only app/sql_fallback.py from 16a5c0e; fixed = HEAD tree (git archive). gc disabled via -p nogc
+old seed=1 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+old seed=1 gc_off=1: FAILED tests/test_sql_fallback.py::test_run_with_timeout_does_not_keep_the_connection_alive
+old seed=1 gc_off=1: 2 failed, 1215 passed, 16 skipped, 1 deselected
+old seed=2 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+old seed=2 gc_off=1: FAILED tests/test_sql_fallback.py::test_run_with_timeout_does_not_keep_the_connection_alive
+old seed=2 gc_off=1: 2 failed, 1215 passed, 16 skipped, 1 deselected
+old seed=3 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+old seed=3 gc_off=1: FAILED tests/test_sql_fallback.py::test_every_view_and_column_has_a_schema_card
+old seed=3 gc_off=1: FAILED tests/test_sql_fallback.py::test_run_with_timeout_does_not_keep_the_connection_alive
+old seed=3 gc_off=1: 3 failed, 1214 passed, 16 skipped, 1 deselected
+old seed=4 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+old seed=4 gc_off=1: FAILED tests/test_sql_fallback.py::test_percent_limit_returns_100_rows - _duc...
+old seed=4 gc_off=1: FAILED tests/test_sql_fallback.py::test_run_with_timeout_does_not_keep_the_connection_alive
+old seed=4 gc_off=1: 3 failed, 1214 passed, 16 skipped, 1 deselected
+old seed=5 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+old seed=5 gc_off=1: FAILED tests/test_sql_fallback.py::test_run_with_timeout_does_not_keep_the_connection_alive
+old seed=5 gc_off=1: 2 failed, 1215 passed, 16 skipped, 1 deselected
+old seed=6 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+old seed=6 gc_off=1: FAILED tests/test_sec4_hardening.py::test_fallback_surrogate_sql_gives_up_cleanly
+old seed=6 gc_off=1: FAILED tests/test_sql_fallback.py::test_run_with_timeout_does_not_keep_the_connection_alive
+old seed=6 gc_off=1: 3 failed, 1214 passed, 16 skipped, 1 deselected
+fixed seed=1 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+fixed seed=1 gc_off=1: 1 failed, 1216 passed, 16 skipped, 1 deselected
+fixed seed=2 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+fixed seed=2 gc_off=1: 1 failed, 1216 passed, 16 skipped, 1 deselected
+fixed seed=3 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+fixed seed=3 gc_off=1: 1 failed, 1216 passed, 16 skipped, 1 deselected
+fixed seed=4 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+fixed seed=4 gc_off=1: 1 failed, 1216 passed, 16 skipped, 1 deselected
+fixed seed=5 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+fixed seed=5 gc_off=1: 1 failed, 1216 passed, 16 skipped, 1 deselected
+fixed seed=6 gc_off=1: FAILED tests/test_career_gaps.py::test_no_tracked_file_names_a_desktop_path
+fixed seed=6 gc_off=1: 1 failed, 1216 passed, 16 skipped, 1 deselected
+# direct mechanism (real Timer, 20 fresh processes, seeds 1..20): ERR = 'different configuration' connection error
+oldcode gc-off: 3 ERR/20; oldcode gc-on: 8 ERR/20; fixed gc-off: 0/20; fixed gc-on: 0/20
