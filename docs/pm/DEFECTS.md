@@ -62,7 +62,7 @@
 | SEC-007 | Low | ci.yml has no permissions block, actions pinned by tag | CLOSED: VERIFIED-FIXED (T-SEC2; QA T-QA4 AC-8; security re-review T-G1-SEC2) |
 | SEC-008 | Low | dbt anonymous usage telemetry not disabled | CLOSED: VERIFIED-FIXED (T-SEC2; QA T-QA4 AC-8; security re-review T-G1-SEC2) |
 | SEC-009 | Low | snapshot id not validated; manifest id not tied to folder name | FIXED by T-SEC3; CLOSED: VERIFIED-FIXED (T-QA4) and re-reviewed FIXED (T-G1-SEC2) |
-| SEC-010 | Info | stray duplicates incl. an old deny-list guard; Ollama host not restricted | OPEN (user: D-007/D-008; Ollama host stays a warning, remote Ollama may be legitimate per decision 0004) |
+| SEC-010 | Info | stray duplicates incl. an old deny-list guard; Ollama host not restricted | PARTLY CLOSED: duplicates quarantined (T-DUPS, D-031); Ollama host check stays a warning (remote Ollama may be legitimate per decision 0004), tracked as R-029 |
 | SEC-011 | Low | sealed snapshot folder blocks DuckDB temp spill (app/snapshot.py:41-44, ingest/snapshots.py:317) | CLOSED: VERIFIED-FIXED (T-SEC4 + 4GB spill cap; QA T-QA5; security sign-off T-G1-SEC3) |
 | SEC-012 | Info | guard writes LIMIT before `USING SAMPLE` (invalid SQL; app/sql_guard.py:230) | CLOSED: VERIFIED-FIXED (T-SEC4; QA T-QA5; security sign-off T-G1-SEC3) |
 | SEC-013 | Info | CI SHA pins not confirmable offline by reviewer; verified by T-SEC2 with gh api | CLOSED: T-QA4 resolved both SHAs via gh api (checkout 11d5960 = v4.4.0 head of v4; setup-uv d0cc045 = v6.8.0 head of v6) |

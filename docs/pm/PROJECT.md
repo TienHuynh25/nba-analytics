@@ -1,11 +1,11 @@
 # Project charter: NBA analytics RAG assistant
 
-Status: G0 PASSED 2026-10-11 (D-001). Active phase: Gate 1 close-out.
+Status: G0 passed 2026-10-11. G1 passed 2026-10-12. Active phase: Phase 2 (test set and baseline), Gate 2 review: governance APPROVE-WITH-CONDITIONS, four conditions (two the owner's, two the PM's).
 
-Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Basketball Analytics RAG — Execution Plan.md`. This file only tracks PM state; it does not restate them.
+Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Basketball Analytics RAG — Execution Plan.md` (edited 2026-10-12 per D-026/D-029/D-032: see its "Plan revisions" note). This file only tracks PM state; it does not restate them.
 
 - **Goal:** a fully local assistant answering NBA questions with correct, cited numbers.
-- **Success metric:** ≥ 85% correct on the held-out split with zero unverified numbers (Gate 4).
+- **Success metric:** at least 85% correct on the held-out split with zero unverified numbers (Gate 4).
 - **Tier:** Full.
 - **Stack:** Python 3.12 / uv, nba_api 1.11.4, DuckDB + dbt-duckdb, Ollama, ruff, mypy strict.
 - **Scope/constraints:** as in CLAUDE.md invariants and the Spec; no scope beyond the Spec.
@@ -15,30 +15,28 @@ Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Bask
 | PM gate | Plan gate | Status |
 |---|---|---|
 | G0 charter approved | n/a | ✅ 2026-10-11 |
-| G1 | Gate 1: data foundation | ✅ passed 2026-10-12: governance APPROVE-WITH-CONDITIONS (G1-governance.md + T-G1-GOV2), conditions 1-5 met; security 0 Critical/High/Medium; CI green on PR #9 head 16a5c0e and on main c0d1a9b; PRs #8, #9, #4 merged |
-| G2 | Gate 2: test set and baseline | ⏳ built and merged (PRs #10, #11): pinned snapshot verified, 320 gold units cross-checked, harness verifies the snapshot, `make gate2`, dev baseline recorded on committed code. WAITING ON THE OWNER: approvals in docs/pm/OWNER-REVIEW.md, ruling on 'in CI' (make gate2 proposal, R-047), approval for ONE held-out gate run, then tag testset-v1.0 |
-| G3 | Gate 3: stats path | ⬜ |
-| G4 | Gate 4: release | ⬜ |
+| G1 | Gate 1: data foundation | ✅ 2026-10-12 (governance APPROVE-WITH-CONDITIONS, conditions closed; security 0 Critical/High/Medium; CI green) |
+| G2 | Gate 2: test set and baseline | ⏳ governance T-G2-GOV: APPROVE-WITH-CONDITIONS. Boxes 1, 2, 4 MET; boxes 3, 5 PARTIAL. Conditions: (1) owner checks Q34/Q35 on Basketball-Reference by hand and records the values; (2) owner ratifies D-026 (method change for box 3); (3) PM updates PROJECT.md, SEC-010, crosscheck report (done in this revision); (4) PM merges the plan edit through a PR with CI green. Then tag `testset-v1.0` |
+| G3 | Gate 3: stats path | ⬜ prerequisites: T-REC (records_curated filled), DEF-023 (verifier digit-bearing names) fixed in 3.11, Ollama running for the model benchmark |
+| G4 | Gate 4: release | ⬜ prerequisite: judge calibrated (T-2.20) or declared unused |
 
-## Repo state (2026-10-12, after PR #12; main 0e22b45)
+## Repo state (2026-10-12)
 
-- Phase 1 code and tests are in; PR #8 (branch chore/gate1-closeout) is open and unmerged (user merges). Last green CI head f961f25; final head 11cb9ed CI running.
-- Backfill: all stages complete; players 15509 + 220 documented source gaps = 15729 (decision 0009 and Amendment: 242 seed rows, 265 player-seasons, 211 players). Full dbt build PASS=134. No published snapshot exists (T-2.1 not started).
-- All Gate 1 checkboxes have independent evidence; one open defect: DEF-004 (S3, stray duplicates).
-- Eval: 320 case units complete; 15 paraphrase flags await owner review (T-2.9r); gold values not computed (need pinned snapshot, T-2.6).
-- CLAUDE.md status paragraph updated for decision 0008 (T-HK2). Decisions 0006-0009 recorded.
-
-## Divergences
-
-- D-A: resolved (CLAUDE.md updated, T-HK2).
-- D-B: 49-51 stray Finder duplicates still on disk; deletion pending user (D-007, D-008). `transform/.dbtignore` and `--ignore-glob` keep them from breaking builds and tests.
-- D-C: resolved (work committed; CI ran green on f961f25).
-- D-D: plan names ingest/publish.py and ingest/rollback.py; code is in ingest/snapshots.py (R-004); plan text needs a note.
+- `main` carries all Phase 1 and Phase 2 work (PRs #4, #8, #9, #10, #11, #12, #13 merged; CI green).
+- Pinned snapshot `eval_2025_26_rs` (cutoff 2026-04-12, as_of_date 2026-04-13): built from cache, fresh file with only marts/seeds/semantic, sealed 0444/0555, never current, manifest sha256 `6305f368…`, db sha256 `1b51001b…`; independently verified (T-QA6b).
+- Gold for 320 turn-units (305 case items) computed by `eval/gold/compute_gold.py` (deterministic, hashes pinned) and independently cross-checked (275 MATCH-NBA, 7 MATCH-RAW, 32 NOT-APPLICABLE, 6 OWNER-MANUAL, 0 MISMATCH). The owner approved the gold interpretations and the 170 paraphrases (D-032).
+- Harness verifies the snapshot at the start of every run; `make gate2` writes a committed, CI-checked report; dev baseline `stub-00ed80a2` accepted on committed code (git SHA 68ceafe84935); the one approved held-out gate run is `gate2-0e22b45f` (stub, no LLM; D-033).
+- Open defects: DEF-023 (S3, Phase 3 verifier), SEC-014/015/016 (accepted for Phase 3), SEC-010 Ollama host (warning, R-029).
+- Stray Finder duplicates: quarantined in `data/quarantine/finder_duplicates_20261012/` (none held unique content); the owner may delete that folder.
 
 ## Assumptions
 
-- A-001 / A-002: as before. A-005: partial-career note in get_career/get_player_stats/compare (PM clarification inside D-013, user may reverse).
+- A-005: partial-career note in get_career/get_player_stats/compare (PM clarification inside D-013; acknowledged by the owner, D-032).
 
-## Open owner decisions
+## Open owner decisions / actions
 
-- None blocking. 0.3 and G1 are settled by decision 0008. Owner still owes: Basketball-Reference terms check and the records list for T-REC; paraphrase/gold/judge review (T-2.9r, 2.20); the anomaly floor question (R-001); merging PR #8; plan filenames (R-004); the stray duplicates (D-007/D-008).
+1. **Gate 2 condition 1:** check Q34 (Wilt, 100 points, 1962-03-02) and Q35 (Westbrook, 209 career triple-doubles) on Basketball-Reference by hand (terms first, decision 0008) and tell the PM the values.
+2. **Gate 2 condition 2:** ratify D-026: the Gate 2 box 3 cross-check was done with NBA.com plus an independent raw-JSON recomputation, with Basketball-Reference only by the owner's hand for Q34/Q35 (decision 0008 forbids scraping).
+3. **Governance question:** confirm that the 30 entity variants, 10 hard negatives, 10 multi-turn items and the critical-tag list (plan 2.14, 51 critical) were reviewed (OWNER-REVIEW covered the gold interpretations and the 170 paraphrases).
+4. **T-REC (before Gate 3):** the records list for `records_curated` and confirmation that Basketball-Reference's terms were checked.
+5. **T-2.20 (before Gate 4):** label 30 answers to calibrate the judge, or declare the judge unused.
