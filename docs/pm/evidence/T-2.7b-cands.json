@@ -1,0 +1,257 @@
+{
+ "H01": {
+  "raw_n": 3,
+  "snap_n": 3,
+  "gold_n": 3,
+  "raw==gold": true,
+  "snap==gold": true,
+  "entities==cands": true,
+  "raw-gold": [],
+  "gold-raw": [],
+  "names_ok": true,
+  "cands": [
+   {
+    "id": 201950,
+    "name": "Jrue Holiday",
+    "seasons": 17,
+    "gp": 1090,
+    "first": "2009-10",
+    "last": "2025-26",
+    "log_games": 1187
+   },
+   {
+    "id": 203200,
+    "name": "Justin Holiday",
+    "seasons": 11,
+    "gp": 680,
+    "first": "2012-13",
+    "last": "2023-24",
+    "log_games": 701
+   },
+   {
+    "id": 1628988,
+    "name": "Aaron Holiday",
+    "seasons": 8,
+    "gp": 505,
+    "first": "2018-19",
+    "last": "2025-26",
+    "log_games": 522
+   }
+  ],
+  "rule": "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): a bare surname matches every player with that last name, accent- and case-insensitive, any era and any number of games."
+ },
+ "H02": {
+  "raw_n": 3,
+  "snap_n": 3,
+  "gold_n": 3,
+  "raw==gold": true,
+  "snap==gold": true,
+  "entities==cands": true,
+  "raw-gold": [],
+  "gold-raw": [],
+  "names_ok": true,
+  "cands": [
+   {
+    "id": 76090,
+    "name": "Cedric Ball",
+    "seasons": 1,
+    "gp": 7,
+    "first": "1990-91",
+    "last": "1990-91",
+    "log_games": 7
+   },
+   {
+    "id": 1628366,
+    "name": "Lonzo Ball",
+    "seasons": 7,
+    "gp": 322,
+    "first": "2017-18",
+    "last": "2025-26",
+    "log_games": 322
+   },
+   {
+    "id": 1630163,
+    "name": "LaMelo Ball",
+    "seasons": 6,
+    "gp": 303,
+    "first": "2020-21",
+    "last": "2025-26",
+    "log_games": 303
+   }
+  ],
+  "rule": "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): a bare surname matches every player with that last name, accent- and case-insensitive, any era and any number of games."
+ },
+ "H03": {
+  "raw_n": 4,
+  "snap_n": 4,
+  "gold_n": 4,
+  "raw==gold": true,
+  "snap==gold": true,
+  "entities==cands": true,
+  "raw-gold": [],
+  "gold-raw": [],
+  "names_ok": true,
+  "cands": [
+   {
+    "id": 203507,
+    "name": "Giannis Antetokounmpo",
+    "seasons": 13,
+    "gp": 895,
+    "first": "2013-14",
+    "last": "2025-26",
+    "log_games": 979
+   },
+   {
+    "id": 203648,
+    "name": "Thanasis Antetokounmpo",
+    "seasons": 7,
+    "gp": 232,
+    "first": "2015-16",
+    "last": "2025-26",
+    "log_games": 257
+   },
+   {
+    "id": 1628961,
+    "name": "Kostas Antetokounmpo",
+    "seasons": 3,
+    "gp": 22,
+    "first": "2018-19",
+    "last": "2020-21",
+    "log_games": 22
+   },
+   {
+    "id": 1630828,
+    "name": "Alex Antetokounmpo",
+    "seasons": 1,
+    "gp": 6,
+    "first": "2025-26",
+    "last": "2025-26",
+    "log_games": 6
+   }
+  ],
+  "rule": "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): a bare surname matches every player with that last name, accent- and case-insensitive, any era and any number of games."
+ },
+ "H04": {
+  "raw_n": 11,
+  "snap_n": 11,
+  "gold_n": 11,
+  "raw==gold": true,
+  "snap==gold": true,
+  "entities==cands": true,
+  "raw-gold": [],
+  "gold-raw": [],
+  "names_ok": true,
+  "cands": [
+   {
+    "id": 420,
+    "name": "Jayson Williams",
+    "seasons": 9,
+    "gp": 475,
+    "first": "1990-91",
+    "last": "1998-99",
+    "log_games": 484
+   },
+   {
+    "id": 966,
+    "name": "Jerome Williams",
+    "seasons": 9,
+    "gp": 587,
+    "first": "1996-97",
+    "last": "2004-05",
+    "log_games": 612
+   },
+   {
+    "id": 1715,
+    "name": "Jason Williams",
+    "seasons": 12,
+    "gp": 788,
+    "first": "1998-99",
+    "last": "2010-11",
+    "log_games": 855
+   },
+   {
+    "id": 2398,
+    "name": "Jay Williams",
+    "seasons": 1,
+    "gp": 75,
+    "first": "2002-03",
+    "last": "2002-03",
+    "log_games": 75
+   },
+   {
+    "id": 78554,
+    "name": "John Williams",
+    "seasons": 8,
+    "gp": 435,
+    "first": "1986-87",
+    "last": "1994-95",
+    "log_games": 448
+   },
+   {
+    "id": 101214,
+    "name": "Jawad Williams",
+    "seasons": 3,
+    "gp": 90,
+    "first": "2008-09",
+    "last": "2010-11",
+    "log_games": 93
+   },
+   {
+    "id": 200818,
+    "name": "Justin Williams",
+    "seasons": 2,
+    "gp": 49,
+    "first": "2006-07",
+    "last": "2007-08",
+    "log_games": 49
+   },
+   {
+    "id": 202716,
+    "name": "Jordan Williams",
+    "seasons": 1,
+    "gp": 43,
+    "first": "2011-12",
+    "last": "2011-12",
+    "log_games": 43
+   },
+   {
+    "id": 1629140,
+    "name": "Johnathan Williams",
+    "seasons": 2,
+    "gp": 39,
+    "first": "2018-19",
+    "last": "2019-20",
+    "log_games": 39
+   },
+   {
+    "id": 1631114,
+    "name": "Jalen Williams",
+    "seasons": 4,
+    "gp": 248,
+    "first": "2022-23",
+    "last": "2025-26",
+    "log_games": 281
+   },
+   {
+    "id": 1631119,
+    "name": "Jaylin Williams",
+    "seasons": 4,
+    "gp": 230,
+    "first": "2022-23",
+    "last": "2025-26",
+    "log_games": 257
+   }
+  ],
+  "rule": "Clarify (D-027): the candidates are every player in the snapshot the name resolves to under the entity resolver's shared-name rule (app/entities.py): an initial plus surname matches every player with that last name whose name starts with the initial, any era; 'this season' does not narrow the set."
+ },
+ "M10.3": {
+  "cands": [
+   2544,
+   201142
+  ],
+  "entities": [
+   2544,
+   201142
+  ]
+ }
+}

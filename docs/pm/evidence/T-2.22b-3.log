@@ -1,0 +1,18 @@
+## none
+....s                                                                    [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_gate2.py:54: no gate2 report committed yet
+## fake ok
+.....                                                                    [100%]
+## fake missing
+E         Extra items in the right set:
+E         'Q85-p2'
+E         Use -v to get more diff
+
+tests/test_gate2.py:63: AssertionError
+## fake extra
+E         Extra items in the left set:
+E         'ZZ99'
+E         Use -v to get more diff
+
+tests/test_gate2.py:63: AssertionError

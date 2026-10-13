@@ -45,6 +45,6 @@ Check their terms of use first (decision 0008). NBA.com could not verify these:
 |---|---|---|
 | E1 | Anomaly check (R-001): the nightly row-count check uses a plain +-10% rule, so one missing game on a 15-game day is not flagged (two are). Add an absolute floor of one game? | Leave as is (it matches the Spec) |
 | E2 | Plan filenames (R-004): the plan names `ingest/publish.py` and `ingest/rollback.py`; the code is in `ingest/snapshots.py` | Update the plan text |
-| E3 | 51 stray Finder duplicates (`* 2.*`, `* 3.*`), including `records_curated 2.csv` that may hold your data | Let me diff each against its original and report which hold unique content; you decide the rest |
+| E3 | 51 stray Finder duplicates | DONE: analysed (33 identical, 18 stale, 0 with unique content; `records_curated 2.csv` is header-only) and moved to `data/quarantine/finder_duplicates_20261012/`. You may delete that folder whenever you like |
 | E4 | Sourcing pass (task 2.4): Google Trends, People-also-ask, r/nba threads need web research my agents cannot do | Skip for v1 (nothing in the gold depends on it) |
 | E5 | Acknowledgements already given in chat: D-014 (partial-career note) and D-019 (three low security items deferred to Phase 3) | Nothing to do |

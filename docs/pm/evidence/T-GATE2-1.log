@@ -1,0 +1,2 @@
+$ before-fix: run harness conftest with a bogus pinned id
+configure OK, no error; header snapshot = eval_bogus_snapshot

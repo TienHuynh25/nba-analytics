@@ -16,7 +16,7 @@ Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Bask
 |---|---|---|
 | G0 charter approved | n/a | ✅ 2026-10-11 |
 | G1 | Gate 1: data foundation | ✅ passed 2026-10-12: governance APPROVE-WITH-CONDITIONS (G1-governance.md + T-G1-GOV2), conditions 1-5 met; security 0 Critical/High/Medium; CI green on PR #9 head 16a5c0e and on main c0d1a9b; PRs #8, #9, #4 merged |
-| G2 | Gate 2: test set and baseline | ⏳ Phase 2 starting; entry criterion: box-score check re-run on the published snapshot (R-022) |
+| G2 | Gate 2: test set and baseline | ⏳ built: pinned snapshot verified, gold for 320 units cross-checked, harness fixed, PR #10 merged; open: owner review (OWNER-REVIEW.md), baseline (T-2.22), 'in CI' wording (CI has no snapshot, proposal in T-2.22), testset-v1.0 tag after owner approval, held-out run only at the gate with user approval |
 | G3 | Gate 3: stats path | ⬜ |
 | G4 | Gate 4: release | ⬜ |
 

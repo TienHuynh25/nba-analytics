@@ -1,0 +1,29 @@
+........................................................................ [ 70%]
+........................................................................ [ 76%]
+........................................................................ [ 82%]
+........................................................................ [ 88%]
+........................................................................ [ 94%]
+..................................................................       [100%]
+All checks passed!
+220 files already formatted
+Success: no issues found in 131 source files
+ M Makefile
+ M docs/pm/BOARD.md
+ M docs/pm/DECISIONS.md
+ M docs/pm/DEFECTS.md
+ M docs/pm/PROJECT.md
+ M docs/pm/RISKS.md
+ M eval/README.md
+ M eval/harness/conftest.py
+ M eval/harness/report.py
+ M eval/harness/test_eval.py
+ M eval/split.py
+ M tests/test_eval_report.py
+?? cands.json
+?? docs/pm/evidence/T-2.22-1.log
+?? docs/pm/evidence/T-2.22-2.log
+?? docs/pm/evidence/T-2.22-3.log
+?? docs/pm/evidence/T-2.22-4.log
+?? docs/pm/evidence/T-2.22-5.log
+?? docs/pm/evidence/T-2.22-6.log
+?? docs/pm/evidence/T-2.22.md
