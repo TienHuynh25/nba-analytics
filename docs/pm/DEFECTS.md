@@ -42,10 +42,12 @@
 | DEF-026 | S4 | T-2.22 (T-2.18) | Dev-only runs omit the held-out and dev-minus-held-out lines instead of stating 'not run' | CLOSED: VERIFIED-FIXED (T-GATE2; QA T-2.22b) |
 | DEF-027 | S4 | T-2.22 (docs) | Wording: 320 turn-units in 305 case items; report says '213 cases' for dev while the split tool prints 223 | CLOSED: VERIFIED-FIXED (T-GATE2; QA T-2.22b) |
 
-| DEF-028 | S3 | T-GATE2 | tests/test_sec4_hardening.py::test_fallback_surrogate_sql_gives_up_cleanly failed once in a full run, passed in two later full runs and in isolation: flaky (cause unknown; suspects: process-global state shared between tests, watchdog timing, sealed-dir tmp cleanup) | FIXED by T-FLAKE (root cause: leaked watchdog-Timer reference to the DuckDB connection; deterministic regression test; dirty-tree flag; gate2 CI test tightened); final verification in the PR run |
-| DEF-029 | S4 | T-GATE2 | Eval report git SHA is HEAD with no dirty-tree flag: the baseline records da58e845 though the tree was uncommitted | FIXED by T-FLAKE (root cause: leaked watchdog-Timer reference to the DuckDB connection; deterministic regression test; dirty-tree flag; gate2 CI test tightened); final verification in the PR run |
+| DEF-028 | S3 | T-GATE2 | tests/test_sec4_hardening.py::test_fallback_surrogate_sql_gives_up_cleanly failed once in a full run, passed in two later full runs and in isolation: flaky (cause unknown; suspects: process-global state shared between tests, watchdog timing, sealed-dir tmp cleanup) | CLOSED: VERIFIED-FIXED (T-FLAKE; independent T-QA7: old code leaks 6/6 with gc off, fixed 0/46; 8/8 full runs, 100/100 isolated) |
+| DEF-029 | S4 | T-GATE2 | Eval report git SHA is HEAD with no dirty-tree flag: the baseline records da58e845 though the tree was uncommitted | CLOSED: VERIFIED-FIXED (T-FLAKE; independent T-QA7: old code leaks 6/6 with gc off, fixed 0/46; 8/8 full runs, 100/100 isolated) |
 
-| DEF-030 | S4 | T-2.22b (tests/test_gate2.py) | The CI-safe gate2 report check accepts a dev-only report (split dev) with all dev ids, so a committed dev run could pass for the Gate 2 deliverable | FIXED by T-FLAKE add-on (gate2 CI test requires split all, VERIFIED, sha match, no +dirty) |
+| DEF-030 | S4 | T-2.22b (tests/test_gate2.py) | The CI-safe gate2 report check accepts a dev-only report (split dev) with all dev ids, so a committed dev run could pass for the Gate 2 deliverable | CLOSED: VERIFIED-FIXED (T-FLAKE add-on; QA T-QA7: 11/11 gate2-checker cases) |
+
+| DEF-031 | S4 | T-PR11 | The report's '+dirty' flag counts untracked/modified files under docs/pm/ (PM state and evidence logs), which never affect results; any PM edit makes a baseline run '+dirty' | CLOSED: VERIFIED-FIXED (T-DIRTY; QA T-QA7) |
 
 ## Security findings (G1 batch review, docs/pm/evidence/G1-security.md)
 

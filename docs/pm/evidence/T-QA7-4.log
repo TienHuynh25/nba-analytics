@@ -1,0 +1,23 @@
+clean                want_dirty=False got=b96df70e0900 PASS
+mod_app              want_dirty=True  got=0e0900+dirty PASS
+mod_cases            want_dirty=True  got=0e0900+dirty PASS
+mod_docs_other       want_dirty=True  got=0e0900+dirty PASS
+untracked_root       want_dirty=True  got=0e0900+dirty PASS
+untracked_evidence   want_dirty=False got=b96df70e0900 PASS
+mod_board            want_dirty=False got=8c92fcc4f332 PASS
+mod_reports          want_dirty=False got=8c92fcc4f332 PASS
+new_reports          want_dirty=False got=8c92fcc4f332 PASS
+failures: 0
+
+correct              expect_pass=True  problems=[] OK
+dev_only             expect_pass=False problems=["split is 'dev', not 'all' (held-out did not run)"] OK
+heldout_only         expect_pass=False problems=["split is 'heldout', not 'all' (held-out did not run)"] OK
+missing_id           expect_pass=False problems=['case ids differ from cases.yaml (missing 1, extra 0)'] OK
+extra_id             expect_pass=False problems=['case ids differ from cases.yaml (missing 0, extra 1)'] OK
+NOT VERIFIED         expect_pass=False problems=["snapshot status is 'NOT VERIFIED'"] OK
+wrong_manifest_sha   expect_pass=False problems=['manifest_sha256 does not match eval/snapshots.yaml'] OK
+wrong_db_sha         expect_pass=False problems=['db_sha256 does not match eval/snapshots.yaml'] OK
++dirty               expect_pass=False problems=["git sha '68ceafe849353161908535ba0aae8a75f721c366+dirty' is not clean"] OK
+empty sha            expect_pass=False problems=["git sha '' is not clean"] OK
+no md                expect_pass=False problems=['no .md report beside the json'] OK
+bad: 0

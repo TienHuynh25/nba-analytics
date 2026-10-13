@@ -1,0 +1,11 @@
+$ ruff check .
+All checks passed!
+$ ruff format --check .
+223 files already formatted
+$ mypy
+Success: no issues found in 120 source files
+$ pytest tests/test_gate2.py tests/test_eval_report.py -rs
+....s.................................                                   [100%]
+=========================== short test summary info ============================
+SKIPPED [1] tests/test_gate2.py:84: no gate2 report committed yet
+37 passed, 1 skipped in 4.65s
