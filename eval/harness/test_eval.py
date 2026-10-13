@@ -11,28 +11,8 @@ import pytest
 
 from eval.harness.answerer import ANSWERERS, Answerer
 from eval.harness.report import CaseResult
-from eval.harness.scorers import STAGES, AnswerRecord, carry_over
+from eval.harness.scorers import STAGES, AnswerRecord, attach_gold, carry_over
 from eval.schema import Case, Gold, load
-from metrics.schema import registry
-
-
-def gold_numbers(gold: Gold) -> list[tuple[float, Any]]:
-    """Numbers in gold.value given as {"metric": name, "value": x} (anywhere inside it)."""
-    reg = registry()
-    out: list[tuple[float, Any]] = []
-
-    def walk(v: Any) -> None:
-        if isinstance(v, dict):
-            if "metric" in v and isinstance(v.get("value"), int | float):
-                out.append((float(v["value"]), reg.metric(v["metric"]).rounding))
-            for x in v.values():
-                walk(x)
-        elif isinstance(v, list):
-            for x in v:
-                walk(x)
-
-    walk(gold.value)
-    return out
 
 
 def selected(split: str) -> list[Case]:
@@ -55,7 +35,7 @@ def answerer(request: pytest.FixtureRequest) -> Answerer:
 
 
 def _score(gold: Gold, rec: AnswerRecord) -> dict[str, dict[str, Any]]:
-    rec.gold_numbers = gold_numbers(gold)
+    attach_gold(gold, rec)  # required, allowed, row seasons/dates (scorers.gold_numbers)
     return {
         name: {"applicable": s.applicable, "passed": s.passed, "detail": s.detail}
         for name, fn in STAGES.items()

@@ -78,17 +78,38 @@ class ToolCall(_Strict):
     args: dict[str, Any]
 
 
+class GoldNumber(_Strict):
+    """One number in ``gold.value.answer`` (required) or ``gold.value.allowed`` (context)."""
+
+    metric: str  # registry metric whose rounding applies
+    value: int | float
+    column: str
+    key: str | None = None  # the row it belongs to (player, team, season or game)
+
+
 class Gold(_Strict):
     path: Path_
     expect: Expect = Expect.answer
     tool_call: ToolCall | None = None
     sql: str | None = None
     # Gold values: scalar, list of rows, or mapping; filled from the pinned snapshot (2.6).
+    # In the mapping, ``answer`` lists the required numbers and ``allowed`` (optional) the
+    # context numbers an answer may state without being required to (T-2.15b).
     value: Any = None
     entities: dict[str, list[int]] = Field(default_factory=dict)  # players/teams -> ids
     chunks: list[str] = Field(default_factory=list)  # gold glossary chunk ids (knowledge)
     rule: str | None = None  # gold-answer rule for ambiguous seeds (spec table)
     note: str | None = None
+
+    @model_validator(mode="after")
+    def _allowed(self) -> Gold:
+        if isinstance(self.value, dict) and "allowed" in self.value:
+            items = self.value["allowed"]
+            if not isinstance(items, list) or not items:
+                raise ValueError("gold.value.allowed must be a non-empty list")
+            for item in items:
+                GoldNumber.model_validate(item)
+        return self
 
 
 class Turn(_Strict):
