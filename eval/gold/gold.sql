@@ -430,8 +430,8 @@ SELECT rank, record, player_id, player_name, value, game_id, game_date, season, 
 FROM r WHERE rank <= 1 ORDER BY rank, game_date, game_id, player_id;
 
 -- @Q35
--- The curated records table has no career triple-double entry (G1 pending), so the count comes
--- from box scores (partial before 1996-97), as the get_record tool does.
+-- REGULAR-SEASON career count (playoffs excluded): Westbrook 209; 221 including playoffs (Basketball-Reference, owner-checked 2026-10-15, D-037).
+-- Box-score count, partial before 1996-97; no curated career triple-double entry yet (G1 pending), as get_record does.
 -- key: player_name
 -- numbers: triple_doubles
 -- ordered: true

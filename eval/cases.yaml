@@ -2449,6 +2449,9 @@ cases:
       \ = 'Regular Season' AND triple_doubles IS NOT NULL\n)\nSELECT rank, player_id, player_name, games_played,\
       \ triple_doubles,\n  (SELECT COUNT(*) FROM semantic.records\n   WHERE record_kind = 'career_count'\
       \ AND record ILIKE '%triple-double%') AS curated_rows\nFROM r WHERE rank <= 1 ORDER BY rank, player_id"
+    rule: 'REGULAR-SEASON career count (playoffs excluded): Russell Westbrook 209; 221 including playoffs
+      (Basketball-Reference, owner-checked 2026-10-15). Box scores are partial before 1996-97; the curated
+      records table has no career triple-double row yet.'
   source: spec v3 seed table
   critical: true
   tags: []
@@ -12769,6 +12772,9 @@ cases:
       \ = 'Regular Season' AND triple_doubles IS NOT NULL\n)\nSELECT rank, player_id, player_name, games_played,\
       \ triple_doubles,\n  (SELECT COUNT(*) FROM semantic.records\n   WHERE record_kind = 'career_count'\
       \ AND record ILIKE '%triple-double%') AS curated_rows\nFROM r WHERE rank <= 1 ORDER BY rank, player_id"
+    rule: 'REGULAR-SEASON career count (playoffs excluded): Russell Westbrook 209; 221 including playoffs
+      (Basketball-Reference, owner-checked 2026-10-15). Box scores are partial before 1996-97; the curated
+      records table has no career triple-double row yet.'
   source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
   critical: true
   tags:
@@ -12794,6 +12800,9 @@ cases:
       \ = 'Regular Season' AND triple_doubles IS NOT NULL\n)\nSELECT rank, player_id, player_name, games_played,\
       \ triple_doubles,\n  (SELECT COUNT(*) FROM semantic.records\n   WHERE record_kind = 'career_count'\
       \ AND record ILIKE '%triple-double%') AS curated_rows\nFROM r WHERE rank <= 1 ORDER BY rank, player_id"
+    rule: 'REGULAR-SEASON career count (playoffs excluded): Russell Westbrook 209; 221 including playoffs
+      (Basketball-Reference, owner-checked 2026-10-15). Box scores are partial before 1996-97; the curated
+      records table has no career triple-double row yet.'
   source: paraphrase (2.9), LLM-drafted; awaiting review (0.3)
   critical: true
   tags:

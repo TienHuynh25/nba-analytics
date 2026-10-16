@@ -1,0 +1,17 @@
+gold up to date
+c7015681f406f7b93dc1ca01db3b73ede3c2880db0d6b9d6a51d2821165715b2  eval/cases.yaml
+9e69e4c237970d1683fc7a0667e6f4dab79372d24c1f82a2c301c1e5d7fe2411  eval/gold/gold_report.md
+usage: compute_gold.py [-h] [--check] [--out OUT] [--threads THREADS]
+compute_gold.py: error: unrecognized arguments: --threads 1
+c7015681f406f7b93dc1ca01db3b73ede3c2880db0d6b9d6a51d2821165715b2  eval/cases.yaml
+9e69e4c237970d1683fc7a0667e6f4dab79372d24c1f82a2c301c1e5d7fe2411  eval/gold/gold_report.md
+.....................................                                    [100%]
+........................................................................ [ 92%]
+........................................................................ [ 98%]
+...............                                                          [100%]
+1237 passed, 2 skipped, 1 deselected in 136.09s (0:02:16)
+All checks passed!
+28 files already formatted
+Success: no issues found in 120 source files
+c7015681f406f7b93dc1ca01db3b73ede3c2880db0d6b9d6a51d2821165715b2  eval/cases.yaml
+9e69e4c237970d1683fc7a0667e6f4dab79372d24c1f82a2c301c1e5d7fe2411  eval/gold/gold_report.md
