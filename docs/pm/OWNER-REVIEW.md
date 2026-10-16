@@ -56,3 +56,11 @@ Approved as recommended: A1 to A17 (gold interpretations, including Q48 Curry, Q
 NOT covered by "approve all" and still open:
 - B: the manual Basketball-Reference check of Q34 (Wilt, 100 points, 1962-03-02) and Q35 (Westbrook, 209 triple-doubles). Tell me the values you found, or that they match.
 - D: the records list for T-REC and confirmation that you checked Basketball-Reference's terms.
+
+## Update 2026-10-15 (pasted reply)
+
+Reported by the owner: Q34 (Wilt, 100 points, 36/63 FG, 28/32 FT) and Q35 (Westbrook, 209 regular-season triple-doubles, 221 including playoffs) match Basketball-Reference. Both agree with the gold. STILL OPEN: (2) ratify D-026, (3) confirm review of the 30 entity variants, 10 hard negatives, 10 multi-turn items and 51 critical tags (the paste left both as template lines). Proposed edit awaiting explicit OK: make the Q35 gold note say 'regular season only (209); 221 including playoffs', regenerated through compute_gold (changes the gold hashes, must land before the tag).
+
+## Owner decisions 2026-10-15 (own words: "ratify D-026, reviewed, edit Q35")
+
+D-026 ratified. Review of the 30 entity variants, 10 hard negatives, 10 multi-turn items and 51 critical tags confirmed. Q34 and Q35 Basketball-Reference check done (matching). Q35 gold note to say regular season only (209; 221 including playoffs). Gate 2 conditions 1 and 2 closed; the tag `testset-v1.0` follows the Q35 edit.

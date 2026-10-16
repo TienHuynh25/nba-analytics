@@ -6,7 +6,7 @@ Source of truth: `CLAUDE.md`, `Basketball Analytics RAG — Spec.md` (v3), `Bask
 
 - **Goal:** a fully local assistant answering NBA questions with correct, cited numbers.
 - **Success metric:** at least 85% correct on the held-out split with zero unverified numbers (Gate 4).
-- **Tier:** Full.
+- **Tier:** Standard-LEAN since 2026-10-15 (D-038, owner instruction): invariants and CI stay; independent verification only for data-integrity code; one governance review per gate; one security review at Gates 3 and 4; work packages and one PR per package.
 - **Stack:** Python 3.12 / uv, nba_api 1.11.4, DuckDB + dbt-duckdb, Ollama, ruff, mypy strict.
 - **Scope/constraints:** as in CLAUDE.md invariants and the Spec; no scope beyond the Spec.
 

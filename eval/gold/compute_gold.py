@@ -156,14 +156,23 @@ ASSUMPTIONS = [
     "pooled 3P%); they carry a registry metric for rounding like required numbers.",
 ]
 
+# Gold-answer rule text for stats seeds (shared with their paraphrases); reviewers only, the
+# scorer reads the numbers. Q35 per owner decision D-037.
+STATS_RULE = {
+    "Q35": "REGULAR-SEASON career count (playoffs excluded): Russell Westbrook 209; 221 "
+    "including playoffs (Basketball-Reference, owner-checked 2026-10-15). Box scores are "
+    "partial before 1996-97; the curated records table has no career triple-double row yet.",
+}
+
 # Seeds and turns whose gold depends on an interpretation the owner should confirm.
 AMBIGUOUS = {
     "Q05": "Rookie season = first regular season in player_season (rule).",
     "Q08": "2025-26 Lakers stint only (rule); gold entities list the player, not the Lakers.",
     "Q27": "One row per season for each player's first two seasons (compare tool scope), not a "
     "two-season average.",
-    "Q35": "Box-score count (partial before 1996-97); the curated records table has no career "
-    "triple-double row yet (G1).",
+    "Q35": "REGULAR-SEASON career count (playoffs excluded): Westbrook 209; 221 including "
+    "playoffs (Basketball-Reference, owner-checked 2026-10-15, D-037). Box scores are partial "
+    "before 1996-97; no curated records row yet (G1).",
     "Q37": "Registry career minimum is 400 games OR 10,000 points (unconfirmed); the T-SEEDS "
     "query used AND. Same leader either way.",
     "Q43": "Wins and losses required for all 15 teams; win percentage is context.",
@@ -618,6 +627,8 @@ def compute(prov: Provenance, threads: int | None = None) -> Result:
             gold["entities"] = {"players": [int(r["player_id"]) for r in value["candidates"]]}
             if bid in CLARIFY_RULE:
                 gold["rule"] = CLARIFY_RULE[bid]
+        if bid in STATS_RULE:
+            gold["rule"] = STATS_RULE[bid]
         kind = str(value["kind"])
         counts[kind] = counts.get(kind, 0) + 1
         # One report row per computed block, and per seed without one (knowledge, refusals).

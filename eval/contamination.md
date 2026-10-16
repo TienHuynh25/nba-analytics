@@ -27,3 +27,7 @@ The developer computed gold values for **all 320 case units, held-out included**
 ## 2026-10-12, T-GATE2RUN (Gate 2 held-out run)
 
 Run `gate2-0e22b45f`: Gate 2 held-out run with the stub answerer (no model, no retrieval); results not used to change any prompt, tool, registry or gold; one run approved by the owner (D-032). Per-case held-out results were not inspected for tuning. Also seen on dev: n/a (no tuning).
+
+## 2026-10-15, T-Q35 (gold wording)
+
+Q35 gold wording only (owner decision D-037, owner-checked against Basketball-Reference): a `rule` text now says the answer is a REGULAR-SEASON career count (Westbrook 209; 221 including playoffs), and the Q35 note in `eval/gold/gold.sql` and `gold_report.md` was reworded. No gold value, `allowed` number, split, prompt, tool, registry or config changed; no held-out run or result was used; no tuning. Also seen on dev: n/a (no tuning).
